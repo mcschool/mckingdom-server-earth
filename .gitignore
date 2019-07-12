@@ -1,6 +1,7 @@
 .idea/
 target/
 spigot/
+!spigot/.gitkeep
 
 .DS_Store
 
