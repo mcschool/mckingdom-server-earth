@@ -1,0 +1,4 @@
+name: Earth
+version: ${project.version}
+main: com.mckd.earth.Earth
+api-version: 1.13
