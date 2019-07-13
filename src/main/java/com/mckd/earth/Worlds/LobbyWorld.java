@@ -1,6 +1,9 @@
 package com.mckd.earth.Worlds;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mckd.earth.Earth;
+import com.mckd.earth.Utils.HttpReq;
 import com.mckd.earth.Worlds.Lobby.LobbyInventory;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -391,6 +394,43 @@ public class LobbyWorld implements Listener{
      */
     @EventHandler
     public void BlockBreakEvent(BlockBreakEvent event) {
+        HttpReq req = new HttpReq();
+
+        // Ex: GET Request
+        // -----------------
+        /*
+        JsonObject response = req.get("/api/health", null);
+        System.out.println(response);
+        */
+
+        // Ex: Post Request
+        // -------------------
+        /*
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        JsonObject response = req.post("/api/health/", obj);
+        System.out.println(response);
+        */
+
+        // Ex: Put Request
+        // -------------------
+        /*
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        JsonObject response = req.put("/api/health/", obj);
+        System.out.println(response);
+        */
+
+
+        // Ex: Delete Request
+        // -------------------
+        /*
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        JsonObject response = req.put("/api/health/", obj);
+        System.out.println(response);
+        */
+
         if (event.getPlayer().getWorld().getName().equals(this.worldName)) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
                 event.setCancelled(true);
