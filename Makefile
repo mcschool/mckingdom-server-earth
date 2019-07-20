@@ -1,6 +1,6 @@
 # 開発用サーバーを起動する
 server:
-	cd spigot && java -jar spigot-1.12.2.jar
+	cd spigot && java -Xms1G -Xmx1G -XX:+UseConcMarkSweepGC -jar spigot-1.12.2.jar
 
 # コンパイルしてjarを配置
 compile:
