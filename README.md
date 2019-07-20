@@ -16,3 +16,53 @@ $ java -jar BuildTools.jar --rev 1.12
 ```
 $ make server
 ```
+
+## 本番サーバー
+GCP Ubuntu18 LTSでインスタンス作る例
+
+## 01: aptをupdateする
+```
+$ sudo apt update
+$ sudo apt upgrade
+```
+
+## 02: Javaをインストール
+```
+バージョン検索
+$ sudo apt search openjdk-\(\.\)\+-jre$
+入れる
+$ sudo apt install openjdk-11-jre
+確認
+$ java -version
+```
+
+## 03: Spigot用意
+### ビルドツールダウンロード
+```
+$ mkdir spigot && cd spigot
+$ curl -LO https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+```
+
+### ビルド
+```
+$ java -jar BuildTools.jar --rev 1.14.3
+```
+※10分くらいかかる
+
+### 04: 起動
+```
+一旦実行する
+$ java -jar spigot-1.14.3.jar
+EULAに同意してくれ的な事言われるので
+$ vi eula.txt
+eula=false
+↓
+eula=true
+esc -> :w -> :q
+
+もう一回実行
+$ java -jar spigot-1.14.3.jar
+起動したら
+>stop
+で止める
+```
