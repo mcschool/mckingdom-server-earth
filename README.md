@@ -7,7 +7,7 @@ mckingdomの `earth` サーバー
 $ mkdir spigot
 $ cd spigot
 $ curl -LO https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-$ java -jar BuildTools.jar --rev 1.12
+$ java -jar BuildTools.jar --rev 1.12.2
 ```
 10分くらいかかる
 
