@@ -45,7 +45,7 @@ $ curl -LO https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/a
 
 ### ビルド
 ```
-$ java -jar BuildTools.jar --rev 1.14.3
+$ java -jar BuildTools.jar --rev 1.12.2
 ```
 ※10分くらいかかる
 
