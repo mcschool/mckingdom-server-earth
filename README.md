@@ -52,7 +52,7 @@ $ java -jar BuildTools.jar --rev 1.14.3
 ### 04: 起動
 ```
 一旦実行する
-$ java -jar spigot-1.14.3.jar
+$ java -jar spigot-1.12.2.jar
 EULAに同意してくれ的な事言われるので
 $ vi eula.txt
 eula=false
@@ -61,7 +61,7 @@ eula=true
 esc -> :w -> :q
 
 もう一回実行
-$ java -jar spigot-1.14.3.jar
+$ java -jar spigot-1.12.2.jar
 起動したら
 >stop
 で止める
