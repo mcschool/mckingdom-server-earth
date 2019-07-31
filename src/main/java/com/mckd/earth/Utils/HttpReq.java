@@ -12,7 +12,11 @@ import java.net.URL;
 public class HttpReq {
     public JsonObject get(String path, JsonObject obj) {
         String urlString = "http://localhost:5000" + path;
-        // System.out.println("URL:" + urlString);
+        /*
+        System.out.println("================");
+        System.out.println("URL:" + urlString);
+        System.out.println("================");
+        */
         HttpURLConnection conn = null;
         InputStream in = null;
         BufferedReader reader = null;
@@ -95,6 +99,9 @@ public class HttpReq {
     public JsonObject post(String path, JsonObject jsonObject) {
         HttpURLConnection conn;
         String urlString = "http://localhost:5000" + path;
+        System.out.println("================");
+        System.out.println("URL:" + urlString);
+        System.out.println("================");
         try {
             URL url = new URL(urlString);
             conn = (HttpURLConnection) url.openConnection();
@@ -121,7 +128,6 @@ public class HttpReq {
 
             JsonParser parser = new JsonParser();
             JsonObject json = parser.parse(body).getAsJsonObject();
-            System.out.println(json);
             return json;
         } catch (IOException e) {
             e.printStackTrace();

@@ -401,7 +401,8 @@ public class LobbyWorld implements Listener{
         // Ex: GET Request
         // -----------------
         /*
-        JsonObject response = req.get("/api/health", null);
+        String url = "/api/game/me?uuid=" + event.getPlayer().getUniqueId().toString();
+        JsonObject response = req.get(url, null);
         System.out.println(response);
         */
 
@@ -410,8 +411,11 @@ public class LobbyWorld implements Listener{
         /*
         JsonObject obj = new JsonObject();
         obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
-        JsonObject response = req.post("/api/health/", obj);
+        obj.addProperty("name", event.getPlayer().getDisplayName());
+        JsonObject response = req.post("/api/game/players", obj);
         System.out.println(response);
+        int loginCount = Integer.parseInt(response.get("login_count").toString());
+        System.out.println(loginCount);
         */
 
         // Ex: Put Request
