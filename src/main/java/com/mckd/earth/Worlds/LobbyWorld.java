@@ -27,6 +27,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -115,6 +116,7 @@ public class LobbyWorld implements Listener{
         player.sendTitle(
                 ChatColor.GREEN + "M" + ChatColor.WHITE+"CKINGDOM",
                 "Welcome To MCK", 60,80,60);
+        this.sidebar(player);
         if (player.getWorld().getName().equals(this.worldName)){
             // ロビーでのプレーヤーの状態変更(空腹度とか)
             // LobbyUtil.initPlayerStatus(player);
@@ -551,4 +553,17 @@ public class LobbyWorld implements Listener{
         dos.close();
     }
 
+    public void sidebar(Player player) {
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard board = manager.getNewScoreboard();
+        Objective obj = board.registerNewObjective("a", "b");
+        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+        obj.setDisplayName(player.getDisplayName());
+
+        // 項目追加
+        Score permission = obj.getScore("Login");
+        permission.setScore(10);
+
+        player.setScoreboard(board);
+    }
 }
