@@ -2,6 +2,7 @@ package com.mckd.earth.Utils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mckd.earth.Config;
 import com.sun.jndi.toolkit.url.Uri;
 import jdk.nashorn.internal.parser.JSONParser;
 
@@ -10,8 +11,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpReq {
+
+    Config config;
+
+    public HttpReq() {
+        this.config = new Config();
+    }
+
     public JsonObject get(String path, JsonObject obj) {
-        String urlString = "http://localhost:5000" + path;
+        String apiUrl = this.config.apiUrl;
+        String urlString = apiUrl + path;
         /*
         System.out.println("================");
         System.out.println("URL:" + urlString);
@@ -59,7 +68,8 @@ public class HttpReq {
 
     public JsonObject get2(String path, JsonObject jsonObject) {
         HttpURLConnection conn;
-        String urlString = "http://localhost:5000" + path;
+        String apiUrl = this.config.apiUrl;
+        String urlString = apiUrl + path;
         try {
             URL url = new URL(urlString);
             conn = (HttpURLConnection) url.openConnection();
@@ -98,10 +108,11 @@ public class HttpReq {
 
     public JsonObject post(String path, JsonObject jsonObject) {
         HttpURLConnection conn;
-        String urlString = "http://localhost:5000" + path;
-        System.out.println("================");
-        System.out.println("URL:" + urlString);
-        System.out.println("================");
+        String apiUrl = this.config.apiUrl;
+        String urlString = apiUrl + path;
+        // System.out.println("================");
+        // System.out.println("URL:" + urlString);
+        // System.out.println("================");
         try {
             URL url = new URL(urlString);
             conn = (HttpURLConnection) url.openConnection();
@@ -139,7 +150,8 @@ public class HttpReq {
 
     public JsonObject put(String path, JsonObject jsonObject) {
         HttpURLConnection conn;
-        String urlString = "http://localhost:5000" + path;
+        String apiUrl = this.config.apiUrl;
+        String urlString = apiUrl + path;
         try {
             URL url = new URL(urlString);
             conn = (HttpURLConnection) url.openConnection();
@@ -177,7 +189,8 @@ public class HttpReq {
 
     public JsonObject delete(String path, JsonObject jsonObject) {
         HttpURLConnection conn;
-        String urlString = "http://localhost:5000" + path;
+        String apiUrl = this.config.apiUrl;
+        String urlString = apiUrl + path;
         try {
             URL url = new URL(urlString);
             conn = (HttpURLConnection) url.openConnection();
