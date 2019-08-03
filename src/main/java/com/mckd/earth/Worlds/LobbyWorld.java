@@ -572,9 +572,6 @@ public class LobbyWorld implements Listener{
         obj.addProperty("uuid", player.getUniqueId().toString());
         obj.addProperty("name", player.getDisplayName());
         JsonObject response = req.post("/api/game/players/my_ranking", obj);
-        System.out.println("=====");
-        System.out.println(response);
-        System.out.println("=====");
         int lobbyLoginCount = Integer.parseInt(response.get("login_count").toString());
         int ranking = Integer.parseInt(response.get("my_ranking").toString());
         int total_player = Integer.parseInt(response.get("total_players").toString());
