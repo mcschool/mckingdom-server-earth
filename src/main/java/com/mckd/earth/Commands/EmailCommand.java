@@ -11,6 +11,9 @@ public class EmailCommand {
         Player player = null;
         if (sender instanceof Player) {
             player = (Player) sender;
+            System.out.println("=====");
+            System.out.println(args[0]);
+            System.out.println("=====");
             HttpReq req= new HttpReq();
             JsonObject obj = new JsonObject();
             obj.addProperty("uuid", player.getUniqueId().toString());
