@@ -41,6 +41,7 @@ public class LobbyWorld implements Listener{
 
     public String worldName = "world";
     private Earth plugin;
+    public int money = 0;
 
     public LobbyWorld(Earth plugin) {
         this.plugin = plugin;
@@ -103,6 +104,16 @@ public class LobbyWorld implements Listener{
         // Bossbar
         BossBar bossBar = this.plugin.getServer().createBossBar("★★ ようこそ MCKINGDOM へ ★★", BarColor.BLUE, BarStyle.SOLID);
         bossBar.addPlayer(event.getPlayer());
+
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        obj.addProperty("name", event.getPlayer().getDisplayName());
+        JsonObject response = req.post("/api/game/players", obj);
+        System.out.println(response);
+        int loginCount = Integer.parseInt(response.get("money").toString());
+        System.out.println(loginCount);
+        this.money = Integer.parseInt(response.get("money").toString());
+
     }
 
     public void changeWorld(Player player) {
@@ -137,7 +148,7 @@ public class LobbyWorld implements Listener{
         int ranking = Integer.parseInt(response.get("my_ranking").toString());
         int total_player = Integer.parseInt(response.get("total_players").toString());
         player.sendMessage("PlayerName: " + player.getDisplayName() + " LoginCount: " + lobbyLoginCount + " UrRank: " + ranking + "/" + total_player);
-    }
+     }
 
     /**
      * インベントリをクリック
@@ -575,6 +586,7 @@ public class LobbyWorld implements Listener{
         int lobbyLoginCount = Integer.parseInt(response.get("login_count").toString());
         int ranking = Integer.parseInt(response.get("my_ranking").toString());
         int total_player = Integer.parseInt(response.get("total_players").toString());
+        int money = this.money;
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
@@ -592,6 +604,10 @@ public class LobbyWorld implements Listener{
 
         Score all_players = obj1.getScore("All Players");
         all_players.setScore(total_player);
+        player.setScoreboard(board);
+
+        Score money_count = obj1.getScore("Money");
+        money_count.setScore(money);
         player.setScoreboard(board);
     }
 }

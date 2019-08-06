@@ -1,5 +1,6 @@
 package com.mckd.earth.Worlds;
 
+import com.google.common.cache.AbstractCache;
 import com.google.gson.JsonObject;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Utils.HttpReq;
@@ -22,12 +23,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.ObjLongConsumer;
 
 public class AthleticWorld implements Listener {
 
@@ -51,6 +54,7 @@ public class AthleticWorld implements Listener {
             player.getInventory().clear();
             player.setFoodLevel(20);
             player.getWorld().setPVP(false);
+            this.slidebar(player);
 
             // アイテム渡す
             // ------------------------
@@ -160,7 +164,6 @@ public class AthleticWorld implements Listener {
         Bukkit.broadcastMessage(ChatColor.AQUA + player.getDisplayName() + "さんが" + ChatColor.GREEN + stageName + "をクリアしました");
         player.sendTitle("Congratulations!", "おめでとう！！", 40, 60, 60);
 
-
         //TODO あとでデータを合わせる
         HttpReq req = new HttpReq();
         JsonObject obj = new JsonObject();
@@ -171,6 +174,9 @@ public class AthleticWorld implements Listener {
         JsonObject response = req.post("/api/game/athletic_completed_players", obj);
         System.out.println(response);
 
+
+
+        this.slidebar(player);
 
 
         //TODO バグがあった為一旦停止しています。
@@ -519,6 +525,27 @@ public class AthleticWorld implements Listener {
                 e.setCancelled(true); // TODO: インベントリ開かないようにできた？
             }
         }
+    }
+
+    public void slidebar(Player player){
+        HttpReq req = new HttpReq();
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", player.getUniqueId().toString());
+        obj.addProperty("name", player.getDisplayName());
+        JsonObject response = req.post("/api/game/players", obj);
+        System.out.println(response);
+        int athletic_clear_count = Integer.parseInt(response.get("athletic_clear_count").toString());
+
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard board = manager.getNewScoreboard();
+        Objective obj1 = board.registerNewObjective("a", "b");
+        obj1.setDisplaySlot(DisplaySlot.SIDEBAR);
+        obj1.setDisplayName(player.getDisplayName());
+
+        Score permission = obj1.getScore("ClearCount");
+        permission.setScore(athletic_clear_count);
+
+        player.setScoreboard(board);
     }
 }
 
