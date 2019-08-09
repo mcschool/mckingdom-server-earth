@@ -34,3 +34,10 @@ $ sudo systemctl stop mckearth.earth
 ```
 $ sudo systemctl status mckearth.earth
 ```
+
+
+## d
+```
+$ sudo apt install maven
+$ sudo apt install make
+```
