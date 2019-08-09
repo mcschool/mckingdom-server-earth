@@ -41,6 +41,7 @@ public class LobbyWorld implements Listener{
 
     public String worldName = "world";
     private Earth plugin;
+    public int money = 0;
 
     public LobbyWorld(Earth plugin) {
         this.plugin = plugin;
@@ -97,11 +98,21 @@ public class LobbyWorld implements Listener{
 
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event) {
+        HttpReq req = new HttpReq();
         Player player = event.getPlayer();
         this.changeWorld(event.getPlayer());
         // Bossbar
         BossBar bossBar = this.plugin.getServer().createBossBar("★★ ようこそ MCKINGDOM へ ★★", BarColor.BLUE, BarStyle.SOLID);
         bossBar.addPlayer(event.getPlayer());
+
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        obj.addProperty("name", event.getPlayer().getDisplayName());
+        JsonObject response = req.post("/api/game/players", obj);
+        System.out.println(response);
+        int loginCount = Integer.parseInt(response.get("money").toString());
+        System.out.println(loginCount);
+        this.money = Integer.parseInt(response.get("money").toString());
 
     }
 
@@ -128,7 +139,16 @@ public class LobbyWorld implements Listener{
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
         }
-    }
+        HttpReq req= new HttpReq();
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", player.getUniqueId().toString());
+        obj.addProperty("name", player.getDisplayName());
+        JsonObject response = req.post("/api/game/players/my_ranking", obj);
+        int lobbyLoginCount = Integer.parseInt(response.get("login_count").toString());
+        int ranking = Integer.parseInt(response.get("my_ranking").toString());
+        int total_player = Integer.parseInt(response.get("total_players").toString());
+        player.sendMessage("PlayerName: " + player.getDisplayName() + " LoginCount: " + lobbyLoginCount + " UrRank: " + ranking + "/" + total_player);
+     }
 
     /**
      * インベントリをクリック
@@ -558,16 +578,36 @@ public class LobbyWorld implements Listener{
     }
 
     public void sidebar(Player player) {
+        HttpReq req= new HttpReq();
+        JsonObject obj = new JsonObject();
+        obj.addProperty("uuid", player.getUniqueId().toString());
+        obj.addProperty("name", player.getDisplayName());
+        JsonObject response = req.post("/api/game/players/my_ranking", obj);
+        int lobbyLoginCount = Integer.parseInt(response.get("login_count").toString());
+        int ranking = Integer.parseInt(response.get("my_ranking").toString());
+        int total_player = Integer.parseInt(response.get("total_players").toString());
+        int money = this.money;
+
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
-        Objective obj = board.registerNewObjective("a", "b");
-        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName(player.getDisplayName());
-
+        Objective obj1 = board.registerNewObjective("a", "b");
+        obj1.setDisplaySlot(DisplaySlot.SIDEBAR);
+        obj1.setDisplayName(player.getDisplayName());
         // 項目追加
-        Score permission = obj.getScore("Login");
-        permission.setScore(10);
+        Score permission = obj1.getScore("Login");
+        permission.setScore(lobbyLoginCount);
+        player.setScoreboard(board);
 
+        Score login_count = obj1.getScore("Ur Rank");
+        login_count.setScore(ranking);
+        player.setScoreboard(board);
+
+        Score all_players = obj1.getScore("All Players");
+        all_players.setScore(total_player);
+        player.setScoreboard(board);
+
+        Score money_count = obj1.getScore("Money");
+        money_count.setScore(money);
         player.setScoreboard(board);
     }
 }
