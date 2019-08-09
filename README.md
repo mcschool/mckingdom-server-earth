@@ -1,6 +1,14 @@
 # mckingdom-server-earth
 mckingdomの `earth` サーバー
 
+## How to use Plugins
+### PermissionsEx
+```
+pex user <username> group add admin
+```
+
+
+
 ## 開発の前に
 ### spigotをビルドする
 ```
