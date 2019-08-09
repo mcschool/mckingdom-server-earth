@@ -11,6 +11,11 @@ public final class Earth extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        System.out.println("=== MCK ENV ======================");
+        String env = System.getenv("MCK_ENV");
+        System.out.println(env);
+        System.out.println("=====================================");
+
         // Plugin startup logic
         new LobbyWorld(this);
         new AthleticWorld(this);
