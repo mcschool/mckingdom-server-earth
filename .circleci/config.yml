@@ -1,15 +1,28 @@
 version: 2
 jobs:
-  build:
+  deploy:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: google/cloud-sdk:206.0.0
     working_directory: ~/repo
-    environment:
-      MAVEN_OPTS: -Xmx3200m
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
-            - v1-dependencies-
-      - run: mvn dependency:go-offline
+      - run:
+          name: Authenticate Google Cloud & Deploy
+          command: |
+            GOOGLE_PROJECT_ID=mckingdom
+            GCLOUD_SERVICE_KEY=${GCLOUD_SERVICE_KEY}
+            echo ${GCLOUD_SERVICE_KEY} | base64 -i --decode > ${HOME}/gcp-key.json
+            gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gcloud --quiet config set compute/zone asia-northeast1-b
+            gcloud --quiet compute --project "mckingdom" ssh --zone "asia-northeast1-b" "smatosan@earth" --command "cd mckingdom-server-earth && /bin/sh deploy.sh"
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - develop

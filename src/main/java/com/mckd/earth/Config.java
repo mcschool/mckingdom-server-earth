@@ -5,8 +5,11 @@ public class Config {
     public String apiUrl;
 
     public Config() {
-        String env = "local";
-        if (env == "local") {
+        String env = System.getenv("MCK_ENV");
+        System.out.println("=== config =============");
+        System.out.println(env);
+        System.out.println("========================");
+        if (env == "production") {
             this.apiUrl = "http://localhost:5000";
         } else {
             this.apiUrl = "http://mc-kingdom.com";
