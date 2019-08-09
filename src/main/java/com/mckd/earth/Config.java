@@ -12,7 +12,7 @@ public class Config {
         if (env == "production") {
             this.apiUrl = "http://localhost:5000";
         } else {
-            this.apiUrl = "http://mc-kingdom.com";
+            this.apiUrl = "https://mc-kingdom.com";
         }
     }
 
@@ -22,7 +22,7 @@ public class Config {
         if (env == "local") {
             apiUrl = "http://localhost:5000";
         } else {
-            apiUrl = "http://mc-kingdom.com";
+            apiUrl = "https://mc-kingdom.com";
         }
         return apiUrl;
     }
