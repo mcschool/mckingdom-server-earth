@@ -109,11 +109,12 @@ public class LobbyWorld implements Listener{
         obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
         obj.addProperty("name", event.getPlayer().getDisplayName());
         JsonObject response = req.post("/api/game/players", obj);
-        System.out.println(response);
         int loginCount = Integer.parseInt(response.get("money").toString());
-        System.out.println(loginCount);
         this.money = Integer.parseInt(response.get("money").toString());
-
+        //ログインした時送る
+        JsonObject obj1 = new JsonObject();
+        obj1.addProperty("uuid", event.getPlayer().getUniqueId().toString());
+        JsonObject response1 = req.post("/api/game/accesses", obj1);
     }
 
     public void changeWorld(Player player) {
