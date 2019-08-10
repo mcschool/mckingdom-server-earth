@@ -198,6 +198,13 @@ public class AthleticWorld implements Listener {
         config.set("athletic-checkpoint-location-" + player.getUniqueId().toString(), location);
     }
 
+    public void a(int courseNo) {
+        HttpReq req = new HttpReq();
+        JsonObject obj = new JsonObject();
+        obj.addProperty("course_no", courseNo);
+        JsonObject response = req.put("/api/game/athletic/course/change", obj);
+        System.out.println(response);
+    }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
@@ -221,6 +228,8 @@ public class AthleticWorld implements Listener {
                     int index = e.getRawSlot();
                     // クリックしたindexでステージ移動
                     //入門タイムアタック
+
+                    a(index + 1);
                     if (index == 0){
                         Location location = new Location(player.getWorld(),-305,67,302);
                         player.teleport(location);
