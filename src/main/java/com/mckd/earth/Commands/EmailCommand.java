@@ -22,6 +22,7 @@ public class EmailCommand {
             JsonObject result = req.post("/api/game/command/email", obj);
             System.out.println("=====");
             System.out.println(result);
+            player.sendMessage("EMAIL CHANGED THANK YOU");
         }
         return true;
     }
