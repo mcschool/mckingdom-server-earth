@@ -139,6 +139,7 @@ public class LobbyWorld implements Listener{
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
         }
+        /*
         HttpReq req= new HttpReq();
         JsonObject obj = new JsonObject();
         obj.addProperty("uuid", player.getUniqueId().toString());
@@ -148,6 +149,7 @@ public class LobbyWorld implements Listener{
         int ranking = Integer.parseInt(response.get("my_ranking").toString());
         int total_player = Integer.parseInt(response.get("total_players").toString());
         player.sendMessage("PlayerName: " + player.getDisplayName() + " LoginCount: " + lobbyLoginCount + " UrRank: " + ranking + "/" + total_player);
+        */
      }
 
     /**
