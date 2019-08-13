@@ -110,9 +110,9 @@ public class HttpReq {
         HttpURLConnection conn;
         String apiUrl = this.config.apiUrl;
         String urlString = apiUrl + path;
-        // System.out.println("================");
-        // System.out.println("URL:" + urlString);
-        // System.out.println("================");
+        System.out.println("================");
+        System.out.println("URL:" + urlString);
+        System.out.println("================");
         try {
             URL url = new URL(urlString);
             conn = (HttpURLConnection) url.openConnection();
