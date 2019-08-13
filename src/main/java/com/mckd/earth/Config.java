@@ -9,7 +9,7 @@ public class Config {
         System.out.println("=== config =============");
         System.out.println(env);
         System.out.println("========================");
-        if (env == "production") {
+        if (env.equals("production")) {
             this.apiUrl = "https://mc-kingdom.com";
         } else {
             this.apiUrl = "http://localhost:5000";
