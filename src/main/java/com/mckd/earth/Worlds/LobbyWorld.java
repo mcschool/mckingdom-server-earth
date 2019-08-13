@@ -578,6 +578,7 @@ public class LobbyWorld implements Listener{
     }
 
     public void sidebar(Player player) {
+        /*
         HttpReq req= new HttpReq();
         JsonObject obj = new JsonObject();
         obj.addProperty("uuid", player.getUniqueId().toString());
@@ -609,5 +610,6 @@ public class LobbyWorld implements Listener{
         Score money_count = obj1.getScore("Money");
         money_count.setScore(money);
         player.setScoreboard(board);
+        */
     }
 }
