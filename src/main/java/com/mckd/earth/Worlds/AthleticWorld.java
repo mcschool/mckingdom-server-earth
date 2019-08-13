@@ -85,6 +85,7 @@ public class AthleticWorld implements Listener {
 
             this.setInventory(player);
             this.setConfigration(9999, "", player, player.getLocation());
+
         }
     }
 
@@ -198,6 +199,13 @@ public class AthleticWorld implements Listener {
         config.set("athletic-checkpoint-location-" + player.getUniqueId().toString(), location);
     }
 
+    public void a(int courseNo) {
+        HttpReq req = new HttpReq();
+        JsonObject obj = new JsonObject();
+        obj.addProperty("course_no", courseNo);
+        JsonObject response = req.put("/api/game/athletic/course/change", obj);
+        System.out.println(response);
+    }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
@@ -221,6 +229,8 @@ public class AthleticWorld implements Listener {
                     int index = e.getRawSlot();
                     // クリックしたindexでステージ移動
                     //入門タイムアタック
+
+                    a(index + 1);
                     if (index == 0){
                         Location location = new Location(player.getWorld(),-305,67,302);
                         player.teleport(location);
@@ -536,6 +546,10 @@ public class AthleticWorld implements Listener {
         System.out.println(response);
         int athletic_clear_count = Integer.parseInt(response.get("athletic_clear_count").toString());
 
+        World world = Bukkit.getWorld("athletic");
+        int playerCount = world.getPlayers().size();
+
+
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
         Objective obj1 = board.registerNewObjective("a", "b");
@@ -544,6 +558,8 @@ public class AthleticWorld implements Listener {
 
         Score permission = obj1.getScore("ClearCount");
         permission.setScore(athletic_clear_count);
+        Score permission1 = obj1.getScore("現在の人数");
+        permission1.setScore(playerCount);
 
         player.setScoreboard(board);
     }
