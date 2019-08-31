@@ -17,11 +17,12 @@ public class EmailCommand {
             HttpReq req= new HttpReq();
             JsonObject obj = new JsonObject();
             obj.addProperty("uuid", player.getUniqueId().toString());
-            obj.addProperty("email", "aaaaaaaaa@.com");
+            obj.addProperty("email", args[0]);
             System.out.println("BEOFRE API");
             JsonObject result = req.post("/api/game/command/email", obj);
             System.out.println("=====");
             System.out.println(result);
+            player.sendMessage("EMAIL CHANGED THANK YOU");
         }
         return true;
     }
