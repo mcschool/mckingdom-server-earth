@@ -462,6 +462,7 @@ public class LobbyWorld implements Listener{
 
         if (event.getPlayer().getWorld().getName().equals(this.worldName)) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.getPlayer().sendMessage("壊せないよ");
                 event.setCancelled(true);
             }
         }
