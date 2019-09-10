@@ -419,7 +419,7 @@ public class LobbyWorld implements Listener{
      */
     @EventHandler
     public void BlockBreakEvent(BlockBreakEvent event) {
-        HttpReq req = new HttpReq();
+        // HttpReq req = new HttpReq();
 
         // Ex: GET Request
         // -----------------
