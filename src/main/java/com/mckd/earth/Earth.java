@@ -21,7 +21,7 @@ public final class Earth extends JavaPlugin {
         new PvpWorld(this);
         new PartyWorld(this);
         new BuildWorld(this);
-        new PvpWorld(this);
+        new PveWorld(this);
     }
 
     @Override
