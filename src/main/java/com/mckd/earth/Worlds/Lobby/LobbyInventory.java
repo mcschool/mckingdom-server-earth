@@ -17,6 +17,7 @@ public class LobbyInventory {
 
         // サバイバル: ダイヤのつるはし
         // ========================
+        /*
         ItemStack survival = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta survivalMeta = survival.getItemMeta();
         survivalMeta.setDisplayName("サバイバル");
@@ -26,6 +27,7 @@ public class LobbyInventory {
         survivalMeta.setLore(survivalLores);
         survival.setItemMeta(survivalMeta);
         inv.setItem(0, survival);
+         */
 
         // 建築ワールド: チェスト
         // ========================
@@ -41,6 +43,7 @@ public class LobbyInventory {
 
         // PVP: ダイヤの剣
         // ========================
+        /*
         ItemStack pvp = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta pvpMeta = pvp.getItemMeta();
         pvpMeta.setDisplayName("PvP");
@@ -50,6 +53,8 @@ public class LobbyInventory {
         pvpMeta.setLore(pvpLores);
         pvp.setItemMeta(pvpMeta);
         inv.setItem(2, pvp);
+
+         */
 
         // アスレ: ダイヤのブーツ
         // ========================
@@ -65,6 +70,7 @@ public class LobbyInventory {
 
         // クリエ: シーランタン
         // ========================
+        /*
         ItemStack creative = new ItemStack(Material.TRIPWIRE_HOOK);
         ItemMeta creativeMeta = creative.getItemMeta();
         creativeMeta.setDisplayName("クリエになろう!");
@@ -74,6 +80,9 @@ public class LobbyInventory {
         creative.setItemMeta(creativeMeta);
         inv.setItem(4, creative);
 
+         */
+
+        /*
         ItemStack oni = new ItemStack(Material.ENDER_PEARL);
         ItemMeta oniMeta = oni.getItemMeta();
         oniMeta.setDisplayName("みんなでワイワイ鬼ごっこ!");
@@ -82,6 +91,8 @@ public class LobbyInventory {
         oniMeta.setLore(oniLores);
         oni.setItemMeta(oniMeta);
         inv.setItem(5,oni);
+
+         */
 
         return inv;
     }
