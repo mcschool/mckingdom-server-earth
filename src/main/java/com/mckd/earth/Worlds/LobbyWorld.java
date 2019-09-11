@@ -98,13 +98,14 @@ public class LobbyWorld implements Listener{
 
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event) {
-        HttpReq req = new HttpReq();
         Player player = event.getPlayer();
         this.changeWorld(event.getPlayer());
         // Bossbar
         BossBar bossBar = this.plugin.getServer().createBossBar("★★ ようこそ MCKINGDOM へ ★★", BarColor.BLUE, BarStyle.SOLID);
         bossBar.addPlayer(event.getPlayer());
 
+        /*
+        HttpReq req = new HttpReq();
         JsonObject obj = new JsonObject();
         obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
         obj.addProperty("name", event.getPlayer().getDisplayName());
@@ -113,7 +114,7 @@ public class LobbyWorld implements Listener{
         int loginCount = Integer.parseInt(response.get("money").toString());
         System.out.println(loginCount);
         this.money = Integer.parseInt(response.get("money").toString());
-
+        */
     }
 
     public void changeWorld(Player player) {
