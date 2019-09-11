@@ -70,7 +70,7 @@ public class AthleticWorld implements Listener {
             compass.setItemMeta(compassMeta);
             player.getInventory().setItem(7, compass);
             // ロビーに戻る: ベッド
-            ItemStack bed = new ItemStack(Material.RED_BED);
+            ItemStack bed = new ItemStack(Material.BED);
             ItemMeta bedMeta = bed.getItemMeta();
             bedMeta.setDisplayName("ロビーに戻る");
             bed.setItemMeta(bedMeta);
