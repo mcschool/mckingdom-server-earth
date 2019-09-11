@@ -1,10 +1,7 @@
 package com.mckd.earth;
 
 import com.mckd.earth.Commands.EmailCommand;
-import com.mckd.earth.Worlds.AthleticWorld;
-import com.mckd.earth.Worlds.LobbyWorld;
-import com.mckd.earth.Worlds.PartyWorld;
-import com.mckd.earth.Worlds.PvpWorld;
+import com.mckd.earth.Worlds.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,6 +20,7 @@ public final class Earth extends JavaPlugin {
         new AthleticWorld(this);
         new PvpWorld(this);
         new PartyWorld(this);
+        new BuildWorld(this);
     }
 
     @Override
