@@ -15,7 +15,7 @@ public class PveWorld implements Listener {
 
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent e){
-        if (e.getPlayer().getWorld().getName().equals("pve")) return;
+        if (!e.getPlayer().getWorld().getName().equals("pve")) return;
         Player p = e.getPlayer();
         p.setGameMode((GameMode.SURVIVAL));
         p.setFoodLevel(20);
