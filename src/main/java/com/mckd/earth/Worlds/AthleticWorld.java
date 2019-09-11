@@ -76,11 +76,11 @@ public class AthleticWorld implements Listener {
             bed.setItemMeta(bedMeta);
             player.getInventory().setItem(8, bed);
             //トリップワイヤーフックを渡す
-            ItemStack itemStack = new ItemStack(Material.TRIPWIRE_HOOK);
-            player.getInventory().setItem(4,itemStack);
+            // ItemStack itemStack = new ItemStack(Material.TRIPWIRE_HOOK);
+            // player.getInventory().setItem(4,itemStack);
             //パンを渡す
-            ItemStack itemStack1 = new ItemStack(Material.BREAD);
-            player.getInventory().setItem(3,itemStack1);
+            // ItemStack itemStack1 = new ItemStack(Material.BREAD);
+            // player.getInventory().setItem(3,itemStack1);
 
             // this.setInventory(player);
             // this.setConfigration(9999, "", player, player.getLocation());
@@ -94,6 +94,76 @@ public class AthleticWorld implements Listener {
             event.setCancelled(true);
             return;
         }
+    }
+
+    /**
+     * サバイバルの場合ブロック破壊禁止
+     * @param e
+     */
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent e){
+        Player player = e.getPlayer();
+        if(player.getWorld().getName().equals(this.worldName)){
+            if(e.getPlayer().getGameMode() == GameMode.SURVIVAL){
+                e.setCancelled(true);
+            }
+            return;
+        }
+    }
+
+    /**
+     * アイテムを捨てられないようにする
+     * @param e
+     */
+    @EventHandler
+    public void onPlayerDropItemEvent(PlayerDropItemEvent e) {
+        Player player = e.getPlayer();
+        if(player.getWorld().getName().equals(this.worldName)) {
+            if(e.getPlayer().getGameMode() == GameMode.SURVIVAL){
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void BlockPlaceEvent(BlockPlaceEvent event){
+        if (event.getPlayer().getWorld().getName().equals(this.worldName)){
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL){
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent e) {
+        Player player = e.getPlayer();
+        if(!player.getWorld().getName().equals(this.worldName)) return;
+        // 空中を右クリック
+        if(e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            // ベッドの場合: ロビーに戻る
+            if(e.getMaterial() == Material.BED) {
+                player.performCommand("mvtp world");
+            }
+            // コンパスの場合: スタート地点に戻る
+            if(e.getMaterial() == Material.COMPASS) {
+                teleportStartLocation(player);
+            }
+        }
+        // ブロックを右クリック
+        if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            // エンダーチェスト
+            if(e.getClickedBlock().getType() == Material.ENDER_CHEST) {
+                // done(player,e.getClickedBlock().getLocation());
+                e.setCancelled(true); // TODO: インベントリ開かないようにできた？
+            }
+        }
+    }
+
+    /**
+     * ステート地点に戻る
+     */
+    public void teleportStartLocation(Player player) {
+        player.teleport(this.world.getSpawnLocation());
     }
 }
 
