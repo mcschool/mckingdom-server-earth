@@ -129,11 +129,11 @@ public class LobbyWorld implements Listener{
         player.sendTitle(
                 ChatColor.GREEN + "M" + ChatColor.WHITE+"CKINGDOM",
                 "Welcome To MCK", 60,80,60);
-        this.sidebar(player);
         if (player.getWorld().getName().equals(this.worldName)){
+            // インベントリを一度空にする
+            player.getInventory().clear();
             // ロビーでのプレーヤーの状態変更(空腹度とか)
             // LobbyUtil.initPlayerStatus(player);
-
             // ゲームメニュー用の "紙" 渡す
             ItemStack itemStack = new ItemStack(Material.PAPER);
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -141,6 +141,7 @@ public class LobbyWorld implements Listener{
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
         }
+        this.sidebar(player);
         /*
         HttpReq req= new HttpReq();
         JsonObject obj = new JsonObject();
