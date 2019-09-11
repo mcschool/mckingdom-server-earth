@@ -46,5 +46,54 @@ public class AthleticWorld implements Listener {
         this.world = this.plugin.getServer().getWorld(this.worldName);
     }
 
+    @EventHandler
+    public void onPlayerChangeWorld(PlayerChangedWorldEvent e) {
+        Player player = e.getPlayer();
+        if (player.getWorld().getName().equals(this.worldName)) {
+            player.setGameMode(GameMode.SURVIVAL);
+            player.getInventory().clear();
+            player.setFoodLevel(20);
+            player.getWorld().setPVP(false);
+
+            // アイテム渡す
+            // ------------------------
+            // ステージ選択: 紙
+            ItemStack paper = new ItemStack(Material.PAPER);
+            ItemMeta paperMeta = paper.getItemMeta();
+            paperMeta.setDisplayName("すべてのステージ");
+            paper.setItemMeta(paperMeta);
+            player.getInventory().setItem(0, paper);
+            // スタート地点に戻る: コンパス
+            ItemStack compass = new ItemStack(Material.COMPASS);
+            ItemMeta compassMeta = compass.getItemMeta();
+            compassMeta.setDisplayName("スタート地点に戻る");
+            compass.setItemMeta(compassMeta);
+            player.getInventory().setItem(7, compass);
+            // ロビーに戻る: ベッド
+            ItemStack bed = new ItemStack(Material.RED_BED);
+            ItemMeta bedMeta = bed.getItemMeta();
+            bedMeta.setDisplayName("ロビーに戻る");
+            bed.setItemMeta(bedMeta);
+            player.getInventory().setItem(8, bed);
+            //トリップワイヤーフックを渡す
+            ItemStack itemStack = new ItemStack(Material.TRIPWIRE_HOOK);
+            player.getInventory().setItem(4,itemStack);
+            //パンを渡す
+            ItemStack itemStack1 = new ItemStack(Material.BREAD);
+            player.getInventory().setItem(3,itemStack1);
+
+            // this.setInventory(player);
+            // this.setConfigration(9999, "", player, player.getLocation());
+        }
+    }
+
+    @EventHandler
+    public void onFoodLevelChangeEvent(FoodLevelChangeEvent event){
+        String worldname = event.getEntity().getWorld().getName();
+        if (worldname.equals(this.worldName)){
+            event.setCancelled(true);
+            return;
+        }
+    }
 }
 
