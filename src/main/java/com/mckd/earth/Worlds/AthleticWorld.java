@@ -337,6 +337,10 @@ public class AthleticWorld implements Listener {
         if(!player.getWorld().getName().equals(this.worldName)) return;
         // 空中を右クリック
         if(e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            // 紙の場合: インベントリ開く
+            if(e.getMaterial() == Material.PAPER) {
+                openGui(player);
+            }
             // ベッドの場合: ロビーに戻る
             if(e.getMaterial() == Material.BED) {
                 player.performCommand("mvtp world");
