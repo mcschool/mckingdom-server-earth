@@ -366,5 +366,32 @@ public class AthleticWorld implements Listener {
     public void teleportStartLocation(Player player) {
         player.teleport(this.world.getSpawnLocation());
     }
+
+    /**
+     * ダメージ無効化
+     * @param e
+     */
+    @EventHandler
+    public void onEntityDamege(EntityDamageEvent e){
+        String worldname = e.getEntity().getWorld().getName();
+        if(worldname.equals(this.worldName)){
+            // ダメージを受けたエンティティがプレーヤーじゃなかったらreturn
+            if(!(e.getEntity() instanceof Player)){
+                return;
+            }
+            if(e.getCause() != null && e.getCause() == EntityDamageEvent.DamageCause.FALL){
+                e.setCancelled(true);
+            }
+            return;
+        }
+    }
+
+    @EventHandler
+    public void EntityDamageByBlockEvent(EntityDamageByBlockEvent event){
+        if (event.getEntity() instanceof Player){
+            event.setCancelled(true);
+        }
+
+    }
 }
 
