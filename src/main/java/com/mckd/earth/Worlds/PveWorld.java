@@ -125,7 +125,7 @@ public class PveWorld implements Listener {
                 }else{
                     this.sendMessageToPlayers(world,"ゲームクリア!");
                     this.waveCount = 1;
-
+                    p.performCommand("mvtp world");
                 }
             }
         }
