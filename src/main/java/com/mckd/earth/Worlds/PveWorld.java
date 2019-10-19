@@ -2,24 +2,33 @@ package com.mckd.earth.Worlds;
 
 import com.mckd.earth.Scheduler.PveScheduler;
 import com.mckd.earth.Earth;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.*;
+import org.bukkit.util.io.BukkitObjectInputStream;
+
+import java.util.List;
 
 public class PveWorld implements Listener {
 
     private Earth plugin;
+    private int waveCount = 1;
+    private int enemyCount = 0;
 
     public PveWorld(Earth plugin) {
+        this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -43,11 +52,21 @@ public class PveWorld implements Listener {
     ){
             Sign sign = (Sign) b.getState();
             String line = sign.getLine(1);
-            if( line.equals("Zombie") ){
-                Location b_loc = b.getLocation();
-                Location s_loc = new Location(b_loc.getWorld(),b_loc.getX()+5,b_loc.getY(),b_loc.getZ());
-                Zombie z = b_loc.getWorld().spawn(s_loc,Zombie.class);
-                z.setHealth(100.0);
+            if( line.equals("item") ){
+               ScoreboardManager sbm = Bukkit.getScoreboardManager();
+               Scoreboard sb =  sbm.getMainScoreboard();
+               Objective obj = sb.getObjective("point");
+               if( obj!=null) {
+                   Score score = obj.getScore(p.getDisplayName());
+                   int point = (int)score.getScore();
+                   if( point>=100 ) {
+                       ItemStack item = new ItemStack(Material.WOOD_SWORD);
+                       p.getInventory().addItem(item);
+                       score.setScore(point - 100);
+                   }else{
+                       p.sendMessage("スコアが100以上必要です!");
+                   }
+               }
             }
         }
     }
@@ -61,7 +80,69 @@ public class PveWorld implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(false);
             player.getInventory().clear();
-            new PveScheduler(this.plugin,player,10).runTaskTimer(this.plugin, 0, 20);
+            new PveScheduler(this.plugin,player.getWorld(),this.waveCount).runTaskTimer(this.plugin, 0, 20);
+
+            //Score board
+            ScoreboardManager sbm = Bukkit.getScoreboardManager();
+            Scoreboard sb = sbm.getMainScoreboard();
+            Objective obj = sb.getObjective("point");
+            if( obj==null) {
+                obj = sb.registerNewObjective("point", "test");
+                obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+                obj.setDisplayName("PVE");
+            }
+            Score score = obj.getScore(player.getDisplayName());
+            score.setScore(0);
+            player.setScoreboard(sb);
+        }
+    }
+
+    @EventHandler
+    public  void onEntityDeath(EntityDeathEvent event) {
+        World world = event.getEntity().getWorld();
+        if (world.getName().equals("pve")) {
+            Player p = event.getEntity().getKiller();
+            ScoreboardManager sbm = Bukkit.getScoreboardManager();
+            Scoreboard sb = sbm.getMainScoreboard();
+            Objective obj = ((Scoreboard) sb).getObjective("point");
+            if( obj!=null) {
+                Score score = obj.getScore(p.getDisplayName());
+                int point = (int)score.getScore();
+                score.setScore(point+100);
+                p.setScoreboard(sb);
+            }
+
+            if(this.waveCount>2) this.waveCount=1;
+            List<Entity> entities = world.getEntities();
+            int count = 0;
+            for( Entity entity : world.getEntities() ){
+                if( entity.isDead()==false) {
+                    if (entity instanceof Monster) {
+                        count++;
+                    }
+                }
+            }
+            if (count > 0) {
+                if (this.enemyCount != count) {
+                    this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
+                    this.enemyCount = count;
+                }
+            }else{
+                this.sendMessageToPlayers(world,"全モンスターを倒しました!");
+                if( this.waveCount<2 ) {
+                    this.waveCount++;
+                    new PveScheduler(this.plugin,world,this.waveCount).runTaskTimer(this.plugin,0,20);
+                }else{
+                    this.sendMessageToPlayers(world,"ゲームクリア!");
+                    this.waveCount = 1;
+
+                }
+            }
+        }
+    }
+    private void sendMessageToPlayers(World world, String msg){
+        for( Player player: world.getPlayers() ){
+            player.sendMessage(msg);
         }
     }
 }
