@@ -4,10 +4,16 @@ import com.mckd.earth.Earth;
 import com.mckd.earth.Scheduler.PveScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scoreboard.*;
 
 public class PveWorld implements Listener {
@@ -44,6 +50,35 @@ public class PveWorld implements Listener {
             Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
             player.setScoreboard(sb);
+        }
+    }
+@EventHandler
+    public void signClick(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        Block b = e.getClickedBlock();
+        if(p.getWorld().getName().equals("pve") &&
+                e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
+                b.getType() == Material.SIGN_POST
+        ){
+            Sign sign;
+            sign = (Sign) b.getState();
+            String line = sign.getLine(1);
+            if( line.equals("item") ){
+                ScoreboardManager sbm = Bukkit.getScoreboardManager();
+                Scoreboard sb =  sbm.getMainScoreboard();
+                Objective obj = sb.getObjective("point");
+                if( obj!=null) {
+                    Score score = obj.getScore(p.getDisplayName());
+                    int point = (int)score.getScore();
+                    if( point>=100 ) {
+                        ItemStack item = new ItemStack(Material.WOOD_SWORD);
+                        p.getInventory().addItem(item);
+                        score.setScore(point - 100);
+                    }else{
+                        p.sendMessage("スコアが100以上必要です!");
+                    }
+                }
+            }
         }
     }
 }
