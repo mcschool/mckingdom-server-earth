@@ -5,16 +5,22 @@ import com.mckd.earth.Scheduler.PveScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scoreboard.*;
+
+import java.util.List;
 
 public class PveWorld implements Listener {
 
@@ -81,4 +87,54 @@ public class PveWorld implements Listener {
             }
         }
     }
+    @EventHandler
+    public  void onEntityDeath(EntityDeathEvent event) {
+        World world = event.getEntity().getWorld();
+        if (world.getName().equals("pve")) {
+            Player p = event.getEntity().getKiller();
+            ScoreboardManager sbm = Bukkit.getScoreboardManager();
+            Scoreboard sb = sbm.getMainScoreboard();
+            Objective obj = ((Scoreboard) sb).getObjective("point");
+            if( obj!=null) {
+                Score score = obj.getScore(p.getDisplayName());
+                int point = (int)score.getScore();
+                score.setScore(point+100);
+                p.setScoreboard(sb);
+            }
+
+            if(this.waveCount>2) this.waveCount=1;
+            List<Entity> entities = world.getEntities();
+            int count = 0;
+            for( Entity entity : world.getEntities() ){
+                if( entity.isDead()==false) {
+                    if (entity instanceof Monster) {
+                        count++;
+                    }
+                }
+            }
+            if (count > 0) {
+                if (this.enemyCount != count) {
+                    this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
+                    this.enemyCount = count;
+                }
+            }else{
+                this.sendMessageToPlayers(world,"全モンスターを倒しました!");
+                if( this.waveCount<2 ) {
+                    this.waveCount++;
+                    new PveScheduler(this.plugin,world,this.waveCount).runTaskTimer(this.plugin,0,20);
+                }else{
+                    this.sendMessageToPlayers(world,"ゲームクリア!");
+                    this.waveCount = 1;
+
+                }
+            }
+        }
+    }
+
+    private void sendMessageToPlayers(World world, String msg){
+        for( Player player: world.getPlayers() ){
+            player.sendMessage(msg);
+        }
+    }
 }
+
