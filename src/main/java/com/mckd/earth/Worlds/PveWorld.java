@@ -73,16 +73,13 @@ public class PveWorld implements Listener {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 Scoreboard sb =  sbm.getMainScoreboard();
                 Objective obj = sb.getObjective("point");
-                p.sendMessage("aaaaa");
                 if( obj!=null) {
                     Score score = obj.getScore(p.getDisplayName());
                     int point = (int)score.getScore();
-                    p.sendMessage("bbbb");
                     if( point>=100 ) {
                         ItemStack item = new ItemStack(Material.WOOD_SWORD);
                         p.getInventory().addItem(item);
                         score.setScore(point - 100);
-                        p.sendMessage("cccc");
                     }else{
                         p.sendMessage("スコアが100以上必要です!");
                     }
