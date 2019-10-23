@@ -235,9 +235,13 @@ public class LobbyWorld implements Listener{
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
+        player.sendMessage("a");
         if (!player.getWorld().getName().equals(this.worldName)) return;
+        player.sendMessage("b");
         if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            player.sendMessage("c");
             if (e.getMaterial() == Material.PAPER) {
+                player.sendMessage("d");
                 LobbyInventory lobbyInventory = new LobbyInventory();
                 player.openInventory(lobbyInventory.gameMenu());
             }
