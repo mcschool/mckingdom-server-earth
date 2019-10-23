@@ -68,6 +68,16 @@ public class LobbyInventory {
         athletic.setItemMeta(athleticMeta);
         inv.setItem(3, athletic);
 
+
+        ItemStack pve = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta pveMate = pve.getItemMeta();
+        List<String> pveLores  = new  ArrayList<>();
+        pveLores.add("...");
+        pveMate.setLore(pveLores);
+        pve.setItemMeta(pveMate);
+        inv.setItem(5,pve);
+
+
         // クリエ: シーランタン
         // ========================
         /*
