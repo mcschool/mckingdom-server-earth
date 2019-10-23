@@ -518,7 +518,7 @@ public class LobbyWorld implements Listener{
                     player.performCommand("mvtp build");
                 }
                 if (event.getMaterial() == Material.DIAMOND_SWORD){
-                    player.performCommand("mvtp pvp");
+                    player.performCommand("mvtp pve");
                 }
             }
         }
