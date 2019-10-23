@@ -141,7 +141,7 @@ public class LobbyWorld implements Listener{
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
         }
-        this.sidebar(player);
+        // this.sidebar(player);
         /*
         HttpReq req= new HttpReq();
         JsonObject obj = new JsonObject();
