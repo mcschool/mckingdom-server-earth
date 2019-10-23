@@ -199,7 +199,7 @@ public class LobbyWorld implements Listener{
         }
         // ダイヤの剣: PvPに行く
         if(e.getCurrentItem().getType() == Material.DIAMOND_SWORD){
-            player.performCommand("mvtp pvp");
+            player.performCommand("mvtp pve");
         }
         // ダイヤのブーツ: アスレに行く
         if(e.getCurrentItem().getType() == Material.DIAMOND_BOOTS){
