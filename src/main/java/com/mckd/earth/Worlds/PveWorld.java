@@ -45,6 +45,16 @@ public class PveWorld implements Listener {
             new PveScheduler(this.plugin,player.getWorld(),this.waveCount).runTaskTimer(this.plugin, 0, 20);
 
             //Score board
+            ScoreboardManager sbm2 = Bukkit.getScoreboardManager();
+            Scoreboard sb2 = sbm2.getMainScoreboard();
+            Objective obj2 = ((Scoreboard) sb2).getObjective("point");
+            if( obj2!=null) {
+                Score score = obj2.getScore(player.getDisplayName());
+                int point = (int)score.getScore();
+                score.setScore(point+100);
+                player.setScoreboard(sb2);
+            }
+
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
