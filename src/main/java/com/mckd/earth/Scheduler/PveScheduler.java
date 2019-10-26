@@ -43,7 +43,7 @@ public class PveScheduler extends BukkitRunnable {
                         if (s.getLine(1).equals("Spawn")) {
                             Location s_loc = s.getLocation();
                             Location n_loc = new Location(s_loc.getWorld(),
-                                    s_loc.getX() + 0, s_loc.getY(), s_loc.getZ());
+                                    s_loc.getX() + 0, s_loc.getY() + 3, s_loc.getZ());
                             this.sendMessageToPlayers(this.world, String.valueOf(this.wave) );
                             if(this.wave==1) {
                                 s_loc.getWorld().spawn(n_loc, Zombie.class);
