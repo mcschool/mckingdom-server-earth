@@ -132,6 +132,8 @@ public class LobbyWorld implements Listener{
         if (player.getWorld().getName().equals(this.worldName)){
             // インベントリを一度空にする
             player.getInventory().clear();
+            player.setFoodLevel(20);
+            player.setHealth(20.0);
             // ロビーでのプレーヤーの状態変更(空腹度とか)
             // LobbyUtil.initPlayerStatus(player);
             // ゲームメニュー用の "紙" 渡す

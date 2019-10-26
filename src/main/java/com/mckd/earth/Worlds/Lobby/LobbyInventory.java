@@ -71,8 +71,9 @@ public class LobbyInventory {
 
         ItemStack pve = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta pveMate = pve.getItemMeta();
+        pveMate.setDisplayName("Mobs Killer");
         List<String> pveLores  = new  ArrayList<>();
-        pveLores.add("...");
+        pveLores.add("PVE");
         pveMate.setLore(pveLores);
         pve.setItemMeta(pveMate);
         inv.setItem(5,pve);
