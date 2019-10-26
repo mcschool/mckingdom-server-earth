@@ -53,7 +53,7 @@ public class PveWorld implements Listener {
             if( obj==null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                obj.setDisplayName("PVE");
+                obj.setDisplayName("PVE GOLD");
             }
             Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
