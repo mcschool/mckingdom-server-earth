@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -80,7 +81,7 @@ public class PveWorld implements Listener {
             Sign sign;
             sign = (Sign) b.getState();
             String line = sign.getLine(1);
-            if( line.equals("item") ){
+            if( line.equals("IRON SWORD -100") ){
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 Scoreboard sb =  sbm.getMainScoreboard();
                 Objective obj = sb.getObjective("point");
@@ -88,7 +89,7 @@ public class PveWorld implements Listener {
                     Score score = obj.getScore(p.getDisplayName());
                     int point = (int)score.getScore();
                     if( point>=100 ) {
-                        ItemStack item = new ItemStack(Material.WOOD_SWORD);
+                        ItemStack item = new ItemStack(Material.IRON_SWORD);
                         p.getInventory().addItem(item);
                         score.setScore(point - 100);
                     }else{
@@ -98,6 +99,17 @@ public class PveWorld implements Listener {
             }
         }
     }
+
+    @EventHandler
+    public  void playerDeathEvent (PlayerDeathEvent e) {
+        if (e.getEntity().getWorld().getName().equals("pve")) {
+            if(e.getEntity() instanceof Player) {
+                Player player = (Player) e.getEntity();
+                player.performCommand("mvtp world");
+            }
+        }
+    }
+
     @EventHandler
     public  void onEntityDeath(EntityDeathEvent event) {
         World world = event.getEntity().getWorld();
@@ -147,5 +159,7 @@ public class PveWorld implements Listener {
             player.sendMessage(msg);
         }
     }
+
+
 }
 
