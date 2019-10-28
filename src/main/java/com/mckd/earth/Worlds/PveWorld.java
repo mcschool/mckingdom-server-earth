@@ -111,6 +111,13 @@ public class PveWorld implements Listener {
     }
 
     @EventHandler
+    public void onDeath(EntityDeathEvent e) {
+        if(e.getEntity instanceof Zombie) { // if zombie dies
+            e.getDrops().clear();
+        }
+    }
+
+    @EventHandler
     public  void onEntityDeath(EntityDeathEvent event) {
         World world = event.getEntity().getWorld();
         if (world.getName().equals("pve")) {
