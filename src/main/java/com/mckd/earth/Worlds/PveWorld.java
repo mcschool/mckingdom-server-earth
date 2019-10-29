@@ -81,8 +81,7 @@ public class PveWorld<entList> implements Listener {
             Sign sign;
             sign = (Sign) b.getState();
             String line = sign.getLine(1);
-            if (line.equals("IRON SWORD" +
-                    "-100")) {
+            if (line.equals("IRON SWORD -100")) {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 Scoreboard sb = sbm.getMainScoreboard();
                 Objective obj = sb.getObjective("point");
@@ -98,8 +97,7 @@ public class PveWorld<entList> implements Listener {
                     }
                 }
             }
-            if (line.equals("IRON CHESTPLATE" +
-                    "-200")) {
+            if (line.equals("IRON CHESTPLATE -200")) {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 Scoreboard sb = sbm.getMainScoreboard();
                 Objective obj = sb.getObjective("point");
