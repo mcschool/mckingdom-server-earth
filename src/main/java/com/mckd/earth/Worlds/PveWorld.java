@@ -97,7 +97,7 @@ public class PveWorld<entList> implements Listener {
                     }
                 }
             }
-            if (line.equals("IRON CHESTPLATE -200")) {
+            if (line.equals("IRON HELMET -100")) {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 Scoreboard sb = sbm.getMainScoreboard();
                 Objective obj = sb.getObjective("point");
@@ -105,7 +105,7 @@ public class PveWorld<entList> implements Listener {
                     Score score = obj.getScore(p.getDisplayName());
                     int point = (int) score.getScore();
                     if (point >= 200) {
-                        ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
+                        ItemStack item = new ItemStack(Material.IRON_HELMET);
                         p.getInventory().addItem(item);
                         score.setScore(point - 200);
                     } else {
