@@ -93,7 +93,7 @@ public class PveWorld<entList> implements Listener {
                         p.getInventory().addItem(item);
                         score.setScore(point - 100);
                     }
-                    if (line.equals("IRON SWORD -100")) {
+                    if (line.equals("IRON HELMET")) {
                         ScoreboardManager sbm2 = Bukkit.getScoreboardManager();
                         Scoreboard sb2 = sbm2.getMainScoreboard();
                         Objective obj2 = sb2.getObjective("point");
