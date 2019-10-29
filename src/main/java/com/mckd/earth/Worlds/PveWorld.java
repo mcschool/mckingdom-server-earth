@@ -93,6 +93,7 @@ public class PveWorld<entList> implements Listener {
                         p.getInventory().addItem(item);
                         score.setScore(point - 100);
                     }
+                    if (line.equals("IRON SWORD -100")) {
                         ScoreboardManager sbm2 = Bukkit.getScoreboardManager();
                         Scoreboard sb2 = sbm2.getMainScoreboard();
                         Objective obj2 = sb2.getObjective("point");
@@ -103,9 +104,10 @@ public class PveWorld<entList> implements Listener {
                                 ItemStack item = new ItemStack(Material.IRON_HELMET);
                                 p.getInventory().addItem(item);
                                 score2.setScore(point2 - 100);
+                            } else {
+                                p.sendMessage("スコアが100以上必要です!");
                             }
-                    else {
-                        p.sendMessage("スコアが100以上必要です!");
+                        }
                     }
                 }
             }
