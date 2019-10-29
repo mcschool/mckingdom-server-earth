@@ -8,9 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -23,7 +21,7 @@ import org.bukkit.scoreboard.*;
 
 import java.util.List;
 
-public class PveWorld implements Listener {
+public class PveWorld<entList> implements Listener {
 
     private  Earth plugin;
     private  int waveCount = 1;
@@ -112,10 +110,13 @@ public class PveWorld implements Listener {
 
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
-        if(e.getEntity instanceof Zombie) { // if zombie dies
+        if(e.getEntity() instanceof Zombie) { // if zombie dies
             e.getDrops().clear();
         }
     }
+
+
+
 
     @EventHandler
     public  void onEntityDeath(EntityDeathEvent event) {
