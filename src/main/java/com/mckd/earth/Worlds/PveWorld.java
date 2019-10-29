@@ -23,16 +23,17 @@ import java.util.List;
 
 public class PveWorld<entList> implements Listener {
 
-    private  Earth plugin;
-    private  int waveCount = 1;
-    private  int enemyCount = 0;
-    public  PveWorld(Earth plugin) {
+    private Earth plugin;
+    private int waveCount = 1;
+    private int enemyCount = 0;
+
+    public PveWorld(Earth plugin) {
         this.plugin = plugin;
-        plugin.getServer().getPluginManager().registerEvents(this,plugin);
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
-    public  void enterWorld (PlayerChangedWorldEvent event) {
+    public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals("pve")) {
             player.sendMessage("Test world へようこそ");
@@ -41,14 +42,14 @@ public class PveWorld<entList> implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(false);
             player.getInventory().clear();
-            new PveScheduler(this.plugin,player.getWorld(),this.waveCount).runTaskTimer(this.plugin, 0, 20);
+            new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
 
             //Score board
 
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
-            if( obj==null) {
+            if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
                 obj.setDisplayName("PVE GOLD");
@@ -60,37 +61,38 @@ public class PveWorld<entList> implements Listener {
             ScoreboardManager sbm2 = Bukkit.getScoreboardManager();
             Scoreboard sb2 = sbm2.getMainScoreboard();
             Objective obj2 = ((Scoreboard) sb2).getObjective("point");
-            if( obj2!=null) {
+            if (obj2 != null) {
                 Score score2 = obj2.getScore(player.getDisplayName());
-                int point = (int)score2.getScore();
-                score2.setScore(point+100);
+                int point = (int) score2.getScore();
+                score2.setScore(point + 100);
                 player.setScoreboard(sb2);
             }
         }
     }
-@EventHandler
+
+    @EventHandler
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         Block b = e.getClickedBlock();
-        if(p.getWorld().getName().equals("pve") &&
+        if (p.getWorld().getName().equals("pve") &&
                 e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
                 b.getType() == Material.SIGN_POST
-        ){
+        ) {
             Sign sign;
             sign = (Sign) b.getState();
             String line = sign.getLine(1);
-            if( line.equals("IRON SWORD -100") ){
+            if (line.equals("IRON SWORD -100")) {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
-                Scoreboard sb =  sbm.getMainScoreboard();
+                Scoreboard sb = sbm.getMainScoreboard();
                 Objective obj = sb.getObjective("point");
-                if( obj!=null) {
+                if (obj != null) {
                     Score score = obj.getScore(p.getDisplayName());
-                    int point = (int)score.getScore();
-                    if( point>=100 ) {
+                    int point = (int) score.getScore();
+                    if (point >= 100) {
                         ItemStack item = new ItemStack(Material.IRON_SWORD);
                         p.getInventory().addItem(item);
                         score.setScore(point - 100);
-                    }else{
+                    } else {
                         p.sendMessage("スコアが100以上必要です!");
                     }
                 }
@@ -99,9 +101,9 @@ public class PveWorld<entList> implements Listener {
     }
 
     @EventHandler
-    public  void playerDeathEvent (PlayerDeathEvent e) {
+    public void playerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
-            if(e.getEntity() instanceof Player) {
+            if (e.getEntity() instanceof Player) {
                 Player player = (Player) e.getEntity();
                 player.performCommand("mvtp world");
             }
@@ -110,7 +112,16 @@ public class PveWorld<entList> implements Listener {
 
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
-        if(e.getEntity() instanceof Zombie) { // if zombie dies
+        if (e.getEntity() instanceof Zombie) { // if zombie dies
+            e.getDrops().clear();
+        }
+    }
+
+
+
+    @EventHandler
+    public void onDeath(EntityDeathEvent e) {
+        if(e.getEntity() instanceof Skeleton) { // if zombie dies
             e.getDrops().clear();
         }
     }
