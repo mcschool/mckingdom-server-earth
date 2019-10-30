@@ -74,7 +74,7 @@ public class PveWorld<entList> implements Listener {
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         // プレーヤーがいるワールドがpveじゃなかったら何も終わり
-        if (!p.getWorld().equals("pve")) {
+        if (!p.getWorld().getName().equals("pve")) {
             return;
         }
         p.sendMessage(" Test0");
