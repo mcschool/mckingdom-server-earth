@@ -84,29 +84,30 @@ public class PveWorld<entList> implements Listener {
             // あらかじめ利用する変数を用意しておく
             Sign sign;
             sign = (Sign) b.getState();
-            p.sendMessage("111");
+            p.sendMessage(" Test1");
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
             Score score = obj.getScore(p.getDisplayName());
             String line = sign.getLine(1);
             int point = score.getScore();
-            p.sendMessage("222");
+            p.sendMessage("Test2");
             // 鉄の剣
             if (line.equals("IRON SWORD -100")) {
-                p.sendMessage("333");
+                p.sendMessage("Test3");
                 if (point >= 100) {
+                    p.sendMessage("Test4");
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
                     p.getInventory().addItem(item);
                     score.setScore(point - 100);
                 } else {
-                    p.sendMessage("555");
+                    p.sendMessage("Test5");
                     p.sendMessage("スコアが100以上必要です!");
                 }
             }
             // 鉄のヘルメット
             if (line.equals("IRON HELMET -200")) {
-                p.sendMessage("666");
+                p.sendMessage("Test6");
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     p.getInventory().addItem(item);
