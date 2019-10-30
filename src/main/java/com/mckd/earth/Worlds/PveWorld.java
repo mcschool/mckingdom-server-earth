@@ -73,53 +73,45 @@ public class PveWorld<entList> implements Listener {
     @EventHandler
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
+        // プレーヤーがいるワールドがpveじゃなかったら何も終わり
+        if (!p.getWorld().equals("pve")) {
+            return;
+        }
         Block b = e.getClickedBlock();
-        if (p.getWorld().getName().equals("pve") &&
-                e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
-                b.getType() == Material.SIGN_POST
-        ) {
+        // 右クリックした "かつ" クリックしたブロックが看板だった場合
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+            // ここでスコアをみてアイテムをあげる
+            // あらかじめ利用する変数を用意しておく
             Sign sign;
             sign = (Sign) b.getState();
-            String line = sign.getLine(1);
-            if (line.equals("IRON SWORD -100")) {
-                ScoreboardManager sbm = Bukkit.getScoreboardManager();
-                Scoreboard sb = sbm.getMainScoreboard();
-                Objective obj = sb.getObjective("point");
-                if (obj != null) {
-                    Score score = obj.getScore(p.getDisplayName());
-                    int point = (int) score.getScore();
-                    if (point >= 100) {
-                        ItemStack item = new ItemStack(Material.IRON_SWORD);
-                        p.getInventory().addItem(item);
-                        score.setScore(point - 100);
-                    } else {
-                        p.sendMessage("スコアが100以上必要です!");
-                    }
-
-                }
-            }
-        }
-        Sign sign;
-        sign = (Sign) b.getState();
-        String line = sign.getLine(1);
-        if (line.equals("IRON HELMET -200")) {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
-            if (obj != null) {
-                Score score = obj.getScore(p.getDisplayName());
-                int point = (int) score.getScore();
-                if (point >= 200) {
-                    ItemStack item = new ItemStack(Material.IRON_HELMET);
+            Score score = obj.getScore(p.getDisplayName());
+            String line = sign.getLine(1);
+            int point = score.getScore();
+            // 鉄の剣
+            if (line.equals("IRON SWORD -100")) {
+                if (point >= 100) {
+                    ItemStack item = new ItemStack(Material.IRON_SWORD);
                     p.getInventory().addItem(item);
-                    score.setScore(point - 200);
-                }else{
-                    p.sendMessage("スコアが200以上必要です!");
+                    score.setScore(point - 100);
+                } else {
+                    p.sendMessage("スコアが100以上必要です!");
                 }
-
+            }
+            // 鉄のヘルメット
+            if (line.equals("IRON HELMET -200"){
+                // ここに鉄の剣と同じようなプログラム
             }
         }
     }
+
+
+
+
+
+
 
     @EventHandler
     public void playerDeathEvent(PlayerDeathEvent e) {
