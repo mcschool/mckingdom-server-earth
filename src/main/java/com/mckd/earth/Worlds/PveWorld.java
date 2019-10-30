@@ -101,7 +101,7 @@ public class PveWorld<entList> implements Listener {
                 }
             }
             // 鉄のヘルメット
-            if (line.equals("IRON HELMET -200") {
+            if (line.equals("IRON HELMET -200")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     p.getInventory().addItem(item);
