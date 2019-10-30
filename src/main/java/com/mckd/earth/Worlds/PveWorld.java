@@ -36,7 +36,7 @@ public class PveWorld<entList> implements Listener {
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals("pve")) {
-            player.sendMessage("Test world へようこそ");
+            player.sendMessage("Mobs Killer");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
@@ -93,22 +93,7 @@ public class PveWorld<entList> implements Listener {
                         p.getInventory().addItem(item);
                         score.setScore(point - 100);
                     }
-                    if (line.equals("IRON HELMET")) {
-                        ScoreboardManager sbm2 = Bukkit.getScoreboardManager();
-                        Scoreboard sb2 = sbm2.getMainScoreboard();
-                        Objective obj2 = sb2.getObjective("point");
-                        if (obj != null) {
-                            Score score2 = obj2.getScore(p.getDisplayName());
-                            int point2 = (int) score2.getScore();
-                            if (point2 >= 100) {
-                                ItemStack item = new ItemStack(Material.IRON_HELMET);
-                                p.getInventory().addItem(item);
-                                score2.setScore(point2 - 100);
-                            } else {
-                                p.sendMessage("スコアが100以上必要です!");
-                            }
-                        }
-                    }
+
                 }
             }
         }
