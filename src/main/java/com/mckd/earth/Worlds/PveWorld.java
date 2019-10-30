@@ -77,39 +77,31 @@ public class PveWorld<entList> implements Listener {
         if (!p.getWorld().getName().equals("pve")) {
             return;
         }
-        p.sendMessage(" Test0");
         Block b = e.getClickedBlock();
         // 右クリックした "かつ" クリックしたブロックが看板だった場合
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
-            p.sendMessage(" Test00");
             // ここでスコアをみてアイテムをあげる
             // あらかじめ利用する変数を用意しておく
             Sign sign;
             sign = (Sign) b.getState();
-            p.sendMessage(" Test1");
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
             Score score = obj.getScore(p.getDisplayName());
             String line = sign.getLine(1);
             int point = score.getScore();
-            p.sendMessage("Test2");
             // 鉄の剣
             if (line.equals("IRON SWORD -100")) {
-                p.sendMessage("Test3");
                 if (point >= 100) {
-                    p.sendMessage("Test4");
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
                     p.getInventory().addItem(item);
                     score.setScore(point - 100);
                 } else {
-                    p.sendMessage("Test5");
                     p.sendMessage("スコアが100以上必要です!");
                 }
             }
             // 鉄のヘルメット
             if (line.equals("IRON HELMET -200")) {
-                p.sendMessage("Test6");
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     p.getInventory().addItem(item);
@@ -120,11 +112,6 @@ public class PveWorld<entList> implements Listener {
             }
         }
     }
-
-
-
-
-
 
     @EventHandler
     public void playerDeathEvent(PlayerDeathEvent e) {
