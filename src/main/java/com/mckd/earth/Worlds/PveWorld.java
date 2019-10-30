@@ -77,9 +77,11 @@ public class PveWorld<entList> implements Listener {
         if (!p.getWorld().equals("pve")) {
             return;
         }
+        p.sendMessage(" Test0");
         Block b = e.getClickedBlock();
         // 右クリックした "かつ" クリックしたブロックが看板だった場合
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+            p.sendMessage(" Test00");
             // ここでスコアをみてアイテムをあげる
             // あらかじめ利用する変数を用意しておく
             Sign sign;
