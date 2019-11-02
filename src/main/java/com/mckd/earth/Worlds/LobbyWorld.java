@@ -515,6 +515,13 @@ public class LobbyWorld implements Listener{
                 }
                 */
             }
+            if(event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+                if(event.getMaterial() == Material.LEASH) {
+                    event.setCancelled(true);
+                }
+            }
+
+
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR)){
                 if (event.getMaterial() == Material.DIAMOND_PICKAXE){
                     player.sendMessage("survivalに移動します");
