@@ -234,6 +234,15 @@ public class LobbyWorld implements Listener{
      * 右クリックした時のイベント
      * @param e
      */
+
+    @EventHandler
+    public  void PlayerUnleashEntityEvent(PlayerUnleashEntityEvent e){
+        if(e.getEntity().getWorld().getName().equals("world")){
+            e.setCancelled(true);
+        }
+    }
+
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
