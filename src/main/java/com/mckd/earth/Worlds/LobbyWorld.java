@@ -94,6 +94,7 @@ public class LobbyWorld implements Listener{
             this.changeWorld(player);
             player.removePotionEffect(PotionEffectType.GLOWING);
             player.setGameMode(GameMode.SURVIVAL);
+            player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
         }
     }
 
@@ -240,7 +241,6 @@ public class LobbyWorld implements Listener{
     public  void PlayerUnleashEntityEvent(PlayerUnleashEntityEvent e){
         if(e.getEntity().getWorld().getName().equals("world")){
             Player p = e.getPlayer();
-            p.sendMessage("直して");
             e.setCancelled(true);
         }
     }
