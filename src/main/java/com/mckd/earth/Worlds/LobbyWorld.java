@@ -105,6 +105,7 @@ public class LobbyWorld implements Listener{
         // Bossbar
         BossBar bossBar = this.plugin.getServer().createBossBar("★★ ようこそ MCKINGDOM へ ★★", BarColor.BLUE, BarStyle.SOLID);
         bossBar.addPlayer(event.getPlayer());
+        player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
         HttpReq req = new HttpReq();
         JsonObject obj = new JsonObject();
