@@ -19,6 +19,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityUnleashEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -235,12 +236,24 @@ public class LobbyWorld implements Listener{
      * @param e
      */
 
-    @EventHandler
+   @EventHandler
     public  void PlayerUnleashEntityEvent(PlayerUnleashEntityEvent e){
         if(e.getEntity().getWorld().getName().equals("world")){
+            Player p = e.getPlayer();
+            p.sendMessage("直して");
             e.setCancelled(true);
         }
     }
+
+    /*@EventHandler
+    public  void EntityUnleashEvent(EntityUnleashEvent e) {
+        if (e.getEntity().getWorld().getName().equals("world")) {
+            if (e.getEntity() instanceof Player) {
+                e...(true);
+            }
+        }
+    }*/
+
 
 
     @EventHandler
