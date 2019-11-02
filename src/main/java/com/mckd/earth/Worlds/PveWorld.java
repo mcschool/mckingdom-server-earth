@@ -91,7 +91,7 @@ public class PveWorld<entList> implements Listener {
             String line = sign.getLine(1);
             int point = score.getScore();
             // 鉄の剣
-            if (line.equals("IRON SWORD -100")) {
+            if (line.equals("鉄の剣 -100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
                     p.getInventory().addItem(item);
@@ -101,7 +101,7 @@ public class PveWorld<entList> implements Listener {
                 }
             }
             // 鉄のヘルメット
-            if (line.equals("IRON HELMET -200")) {
+            if (line.equals("鉄の頭 -200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     p.getInventory().addItem(item);
