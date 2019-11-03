@@ -281,7 +281,7 @@ public class AthleticWorld implements Listener {
         player.teleport(new Location(player.getWorld(),-270,71,447));*/
         /*new AthleticFireworkScheduler(this.plugin,location,3).runTaskTimer(this.plugin,0,20);*/
         // player.teleport(new Location(player.getWorld(), -270,71,447));
-
+        player.setGameMode(GameMode.SPECTATOR);
         new AthleticClearScheduler(this.plugin, player).runTaskTimer(this.plugin, 0, 20);;
     }
 
@@ -353,7 +353,9 @@ public class AthleticWorld implements Listener {
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             // エンダーチェスト
             if(e.getClickedBlock().getType() == Material.ENDER_CHEST) {
-                done(player,e.getClickedBlock().getLocation());
+                if (player.getGameMode() != GameMode.SPECTATOR) {
+                    done(player, e.getClickedBlock().getLocation());
+                }
                 e.setCancelled(true); // TODO: インベントリ開かないようにできた？
             }
         }
@@ -398,6 +400,8 @@ public class AthleticWorld implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
+        String gamemode = player.getGameMode().toString();
+        player.sendMessage("-> " + gamemode);
         player.sendMessage("ゲームモード変更したら時間の計測はしません");
         FileConfiguration config = plugin.getConfig();
         config.set("is-athletic-save-time-" + player.getUniqueId().toString(), false);

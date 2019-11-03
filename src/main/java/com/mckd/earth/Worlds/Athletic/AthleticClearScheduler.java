@@ -24,7 +24,7 @@ public class AthleticClearScheduler extends BukkitRunnable {
         this.count--;
         this.player.sendMessage(String.valueOf(count));
         if (this.count <= 0) {
-            player.teleport(new Location(Bukkit.getWorld("athletic"), -270,71,447));
+            player.teleport(new Location(Bukkit.getWorld("athletic"), -270,73,445));
             this.cancel();
         }
     }
