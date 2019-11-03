@@ -23,6 +23,7 @@ public class AthleticClearScheduler extends BukkitRunnable {
         this.player.sendMessage(String.valueOf(count));
         if (this.count < 1) {
             this.player.getWorld().getSpawnLocation();
+            this.cancel();
         }
     }
 }
