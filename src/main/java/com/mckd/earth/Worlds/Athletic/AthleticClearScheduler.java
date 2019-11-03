@@ -1,6 +1,8 @@
 package com.mckd.earth.Worlds.Athletic;
 
 import com.mckd.earth.Earth;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -21,8 +23,8 @@ public class AthleticClearScheduler extends BukkitRunnable {
     public void run() {
         this.count--;
         this.player.sendMessage(String.valueOf(count));
-        if (this.count < 1) {
-            this.player.getWorld().getSpawnLocation();
+        if (this.count <= 0) {
+            player.teleport(new Location(Bukkit.getWorld("athletic"), -270,71,447));
             this.cancel();
         }
     }
