@@ -16,10 +16,7 @@ import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -393,7 +390,17 @@ public class AthleticWorld implements Listener {
         if (event.getEntity() instanceof Player){
             event.setCancelled(true);
         }
+    }
 
+    @EventHandler
+    public void onGameMode(PlayerGameModeChangeEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        player.sendMessage("ゲームモード変更したら時間の計測はしません");
+        FileConfiguration config = plugin.getConfig();
+        config.set("is-athletic-save-time-" + player.getUniqueId().toString(), false);
     }
 }
 
