@@ -282,7 +282,7 @@ public class AthleticWorld implements Listener {
         /*new AthleticFireworkScheduler(this.plugin,location,3).runTaskTimer(this.plugin,0,20);*/
         // player.teleport(new Location(player.getWorld(), -270,71,447));
 
-        new AthleticClearScheduler(this.plugin, player);
+        new AthleticClearScheduler(this.plugin, player).runTaskTimer(this.plugin, 0, 20);;
     }
 
 

@@ -8,14 +8,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class AthleticClearScheduler extends BukkitRunnable {
 
     private Earth plugin;
-    private Player player;
+    public Player player;
     public int count;
 
     public AthleticClearScheduler(Earth plugin, Player player) {
         this.plugin = plugin;
         this.player = player;
         this.count = 10;
-        player.sendMessage("start timer");
     }
 
     @Override
