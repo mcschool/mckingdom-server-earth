@@ -1,4 +1,4 @@
-package com.mckd.earth.Worlds;
+package com.mckd.earth.Worlds.Athletic;
 
 import com.google.common.cache.AbstractCache;
 import com.google.gson.JsonObject;
@@ -283,7 +283,9 @@ public class AthleticWorld implements Listener {
         /*this.teleportStartLocation(player);
         player.teleport(new Location(player.getWorld(),-270,71,447));*/
         /*new AthleticFireworkScheduler(this.plugin,location,3).runTaskTimer(this.plugin,0,20);*/
-        player.teleport(new Location(player.getWorld(), -270,71,447));
+        // player.teleport(new Location(player.getWorld(), -270,71,447));
+
+        new AthleticClearScheduler(this.plugin, player);
     }
 
 
