@@ -15,6 +15,7 @@ public class AthleticClearScheduler extends BukkitRunnable {
         this.plugin = plugin;
         this.player = player;
         this.count = 10;
+        player.sendMessage("start timer");
     }
 
     @Override
