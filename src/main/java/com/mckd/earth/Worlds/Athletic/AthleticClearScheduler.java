@@ -2,6 +2,7 @@ package com.mckd.earth.Worlds.Athletic;
 
 import com.mckd.earth.Earth;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -25,6 +26,7 @@ public class AthleticClearScheduler extends BukkitRunnable {
         this.player.sendMessage(String.valueOf(count));
         if (this.count <= 0) {
             player.teleport(new Location(Bukkit.getWorld("athletic"), -270,73,445));
+            player.setGameMode(GameMode.SURVIVAL);
             this.cancel();
         }
     }
