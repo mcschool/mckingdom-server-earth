@@ -168,7 +168,7 @@ public class PveWorld<entList> implements Listener {
                 }
             }else{
                 this.sendMessageToPlayers(world,"全モンスターを倒しました!");
-                if( this.waveCount<2 ) {
+                if( this.waveCount<3 ) {
                     this.waveCount++;
                     new PveScheduler(this.plugin,world,this.waveCount).runTaskTimer(this.plugin,0,20);
                 }else{

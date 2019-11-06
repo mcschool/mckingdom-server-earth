@@ -53,7 +53,11 @@ public class PveScheduler extends BukkitRunnable {
                             if(this.wave==2) {
                                 s_loc.getWorld().spawn(n_loc, Skeleton.class);
                                 s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                            }
+                            if(this.wave==2) {
                                 s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
                             }
                         }
 
