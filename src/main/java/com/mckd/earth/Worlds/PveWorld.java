@@ -110,6 +110,16 @@ public class PveWorld<entList> implements Listener {
                     p.sendMessage("スコアが200以上必要です!");
                 }
             }
+            //鉄の足
+            if (line.equals("鉄の足 -200ポイント")) {
+                if (point >= 200) {
+                    ItemStack item = new ItemStack(Material.IRON_BOOTS);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 200);
+                } else {
+                    p.sendMessage("スコアが200以上必要です!");
+                }
+            }
         }
     }
 
@@ -168,7 +178,7 @@ public class PveWorld<entList> implements Listener {
                 }
             }else{
                 this.sendMessageToPlayers(world,"全モンスターを倒しました!");
-                if( this.waveCount<3 ) {
+                if( this.waveCount<4 ) {
                     this.waveCount++;
                     new PveScheduler(this.plugin,world,this.waveCount).runTaskTimer(this.plugin,0,20);
                 }else{
