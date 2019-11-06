@@ -128,7 +128,9 @@ public class PveWorld<entList> implements Listener {
         if (e.getEntity().getWorld().getName().equals("pve")) {
             if (e.getEntity() instanceof Player) {
                 Player player = (Player) e.getEntity();
-                player.performCommand("mvtp world");
+                player.hidePlayer(this.plugin, player);
+                player.setFlying(true);
+                player.setGravity(false);
             }
         }
     }
