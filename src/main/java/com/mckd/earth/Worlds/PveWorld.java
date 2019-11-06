@@ -151,7 +151,7 @@ public class PveWorld<entList> implements Listener {
                 p.setScoreboard(sb);
             }
 
-            if(this.waveCount>2) this.waveCount=1;
+            if(this.waveCount>4) this.waveCount=1;
             List<Entity> entities = world.getEntities();
             int count = 0;
             for( Entity entity : world.getEntities() ){
