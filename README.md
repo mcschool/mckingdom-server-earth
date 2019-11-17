@@ -74,3 +74,8 @@ $ java -jar spigot-1.12.2.jar
 >stop
 で止める
 ```
+
+
+### 05: プラグイン
+- citizens
+https://wiki.citizensnpcs.co/Commands
