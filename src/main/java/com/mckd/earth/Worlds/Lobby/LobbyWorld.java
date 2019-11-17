@@ -139,6 +139,7 @@ public class LobbyWorld implements Listener{
             player.setHealth(20.0);
             player.setFlying(false);
             player.setGravity(true);
+            player.setGameMode(GameMode.SURVIVAL);
             // ロビーでのプレーヤーの状態変更(空腹度とか)
             // LobbyUtil.initPlayerStatus(player);
             // ゲームメニュー用の "紙" 渡す
