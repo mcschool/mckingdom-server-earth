@@ -133,11 +133,11 @@ public class PveWorld implements Listener {
             if (e.getEntity() instanceof Player) {
                 Player player = e.getEntity();
                 player.sendMessage("death!!!!");
+                player.setHealth(20.0);
+                player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
                 player.setFlying(true);
                 player.setGravity(false);
-                player.setHealth(20.0);
-                player.setGameMode(GameMode.SPECTATOR);
             }
         }
     }
