@@ -148,6 +148,13 @@ public class LobbyWorld implements Listener{
             itemMeta.setDisplayName("ゲームメニュー");
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
+            player.sendMessage(ChatColor.YELLOW + "=====================");
+            player.sendMessage("");
+            player.sendMessage("★☆ お知らせ ☆★");
+            player.sendMessage("McKingdomのウェブサイトができそうです");
+            player.sendMessage("https://mc-kingdom.com/");
+            player.sendMessage("");
+            player.sendMessage(ChatColor.YELLOW + "=====================");
         }
         // this.sidebar(player);
         /*
