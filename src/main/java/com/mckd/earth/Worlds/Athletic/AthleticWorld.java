@@ -111,6 +111,8 @@ public class AthleticWorld implements Listener {
         this.inv.setItem(13,setItemStack(Material.EMPTY_MAP,"難しい500Mアスレ Create by taiyaki23"));
         this.inv.setItem(14,setItemStack(Material.EMPTY_MAP,"上級アスレ Create by Jikkyoreeto"));
         this.inv.setItem(15,setItemStack(Material.EMPTY_MAP,"泳げたい焼きくんアスレ Create by taiyaki23"));
+        this.inv.setItem(16,setItemStack(Material.EMPTY_MAP,"初心者アスレ Create by momizi_tubaki"));
+        this.inv.setItem(17,setItemStack(Material.EMPTY_MAP,"草が生えるアスレ Create by momizi_tubaki"));
     }
 
     public ItemStack setItemStack(Material material, String name) {
@@ -247,6 +249,18 @@ public class AthleticWorld implements Listener {
                         Location location = new Location(player.getWorld(),-28,74,306);
                         player.teleport(location);
                         this.setConfigration(15,"泳げたい焼きくんアスレ",player,location);
+                    }
+                    //初心者アスレ
+                    if (index == 16) {
+                        Location location = new Location(player.getWorld(), 94, 71, 48);
+                        player.teleport(location);
+                        this.setConfigration(16, "初心者アスレ", player, location);
+                    }
+                    //草が生えるアスレ
+                    if (index == 17) {
+                        Location location = new Location(player.getWorld(), 67, 71, 246);
+                        player.teleport(location);
+                        this.setConfigration(17, "草が生えるアスレ", player, location);
                     }
                 }
             }
