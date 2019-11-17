@@ -128,13 +128,15 @@ public class PveWorld implements Listener {
     }
 
     @EventHandler
-    public void playerDeathEvent(PlayerDeathEvent e) {
+    public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
             if (e.getEntity() instanceof Player) {
-                Player player = (Player) e.getEntity();
+                Player player = e.getEntity();
                 player.hidePlayer(this.plugin, player);
                 player.setFlying(true);
                 player.setGravity(false);
+                player.setHealth(20.0);
+                player.setGameMode(GameMode.SPECTATOR);
             }
         }
     }
