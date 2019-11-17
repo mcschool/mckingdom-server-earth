@@ -1,7 +1,7 @@
-package com.mckd.earth.Worlds;
+package com.mckd.earth.Worlds.Pve;
 
 import com.mckd.earth.Earth;
-import com.mckd.earth.Scheduler.PveScheduler;
+import com.mckd.earth.Worlds.Pve.PveScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -21,7 +21,7 @@ import org.bukkit.scoreboard.*;
 
 import java.util.List;
 
-public class PveWorld<entList> implements Listener {
+public class PveWorld implements Listener {
 
     private Earth plugin;
     private int waveCount = 1;

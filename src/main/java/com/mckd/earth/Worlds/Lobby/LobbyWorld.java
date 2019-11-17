@@ -1,4 +1,4 @@
-package com.mckd.earth.Worlds;
+package com.mckd.earth.Worlds.Lobby;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

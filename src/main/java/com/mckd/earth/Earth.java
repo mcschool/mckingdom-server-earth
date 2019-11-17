@@ -3,6 +3,8 @@ package com.mckd.earth;
 import com.mckd.earth.Commands.EmailCommand;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
+import com.mckd.earth.Worlds.Lobby.LobbyWorld;
+import com.mckd.earth.Worlds.Pve.PveWorld;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
