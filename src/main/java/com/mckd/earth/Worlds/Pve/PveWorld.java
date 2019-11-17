@@ -138,6 +138,7 @@ public class PveWorld implements Listener {
                 player.hidePlayer(this.plugin, player);
                 player.setFlying(true);
                 player.setGravity(false);
+                player.performCommand("mvtp world");
             }
         }
     }
