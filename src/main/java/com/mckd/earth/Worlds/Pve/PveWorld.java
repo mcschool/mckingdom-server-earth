@@ -132,6 +132,7 @@ public class PveWorld implements Listener {
         if (e.getEntity().getWorld().getName().equals("pve")) {
             if (e.getEntity() instanceof Player) {
                 Player player = e.getEntity();
+                player.sendMessage("death!!!!");
                 player.hidePlayer(this.plugin, player);
                 player.setFlying(true);
                 player.setGravity(false);
