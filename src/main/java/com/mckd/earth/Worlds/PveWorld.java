@@ -165,7 +165,7 @@ public class PveWorld<entList> implements Listener {
                 p.setScoreboard(sb);
             }
 
-            if(this.waveCount>4) this.waveCount=1;
+            if(this.waveCount>15) this.waveCount=1;
             List<Entity> entities = world.getEntities();
             int count = 0;
             for( Entity entity : world.getEntities() ){
@@ -182,7 +182,7 @@ public class PveWorld<entList> implements Listener {
                 }
             }else{
                 this.sendMessageToPlayers(world,"全モンスターを倒しました!");
-                if( this.waveCount<4 ) {
+                if( this.waveCount<15 ) {
                     this.waveCount++;
                     new PveScheduler(this.plugin,world,this.waveCount).runTaskTimer(this.plugin,0,20);
                 }else{

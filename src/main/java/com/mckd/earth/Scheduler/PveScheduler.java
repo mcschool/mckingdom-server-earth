@@ -65,6 +65,72 @@ public class PveScheduler extends BukkitRunnable {
                                 s_loc.getWorld().spawn(n_loc, Zombie.class);
                                 s_loc.getWorld().spawn(n_loc, Zombie.class);
                             }
+                            if(this.wave==5) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==6) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==7) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==8) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==9) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==10) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==11) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==12) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==13) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==14) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
+                            if(this.wave==15) {
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                                s_loc.getWorld().spawn(n_loc, Zombie.class);
+                            }
                         }
 
                     }
