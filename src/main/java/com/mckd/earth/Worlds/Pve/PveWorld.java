@@ -7,6 +7,8 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -17,6 +19,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.Door;
+import org.bukkit.material.Openable;
 import org.bukkit.scoreboard.*;
 
 import java.util.List;
@@ -196,6 +200,32 @@ public class PveWorld implements Listener {
                     this.waveCount = 1;
                     p.performCommand("mvtp world");
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void noPlayerInteractEvent(PlayerInteractEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals("pve")) {
+            return;
+        }
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            Block block = e.getClickedBlock();
+            if (block.getType() == Material.IRON_DOOR_BLOCK) {
+                // 鉄のドアが右クリックされた時
+                /*
+                BlockState state = block.getState();
+                Openable o = (Openable) state.getData();
+                Door door = (Door) state.getData();
+                if (door.isTopHalf()) {
+                    Block set = block.getRelative(BlockFace.DOWN, 1);
+                    state = set.getState();
+                    o = (Openable) state.getData();
+                }
+                o.setOpen(true);
+                state.update();
+                 */
             }
         }
     }
