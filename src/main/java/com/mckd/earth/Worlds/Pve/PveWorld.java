@@ -42,10 +42,14 @@ public class PveWorld implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(false);
             player.getInventory().clear();
-            new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
+
+            // ワールドにいる人数が1人だった場合スケジューラースタート
+            List<Player> players = player.getWorld().getPlayers();
+            if (players.size() <= 1) {
+                new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
+            }
 
             //Score board
-
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");

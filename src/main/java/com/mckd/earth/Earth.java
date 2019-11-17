@@ -30,8 +30,8 @@ public final class Earth extends JavaPlugin {
         new BuildWorld(this);
         new PveWorld(this);
 
-        System.out.println("=== start LobbyWorldScheduler ===");
-        new LobbyWorldScheduler().runTaskTimer(this, 0, 100);
+        // System.out.println("=== start LobbyWorldScheduler ===");
+        // new LobbyWorldScheduler().runTaskTimer(this, 0, 100);
     }
 
     @Override
