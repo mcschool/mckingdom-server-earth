@@ -39,32 +39,9 @@ public class PveScheduler extends BukkitRunnable {
                     if (blockState instanceof Sign) {
                         Sign s = (Sign) blockState;
                         if (s.getLine(1).equals("Spawn")) {
-                            Location s_loc = s.getLocation();
-                            Location n_loc = new Location(s_loc.getWorld(),
-                                    s_loc.getX() + 0, s_loc.getY() + 3, s_loc.getZ());
-                            this.sendMessageToPlayers(this.world, String.valueOf(this.wave) );
-                            if(this.wave==1) {
-                                s_loc.getWorld().spawn(n_loc, Zombie.class);
-                                s_loc.getWorld().spawn(n_loc, Zombie.class);
-                                s_loc.getWorld().spawn(n_loc, Zombie.class);
-                            }
-                            if(this.wave==2) {
-                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
-                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
-                            }
-                            if(this.wave==3) {
-                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
-                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
-                                s_loc.getWorld().spawn(n_loc, Zombie.class);
-                            }
-                            if(this.wave==4) {
-                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
-                                s_loc.getWorld().spawn(n_loc, Skeleton.class);
-                                s_loc.getWorld().spawn(n_loc, Zombie.class);
-                                s_loc.getWorld().spawn(n_loc, Zombie.class);
-                            }
+                            Location sign_loc = s.getLocation();
+                            this.spawnMonsters(sign_loc);
                         }
-
                     }
                 }
             }
@@ -72,6 +49,33 @@ public class PveScheduler extends BukkitRunnable {
             this.cancel();
         }
     }
+
+    // モンスターを発生させるプログラムを関数にまとめて読みやすくする
+    private void spawnMonsters(Location sign_loc) {
+        Location spawn_loc = new Location(sign_loc.getWorld(), sign_loc.getX() + 0, sign_loc.getY() + 3, sign_loc.getZ());
+        this.sendMessageToPlayers(this.world, String.valueOf(this.wave) );
+        if(this.wave==1) {
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+        }
+        if(this.wave==2) {
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+        }
+        if(this.wave==3) {
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+        }
+        if(this.wave==4) {
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+        }
+    }
+
     private void sendMessageToPlayers(World world, String msg){
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
