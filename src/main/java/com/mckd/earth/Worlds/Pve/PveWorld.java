@@ -105,7 +105,7 @@ public class PveWorld implements Listener {
                     p.getInventory().addItem(item);
                     score.setScore(point - 100);
                 } else {
-                    p.sendMessage("スコアが100以上必要です!");
+                    p.sendMessage("ポイントが100以上必要です!");
                 }
             }
             // 鉄のヘルメット
@@ -115,7 +115,7 @@ public class PveWorld implements Listener {
                     p.getInventory().addItem(item);
                     score.setScore(point - 200);
                 } else {
-                    p.sendMessage("スコアが200以上必要です!");
+                    p.sendMessage("ポイントが200以上必要です!");
                 }
             }
             //鉄の足
@@ -125,7 +125,27 @@ public class PveWorld implements Listener {
                     p.getInventory().addItem(item);
                     score.setScore(point - 200);
                 } else {
-                    p.sendMessage("スコアが200以上必要です!");
+                    p.sendMessage("ポイントが200以上必要です!");
+                }
+            }
+            //弓
+            if (line.equals("弓 -300ポイント")) {
+                if (point >= 300) {
+                    ItemStack item = new ItemStack(Material.BOW);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 300);
+                } else {
+                    p.sendMessage("ポイントが300以上必要です!");
+                }
+            }
+            //矢
+            if (line.equals("矢 -300ポイント")) {
+                if (point >= 100) {
+                    ItemStack item = new ItemStack(Material.ARROW,5);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 100);
+                } else {
+                    p.sendMessage("ポイントが100以上必要です!");
                 }
             }
         }
