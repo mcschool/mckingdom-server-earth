@@ -14,6 +14,8 @@ public class Config {
         } else {
             this.apiUrl = "http://localhost:5000";
         }
+        System.out.println(this.apiUrl);
+        System.out.println("========================");
     }
 
     public static String getApiUrl() {

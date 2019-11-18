@@ -74,3 +74,20 @@ $ java -jar spigot-1.12.2.jar
 >stop
 で止める
 ```
+
+
+## プラグイン
+### citizens
+https://wiki.citizensnpcs.co/Commands
+```
+/npc create <name> --type <type>
+/npc create PIG --type pig
+```
+mobTypes
+https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+
+```
+/npc list
+/npc select <ID>
+/npc look <- こっちみるようになる
+```

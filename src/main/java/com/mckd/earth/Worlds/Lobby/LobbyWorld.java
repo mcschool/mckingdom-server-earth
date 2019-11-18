@@ -1,4 +1,4 @@
-package com.mckd.earth.Worlds;
+package com.mckd.earth.Worlds.Lobby;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -137,6 +137,9 @@ public class LobbyWorld implements Listener{
             player.getInventory().clear();
             player.setFoodLevel(20);
             player.setHealth(20.0);
+            player.setFlying(false);
+            player.setGravity(true);
+            player.setGameMode(GameMode.SURVIVAL);
             // ロビーでのプレーヤーの状態変更(空腹度とか)
             // LobbyUtil.initPlayerStatus(player);
             // ゲームメニュー用の "紙" 渡す
@@ -145,6 +148,13 @@ public class LobbyWorld implements Listener{
             itemMeta.setDisplayName("ゲームメニュー");
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
+            player.sendMessage(ChatColor.YELLOW + "=====================");
+            player.sendMessage("");
+            player.sendMessage("★☆ お知らせ ☆★");
+            player.sendMessage("McKingdomのウェブサイトができそうです");
+            player.sendMessage("https://mc-kingdom.com/");
+            player.sendMessage("");
+            player.sendMessage(ChatColor.YELLOW + "=====================");
         }
         // this.sidebar(player);
         /*
