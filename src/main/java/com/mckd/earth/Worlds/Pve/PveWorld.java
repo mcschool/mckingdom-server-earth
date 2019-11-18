@@ -244,6 +244,7 @@ public class PveWorld implements Listener {
     private void sendMessageToPlayers(World world, String msg){
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
+            player.sendTitle(msg,"", 10,40,10);
         }
     }
 
