@@ -139,7 +139,7 @@ public class PveWorld implements Listener {
                 }
             }
             //矢
-            if (line.equals("矢 -300ポイント")) {
+            if (line.equals("矢 -100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.ARROW,5);
                     p.getInventory().addItem(item);
