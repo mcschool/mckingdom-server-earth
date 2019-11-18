@@ -214,7 +214,6 @@ public class PveWorld implements Listener {
             Block block = e.getClickedBlock();
             if (block.getType() == Material.IRON_DOOR_BLOCK) {
                 // 鉄のドアが右クリックされた時
-                /*
                 BlockState state = block.getState();
                 Openable o = (Openable) state.getData();
                 Door door = (Door) state.getData();
@@ -225,7 +224,6 @@ public class PveWorld implements Listener {
                 }
                 o.setOpen(true);
                 state.update();
-                 */
             }
         }
     }
