@@ -213,17 +213,27 @@ public class PveWorld implements Listener {
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
             if (block.getType() == Material.IRON_DOOR_BLOCK) {
-                // 鉄のドアが右クリックされた時
-                BlockState state = block.getState();
-                Openable o = (Openable) state.getData();
-                Door door = (Door) state.getData();
-                if (door.isTopHalf()) {
-                    Block set = block.getRelative(BlockFace.DOWN, 1);
-                    state = set.getState();
-                    o = (Openable) state.getData();
+                Player p = e.getPlayer();
+                ScoreboardManager sbm = Bukkit.getScoreboardManager();
+                Scoreboard sb = sbm.getMainScoreboard();
+                Objective obj = sb.getObjective("point");
+                Score score = obj.getScore(p.getDisplayName());
+                int point = score.getScore();
+                p.sendMessage("今" + String.valueOf(point) + "ポイント持っています");
+                if (point >= 100) {
+                    // 鉄のドアが右クリックされた時
+                    BlockState state = block.getState();
+                    Openable o = (Openable) state.getData();
+                    Door door = (Door) state.getData();
+                    if (door.isTopHalf()) {
+                        Block set = block.getRelative(BlockFace.DOWN, 1);
+                        state = set.getState();
+                        o = (Openable) state.getData();
+                    }
+
+                    o.setOpen(true);
+                    state.update();
                 }
-                o.setOpen(true);
-                state.update();
             }
         }
     }
