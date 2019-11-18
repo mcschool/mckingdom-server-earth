@@ -220,7 +220,7 @@ public class PveWorld implements Listener {
                 Score score = obj.getScore(p.getDisplayName());
                 int point = score.getScore();
                 p.sendMessage("今" + String.valueOf(point) + "ポイント持っています");
-                if (point >= 100) {
+                if (point >= 500) {
                     // 鉄のドアが右クリックされた時
                     BlockState state = block.getState();
                     Openable o = (Openable) state.getData();
@@ -233,6 +233,8 @@ public class PveWorld implements Listener {
 
                     o.setOpen(true);
                     state.update();
+                }else{
+                    p.sendMessage("後" + String.valueOf(500-point) + "ポイント必要です！");
                 }
             }
         }
