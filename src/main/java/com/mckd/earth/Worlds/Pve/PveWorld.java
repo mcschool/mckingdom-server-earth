@@ -170,6 +170,26 @@ public class PveWorld implements Listener {
                     p.sendMessage("ポイントが200以上必要です!");
                 }
             }
+            //鉄のチェストプレート
+            if (line.equals("鉄のチェストプレート") && line2.equals("-400ポイント")) {
+                if (point >= 400) {
+                    ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 400);
+                } else {
+                    p.sendMessage("ポイントが400以上必要です!");
+                }
+            }
+            //鉄のレギンス
+            if (line.equals("鉄のレギンス") && line2.equals("-300ポイント")) {
+                if (point >= 300) {
+                    ItemStack item = new ItemStack(Material.IRON_LEGGINGS);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 300);
+                } else {
+                    p.sendMessage("ポイントが300以上必要です!");
+                }
+            }
         }
     }
 
