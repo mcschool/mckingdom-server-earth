@@ -51,6 +51,8 @@ public class PveWorld implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() <= 1) {
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
+                World world = player.getWorld();
+                world.getBlockAt(-500,19,-119).setType(Material.IRON_DOOR);
             }
 
             //Score board
