@@ -57,6 +57,7 @@ public class PveWorld implements Listener {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
+            obj.setDisplayName("ポイント");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
