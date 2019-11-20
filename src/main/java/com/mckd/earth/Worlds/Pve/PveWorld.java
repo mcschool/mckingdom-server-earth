@@ -16,8 +16,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.material.Door;
 import org.bukkit.material.Openable;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 
 import java.util.List;
@@ -94,9 +97,10 @@ public class PveWorld implements Listener {
             Objective obj = sb.getObjective("point");
             Score score = obj.getScore(p.getDisplayName());
             String line = sign.getLine(1);
+            String line2 = sign.getLine(2);
             int point = score.getScore();
             // 鉄の剣
-            if (line.equals("鉄の剣 -100ポイント")) {
+            if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
                     p.getInventory().addItem(item);
@@ -106,7 +110,7 @@ public class PveWorld implements Listener {
                 }
             }
             // 鉄の頭
-            if (line.equals("鉄の頭 -200ポイント")) {
+            if (line.equals("鉄のヘルメット") && line2.equals("-200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     p.getInventory().addItem(item);
@@ -116,7 +120,7 @@ public class PveWorld implements Listener {
                 }
             }
             //鉄の足
-            if (line.equals("鉄の足 -200ポイント")) {
+            if (line.equals("鉄のブーツ") && line2.equals("-200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_BOOTS);
                     p.getInventory().addItem(item);
@@ -126,7 +130,7 @@ public class PveWorld implements Listener {
                 }
             }
             //弓
-            if (line.equals("弓 -300ポイント")) {
+            if (line.equals("弓") && line2.equals("-300ポイント")) {
                 if (point >= 300) {
                     ItemStack item = new ItemStack(Material.BOW);
                     p.getInventory().addItem(item);
@@ -136,7 +140,7 @@ public class PveWorld implements Listener {
                 }
             }
             //矢
-            if (line.equals("矢 -100ポイント")) {
+            if (line.equals("矢") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.ARROW,5);
                     p.getInventory().addItem(item);
@@ -145,16 +149,27 @@ public class PveWorld implements Listener {
                     p.sendMessage("ポイントが100以上必要です!");
                 }
             }
-            /*鉄のチェストプレート
-            if (line.equals("鉄のチェストプレート -400ポイント")) {
-                if (point >= 400) {
-                    ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
-                    p.getInventory().addItem(item);
-                    score.setScore(point - 400);
+            //治癒のポーション
+            if (line.equals("治癒のポーション") && line2.equals("-200ポイント")) {
+                if (point >= 200) {
+                    ItemStack potion = new ItemStack(Material.POTION);
+                    //ポーションの種類を準備する
+                    PotionType potionType = PotionType.INSTANT_HEAL;
+                    //ポーションの効果とかを準備する
+                    PotionData potionData = new PotionData(potionType,false,false);
+                    //ポーションのメタ情報を準備する
+                    PotionMeta meta = (PotionMeta) potion.getItemMeta();
+                    //準備したポーションのデータをメタ情報にセットする
+                    meta.setBasePotionData(potionData);
+                    //メタ情報をアイテム:ポーションに適用する
+                    potion.setItemMeta(meta);
+                    //プレーヤーに渡す
+                    p.getInventory().addItem(potion);
+                    score.setScore(point - 200);
                 } else {
-                    p.sendMessage("ポイントが400以上必要です!");
+                    p.sendMessage("ポイントが200以上必要です!");
                 }
-            }*/
+            }
         }
     }
 
