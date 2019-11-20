@@ -2,10 +2,7 @@ package com.mckd.earth.Worlds.Pve;
 
 import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -57,11 +54,10 @@ public class PveWorld implements Listener {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
-            obj.setDisplayName("ポイント");
+            obj.setDisplayName(ChatColor.GOLD+"ポイント");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                obj.setDisplayName("ポイント");
             }
             Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
