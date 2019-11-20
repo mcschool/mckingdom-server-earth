@@ -49,10 +49,10 @@ public class PveWorld implements Listener {
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
+            World world = player.getWorld();
+            world.getBlockAt(-500,20,-119).setType(Material.IRON_DOOR);
             if (players.size() <= 1) {
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
-                World world = player.getWorld();
-                world.getBlockAt(-500,19,-119).setType(Material.IRON_DOOR);
             }
 
             //Score board
