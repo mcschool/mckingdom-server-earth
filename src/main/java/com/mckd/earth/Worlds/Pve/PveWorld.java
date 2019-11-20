@@ -60,7 +60,7 @@ public class PveWorld implements Listener {
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                obj.setDisplayName("PVE GOLD");
+                obj.setDisplayName("ポイント");
             }
             Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
@@ -108,7 +108,7 @@ public class PveWorld implements Listener {
                     p.sendMessage("ポイントが100以上必要です!");
                 }
             }
-            // 鉄のヘルメット
+            // 鉄の頭
             if (line.equals("鉄の頭 -200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
@@ -148,6 +148,16 @@ public class PveWorld implements Listener {
                     p.sendMessage("ポイントが100以上必要です!");
                 }
             }
+            /*鉄のチェストプレート
+            if (line.equals("鉄のチェストプレート -400ポイント")) {
+                if (point >= 400) {
+                    ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 400);
+                } else {
+                    p.sendMessage("ポイントが400以上必要です!");
+                }
+            }*/
         }
     }
 
