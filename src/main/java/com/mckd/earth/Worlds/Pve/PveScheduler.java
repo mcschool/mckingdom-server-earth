@@ -57,7 +57,6 @@ public class PveScheduler extends BukkitRunnable {
         if(this.wave==1) {
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
-            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==2) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
@@ -145,6 +144,7 @@ public class PveScheduler extends BukkitRunnable {
     private void sendMessageToPlayers(World world, String msg){
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
+            player.sendTitle(msg,"", 0,20,0);
         }
     }
 }

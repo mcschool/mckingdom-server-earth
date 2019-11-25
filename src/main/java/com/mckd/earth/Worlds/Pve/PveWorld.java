@@ -2,10 +2,7 @@ package com.mckd.earth.Worlds.Pve;
 
 import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -19,8 +16,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.material.Door;
 import org.bukkit.material.Openable;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 
 import java.util.List;
@@ -49,6 +49,8 @@ public class PveWorld implements Listener {
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
+            World world = player.getWorld();
+            world.getBlockAt(-500,20,-119).setType(Material.IRON_DOOR);
             if (players.size() <= 1) {
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
@@ -57,10 +59,10 @@ public class PveWorld implements Listener {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
+            obj.setDisplayName(ChatColor.GOLD+"ポイント");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                obj.setDisplayName("PVE GOLD");
             }
             Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
@@ -97,35 +99,97 @@ public class PveWorld implements Listener {
             Objective obj = sb.getObjective("point");
             Score score = obj.getScore(p.getDisplayName());
             String line = sign.getLine(1);
+            String line2 = sign.getLine(2);
             int point = score.getScore();
             // 鉄の剣
-            if (line.equals("鉄の剣 -100ポイント")) {
+            if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
                     p.getInventory().addItem(item);
                     score.setScore(point - 100);
                 } else {
-                    p.sendMessage("スコアが100以上必要です!");
+                    p.sendMessage("ポイントが100以上必要です!");
                 }
             }
-            // 鉄のヘルメット
-            if (line.equals("鉄の頭 -200ポイント")) {
+            // 鉄の頭
+            if (line.equals("鉄のヘルメット") && line2.equals("-200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     p.getInventory().addItem(item);
                     score.setScore(point - 200);
                 } else {
-                    p.sendMessage("スコアが200以上必要です!");
+                    p.sendMessage("ポイントが200以上必要です!");
                 }
             }
             //鉄の足
-            if (line.equals("鉄の足 -200ポイント")) {
+            if (line.equals("鉄のブーツ") && line2.equals("-200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.IRON_BOOTS);
                     p.getInventory().addItem(item);
                     score.setScore(point - 200);
                 } else {
-                    p.sendMessage("スコアが200以上必要です!");
+                    p.sendMessage("ポイントが200以上必要です!");
+                }
+            }
+            //弓
+            if (line.equals("弓") && line2.equals("-300ポイント")) {
+                if (point >= 300) {
+                    ItemStack item = new ItemStack(Material.BOW);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 300);
+                } else {
+                    p.sendMessage("ポイントが300以上必要です!");
+                }
+            }
+            //矢
+            if (line.equals("矢") && line2.equals("-100ポイント")) {
+                if (point >= 100) {
+                    ItemStack item = new ItemStack(Material.ARROW,5);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 100);
+                } else {
+                    p.sendMessage("ポイントが100以上必要です!");
+                }
+            }
+            //治癒のポーション
+            if (line.equals("治癒のポーション") && line2.equals("-200ポイント")) {
+                if (point >= 200) {
+                    ItemStack potion = new ItemStack(Material.POTION);
+                    //ポーションの種類を準備する
+                    PotionType potionType = PotionType.INSTANT_HEAL;
+                    //ポーションの効果とかを準備する
+                    PotionData potionData = new PotionData(potionType,false,false);
+                    //ポーションのメタ情報を準備する
+                    PotionMeta meta = (PotionMeta) potion.getItemMeta();
+                    //準備したポーションのデータをメタ情報にセットする
+                    meta.setBasePotionData(potionData);
+                    //メタ情報をアイテム:ポーションに適用する
+                    potion.setItemMeta(meta);
+                    //プレーヤーに渡す
+                    p.getInventory().addItem(potion);
+                    score.setScore(point - 200);
+                } else {
+                    p.sendMessage("ポイントが200以上必要です!");
+                }
+            }
+            //鉄のチェストプレート
+            if (line.equals("鉄のチェストプレート") && line2.equals("-400ポイント")) {
+                if (point >= 400) {
+                    ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 400);
+                } else {
+                    p.sendMessage("ポイントが400以上必要です!");
+                }
+            }
+            //鉄のレギンス
+            if (line.equals("鉄のレギンス") && line2.equals("-300ポイント")) {
+                if (point >= 300) {
+                    ItemStack item = new ItemStack(Material.IRON_LEGGINGS);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 300);
+                } else {
+                    p.sendMessage("ポイントが300以上必要です!");
                 }
             }
         }
@@ -221,7 +285,8 @@ public class PveWorld implements Listener {
                 int point = score.getScore();
                 p.sendMessage("今" + String.valueOf(point) + "ポイント持っています");
                 if (point >= 500) {
-                    // 鉄のドアが右クリックされた時
+                    score.setScore(point - 500);
+                    /* 鉄のドアが右クリックされた時
                     BlockState state = block.getState();
                     Openable o = (Openable) state.getData();
                     Door door = (Door) state.getData();
@@ -232,7 +297,18 @@ public class PveWorld implements Listener {
                     }
 
                     o.setOpen(true);
-                    state.update();
+                    state.update();*/
+                    BlockState state = block.getState();
+                    Openable o = (Openable) state.getData();
+                    Door door = (Door) state.getData();
+                    if(door.isTopHalf()) {
+                        Location location = e.getClickedBlock().getLocation();
+                        location.setY(location.getY() - 1);
+                        location.getWorld().getBlockAt(location).setType(Material.AIR);
+                    }else {
+                        Location location = e.getClickedBlock().getLocation();
+                        location.getWorld().getBlockAt(location).setType(Material.AIR);
+                    }
                 }else{
                     p.sendMessage("後" + String.valueOf(500-point) + "ポイント必要です！");
                 }
@@ -243,6 +319,7 @@ public class PveWorld implements Listener {
     private void sendMessageToPlayers(World world, String msg){
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
+            player.sendTitle(msg,"", 10,40,10);
         }
     }
 
