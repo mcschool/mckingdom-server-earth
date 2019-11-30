@@ -301,7 +301,30 @@ public class PveWorld implements Listener {
                     state.update();*/
                     BlockState state = block.getState();
                     Location location = e.getClickedBlock().getLocation();
+                    Double  locationX =  Math.floor(location.getX());
+                    Double  locationY =  Math.floor(location.getY());
+                    Double  locationZ =  Math.floor(location.getZ());
+                    if (locationX == -500){
+                        if (locationY == 19) {
+                            if (locationZ == -120){
+                                location.getWorld().getBlockAt(location).setType(Material.AIR);
+                                Location location2 =new Location(location.getWorld(),++locationX,locationY,locationZ);
+                                location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                            }
+                        }
+                    }
+                    if (locationX == -501){
+                        if (locationY == 19) {
+                            if (locationZ == -120){
+                                location.getWorld().getBlockAt(location).setType(Material.AIR);
+                                Location location2 =new Location(location.getWorld(),--locationX,locationY,locationZ);
+                                location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                            }
+                        }
+                    }
+
                     location.getWorld().getBlockAt(location).setType(Material.AIR);
+
                     /*Openable o = (Openable) state.getData();
                       FENCE fence = (Fence) state.getData();
                     if(fence.isTopHalf()) {
