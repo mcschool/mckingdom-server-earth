@@ -4,14 +4,10 @@ import com.mckd.earth.Commands.EmailCommand;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
 import com.mckd.earth.Worlds.Lobby.LobbyWorld;
-import com.mckd.earth.Worlds.Lobby.LobbyWorldScheduler;
+import com.mckd.earth.Worlds.Party.PartyWorld;
 import com.mckd.earth.Worlds.Pve.PveWorld;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.server.PluginEnableEvent;
-import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Earth extends JavaPlugin {
