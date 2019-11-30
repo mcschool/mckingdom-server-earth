@@ -305,7 +305,7 @@ public class PveWorld implements Listener {
                     Double  locationY =  Math.floor(location.getY());
                     Double  locationZ =  Math.floor(location.getZ());
                     player.sendMessage(location.toString());
-                    if (locationX == -500){
+                    if (locationX == -502){
                         if (locationY == 19) {
                             if (locationZ == -120){
                                 player.sendMessage("test1");
