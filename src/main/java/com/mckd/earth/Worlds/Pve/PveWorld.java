@@ -354,7 +354,7 @@ public class PveWorld implements Listener {
                         if (locationY3 == 32) {
                             if (locationZ3 == -127){
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),++locationX3,locationY3,locationZ3);
+                                Location location2 =new Location(location.getWorld(),--locationX3,locationY3,locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                             }
                         }
@@ -363,7 +363,7 @@ public class PveWorld implements Listener {
                         if (locationY3 == 32) {
                             if (locationZ3 == -127){
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),--locationX3,locationY3,locationZ3);
+                                Location location2 =new Location(location.getWorld(),++locationX3,locationY3,locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                             }
                         }
