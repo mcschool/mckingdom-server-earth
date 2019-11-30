@@ -307,18 +307,22 @@ public class PveWorld implements Listener {
                     if (locationX == -500){
                         if (locationY == 19) {
                             if (locationZ == -120){
+                                player.sendMessage("test1");
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),++locationX,locationY,locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                player.sendMessage(location.toString());
                             }
                         }
                     }
                     if (locationX == -501){
                         if (locationY == 19) {
                             if (locationZ == -120){
+                                player.sendMessage("test2");
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),--locationX,locationY,locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                player.sendMessage(location2.toString());
                             }
                         }
                     }
