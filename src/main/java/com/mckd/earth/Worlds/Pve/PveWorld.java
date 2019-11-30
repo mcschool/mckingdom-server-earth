@@ -300,16 +300,18 @@ public class PveWorld implements Listener {
                     o.setOpen(true);
                     state.update();*/
                     BlockState state = block.getState();
-                    Openable o = (Openable) state.getData();
-                    Door door = (Door) state.getData();
-                    if(door.isTopHalf()) {
+                    Location location = e.getClickedBlock().getLocation();
+                    location.getWorld().getBlockAt(location).setType(Material.AIR);
+                    /*Openable o = (Openable) state.getData();
+                      FENCE fence = (Fence) state.getData();
+                    if(fence.isTopHalf()) {
                         Location location = e.getClickedBlock().getLocation();
                         location.setY(location.getY() - 1);
                         location.getWorld().getBlockAt(location).setType(Material.AIR);
                     }else {
                         Location location = e.getClickedBlock().getLocation();
                         location.getWorld().getBlockAt(location).setType(Material.AIR);
-                    }
+                    }*/
                 }else{
                     p.sendMessage("後" + String.valueOf(500-point) + "ポイント必要です！");
                 }
