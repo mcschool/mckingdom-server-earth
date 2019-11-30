@@ -51,6 +51,7 @@ public class PveWorld implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             World world = player.getWorld();
             world.getBlockAt(-501,19,-120).setType(Material.FENCE);
+            world.getBlockAt(-502,19,-120).setType(Material.FENCE);
             if (players.size() <= 1) {
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
