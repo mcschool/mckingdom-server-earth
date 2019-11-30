@@ -50,7 +50,7 @@ public class PveWorld implements Listener {
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
             World world = player.getWorld();
-            world.getBlockAt(-500,20,-119).setType(Material.FENCE);
+            world.getBlockAt(-500,18,-119).setType(Material.FENCE);
             if (players.size() <= 1) {
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
@@ -276,7 +276,7 @@ public class PveWorld implements Listener {
         }
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
-            if (block.getType() == Material.IRON_DOOR_BLOCK) {
+            if (block.getType() == Material.FENCE) {
                 Player p = e.getPlayer();
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 Scoreboard sb = sbm.getMainScoreboard();
