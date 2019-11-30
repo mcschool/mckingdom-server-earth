@@ -1,6 +1,7 @@
 package com.mckd.earth;
 
 import com.mckd.earth.Commands.EmailCommand;
+import com.mckd.earth.Commands.PveSecvetCommand;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
 import com.mckd.earth.Worlds.Lobby.LobbyWorld;
@@ -41,6 +42,9 @@ public final class Earth extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         if(command.getName().equalsIgnoreCase("email")){
             EmailCommand.command(sender, command,label,args);
+        }
+        if(command.getName().equalsIgnoreCase("pve_point_add")){
+            PveSecvetCommand.command(sender, command,label,args);
         }
         return true;
     }
