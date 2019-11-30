@@ -50,7 +50,7 @@ public class PveWorld implements Listener {
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
             World world = player.getWorld();
-            world.getBlockAt(-500,18,-119).setType(Material.FENCE);
+            world.getBlockAt(-501,19,-120).setType(Material.FENCE);
             if (players.size() <= 1) {
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
