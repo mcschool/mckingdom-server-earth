@@ -5,6 +5,6 @@ api-version: 1.12
 commands:
   email:
     description: email setting
-  pve_point_addgit:
+  pve_point_add:
     description: email setting
 
