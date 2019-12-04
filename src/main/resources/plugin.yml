@@ -1,7 +1,10 @@
 name: Earth
 version: ${project.version}
 main: com.mckd.earth.Earth
-api-version: 1.13
+api-version: 1.12
 commands:
   email:
     description: email setting
+  pve_point_addgit:
+    description: email setting
+
