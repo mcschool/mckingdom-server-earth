@@ -7,4 +7,3 @@ commands:
     description: email setting
   pve_point_add:
     description: email setting
-
