@@ -11,6 +11,9 @@ public class EmailCommand {
         Player player = null;
         if (sender instanceof Player) {
             player = (Player) sender;
+            player.sendMessage("send to custom commands");
+            /*
+            player = (Player) sender;
             System.out.println("=====");
             System.out.println(args[0]);
             System.out.println("=====");
@@ -22,6 +25,7 @@ public class EmailCommand {
             JsonObject result = req.post("/api/game/command/email", obj);
             System.out.println("=====");
             System.out.println(result);
+             */
         }
         return true;
     }
