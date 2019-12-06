@@ -64,24 +64,23 @@ public class PveScheduler extends BukkitRunnable {
         }
         if(this.wave==3) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
-            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==4) {
-            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==5) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
-            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==6) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
-            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
@@ -102,14 +101,17 @@ public class PveScheduler extends BukkitRunnable {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==10) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==11) {
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
@@ -118,24 +120,31 @@ public class PveScheduler extends BukkitRunnable {
         if(this.wave==12) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==13) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==14) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
         if(this.wave==15) {
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
             sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Skeleton.class);
+            sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
         }
