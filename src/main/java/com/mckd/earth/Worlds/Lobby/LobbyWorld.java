@@ -103,10 +103,12 @@ public class LobbyWorld implements Listener{
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
+            player.sendMessage(ChatColor.YELLOW + "== onPlayerChangeWorld start ===================");
             this.changeWorld(player);
             player.removePotionEffect(PotionEffectType.GLOWING);
             player.setGameMode(GameMode.SURVIVAL);
             player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+            player.sendMessage(ChatColor.YELLOW + "== onPlayerChangeWorld end ===================");
         }
     }
 
@@ -133,6 +135,7 @@ public class LobbyWorld implements Listener{
     }
 
     public void changeWorld(Player player) {
+        player.sendMessage(ChatColor.YELLOW + "== changeWorld start ===================");
         player.performCommand("mvtp world");
         Location location = new Location(Bukkit.getWorld("world"),-93,10,-252);
         player.teleport(location);
@@ -168,6 +171,7 @@ public class LobbyWorld implements Listener{
             player.sendMessage("");
             player.sendMessage(ChatColor.YELLOW + "=====================");
         }
+        player.sendMessage(ChatColor.YELLOW + "== changeWorld end ===================");
         // this.sidebar(player);
         /*
         HttpReq req= new HttpReq();
