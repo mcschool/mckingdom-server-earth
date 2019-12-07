@@ -90,7 +90,12 @@ public class LobbyWorld implements Listener{
 
     @EventHandler
     public  void PlayerRespawn(PlayerRespawnEvent event){
-
+        Player player = event.getPlayer();
+        ItemStack itemStack = new ItemStack(Material.PAPER);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName("ゲームメニュー");
+        itemStack.setItemMeta(itemMeta);
+        player.getInventory().addItem(itemStack);
     }
 
 
