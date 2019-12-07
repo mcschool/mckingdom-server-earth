@@ -202,9 +202,12 @@ public class PveWorld implements Listener {
     }
 
     @EventHandler
-    public  void PlayerRespawn(PlayerRespawnEvent event){
-        Player player = event.getPlayer();
-        player.performCommand("mvtp world");
+    public  void PlayerRespawn(PlayerRespawnEvent event) {
+        if (event.getPlayer().getWorld().getName().equals("pve")) {
+            Player player = event.getPlayer();
+            player.sendMessage("test1");
+            player.performCommand("mvtp world");
+        }
     }
 
     /*@EventHandler
