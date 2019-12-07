@@ -87,7 +87,7 @@ public class LobbyWorld implements Listener{
     }
 
 
-
+    /*
     @EventHandler
     public  void PlayerRespawn(PlayerRespawnEvent event){
         Player player = event.getPlayer();
@@ -97,18 +97,17 @@ public class LobbyWorld implements Listener{
         itemStack.setItemMeta(itemMeta);
         player.getInventory().addItem(itemStack);
     }
+    */
 
 
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
-            player.sendMessage(ChatColor.YELLOW + "== onPlayerChangeWorld start ===================");
             this.changeWorld(player);
             player.removePotionEffect(PotionEffectType.GLOWING);
             player.setGameMode(GameMode.SURVIVAL);
             player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-            player.sendMessage(ChatColor.YELLOW + "== onPlayerChangeWorld end ===================");
         }
     }
 
@@ -135,7 +134,6 @@ public class LobbyWorld implements Listener{
     }
 
     public void changeWorld(Player player) {
-        player.sendMessage(ChatColor.YELLOW + "== changeWorld start ===================");
         player.performCommand("mvtp world");
         Location location = new Location(Bukkit.getWorld("world"),-93,10,-252);
         player.teleport(location);
@@ -171,7 +169,6 @@ public class LobbyWorld implements Listener{
             player.sendMessage("");
             player.sendMessage(ChatColor.YELLOW + "=====================");
         }
-        player.sendMessage(ChatColor.YELLOW + "== changeWorld end ===================");
         // this.sidebar(player);
         /*
         HttpReq req= new HttpReq();
@@ -193,6 +190,7 @@ public class LobbyWorld implements Listener{
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) throws IOException {
         Player player = (Player) e.getWhoClicked();
+        player.sendMessage(ChatColor.YELLOW + "== onInventoryClick ===================");
         if(!player.getWorld().getName().equals(this.worldName)) return;
         // -- ここから: インベントリ内のアイテムをクリックしたら
         // 紙: インベントリ開く
@@ -534,6 +532,7 @@ public class LobbyWorld implements Listener{
         if (player.getWorld().getName().equals(this.worldName)) {
             Block block = event.getClickedBlock();
             World world = event.getPlayer().getWorld();
+            player.sendMessage(ChatColor.YELLOW + "== PlayerInteractEvent ===================");
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 /*
                 if (block.getType() == Material.SIGN_POST) {
