@@ -87,6 +87,13 @@ public class LobbyWorld implements Listener{
     }
 
 
+
+    @EventHandler
+    public  void PlayerRespawn(PlayerRespawnEvent event){
+
+    }
+
+
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
@@ -273,6 +280,7 @@ public class LobbyWorld implements Listener{
         if (!player.getWorld().getName().equals(this.worldName)) return;
         if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             if (e.getMaterial() == Material.PAPER) {
+                player.sendMessage("test");
                 LobbyInventory lobbyInventory = new LobbyInventory();
                 player.openInventory(lobbyInventory.gameMenu());
             }
