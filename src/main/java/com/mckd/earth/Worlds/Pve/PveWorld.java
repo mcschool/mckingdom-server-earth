@@ -15,6 +15,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.material.Door;
@@ -198,6 +199,12 @@ public class PveWorld implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public  void PlayerRespawn(PlayerRespawnEvent event){
+        Player player = event.getPlayer();
+        player.performCommand("mvtp world");
     }
 
     /*@EventHandler
