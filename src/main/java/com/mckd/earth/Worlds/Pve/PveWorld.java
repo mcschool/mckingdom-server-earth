@@ -201,7 +201,7 @@ public class PveWorld implements Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     public  void PlayerRespawn(PlayerRespawnEvent event) {
         if (event.getPlayer().getWorld().getName().equals("pve")) {
             Player player = event.getPlayer();
@@ -214,21 +214,23 @@ public class PveWorld implements Listener {
                 player.sendMessage("NG");
             }
         }
-    }
+    }*/
 
-    /*@EventHandler
+    @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
             if (e.getEntity() instanceof Player) {
                 Player player = e.getEntity();
                 player.sendMessage("death!!!!");
                 player.setHealth(20.0);
+                player.setFoodLevel(10);
+                player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
                 player.performCommand("mvtp world");
             }
         }
-    }*/
+    }
 
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
