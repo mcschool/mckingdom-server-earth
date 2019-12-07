@@ -215,7 +215,7 @@ public class PveWorld implements Listener {
             }
         }
     }*/
-/*
+
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
@@ -227,11 +227,12 @@ public class PveWorld implements Listener {
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
-                player.performCommand("mvtp world");
+                //player.performCommand("mvtp world");
+                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin,0,20);
             }
         }
     }
-*/
+
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
         if (e.getEntity() instanceof Zombie) { // if zombie dies
