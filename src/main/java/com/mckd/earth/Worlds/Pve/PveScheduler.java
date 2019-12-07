@@ -53,7 +53,7 @@ public class PveScheduler extends BukkitRunnable {
     // モンスターを発生させるプログラムを関数にまとめて読みやすくする
     private void spawnMonsters(Location sign_loc) {
         Location spawn_loc = new Location(sign_loc.getWorld(), sign_loc.getX() + 0, sign_loc.getY() + 3, sign_loc.getZ());
-        this.sendMessageToPlayers(this.world, String.valueOf(this.wave) );
+        this.sendMessageToPlayers(this.world,"wave"+String.valueOf(this.wave) );
         if(this.wave==1) {
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
