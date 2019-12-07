@@ -104,6 +104,7 @@ public class LobbyWorld implements Listener{
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
+            player.sendMessage("onPlayerChangeWorld");
             this.changeWorld(player);
             player.removePotionEffect(PotionEffectType.GLOWING);
             player.setGameMode(GameMode.SURVIVAL);
@@ -134,6 +135,7 @@ public class LobbyWorld implements Listener{
     }
 
     public void changeWorld(Player player) {
+        player.sendMessage("init");
         player.performCommand("mvtp world");
         Location location = new Location(Bukkit.getWorld("world"),-93,10,-252);
         player.teleport(location);
