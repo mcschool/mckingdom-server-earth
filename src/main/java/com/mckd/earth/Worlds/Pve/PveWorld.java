@@ -200,7 +200,7 @@ public class PveWorld implements Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
             if (e.getEntity() instanceof Player) {
@@ -212,7 +212,7 @@ public class PveWorld implements Listener {
                 player.performCommand("mvtp world");
             }
         }
-    }
+    }*/
 
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
