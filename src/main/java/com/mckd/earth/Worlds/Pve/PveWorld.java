@@ -206,6 +206,9 @@ public class PveWorld implements Listener {
         if (event.getPlayer().getWorld().getName().equals("pve")) {
             Player player = event.getPlayer();
             player.sendMessage("test1");
+            player.setHealth(20.0);
+            player.setGameMode(GameMode.SPECTATOR);
+            player.hidePlayer(this.plugin, player);
             player.performCommand("mvtp world");
         }
     }
