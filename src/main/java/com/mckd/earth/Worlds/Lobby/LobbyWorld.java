@@ -87,24 +87,10 @@ public class LobbyWorld implements Listener{
     }
 
 
-    /*
-    @EventHandler
-    public  void PlayerRespawn(PlayerRespawnEvent event){
-        Player player = event.getPlayer();
-        ItemStack itemStack = new ItemStack(Material.PAPER);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName("ゲームメニュー");
-        itemStack.setItemMeta(itemMeta);
-        player.getInventory().addItem(itemStack);
-    }
-    */
-
-
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
-            player.sendMessage("onPlayerChangeWorld");
             this.changeWorld(player);
             player.removePotionEffect(PotionEffectType.GLOWING);
             player.setGameMode(GameMode.SURVIVAL);
@@ -135,7 +121,6 @@ public class LobbyWorld implements Listener{
     }
 
     public void changeWorld(Player player) {
-        player.sendMessage("init");
         player.performCommand("mvtp world");
         Location location = new Location(Bukkit.getWorld("world"),-93,10,-252);
         player.teleport(location);
@@ -192,16 +177,9 @@ public class LobbyWorld implements Listener{
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) throws IOException {
         Player player = (Player) e.getWhoClicked();
-        player.sendMessage(ChatColor.YELLOW + "== onInventoryClick ===================");
         if(!player.getWorld().getName().equals(this.worldName)) return;
         // -- ここから: インベントリ内のアイテムをクリックしたら
-        // 紙: インベントリ開く
-        /*
-        if(e.getCurrentItem().getType() == Material.PAPER) {
-            LobbyInventory lobbyInventory = new LobbyInventory();
-            player.openInventory(lobbyInventory.gameMenu());
-        }
-        */
+
         // ダイヤのつるはし: サバイバルに行く(サーバー移動)
         if(e.getCurrentItem().getType() == Material.DIAMOND_AXE) {
             player.sendMessage("survivalに移動します");
@@ -259,42 +237,12 @@ public class LobbyWorld implements Listener{
         return;
     }
 
-    /**
-     * 右クリックした時のイベント
-     * @param e
-     */
 
    @EventHandler
     public  void PlayerUnleashEntityEvent(PlayerUnleashEntityEvent e){
         if(e.getEntity().getWorld().getName().equals("world")){
             Player p = e.getPlayer();
             e.setCancelled(true);
-        }
-    }
-
-    /*@EventHandler
-    public  void EntityUnleashEvent(EntityUnleashEvent e) {
-        if (e.getEntity().getWorld().getName().equals("world")) {
-            if (e.getEntity() instanceof Player) {
-                e...(true);
-            }
-        }
-    }*/
-
-
-
-    @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e) {
-        Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals(this.worldName)) return;
-        player.sendMessage("test1");
-        if (e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-            player.sendMessage("test2");
-            if (e.getMaterial() == Material.PAPER) {
-                player.sendMessage("test3");
-                LobbyInventory lobbyInventory = new LobbyInventory();
-                player.openInventory(lobbyInventory.gameMenu());
-            }
         }
     }
 
@@ -534,7 +482,6 @@ public class LobbyWorld implements Listener{
         if (player.getWorld().getName().equals(this.worldName)) {
             Block block = event.getClickedBlock();
             World world = event.getPlayer().getWorld();
-            player.sendMessage(ChatColor.YELLOW + "== PlayerInteractEvent ===================");
             if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                 /*
                 if (block.getType() == Material.SIGN_POST) {
@@ -552,8 +499,12 @@ public class LobbyWorld implements Listener{
                 }
             }
 
-
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR)){
+
+                if (event.getMaterial() == Material.PAPER) {
+                    LobbyInventory lobbyInventory = new LobbyInventory();
+                    player.openInventory(lobbyInventory.gameMenu());
+                }
                 if (event.getMaterial() == Material.DIAMOND_PICKAXE){
                     player.sendMessage("survivalに移動します");
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
