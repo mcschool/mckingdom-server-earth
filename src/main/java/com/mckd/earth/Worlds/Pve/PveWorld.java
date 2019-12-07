@@ -215,7 +215,7 @@ public class PveWorld implements Listener {
             }
         }
     }*/
-
+/*
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
@@ -231,7 +231,7 @@ public class PveWorld implements Listener {
             }
         }
     }
-
+*/
     @EventHandler
     public void onDeath(EntityDeathEvent e) {
         if (e.getEntity() instanceof Zombie) { // if zombie dies
