@@ -92,9 +92,9 @@ public class LobbyWorld implements Listener{
     public  void PlayerRespawn(PlayerRespawnEvent event){
         Player player = event.getPlayer();
         ItemStack itemStack = new ItemStack(Material.PAPER);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName("ゲームメニュー");
-        itemStack.setItemMeta(itemMeta);
+        //ItemMeta itemMeta = itemStack.getItemMeta();
+        //itemMeta.setDisplayName("ゲームメニュー");
+        //itemStack.setItemMeta(itemMeta);
         player.getInventory().addItem(itemStack);
     }
 
@@ -156,9 +156,9 @@ public class LobbyWorld implements Listener{
             // LobbyUtil.initPlayerStatus(player);
             // ゲームメニュー用の "紙" 渡す
             ItemStack itemStack = new ItemStack(Material.PAPER);
-            ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName("ゲームメニュー");
-            itemStack.setItemMeta(itemMeta);
+            //ItemMeta itemMeta = itemStack.getItemMeta();
+            //itemMeta.setDisplayName("ゲームメニュー");
+            //itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
             player.sendMessage(ChatColor.YELLOW + "=====================");
             player.sendMessage("");
