@@ -211,33 +211,19 @@ public class PveWorld implements Listener {
         }
     }
 
-    /*@EventHandler
-    public  void PlayerRespawn(PlayerRespawnEvent event) {
-        if (event.getPlayer().getWorld().getName().equals("pve")) {
-            Player player = event.getPlayer();
-            player.sendMessage("test1");
-
-            boolean flag = player.performCommand("mvtp world");
-            if(flag){
-                player.sendMessage("OK");
-            }else {
-                player.sendMessage("NG");
-            }
-        }
-    }*/
-
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("pve")) {
             if (e.getEntity() instanceof Player) {
                 Player player = e.getEntity();
-                player.sendMessage("death!!!!");
+                player.sendMessage("You died!");
                 player.setHealth(20.0);
                 player.setFoodLevel(10);
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
-                player.performCommand("mvtp world");
+                //player.performCommand("mvtp world");
+                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin,0,20);
             }
         }
     }
