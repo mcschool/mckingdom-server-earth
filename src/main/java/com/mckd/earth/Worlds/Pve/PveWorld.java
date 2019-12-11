@@ -164,7 +164,7 @@ public class PveWorld implements Listener {
                     //ポーションの種類を準備する
                     PotionType potionType = PotionType.INSTANT_HEAL;
                     //ポーションの効果とかを準備する
-                    PotionData potionData = new PotionData(potionType,false,false);
+                    PotionData potionData = new PotionData(potionType,false,true);
                     //ポーションのメタ情報を準備する
                     PotionMeta meta = (PotionMeta) potion.getItemMeta();
                     //準備したポーションのデータをメタ情報にセットする
