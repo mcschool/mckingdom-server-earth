@@ -198,7 +198,7 @@ public class PveWorld implements Listener {
                     p.sendMessage("ポイントが300以上必要です!");
                 }
             }
-            //ステーキ
+            //焼き鳥
             if (line.equals("焼き鳥") && line2.equals("-200ポイント")) {
                 if (point >= 200) {
                     ItemStack item = new ItemStack(Material.COOKED_CHICKEN,2);
