@@ -158,8 +158,8 @@ public class PveWorld implements Listener {
                 }
             }
             //治癒のポーション
-            if (line.equals("治癒のポーション") && line2.equals("-200ポイント")) {
-                if (point >= 200) {
+            if (line.equals("治癒のポーション") && line2.equals("-300ポイント")) {
+                if (point >= 300) {
                     ItemStack potion = new ItemStack(Material.POTION);
                     //ポーションの種類を準備する
                     PotionType potionType = PotionType.INSTANT_HEAL;
@@ -173,9 +173,9 @@ public class PveWorld implements Listener {
                     potion.setItemMeta(meta);
                     //プレーヤーに渡す
                     p.getInventory().addItem(potion);
-                    score.setScore(point - 200);
+                    score.setScore(point - 300);
                 } else {
-                    p.sendMessage("ポイントが200以上必要です!");
+                    p.sendMessage("ポイントが300以上必要です!");
                 }
             }
             //鉄のチェストプレート
