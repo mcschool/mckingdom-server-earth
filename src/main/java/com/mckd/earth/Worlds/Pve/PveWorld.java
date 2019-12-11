@@ -325,13 +325,14 @@ public class PveWorld implements Listener {
                     Double  locationX =  Math.floor(location.getX());
                     Double  locationY =  Math.floor(location.getY());
                     Double  locationZ =  Math.floor(location.getZ());
+                    Boolean flag2f = false;
                     if (locationX == -502){
                         if (locationY == 19) {
                             if (locationZ == -120){
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),++locationX,locationY,locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
-                                this.sendMessageToPlayers(world,"２回の扉を開けました");
+                                flag2f = true;
                             }
                         }
                     }
@@ -341,10 +342,11 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),--locationX,locationY,locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
-                                this.sendMessageToPlayers(world,"２回の扉を開けました");
+                                flag2f = true;
                             }
                         }
                     }
+                    Boolean flag4f = false;
                     Double  locationX2 =  Math.floor(location.getX());
                     Double  locationY2 =  Math.floor(location.getY());
                     Double  locationZ2 =  Math.floor(location.getZ());
@@ -354,7 +356,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),locationX2,locationY2,--locationZ2);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
-                                this.sendMessageToPlayers(world,"4回の扉を開けました");
+                                flag4f = true;
                             }
                         }
                     }
@@ -364,10 +366,11 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),locationX2,locationY2,++locationZ2);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
-                                this.sendMessageToPlayers(world,"4回の扉を開けました");
+                                flag4f = true;
                             }
                         }
                     }
+                    Boolean flag5f = false;
                     Double  locationX3 =  Math.floor(location.getX());
                     Double  locationY3 =  Math.floor(location.getY());
                     Double  locationZ3 =  Math.floor(location.getZ());
@@ -377,7 +380,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),--locationX3,locationY3,locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
-                                this.sendMessageToPlayers(world,"5回の扉を開けました");
+                                flag5f = true;
                             }
                         }
                     }
@@ -387,9 +390,19 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),++locationX3,locationY3,locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
-                                this.sendMessageToPlayers(world,"5回の扉を開けました");
+                                flag5f = true;
                             }
                         }
+                    }
+
+                    if (flag2f == true){
+                        this.sendMessageToPlayers(world,"２回の扉を開けました");
+                    }
+                    if (flag4f == true){
+                        this.sendMessageToPlayers(world,"4回の扉を開けました");
+                    }
+                    if (flag5f == true){
+                        this.sendMessageToPlayers(world,"5回の扉を開けました");
                     }
 
 
