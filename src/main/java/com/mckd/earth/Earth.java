@@ -2,6 +2,7 @@ package com.mckd.earth;
 
 import com.mckd.earth.Commands.EmailCommand;
 import com.mckd.earth.Commands.PveSecvetCommand;
+import com.mckd.earth.TntRun.TntRunWorld;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
 import com.mckd.earth.Worlds.Lobby.LobbyWorld;
@@ -28,6 +29,8 @@ public final class Earth extends JavaPlugin {
         new PartyWorld(this);
         new BuildWorld(this);
         new PveWorld(this);
+        new TntRunWorld(this);
+        // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
         // new LobbyWorldScheduler().runTaskTimer(this, 0, 100);
