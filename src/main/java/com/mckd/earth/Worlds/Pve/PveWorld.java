@@ -324,12 +324,14 @@ public class PveWorld implements Listener {
                     Double  locationX =  Math.floor(location.getX());
                     Double  locationY =  Math.floor(location.getY());
                     Double  locationZ =  Math.floor(location.getZ());
+                    World world = e.getPlayer().getWorld();
                     if (locationX == -502){
                         if (locationY == 19) {
                             if (locationZ == -120){
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),++locationX,locationY,locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                this.sendMessageToPlayers(world,"２回の扉を開けました");
                             }
                         }
                     }
@@ -339,6 +341,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),--locationX,locationY,locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                this.sendMessageToPlayers(world,"２回の扉を開けました");
                             }
                         }
                     }
@@ -351,6 +354,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),locationX2,locationY2,--locationZ2);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                this.sendMessageToPlayers(world,"２回の扉を開けました");
                             }
                         }
                     }
@@ -360,6 +364,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),locationX2,locationY2,++locationZ2);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                this.sendMessageToPlayers(world,"２回の扉を開けました");
                             }
                         }
                     }
@@ -372,6 +377,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),--locationX3,locationY3,locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                this.sendMessageToPlayers(world,"２回の扉を開けました");
                             }
                         }
                     }
@@ -381,6 +387,7 @@ public class PveWorld implements Listener {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
                                 Location location2 =new Location(location.getWorld(),++locationX3,locationY3,locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
+                                this.sendMessageToPlayers(world,"２回の扉を開けました");
                             }
                         }
                     }
