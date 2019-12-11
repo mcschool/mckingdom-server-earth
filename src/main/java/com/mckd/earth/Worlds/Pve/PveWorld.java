@@ -396,7 +396,7 @@ public class PveWorld implements Listener {
                     }
 
                     if (flag2f == true){
-                        this.sendMessageToPlayers(world,"２階の扉を開けました");
+                        this.sendMessageToPlayers(world,"2階の扉を開けました");
                     }
                     if (flag4f == true){
                         this.sendMessageToPlayers(world,"4階の扉を開けました");
