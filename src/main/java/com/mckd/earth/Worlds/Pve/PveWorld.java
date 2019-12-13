@@ -208,6 +208,16 @@ public class PveWorld implements Listener {
                     p.sendMessage("ポイントが200以上必要です!");
                 }
             }
+            //ラピスラズリ
+            if (line.equals("ラピスラズリ") && line2.equals("-100ポイント")) {
+                if (point >= 100) {
+                    ItemStack item = new ItemStack (Material.INK_SACK,1,(short) 4);
+                    p.getInventory().addItem(item);
+                    score.setScore(point - 100);
+                } else {
+                    p.sendMessage("ポイントが100以上必要です!");
+                }
+            }
         }
     }
 
