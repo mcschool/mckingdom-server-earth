@@ -53,9 +53,10 @@ public class SkyWars implements Listener {
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
+            //ワールドに入った時にチェストを置く
             if (players.size() <= 1) {
                 World world = player.getWorld();
-                world.getBlockAt(-476, 6, -856).setType(Material.CHEST);
+                world.getBlockAt(476, 7, -873).setType(Material.CHEST);
             }
             if (players.size() == 1) {
                 Location location = new Location(player.getWorld(), 481, 9, -858);
