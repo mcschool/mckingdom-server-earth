@@ -58,7 +58,7 @@ public class SkyWars implements Listener {
                 world.getBlockAt(-476, 6, -856).setType(Material.CHEST);
             }
             if (players.size() == 1) {
-                Location location = new Location(player.getWorld(), 481, 9, -861);
+                Location location = new Location(player.getWorld(), 481, 9, -858);
                 player.teleport(location);
             }
             if (players.size() == 2) {
