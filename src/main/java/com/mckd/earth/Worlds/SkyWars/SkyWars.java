@@ -50,14 +50,20 @@ public class SkyWars implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(true);
             player.getInventory().clear();
-            Location location = new Location(player.getWorld(),481,9,-851);
-            player.teleport(location);
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() <= 1) {
                 World world = player.getWorld();
                 world.getBlockAt(-476, 6, -856).setType(Material.CHEST);
+            }
+            if (players.size() == 1) {
+                Location location = new Location(player.getWorld(), 481, 9, -861);
+                player.teleport(location);
+            }
+            if (players.size() == 2) {
+                Location location = new Location(player.getWorld(), 475, 9, -861);
+                player.teleport(location);
             }
         }
     }
