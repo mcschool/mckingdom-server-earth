@@ -1,6 +1,7 @@
 package com.mckd.earth.Worlds.SkyWars;
 
 import com.mckd.earth.Earth;
+import com.mckd.earth.Worlds.Pve.PveRespawnScheduler;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -32,6 +33,8 @@ public class SkyWars implements Listener {
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
+                //player.performCommand("mvtp world");
+                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin,0,20);
             }
         }
     }
@@ -50,7 +53,7 @@ public class SkyWars implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() <= 1) {
                 World world = player.getWorld();
-                world.getBlockAt(-476, 4, -856).setType(Material.CHEST);
+                world.getBlockAt(-476, 6, -856).setType(Material.CHEST);
             }
         }
     }
