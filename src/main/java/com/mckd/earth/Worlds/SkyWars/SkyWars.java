@@ -19,12 +19,13 @@ public class SkyWars implements Listener {
     Earth plugin;
     public SkyWars(Earth plugin) {
         this.plugin = plugin;
+        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
-        if (e.getEntity().getWorld().getName().equals("pve")) {
+        if (e.getEntity().getWorld().getName().equals("SkyWars")) {
             if (e.getEntity() instanceof Player) {
                 Player player = e.getEntity();
                 player.sendMessage("You died!");
