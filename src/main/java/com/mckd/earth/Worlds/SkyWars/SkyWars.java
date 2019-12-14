@@ -7,13 +7,18 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+
+import static org.bukkit.Material.*;
 
 public class SkyWars implements Listener {
 
@@ -56,8 +61,14 @@ public class SkyWars implements Listener {
             //ワールドに入った時にチェストを置く
             if (players.size() <= 1) {
                 World world = player.getWorld();
-                world.getBlockAt(476, 7, -873).setType(Material.CHEST);
+                world.getBlockAt(476, 7, -874).setType(CHEST);
+                world.getBlockAt(476, 7, -876).setType(CHEST);
+                world.getBlockAt(476, 7, -878).setType(CHEST);
+                Chest chest1 = (Chest)world.getBlockAt(476, 7, -874).getState();
+                Inventory inv1 = chest1.getInventory();
+                inv1.setItem(1,new ItemStack(STONE,24));
             }
+            //ワールドに入った時にプレイヤーをテレポートさせる
             if (players.size() == 1) {
                 Location location = new Location(player.getWorld(), 481, 9, -858);
                 player.teleport(location);
@@ -68,4 +79,5 @@ public class SkyWars implements Listener {
             }
         }
     }
+
 }
