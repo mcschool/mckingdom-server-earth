@@ -4,6 +4,7 @@ import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Pve.PveRespawnScheduler;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -42,7 +43,6 @@ public class SkyWars implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("test1");
         if (player.getWorld().getName().equals("SkyWars")) {
             player.sendMessage("SkyWars");
             player.setGameMode(GameMode.SURVIVAL);
@@ -50,6 +50,8 @@ public class SkyWars implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(true);
             player.getInventory().clear();
+            Location location = new Location(player.getWorld(),481,9,-851);
+            player.teleport(location);
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
