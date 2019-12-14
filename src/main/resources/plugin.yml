@@ -6,4 +6,6 @@ commands:
   email:
     description: email setting
   pve_point_add:
-    description: email setting
+    description: pve point add
+  lobby:
+    description: go to lobby

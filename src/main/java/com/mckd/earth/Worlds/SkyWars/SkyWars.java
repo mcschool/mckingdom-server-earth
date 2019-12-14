@@ -3,10 +3,7 @@ package com.mckd.earth.Worlds.SkyWars;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Pve.PveRespawnScheduler;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 
@@ -40,8 +38,12 @@ public class SkyWars implements Listener {
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
-                //player.performCommand("mvtp world");
-                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin,0,20);
+                new BukkitRunnable(){
+                    @Override
+                    public void run() {
+                        player.performCommand("mvtp world");
+                    }
+                }.runTaskLater(this.plugin,5);
             }
         }
     }
