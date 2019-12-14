@@ -62,7 +62,7 @@ public class SkyWars implements Listener {
                 player.teleport(location);
             }
             if (players.size() == 2) {
-                Location location = new Location(player.getWorld(), 475, 9, -861);
+                Location location = new Location(player.getWorld(), 475, 9, -858);
                 player.teleport(location);
             }
         }
