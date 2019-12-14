@@ -41,6 +41,7 @@ public class SkyWars implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage("test1");
         if (player.getWorld().getName().equals("SkyWars")) {
             player.sendMessage("SkyWars");
             player.setGameMode(GameMode.SURVIVAL);
