@@ -52,12 +52,12 @@ public class PveWorld implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() <= 1) {
                 World world = player.getWorld();
-                world.getBlockAt(-501,19,-120).setType(Material.FENCE);
-                world.getBlockAt(-502,19,-120).setType(Material.FENCE);
-                world.getBlockAt(-498,27,-118).setType(Material.FENCE);
-                world.getBlockAt(-498,27,-117).setType(Material.FENCE);
-                world.getBlockAt(-498,32,-127).setType(Material.FENCE);
-                world.getBlockAt(-497,32,-127).setType(Material.FENCE);
+                world.getBlockAt(-483,4,-868).setType(Material.CHEST);
+                //world.getBlockAt(-502,19,-120).setType(Material.CHEST);
+                //world.getBlockAt(-498,27,-118).setType(Material.CHEST);
+                //world.getBlockAt(-498,27,-117).setType(Material.CHEST);
+                //world.getBlockAt(-498,32,-127).setType(Material.CHEST);
+                //world.getBlockAt(-498,32,-127).setType(Material.CHEST);
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
 
