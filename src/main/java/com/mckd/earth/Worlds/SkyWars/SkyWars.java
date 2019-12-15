@@ -69,6 +69,7 @@ public class SkyWars implements Listener {
                 Chest chest1 = (Chest)world.getBlockAt(476, 7, -874).getState();
                 Inventory inv1 = chest1.getInventory();
                 inv1.setItem(1,new ItemStack(STONE,24));
+                inv1.setItem(19,new ItemStack(STONE_SWORD));
             }
             //ワールドに入った時にプレイヤーをテレポートさせる
             if (players.size() == 1) {
