@@ -25,6 +25,7 @@ public class TntRunWorld implements Listener {
     @EventHandler
     public void onPlayerChanged(PlayerChangedWorldEvent e) {
         Player player = e.getPlayer();
+        player.sendMessage("tteesstt");
         if (!player.getWorld().getName().equals("tnt")){
             return;
 
