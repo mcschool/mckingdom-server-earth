@@ -19,6 +19,7 @@ public class TntRunWorld implements Listener {
 
     public TntRunWorld(Earth plugin) {
         this.plugin = plugin;
+        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
