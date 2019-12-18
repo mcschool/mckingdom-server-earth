@@ -42,7 +42,7 @@ public class SkyWarsScheduler extends BukkitRunnable {
     private void changeGamemode(World world){
         for( Player player: world.getPlayers() ){
             player.setGameMode(GameMode.SURVIVAL);
-            world.getBlockAt(486, 7, -871).setType(Material.DIAMOND_BLOCK);
+            world.getBlockAt(486, 7, -872).setType(Material.AIR);
         }
     }
 }
