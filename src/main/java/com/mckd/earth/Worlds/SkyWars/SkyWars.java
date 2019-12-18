@@ -67,9 +67,15 @@ public class SkyWars implements Listener {
             //ワールドに入った時にチェストを置く
             if (players.size() == 1) {
                 World world = player.getWorld();
-                world.getBlockAt(486, 7, -872).setType(GOLD_BLOCK);
-                //world.getBlockAt(476, 7, -876).setType(GLASS);
-                //world.getBlockAt(476, 7, -878).setType(GLASS);
+                //1人目のガラス
+                world.getBlockAt(481, 9, -861).setType(GLASS);
+                world.getBlockAt(481, 10, -861).setType(GLASS);
+                world.getBlockAt(480, 9, -859).setType(GLASS);
+                world.getBlockAt(480, 10, -859).setType(GLASS);
+                world.getBlockAt(481, 9, -858).setType(GLASS);
+                world.getBlockAt(481, 10, -858).setType(GLASS);
+                world.getBlockAt(482, 9, -859).setType(GLASS);
+                world.getBlockAt(482, 10, -859).setType(GLASS);
 
 
                 //ワールドに入った時にチェストを置く
@@ -93,7 +99,7 @@ public class SkyWars implements Listener {
                     player.teleport(location);
                 }
                 if (players.size() == 2) {
-                    Location location = new Location(player.getWorld(), 475, 9, -858);
+                    Location location = new Location(player.getWorld(), 475.510, 9, -858.513);
                     player.teleport(location);
                 }
             }
