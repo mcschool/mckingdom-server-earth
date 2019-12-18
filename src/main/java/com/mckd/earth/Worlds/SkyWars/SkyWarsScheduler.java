@@ -7,6 +7,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import static org.bukkit.Material.GLASS;
+
 public class SkyWarsScheduler extends BukkitRunnable {
     private final World world;
     private int count;
@@ -51,6 +53,8 @@ public class SkyWarsScheduler extends BukkitRunnable {
             world.getBlockAt(481, 10, -858).setType(Material.AIR);
             world.getBlockAt(482, 9, -859).setType(Material.AIR);
             world.getBlockAt(482, 10, -859).setType(Material.AIR);
+            world.getBlockAt(481, 8, -869).setType(Material.GLASS);
+            world.getBlockAt(481, 11, -869).setType(Material.GLASS);
         }
     }
 }
