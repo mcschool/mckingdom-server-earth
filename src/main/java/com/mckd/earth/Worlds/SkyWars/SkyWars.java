@@ -57,6 +57,8 @@ public class SkyWars implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(true);
             player.getInventory().clear();
+            new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();

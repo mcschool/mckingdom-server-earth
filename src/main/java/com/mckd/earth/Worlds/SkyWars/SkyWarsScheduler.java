@@ -12,12 +12,13 @@ public class SkyWarsScheduler extends BukkitRunnable {
     private int enemyCount = 0;
 
 
-    public SkyWarsScheduler(Earth plugin, World world, int wave) {
+    public SkyWarsScheduler(Earth plugin, World world) {
         this.plugin = plugin;
         this.world = world;
         this.count = 10;
 
     }
+
 
     @Override
     public void run() {
