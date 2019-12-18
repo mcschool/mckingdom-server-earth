@@ -1,6 +1,7 @@
 package com.mckd.earth.Worlds.SkyWars;
 
 import com.mckd.earth.Earth;
+import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -25,6 +26,9 @@ public class SkyWarsScheduler extends BukkitRunnable {
         this.count--;
         this.sendMessageToPlayers(this.world, String.valueOf(this.count));
         if (this.count < 1) {
+            this.sendMessageToPlayers(this.world, "SkyWars START!");
+            this.changeGamemode(this.world);
+            this.cancel();
         }
     }
 
@@ -32,6 +36,11 @@ public class SkyWarsScheduler extends BukkitRunnable {
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
             player.sendTitle(msg,"", 0,20,0);
+        }
+    }
+    private void changeGamemode(World world){
+        for( Player player: world.getPlayers() ){
+            player.setGameMode(GameMode.SURVIVAL);
         }
     }
 }

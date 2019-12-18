@@ -21,6 +21,7 @@ import static org.bukkit.Material.*;
 public class SkyWars implements Listener {
 
     Earth plugin;
+
     public SkyWars(Earth plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -38,56 +39,65 @@ public class SkyWars implements Listener {
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
-                new BukkitRunnable(){
+                new BukkitRunnable() {
                     @Override
                     public void run() {
                         player.performCommand("mvtp world");
                     }
-                }.runTaskLater(this.plugin,5);
+                }.runTaskLater(this.plugin, 5);
             }
         }
     }
+
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals("SkyWars")) {
             player.sendMessage("SkyWars");
-            player.setGameMode(GameMode.SURVIVAL);
+            player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
             player.getWorld().setPVP(true);
             player.getInventory().clear();
-            new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
-
-
-            // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
-            //ワールドに入った時にチェストを置く
-            if (players.size() <= 1) {
-                World world = player.getWorld();
-                world.getBlockAt(476, 7, -874).setType(CHEST);
-                world.getBlockAt(476, 7, -876).setType(CHEST);
-                world.getBlockAt(476, 7, -878).setType(CHEST);
-                Chest chest1 = (Chest)world.getBlockAt(476, 7, -874).getState();
-                Inventory inv1 = chest1.getInventory();
-                inv1.setItem(1,new ItemStack(STONE,24));
-                inv1.setItem(18,new ItemStack(STONE_SWORD));
-                Chest chest2 = (Chest)world.getBlockAt(476, 7, -876).getState();
-                Inventory inv2 = chest2.getInventory();
-                inv2.setItem(5,new ItemStack(WOOD,32));
-                inv2.setItem(20,new ItemStack(EGG,16));
-            }
-            //ワールドに入った時にプレイヤーをテレポートさせる
+            // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
             if (players.size() == 1) {
-                Location location = new Location(player.getWorld(), 481, 9, -858);
-                player.teleport(location);
+                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
             }
-            if (players.size() == 2) {
-                Location location = new Location(player.getWorld(), 475, 9, -858);
-                player.teleport(location);
+            //ワールドに入った時にチェストを置く
+            if (players.size() == 1) {
+                World world = player.getWorld();
+                //world.getBlockAt(476, 7, -874).setType(GLASS);
+                //world.getBlockAt(476, 7, -876).setType(GLASS);
+                //world.getBlockAt(476, 7, -878).setType(GLASS);
+
+
+                //ワールドに入った時にチェストを置く
+                if (players.size() == 1) {
+                    World world2 = player.getWorld();
+                    world2.getBlockAt(476, 7, -874).setType(CHEST);
+                    world2.getBlockAt(476, 7, -876).setType(CHEST);
+                    world2.getBlockAt(476, 7, -878).setType(CHEST);
+                    Chest chest1 = (Chest) world2.getBlockAt(476, 7, -874).getState();
+                    Inventory inv1 = chest1.getInventory();
+                    inv1.setItem(1, new ItemStack(STONE, 24));
+                    inv1.setItem(18, new ItemStack(STONE_SWORD));
+                    Chest chest2 = (Chest) world2.getBlockAt(476, 7, -876).getState();
+                    Inventory inv2 = chest2.getInventory();
+                    inv2.setItem(5, new ItemStack(WOOD, 32));
+                    inv2.setItem(20, new ItemStack(EGG, 16));
+                }
+                //ワールドに入った時にプレイヤーをテレポートさせる
+                if (players.size() == 1) {
+                    Location location = new Location(player.getWorld(), 481, 9, -858);
+                    player.teleport(location);
+                }
+                if (players.size() == 2) {
+                    Location location = new Location(player.getWorld(), 475, 9, -858);
+                    player.teleport(location);
+                }
             }
         }
+
     }
-
-
 }
