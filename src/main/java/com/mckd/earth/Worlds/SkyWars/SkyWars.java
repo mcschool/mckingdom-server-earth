@@ -67,7 +67,7 @@ public class SkyWars implements Listener {
             //ワールドに入った時にチェストを置く
             if (players.size() == 1) {
                 World world = player.getWorld();
-                //world.getBlockAt(476, 7, -874).setType(GLASS);
+                world.getBlockAt(486, 7, -871).setType(GOLD_BLOCK);
                 //world.getBlockAt(476, 7, -876).setType(GLASS);
                 //world.getBlockAt(476, 7, -878).setType(GLASS);
 

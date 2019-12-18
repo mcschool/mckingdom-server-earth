@@ -2,6 +2,7 @@ package com.mckd.earth.Worlds.SkyWars;
 
 import com.mckd.earth.Earth;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -41,6 +42,7 @@ public class SkyWarsScheduler extends BukkitRunnable {
     private void changeGamemode(World world){
         for( Player player: world.getPlayers() ){
             player.setGameMode(GameMode.SURVIVAL);
+            world.getBlockAt(486, 7, -871).setType(Material.DIAMOND_BLOCK);
         }
     }
 }
