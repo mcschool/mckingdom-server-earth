@@ -31,13 +31,16 @@ public class SkyWars implements Listener {
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("SkyWars")) {
-            if (e.getEntity() instanceof Player) {
-                Player player = e.getEntity();
-                player.sendMessage("You died!");
-                player.setHealth(20.0);
-                player.setFoodLevel(10);
-                player.getInventory().clear();
-                player.setGameMode(GameMode.SPECTATOR);
+            Player player = e.getEntity();
+            List<Player> players = player.getWorld().getPlayers();
+            if (players.size() >= 2) {
+                if (e.getEntity() instanceof Player) {
+                    player.sendMessage("You died!");
+                    player.setHealth(20.0);
+                    player.setFoodLevel(10);
+                    player.getInventory().clear();
+                    player.setGameMode(GameMode.SPECTATOR);
+                }
             }
         }
     }
@@ -46,28 +49,28 @@ public class SkyWars implements Listener {
 
     @EventHandler
     public void onPlayerDeathEvent2(PlayerDeathEvent e) {
-        Player player = e.getEntity();
+        //Player player = e.getEntity();
         if (e.getEntity().getWorld().getName().equals("SkyWars")) {
             List<Player> players = e.getEntity().getWorld().getPlayers();
             int count = 0;
-            for( Player player1 : players ){
+            for (Player player1 : players) {
                 if (player1.getGameMode() == GameMode.SURVIVAL) {
                     count++;
-                    player = player1;
                 }
             }
             if (count == 1) {
-                if (e.getEntity() instanceof Player) {
-                    player.sendMessage("You Win !!");
-                    player.setHealth(20.0);
-                    player.setFoodLevel(10);
-                    player.hidePlayer(this.plugin, player);
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            //player.performCommand("mvtp world");
-                        }
-                    }.runTaskLater(this.plugin, 100);
+                for (Player player : players) {
+                    if (e.getEntity() instanceof Player) {
+                        player.sendMessage("You Win !!");
+                        player.setHealth(20.0);
+                        player.setFoodLevel(10);
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                player.performCommand("mvtp world");
+                            }
+                        }.runTaskLater(this.plugin, 100);
+                    }
                 }
             }
         }
