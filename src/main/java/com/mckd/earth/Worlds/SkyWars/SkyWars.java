@@ -46,18 +46,14 @@ public class SkyWars implements Listener {
                     player.setGameMode(GameMode.SPECTATOR);
                 }
             }
-            player.sendMessage("test1");
             int count = 0;
             for (Player player1 : players) {
                 if (player1.getGameMode() == GameMode.SURVIVAL) {
                     count++;
                 }
             }
-            player.sendMessage("test2");
-            player.sendMessage("count:"+count);
             if (count == 1) {
                 for (Player player1 : players) {
-                    player1.sendMessage("test3");
                     if (player1.getGameMode() == GameMode.SURVIVAL) {
                         player1.sendMessage("You Win !!");
                         player1.setHealth(20.0);
