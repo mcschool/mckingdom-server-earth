@@ -54,6 +54,7 @@ public class SkyWars implements Listener {
                 }
             }
             player.sendMessage("test2");
+            player.sendMessage("count:"+count);
             if (count == 1) {
                 for (Player player1 : players) {
                     player1.sendMessage("test3");
