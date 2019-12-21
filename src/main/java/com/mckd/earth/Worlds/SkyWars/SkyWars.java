@@ -46,27 +46,28 @@ public class SkyWars implements Listener {
                     player.setGameMode(GameMode.SPECTATOR);
                 }
             }
+            player.sendMessage("test1");
             int count = 0;
             for (Player player1 : players) {
                 if (player1.getGameMode() == GameMode.SURVIVAL) {
                     count++;
                 }
             }
+            player.sendMessage("test2");
             if (count == 1) {
                 for (Player player1 : players) {
-                    if (e.getEntity() instanceof Player) {
-                        if (player1.getGameMode() == GameMode.SURVIVAL) {
-                            player1.sendMessage("You Win !!");
-                            player1.setHealth(20.0);
-                            player1.setFoodLevel(10);
-                        }
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                player1.performCommand("mvtp world");
-                            }
-                        }.runTaskLater(this.plugin, 100);
+                    player1.sendMessage("test3");
+                    if (player1.getGameMode() == GameMode.SURVIVAL) {
+                        player1.sendMessage("You Win !!");
+                        player1.setHealth(20.0);
+                        player1.setFoodLevel(10);
                     }
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            player1.performCommand("mvtp world");
+                        }
+                    }.runTaskLater(this.plugin, 100);
                 }
             }
         }
