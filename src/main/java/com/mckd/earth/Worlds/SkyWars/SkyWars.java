@@ -38,16 +38,37 @@ public class SkyWars implements Listener {
                 player.setFoodLevel(10);
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SPECTATOR);
-                player.hidePlayer(this.plugin, player);
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        player.performCommand("mvtp world");
-                    }
-                }.runTaskLater(this.plugin, 5);
             }
         }
     }
+
+
+
+    @EventHandler
+    public void onPlayerDeathEvent2(PlayerDeathEvent e) {
+        Player player = e.getEntity();
+        if (e.getEntity().getWorld().getName().equals("SkyWars")) {
+            List<Player> players = player.getWorld().getPlayers();
+            if (players.size() == 1) {
+                if (e.getEntity() instanceof Player) {
+                    player.sendMessage("You Win !!");
+                    player.setHealth(20.0);
+                    player.setFoodLevel(10);
+                    player.getInventory().clear();
+                    player.hidePlayer(this.plugin, player);
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            player.performCommand("mvtp world");
+                        }
+                    }.runTaskLater(this.plugin, 100);
+                }
+            }
+        }
+    }
+
+
+
 
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
@@ -79,7 +100,7 @@ public class SkyWars implements Listener {
                 world.getBlockAt(481, 8, -859).setType(GLASS);
                 world.getBlockAt(481, 11, -859).setType(GLASS);
 
-
+                
                 //ワールドに入った時にチェストを置く
                 if (players.size() == 1) {
                     World world2 = player.getWorld();
