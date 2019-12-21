@@ -1,10 +1,7 @@
 package com.mckd.earth.Worlds.TypingButtle;
 
 import com.mckd.earth.Earth;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +22,7 @@ public class TypingButtleWorld implements Listener {
         Player player = event.getPlayer();
         if(!player.getWorld().getName().equals(this.worldname)) return;
         player.setGameMode(GameMode.ADVENTURE);
+        player.setPlayerWeather(WeatherType.CLEAR);
         if(player.getWorld().getPlayers().size() == 1){
             Location location = new Location(player.getWorld(),-946, 18, 179);
             player.teleport(location);
@@ -39,7 +37,7 @@ public class TypingButtleWorld implements Listener {
         if(player.getWorld().getPlayers().size() > 2){
             Location location2 = new Location(player.getWorld(),-946, 27, 170);
             player.teleport(location2);
-            player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.GREEN + "観覧車", ChatColor.WHITE + "です", 60, 80, 60);
+            player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.GREEN + "観覧者", ChatColor.WHITE + "です", 60, 80, 60);
         }
     }
 }
