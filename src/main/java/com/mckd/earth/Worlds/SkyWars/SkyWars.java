@@ -48,18 +48,24 @@ public class SkyWars implements Listener {
     public void onPlayerDeathEvent2(PlayerDeathEvent e) {
         Player player = e.getEntity();
         if (e.getEntity().getWorld().getName().equals("SkyWars")) {
-            List<Player> players = player.getWorld().getPlayers();
-            if (players.size() == 1) {
+            List<Player> players = e.getEntity().getWorld().getPlayers();
+            int count = 0;
+            for( Player player1 : players ){
+                if (player1.getGameMode() == GameMode.SURVIVAL) {
+                    count++;
+                    player = player1;
+                }
+            }
+            if (count == 1) {
                 if (e.getEntity() instanceof Player) {
                     player.sendMessage("You Win !!");
                     player.setHealth(20.0);
                     player.setFoodLevel(10);
-                    player.getInventory().clear();
                     player.hidePlayer(this.plugin, player);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            player.performCommand("mvtp world");
+                            //player.performCommand("mvtp world");
                         }
                     }.runTaskLater(this.plugin, 100);
                 }
