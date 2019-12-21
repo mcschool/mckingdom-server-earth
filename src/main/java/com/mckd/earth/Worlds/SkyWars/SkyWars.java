@@ -61,9 +61,11 @@ public class SkyWars implements Listener {
             if (count == 1) {
                 for (Player player : players) {
                     if (e.getEntity() instanceof Player) {
-                        player.sendMessage("You Win !!");
-                        player.setHealth(20.0);
-                        player.setFoodLevel(10);
+                        if (player.getGameMode() == GameMode.SURVIVAL) {
+                            player.sendMessage("You Win !!");
+                            player.setHealth(20.0);
+                            player.setFoodLevel(10);
+                        }
                         new BukkitRunnable() {
                             @Override
                             public void run() {
