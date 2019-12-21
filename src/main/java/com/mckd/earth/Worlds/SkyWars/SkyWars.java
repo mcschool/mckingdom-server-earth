@@ -79,6 +79,7 @@ public class SkyWars implements Listener {
         if (player.getWorld().getName().equals("SkyWars")) {
             player.sendMessage("SkyWars");
             player.setGameMode(GameMode.ADVENTURE);
+            player.setPlayerWeather(WeatherType.CLEAR);
             player.setFoodLevel(20);
             player.setHealth(20.0);
             player.getWorld().setPVP(true);
