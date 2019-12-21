@@ -46,10 +46,6 @@ public class SkyWars implements Listener {
                     player.setGameMode(GameMode.SPECTATOR);
                 }
             }
-        }
-        //Player player = e.getEntity();
-        if (e.getEntity().getWorld().getName().equals("SkyWars")) {
-            List<Player> players = e.getEntity().getWorld().getPlayers();
             int count = 0;
             for (Player player1 : players) {
                 if (player1.getGameMode() == GameMode.SURVIVAL) {
@@ -57,17 +53,17 @@ public class SkyWars implements Listener {
                 }
             }
             if (count == 1) {
-                for (Player player : players) {
+                for (Player player1 : players) {
                     if (e.getEntity() instanceof Player) {
-                        if (player.getGameMode() == GameMode.SURVIVAL) {
-                            player.sendMessage("You Win !!");
-                            player.setHealth(20.0);
-                            player.setFoodLevel(10);
+                        if (player1.getGameMode() == GameMode.SURVIVAL) {
+                            player1.sendMessage("You Win !!");
+                            player1.setHealth(20.0);
+                            player1.setFoodLevel(10);
                         }
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                player.performCommand("mvtp world");
+                                player1.performCommand("mvtp world");
                             }
                         }.runTaskLater(this.plugin, 100);
                     }
