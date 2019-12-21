@@ -23,6 +23,10 @@ public class TypingButtleWorld implements Listener {
         if(!player.getWorld().getName().equals(this.worldname)) return;
         player.setGameMode(GameMode.ADVENTURE);
         player.setPlayerWeather(WeatherType.CLEAR);
+        player.setHealth(20.0);
+        player.setFoodLevel(20);
+        player.getWorld().setPVP(false);
+        player.getInventory().clear();
         if(player.getWorld().getPlayers().size() == 1){
             Location location = new Location(player.getWorld(),-946, 18, 179);
             player.teleport(location);
