@@ -7,6 +7,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
+import javax.xml.soap.Text;
+import java.util.Random;
+
 public class TypingButtleWorld implements Listener {
     private Earth plugin;
     String worldname = "ty";
@@ -44,4 +47,5 @@ public class TypingButtleWorld implements Listener {
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.GREEN + "観覧者", ChatColor.WHITE + "です", 60, 80, 60);
         }
     }
+
 }
