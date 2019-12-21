@@ -2,9 +2,11 @@ package com.mckd.earth.Worlds.TypingButtle;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -16,6 +18,7 @@ import java.util.Random;
 public class TypingButtleWorld implements Listener {
     Player playerRed;
     Player playerBlue;
+    String current_qustion;
     //public Map<String, Integer> taskIds = new HashMap<String, Integer>();
     private Earth plugin;
     String worldname = "ty";
@@ -70,5 +73,23 @@ public class TypingButtleWorld implements Listener {
         if(n == 2) {q="apple";}
         this.playerRed.sendTitle(q,"",0,20000,0);
         this.playerBlue.sendTitle(q,"",0,20000,0);
+        this.current_qustion = q;
+    }
+
+    @EventHandler
+    public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
+        if(event.getPlayer().getWorld().getName().equals("ty")){
+            Player player = event.getPlayer();
+            String mes = event.getMessage();
+            String question = this.current_qustion;
+            if(mes.equals(question)){
+                if(player == this.playerRed){
+                    this.playerRed.sendMessage("正解だよ");
+                }else{
+                    this.playerRed.sendMessage("BLUEが答えました");
+                    this.playerBlue.sendMessage("正解です");
+                }
+            }
+        }
     }
 }
