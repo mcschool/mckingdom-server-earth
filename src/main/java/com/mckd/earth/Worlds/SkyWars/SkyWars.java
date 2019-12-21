@@ -28,8 +28,12 @@ public class SkyWars implements Listener {
     }
 
 
+
+
+
+
     @EventHandler
-    public void onPlayerDeathEvent(PlayerDeathEvent e) {
+    public void onPlayerDeathEvent2(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("SkyWars")) {
             Player player = e.getEntity();
             List<Player> players = player.getWorld().getPlayers();
@@ -43,12 +47,6 @@ public class SkyWars implements Listener {
                 }
             }
         }
-    }
-
-
-
-    @EventHandler
-    public void onPlayerDeathEvent2(PlayerDeathEvent e) {
         //Player player = e.getEntity();
         if (e.getEntity().getWorld().getName().equals("SkyWars")) {
             List<Player> players = e.getEntity().getWorld().getPlayers();
