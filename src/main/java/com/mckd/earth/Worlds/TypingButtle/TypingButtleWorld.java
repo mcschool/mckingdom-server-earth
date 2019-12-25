@@ -2,19 +2,13 @@ package com.mckd.earth.Worlds.TypingButtle;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.scheduler.BukkitTask;
-
-import javax.xml.soap.Text;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class TypingButtleWorld implements Listener {
