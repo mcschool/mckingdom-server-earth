@@ -80,7 +80,7 @@ public class TypingButtleWorld implements Listener {
         if(n == 4) {q="peach";}
         if(n == 5) {q="goodmorning";}
         if(n == 6) {q="dog";}
-        if(n == 7) {q="moutain";}
+        if(n == 7) {q="mountain";}
         if(n == 8) {q="yellow";}
         if(n == 9) {q="orange";}
         this.playerRed.sendTitle(q,"",0,20000,0);
@@ -91,8 +91,11 @@ public class TypingButtleWorld implements Listener {
     public void GameEnd(){
         World world = Bukkit.getWorld(this.worldname);
         List<Player> players = world.getPlayers();
+        World lobby = Bukkit.getWorld("world");
+        Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
             player.performCommand("mvtp world");
+            player.teleport(location);
         }
     }
 
