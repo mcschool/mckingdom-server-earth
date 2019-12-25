@@ -66,11 +66,18 @@ public class TypingButtleWorld implements Listener {
 
     public void Start(){
         Random r = new Random();
-        int n = r.nextInt(3);
+        int n = r.nextInt(10);
         String q = "a";
         if(n == 0) {q="hello";}
         if(n == 1) {q="goodbye";}
         if(n == 2) {q="apple";}
+        if(n == 3) {q="banana";}
+        if(n == 4) {q="peach";}
+        if(n == 5) {q="goodmorning";}
+        if(n == 6) {q="dog";}
+        if(n == 7) {q="moutain";}
+        if(n == 8) {q="yellow";}
+        if(n == 9) {q="orange";}
         this.playerRed.sendTitle(q,"",0,20000,0);
         this.playerBlue.sendTitle(q,"",0,20000,0);
         this.current_qustion = q;
