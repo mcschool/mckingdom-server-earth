@@ -36,7 +36,7 @@ public class TypingButtleWorld implements Listener {
         player.setGameMode(GameMode.ADVENTURE);
         player.setPlayerWeather(WeatherType.CLEAR);
         player.setHealth(20.0);
-        player.setFoodLevel(20);
+        player.setFoodLevel(2);
         player.getWorld().setPVP(false);
         player.getInventory().clear();
 
