@@ -51,7 +51,7 @@ public class TntRunWorld implements Listener {
             }
             if (block.getType() == Material.REDSTONE_BLOCK) {
                 player.sendMessage("Redstone is clicked");
-                this.fillFloor();
+                this.fillFloor(player);
             }
         }
     }
@@ -69,10 +69,10 @@ public class TntRunWorld implements Listener {
         }
     }
 
-    public void fillFloor() {
+    public void fillFloor(Player player) {
         World world = Bukkit.getWorld("tnt");
-        Location location = new Location(world, 0, 0, 0);
-        location.add(0, 0, 0);
+        Location location = player.getLocation();
+        location.add(0, 10, 0);
         Double nowX = location.getX();
         Double nowZ = location.getZ();
         for (int x = 0; x < 30; x++) {
