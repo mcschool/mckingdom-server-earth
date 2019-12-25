@@ -104,8 +104,6 @@ public class TypingButtleWorld implements Listener {
             String question = this.current_qustion;
             if(mes.equals(question)){
                 if(player == this.playerRed){
-                    this.playerRed.sendMessage("正解だよ");
-                    this.playerBlue.sendMessage("REDが正解しました");
                     double health = this.playerBlue.getHealth();
                     this.playerBlue.setHealth(health -10.0);
                     if (this.playerBlue.getHealth() == 0.0){
@@ -117,17 +115,14 @@ public class TypingButtleWorld implements Listener {
                     }
                 }
                 if(player == this.playerBlue) {
-                    this.playerBlue.sendMessage("正解だよ");
-                    this.playerRed.sendMessage("BLUEが正解した");
                     double health = this.playerRed.getHealth();
                     this.playerRed.setHealth(health -10.0);
                     if (this.playerRed.getHealth() == 0.0){
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
                         this.GameEnd();
                     }else{
                         this.Start();
-
                     }
                 }
             }
