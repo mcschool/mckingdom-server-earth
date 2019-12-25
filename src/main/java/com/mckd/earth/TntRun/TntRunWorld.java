@@ -78,6 +78,7 @@ public class TntRunWorld implements Listener {
         for (int x = 0; x < 30; x++) {
             location.setX(nowX + x);
             for (int z = 0; z < 30; z++) {
+                location.setZ(nowZ + z);
                 world.getBlockAt(location).setType(Material.TNT);
             }
         }
