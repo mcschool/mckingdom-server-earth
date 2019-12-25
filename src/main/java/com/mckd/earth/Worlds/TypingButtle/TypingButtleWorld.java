@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.scheduler.BukkitTask;
@@ -63,6 +64,15 @@ public class TypingButtleWorld implements Listener {
         }
     }
 
+    @EventHandler
+    public void onFoodLevelChangeEvent(FoodLevelChangeEvent event){
+        String worldname = event.getEntity().getWorld().getName();
+        if (worldname.equals(this.worldname)){
+            event.setCancelled(true);
+            return;
+        }
+    }
+
 
     public void Start(){
         Random r = new Random();
@@ -95,6 +105,11 @@ public class TypingButtleWorld implements Listener {
                     this.playerBlue.sendMessage("REDが正解しました");
                     double health = this.playerBlue.getHealth();
                     this.playerBlue.setHealth(health -1);
+                    if (this.playerBlue.getHealth() == 0.0){
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
+                        player.performCommand("mvtp world");
+                    }
                     this.Start();
                 }
                 if(player == this.playerBlue) {
@@ -102,6 +117,11 @@ public class TypingButtleWorld implements Listener {
                     this.playerRed.sendMessage("BLUEが正解した");
                     double health = this.playerRed.getHealth();
                     this.playerRed.setHealth(health -1);
+                    if (this.playerRed.getHealth() == 0.0){
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
+                        player.performCommand("mvtp world");
+                    }
                     this.Start();
                 }
             }
