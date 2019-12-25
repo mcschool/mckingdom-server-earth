@@ -91,6 +91,7 @@ public class TypingButtleWorld implements Listener {
     public void GameEnd(){
         World world = Bukkit.getWorld(this.worldname);
         List<Player> players = world.getPlayers();
+
         World lobby = Bukkit.getWorld("world");
         Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
@@ -107,7 +108,7 @@ public class TypingButtleWorld implements Listener {
             if(mes.equals(question)){
                 if(player == this.playerRed){
                     double health = this.playerBlue.getHealth();
-                    this.playerBlue.setHealth(health -10.0);
+                    this.playerBlue.setHealth(health -1.0);
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0){
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
@@ -117,7 +118,7 @@ public class TypingButtleWorld implements Listener {
                 }
                 if(player == this.playerBlue) {
                     double health = this.playerRed.getHealth();
-                    this.playerRed.setHealth(health -10.0);
+                    this.playerRed.setHealth(health -1.0);
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
