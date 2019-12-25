@@ -106,23 +106,21 @@ public class TypingButtleWorld implements Listener {
                 if(player == this.playerRed){
                     double health = this.playerBlue.getHealth();
                     this.playerBlue.setHealth(health -10.0);
+                    this.Start();
                     if (this.playerBlue.getHealth() == 0.0){
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
                         this.GameEnd();
-                    }else{
-                        this.Start();
                     }
                 }
                 if(player == this.playerBlue) {
                     double health = this.playerRed.getHealth();
                     this.playerRed.setHealth(health -10.0);
+                    this.Start();
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
                         this.GameEnd();
-                    }else{
-                        this.Start();
                     }
                 }
             }
