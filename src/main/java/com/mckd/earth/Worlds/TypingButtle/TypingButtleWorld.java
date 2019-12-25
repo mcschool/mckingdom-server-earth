@@ -112,8 +112,9 @@ public class TypingButtleWorld implements Listener {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
                         this.GameEnd();
+                    }else{
+                        this.Start();
                     }
-                    this.Start();
                 }
                 if(player == this.playerBlue) {
                     this.playerBlue.sendMessage("正解だよ");
@@ -124,8 +125,10 @@ public class TypingButtleWorld implements Listener {
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
                         this.GameEnd();
+                    }else{
+                        this.Start();
+
                     }
-                    this.Start();
                 }
             }
         }
