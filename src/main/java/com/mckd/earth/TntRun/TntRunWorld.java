@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -78,36 +79,50 @@ public class TntRunWorld implements Listener {
             }
         }
     }
-/*
+
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e){
-    Player player = e.getPlayer();
-    if(!player.getWorld().getName().equals("tnt")) {
-        return;
+    public void onPlayerMove(PlayerMoveEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals("tnt")) {
+            return;
+        }
+
+        Location location = player.getLocation();
+        Double nowY = location.getY();
+        location.setY(nowY - 1);
+        Block block = player.getWorld().getBlockAt(location);
+        if (block.getType() == Material.TNT) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    block.setType(Material.AIR);
+                }
+            }.runTaskLater(this.plugin, 5);
+
+        }
+        if (nowY < 10 && player.getGameMode() == GameMode.ADVENTURE) {
+            player.setGameMode(GameMode.SPECTATOR);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    player.performCommand("mvtp world");
+                }
+            }.runTaskLater(this.plugin, 100);
+        }
     }
 
-    Location location = player.getLocation();
-    Double nowY = location.getY();
-    location.setY(nowY - 1);
-    Block block = player.getWorld().getBlockAt(location);
-    if(block.getType() == Material.TNT) {
-        new BukkitRunnable(){
-            @Override
-            public void run() {
-                block.setType(Material.AIR);
-            }
-        }.runTaskLater(this.plugin, 5);
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent e) {
+        Player player = e.getPlayer();
+        if (player.getWorld().getName().equals("tntrun")) {
+            return;
+        }
+        if (player.getGameMode() != GameMode.CREATIVE) {
+            e.setCancelled(true);
 
-    }
-    if (nowY < 10 && player.getGameMode() == GameMode.ADVENTURE){
-        player.setGameMode(GameMode.SPECTATOR);
-        new BukkitRunnable() {
-            @override
-        }
         }
     }
-    }
-    */
+
 }
 
 
