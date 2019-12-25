@@ -104,10 +104,12 @@ public class TntRunWorld implements Listener {
 
         }
         if (nowY < 10 && player.getGameMode() == GameMode.ADVENTURE) {
+            player.sendMessage("Change spectator");
             player.setGameMode(GameMode.SPECTATOR);
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    player.sendMessage("run mvtp");
                     player.performCommand("mvtp world");
                 }
             }.runTaskLater(this.plugin, 100);
