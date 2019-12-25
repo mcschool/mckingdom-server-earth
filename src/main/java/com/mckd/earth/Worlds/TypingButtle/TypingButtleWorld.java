@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import javax.xml.soap.Text;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -93,6 +94,14 @@ public class TypingButtleWorld implements Listener {
         this.current_qustion = q;
     }
 
+    public void GameEnd(){
+        World world = Bukkit.getWorld(this.worldname);
+        List<Player> players = world.getPlayers();
+        for(Player player:players){
+            player.performCommand("mvtp world");
+        }
+    }
+
     @EventHandler
     public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
         if(event.getPlayer().getWorld().getName().equals("ty")){
@@ -108,7 +117,7 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerBlue.getHealth() == 0.0){
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
-                        player.performCommand("mvtp world");
+                        this.GameEnd();
                     }
                     this.Start();
                 }
@@ -120,7 +129,7 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,60,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,60,0);
-                        player.performCommand("mvtp world");
+                        this.GameEnd();
                     }
                     this.Start();
                 }
