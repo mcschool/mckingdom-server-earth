@@ -93,11 +93,15 @@ public class TypingButtleWorld implements Listener {
                 if(player == this.playerRed){
                     this.playerRed.sendMessage("正解だよ");
                     this.playerBlue.sendMessage("REDが正解しました");
+                    double health = this.playerBlue.getHealth();
+                    this.playerBlue.setHealth(health -1);
                     this.Start();
                 }
                 if(player == this.playerBlue) {
                     this.playerBlue.sendMessage("正解だよ");
                     this.playerRed.sendMessage("BLUEが正解した");
+                    double health = this.playerRed.getHealth();
+                    this.playerRed.setHealth(health -1);
                     this.Start();
                 }
             }
