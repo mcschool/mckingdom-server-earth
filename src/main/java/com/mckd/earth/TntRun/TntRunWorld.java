@@ -33,6 +33,7 @@ public class TntRunWorld implements Listener {
         }
         player.getInventory().clear();
         player.setGameMode(GameMode.ADVENTURE);
+        player.sendMessage("test1");
     }
 
     @EventHandler
@@ -45,9 +46,11 @@ public class TntRunWorld implements Listener {
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
             if (block.getType() == Material.TNT) {
+                player.sendMessage("Tnt is clicked");
                 this.start();
             }
             if (block.getType() == Material.REDSTONE_BLOCK) {
+                player.sendMessage("Redstone is clicked");
                 this.fillFloor();
             }
         }
