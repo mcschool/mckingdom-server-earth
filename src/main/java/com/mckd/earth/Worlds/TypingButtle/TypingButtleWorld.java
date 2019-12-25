@@ -94,7 +94,6 @@ public class TypingButtleWorld implements Listener {
         World lobby = Bukkit.getWorld("world");
         Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
-            player.performCommand("mvtp world");
             player.teleport(location);
         }
     }
