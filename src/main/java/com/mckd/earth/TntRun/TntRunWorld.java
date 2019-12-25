@@ -103,7 +103,7 @@ public class TntRunWorld implements Listener {
             }.runTaskLater(this.plugin, 5);
 
         }
-        if (nowY < 10 && player.getGameMode() == GameMode.ADVENTURE) {
+        if (nowY < 3 && player.getGameMode() == GameMode.ADVENTURE) {
             player.sendMessage("Change spectator");
             player.setGameMode(GameMode.SPECTATOR);
             new BukkitRunnable() {
