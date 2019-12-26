@@ -115,7 +115,6 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerBlue.getHealth() == 0.0) {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 40, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 40, 0);
-                        this.GameEnd();
                     }
                 }
                 if(player == this.playerBlue) {
@@ -125,9 +124,9 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,40,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,40,0);
-                        this.GameEnd();
                     }
                 }
+                this.GameEnd();
             }
         }
     }
