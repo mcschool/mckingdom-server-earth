@@ -113,10 +113,10 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerBlue.getHealth() == 0.0) {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "によって倒された", "", 0, 40, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました", "", 0, 40, 0);
+                        player.sendMessage("ああああああ");
                         World lobby = Bukkit.getWorld("world");
                         Location location = new Location(lobby, -92, 10, -251);
-                        this.playerBlue.teleport(location);
-                        this.playerRed.teleport(location);
+                        player.teleport(location);
                     }
                 }
                 if(player == this.playerBlue) {
@@ -126,10 +126,10 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
+                        player.sendMessage("いいいいい");
                         World lobby = Bukkit.getWorld("world");
                         Location location = new Location(lobby, -92, 10, -251);
-                        this.playerBlue.teleport(location);
-                        this.playerRed.teleport(location);
+                        player.teleport(location);
                     }
                 }
             }
