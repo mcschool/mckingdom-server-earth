@@ -42,7 +42,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     private void sendMessageToPlayers(World world, String msg){
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
-            player.sendTitle(msg,"", 0,20,0);
+            player.sendTitle(msg,"", 0,10,0);
         }
     }
 }
