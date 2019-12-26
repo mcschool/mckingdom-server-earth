@@ -111,11 +111,7 @@ public class TypingButtleWorld implements Listener {
         for(Player player:players){
             //player.performCommand("lobby");
             //player.teleport(location);
-            ItemStack itemStack = new ItemStack(Material.CHEST);
-            ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName("ロビーに戻る");
-            itemStack.setItemMeta(itemMeta);
-            player.getInventory().addItem(itemStack);
+            player.sendMessage(ChatColor.RED + "/lobby でロビーに踊れます");
         }
     }
 
@@ -188,7 +184,7 @@ public class TypingButtleWorld implements Listener {
     @EventHandler
     public void onPlayerRespawnEvent(PlayerRespawnEvent event){
         Player player = event.getPlayer();
-        if(!player.getWorld().getName().equals(this.worldname)) return;
+        if(player.getWorld().getName().equals(this.worldname)) return;
         //青チーム
         if(player == this.playerBlue){
             Location location = new Location(this.playerBlue.getWorld(),-946,18, 166);
