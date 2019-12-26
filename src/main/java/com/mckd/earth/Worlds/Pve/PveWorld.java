@@ -63,6 +63,10 @@ public class PveWorld implements Listener {
                 for (Entity monster : monsters) {
                     monster.remove();
                 }
+                Collection<Entity> items = world.getEntitiesByClasses(Item.class);
+                for (Entity item : items) {
+                    item.remove();
+                }
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
 
