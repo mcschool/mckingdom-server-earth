@@ -133,7 +133,8 @@ public class TypingButtleWorld implements Listener {
                         Location location = new Location(lobby, -92, 10, -251);
                         this.playerRed.sendMessage("ええええ");
                         this.playerBlue.sendMessage("えええええ");
-                        player.teleport(location);
+                        this.playerRed.teleport(location);
+                        this.playerBlue.teleport(location);
                         this.playerBlue.sendMessage("おおお");
                         this.playerRed.sendMessage("おおお");
                     }
