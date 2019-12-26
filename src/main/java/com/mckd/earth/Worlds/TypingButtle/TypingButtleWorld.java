@@ -103,6 +103,7 @@ public class TypingButtleWorld implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    player.sendTitle("ロビーに戻ります", "",0,40,0);
                     player.performCommand("mvtp world");
                 }
             }.runTaskLater(this.plugin, 20);
@@ -123,6 +124,7 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerBlue.getHealth() == 0.0) {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 60, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 60, 0);
+                        this.playerBlue.setGameMode(GameMode.SPECTATOR);
                         this.GameEnd();
                     }
                 }
@@ -133,6 +135,7 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,60,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,60,0);
+                        this.playerRed.setGameMode(GameMode.SPECTATOR);
                         this.GameEnd();
 
                     }
