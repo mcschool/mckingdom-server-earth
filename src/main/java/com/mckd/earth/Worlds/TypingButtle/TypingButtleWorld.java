@@ -105,7 +105,7 @@ public class TypingButtleWorld implements Listener {
                 public void run() {
                     player.performCommand("mvtp world");
                 }
-            }.runTaskLater(this.plugin, 0);
+            }.runTaskLater(this.plugin, 20);
         }
     }
 
