@@ -128,7 +128,11 @@ public class TypingButtleWorld implements Listener {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
                         player.sendMessage("いいいいい");
                         World lobby = Bukkit.getWorld("world");
+                        this.playerRed.sendMessage("うううう");
+                        this.playerBlue.sendMessage("うううう");
                         Location location = new Location(lobby, -92, 10, -251);
+                        this.playerRed.sendMessage("ええええ");
+                        this.playerBlue.sendMessage("えええええ");
                         player.teleport(location);
                     }
                 }
