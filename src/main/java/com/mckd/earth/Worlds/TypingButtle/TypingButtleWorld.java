@@ -13,6 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -109,7 +110,7 @@ public class TypingButtleWorld implements Listener {
         for(Player player:players){
             //player.performCommand("lobby");
             //player.teleport(location);
-            ItemStack itemStack = new ItemStack(Material.ENDER_PEARL);
+            ItemStack itemStack = new ItemStack(Material.CHEST);
             ItemMeta itemMeta = itemStack.getItemMeta();
             itemMeta.setDisplayName("ロビーに戻る");
             itemStack.setItemMeta(itemMeta);
@@ -155,7 +156,7 @@ public class TypingButtleWorld implements Listener {
         Player player = event.getPlayer();
         if(!player.getWorld().getName().equals(this.worldname)) return;
         if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-            if(event.getMaterial() == Material.ENDER_PEARL){
+            if(event.getMaterial() == Material.CHEST){
                 new BukkitRunnable() {
                     @Override
                     public void run() {
@@ -166,5 +167,19 @@ public class TypingButtleWorld implements Listener {
         }
     }
 
+    @EventHandler
+    public void onPlayerRespawnEvent(PlayerRespawnEvent event){
+        Player player = event.getPlayer();
+        World world = player.getWorld();
+        if(!player.getWorld().getName().equals(this.worldname)) return;
+        if(player == this.playerBlue){
+            Location location = new Location(world, -946,18, 166);
+            this.playerBlue.teleport(location);
+        }
+        if (player == this.playerRed) {
+            Location location = new Location(world,-946, 18, 179);
+            this.playerRed.teleport(location);
+        }
+    }
 
 }
