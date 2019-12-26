@@ -14,6 +14,7 @@ import java.util.Random;
 public class TypingButtleWorld implements Listener {
     Player playerRed;
     Player playerBlue;
+    Player playerGreen;
     String current_qustion;
     //public Map<String, Integer> taskIds = new HashMap<String, Integer>();
     private Earth plugin;
@@ -26,7 +27,7 @@ public class TypingButtleWorld implements Listener {
     }
 
     @EventHandler
-    public void enterWorld(PlayerChangedWorldEvent event) {
+    public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if(!player.getWorld().getName().equals(this.worldname)) return;
         player.setGameMode(GameMode.ADVENTURE);
@@ -41,7 +42,7 @@ public class TypingButtleWorld implements Listener {
             Location location = new Location(player.getWorld(),-946, 18, 179);
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 60, 80, 60);
-            this.playerRed = player ;
+            this.playerRed = player;
         }
 
         //青チーム
@@ -56,6 +57,7 @@ public class TypingButtleWorld implements Listener {
             Location location2 = new Location(player.getWorld(),-946, 27, 170);
             player.teleport(location2);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.GREEN + "観覧者", ChatColor.WHITE + "です", 60, 80, 60);
+            this.playerGreen = player;
         }
     }
 
@@ -111,11 +113,11 @@ public class TypingButtleWorld implements Listener {
                     this.playerBlue.setHealth(health -1.0);
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0) {
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "によって倒された", "", 0, 40, 0);
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました", "", 0, 40, 0);
-                        this.playerRed.sendMessage("aaa");
-                        this.playerBlue.performCommand("mvtp world");
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 40, 0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 40, 0);
                         this.playerRed.performCommand("mvtp world");
+                        this.playerBlue.performCommand("mvtp world");
+                        this.playerGreen.performCommand("mvtp world");
                     }
                 }
                 if(player == this.playerBlue) {
@@ -123,11 +125,11 @@ public class TypingButtleWorld implements Listener {
                     this.playerRed.setHealth(health -1.0);
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
-                        this.playerRed.sendMessage("aaa");
-                        this.playerBlue.performCommand("mvtp world");
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,40,0);
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,40,0);
                         this.playerRed.performCommand("mvtp world");
+                        this.playerBlue.performCommand("mvtp world");
+                        this.playerGreen.performCommand("mvtp world");
                     }
                 }
             }
