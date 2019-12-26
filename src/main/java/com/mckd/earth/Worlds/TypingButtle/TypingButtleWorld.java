@@ -93,11 +93,11 @@ public class TypingButtleWorld implements Listener {
     public void GameEnd(){
         World world = Bukkit.getWorld(this.worldname);
         List<Player> players = world.getPlayers();
-        World lobby = Bukkit.getWorld("world");
-        Location location = new Location(lobby, -92,10,-251);
+        //World lobby = Bukkit.getWorld("world");
+        //Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
-            //player.performCommand("mvtp world");
-            player.teleport(location);
+            player.performCommand("mvtp world");
+            //player.teleport(location);
         }
     }
 
@@ -115,9 +115,7 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerBlue.getHealth() == 0.0) {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 40, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 40, 0);
-                        this.playerRed.performCommand("mvtp world");
-                        this.playerBlue.performCommand("mvtp world");
-                        this.playerGreen.performCommand("mvtp world");
+                        this.GameEnd();
                     }
                 }
                 if(player == this.playerBlue) {
@@ -127,9 +125,7 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,40,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,40,0);
-                        this.playerRed.performCommand("mvtp world");
-                        this.playerBlue.performCommand("mvtp world");
-                        this.playerGreen.performCommand("mvtp world");
+                        this.GameEnd();
                     }
                 }
             }
