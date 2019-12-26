@@ -79,6 +79,15 @@ public class LobbyInventory {
         inv.setItem(5,pve);
 
 
+        ItemStack ty = new ItemStack(Material.DIAMOND);
+        ItemMeta tyMate = ty.getItemMeta();
+        tyMate.setDisplayName("TypingGame");
+        List<String> tyLores = new ArrayList<>();
+        tyLores.add("対戦型タイピングゲーム");
+        tyMate.setLore(tyLores);
+        ty.setItemMeta(tyMate);
+        inv.setItem(7,ty);
+
         // クリエ: シーランタン
         // ========================
         /*

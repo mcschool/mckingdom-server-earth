@@ -214,6 +214,10 @@ public class LobbyWorld implements Listener{
         if(e.getCurrentItem().getType() == Material.DIAMOND_BOOTS){
             player.performCommand("mvtp athletic");
         }
+
+        if (e.getCurrentItem().getType() == Material.DIAMOND){
+            player.performCommand("mvtp ty");
+        }
         // トリップワイヤーフック: クリエになる
         if (e.getCurrentItem().getType() == Material.TRIPWIRE_HOOK){
             //KAzuki_I
