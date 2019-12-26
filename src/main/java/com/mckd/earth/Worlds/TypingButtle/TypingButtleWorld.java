@@ -134,6 +134,8 @@ public class TypingButtleWorld implements Listener {
                         this.playerRed.sendMessage("ええええ");
                         this.playerBlue.sendMessage("えええええ");
                         player.teleport(location);
+                        this.playerBlue.sendMessage("おおお");
+                        this.playerRed.sendMessage("おおお");
                     }
                 }
             }
