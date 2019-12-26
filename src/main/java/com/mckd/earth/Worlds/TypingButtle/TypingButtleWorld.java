@@ -91,10 +91,10 @@ public class TypingButtleWorld implements Listener {
     public void GameEnd(){
         World world = Bukkit.getWorld(this.worldname);
         List<Player> players = world.getPlayers();
-
         World lobby = Bukkit.getWorld("world");
         Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
+            //player.performCommand("mvtp world");
             player.teleport(location);
         }
     }
@@ -110,10 +110,13 @@ public class TypingButtleWorld implements Listener {
                     double health = this.playerBlue.getHealth();
                     this.playerBlue.setHealth(health -1.0);
                     this.Start();
-                    if (this.playerBlue.getHealth() == 0.0){
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
-                        this.GameEnd();
+                    if (this.playerBlue.getHealth() == 0.0) {
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "によって倒された", "", 0, 40, 0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました", "", 0, 40, 0);
+                        World lobby = Bukkit.getWorld("world");
+                        Location location = new Location(lobby, -92, 10, -251);
+                        this.playerBlue.teleport(location);
+                        this.playerRed.teleport(location);
                     }
                 }
                 if(player == this.playerBlue) {
@@ -123,7 +126,10 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
-                        this.GameEnd();
+                        World lobby = Bukkit.getWorld("world");
+                        Location location = new Location(lobby, -92, 10, -251);
+                        this.playerBlue.teleport(location);
+                        this.playerRed.teleport(location);
                     }
                 }
             }
