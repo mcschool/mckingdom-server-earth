@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -168,17 +169,17 @@ public class TypingButtleWorld implements Listener {
     }
 
     @EventHandler
-    public void onPlayerRespawnEvent(PlayerRespawnEvent event){
-        Player player = event.getPlayer();
-        World world = player.getWorld();
-        if(!player.getWorld().getName().equals(this.worldname)) return;
-        if(player == this.playerBlue){
-            Location location = new Location(world, -946,18, 166);
-            this.playerBlue.teleport(location);
-        }
-        if (player == this.playerRed) {
-            Location location = new Location(world,-946, 18, 179);
-            this.playerRed.teleport(location);
+    public void onPlayerDeathEvent(PlayerDeathEvent event){
+        if(event.getEntity().getWorld().getName().equals(this.worldname)){
+            Player player = event.getEntity();
+            if (player == this.playerRed){
+                Location location = new Location(player.getWorld(),-946, 18, 179);
+                this.playerRed.teleport(location);
+            }
+            if (player == this.playerBlue){
+                Location location = new Location(player.getWorld(),-946,18, 166);
+                this.playerBlue.teleport(location);
+            }
         }
     }
 
