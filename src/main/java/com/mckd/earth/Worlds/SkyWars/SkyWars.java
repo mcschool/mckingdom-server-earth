@@ -129,6 +129,7 @@ public class SkyWars implements Listener {
                     Location location = new Location(player.getWorld(), 475.510, 9, -858.513);
                     player.teleport(location);
                 }
+                new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
             }
         }
 
