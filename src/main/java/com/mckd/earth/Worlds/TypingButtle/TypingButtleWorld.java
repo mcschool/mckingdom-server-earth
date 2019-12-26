@@ -1,15 +1,24 @@
 package com.mckd.earth.Worlds.TypingButtle;
 
 import com.mckd.earth.Earth;
+import com.mckd.earth.Worlds.Lobby.LobbyInventory;
 import org.bukkit.*;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -100,12 +109,11 @@ public class TypingButtleWorld implements Listener {
         for(Player player:players){
             //player.performCommand("lobby");
             //player.teleport(location);
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    player.performCommand("mvtp world");
-                }
-            }.runTaskLater(this.plugin, 20);
+            ItemStack itemStack = new ItemStack(Material.ENDER_PEARL);
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            itemMeta.setDisplayName("ロビーに戻る");
+            itemStack.setItemMeta(itemMeta);
+            player.getInventory().addItem(itemStack);
         }
     }
 
@@ -118,10 +126,10 @@ public class TypingButtleWorld implements Listener {
             if(mes.equals(question)){
                 if(player == this.playerRed){
                     double health = this.playerBlue.getHealth();
-                    this.playerBlue.setHealth(health -1.0);
+                    this.playerBlue.setHealth(health -10.0);
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0) {
-                        this.playerBlue.setGameMode(GameMode.SPECTATOR);
+
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 60, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 60, 0);
                         this.GameEnd();
@@ -129,10 +137,9 @@ public class TypingButtleWorld implements Listener {
                 }
                 if(player == this.playerBlue) {
                     double health = this.playerRed.getHealth();
-                    this.playerRed.setHealth(health -1.0);
+                    this.playerRed.setHealth(health -10.0);
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
-                        this.playerRed.setGameMode(GameMode.SPECTATOR);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,60,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,60,0);
                         this.GameEnd();
@@ -142,5 +149,22 @@ public class TypingButtleWorld implements Listener {
             }
         }
     }
+
+    @EventHandler
+    public void onPlayerInteractEvent(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        if(!player.getWorld().getName().equals(this.worldname)) return;
+        if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            if(event.getMaterial() == Material.ENDER_PEARL){
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        player.performCommand("mvtp world");
+                    }
+                }.runTaskLater(this.plugin, 20);
+            }
+        }
+    }
+
 
 }
