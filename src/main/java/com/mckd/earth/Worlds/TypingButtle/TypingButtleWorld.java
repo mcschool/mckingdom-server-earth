@@ -111,7 +111,7 @@ public class TypingButtleWorld implements Listener {
         for(Player player:players){
             //player.performCommand("lobby");
             //player.teleport(location);
-            player.sendMessage(ChatColor.RED + "/lobby でロビーに踊れます");
+            player.sendMessage(ChatColor.RED + "/lobby でロビーに戻れます");
         }
     }
 
@@ -170,17 +170,20 @@ public class TypingButtleWorld implements Listener {
             Player player = event.getEntity();
             //赤チーム
             if (player == this.playerRed){
+                this.playerRed.setHealth(2.0);
                 Location location = new Location(player.getWorld(),-946, 18, 179);
                 this.playerRed.teleport(location);
             }
             //青チーム
             if (player == this.playerBlue){
+                this.playerBlue.setHealth(2.0);
                 Location location = new Location(player.getWorld(),-946,18, 166);
                 this.playerBlue.teleport(location);
             }
         }
     }
 
+    /*
     @EventHandler
     public void onPlayerRespawnEvent(PlayerRespawnEvent event){
         Player player = event.getPlayer();
@@ -196,5 +199,6 @@ public class TypingButtleWorld implements Listener {
             this.playerRed.teleport(location);
         }
     }
+    */
 
 }
