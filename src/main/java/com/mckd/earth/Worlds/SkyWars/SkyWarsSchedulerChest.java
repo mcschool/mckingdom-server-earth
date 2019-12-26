@@ -3,6 +3,7 @@ package com.mckd.earth.Worlds.SkyWars;
 import com.mckd.earth.Earth;
 import org.bukkit.World;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Wood;
@@ -35,6 +36,13 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
             inv1.setItem(19, new ItemStack(STONE_SWORD));
             inv1.setItem(18, new ItemStack(WOOD_SWORD));
             this.count = 20;
+            this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
+        }
+    }
+    private void sendMessageToPlayers(World world, String msg){
+        for( Player player: world.getPlayers() ){
+            player.sendMessage(msg);
+            player.sendTitle(msg,"", 0,20,0);
         }
     }
 }

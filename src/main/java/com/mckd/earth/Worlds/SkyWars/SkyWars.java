@@ -113,6 +113,7 @@ public class SkyWars implements Listener {
                     world2.getBlockAt(476, 7, -878).setType(CHEST);
                     Chest chest1 = (Chest) world2.getBlockAt(476, 7, -874).getState();
                     Inventory inv1 = chest1.getInventory();
+                    inv1.clear();
                     inv1.setItem(1, new ItemStack(STONE, 24));
                     inv1.setItem(18, new ItemStack(STONE_SWORD));
                     Chest chest2 = (Chest) world2.getBlockAt(476, 7, -876).getState();
