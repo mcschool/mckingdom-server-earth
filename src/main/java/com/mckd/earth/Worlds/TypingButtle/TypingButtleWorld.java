@@ -172,10 +172,12 @@ public class TypingButtleWorld implements Listener {
     public void onPlayerDeathEvent(PlayerDeathEvent event){
         if(!event.getEntity().getWorld().getName().equals(this.worldname)){
             Player player = event.getEntity();
+            //赤チーム
             if (player == this.playerRed){
                 Location location = new Location(player.getWorld(),-946, 18, 179);
                 this.playerRed.teleport(location);
             }
+            //青チーム
             if (player == this.playerBlue){
                 Location location = new Location(player.getWorld(),-946,18, 166);
                 this.playerBlue.teleport(location);
@@ -187,12 +189,14 @@ public class TypingButtleWorld implements Listener {
     public void onPlayerRespawnEvent(PlayerRespawnEvent event){
         Player player = event.getPlayer();
         if(!player.getWorld().getName().equals(this.worldname)) return;
+        //青チーム
         if(player == this.playerBlue){
-            Location location = new Location(player.getWorld(),-946,18, 166);
+            Location location = new Location(this.playerBlue.getWorld(),-946,18, 166);
             this.playerBlue.teleport(location);
         }
+        //赤チーム
         if(player == this.playerRed){
-            Location location = new Location(player.getWorld(),-946, 18, 179);
+            Location location = new Location(this.playerRed.getWorld(),-946, 18, 179);
             this.playerRed.teleport(location);
         }
     }
