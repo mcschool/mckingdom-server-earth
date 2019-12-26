@@ -126,7 +126,6 @@ public class TypingButtleWorld implements Listener {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,40,0);
                     }
                 }
-                this.GameEnd();
             }
         }
     }
