@@ -305,7 +305,7 @@ public class PveWorld implements Listener {
                         player.performCommand("mvtp world");
                         Score score = obj.getScore(p.getDisplayName());
                         int point = score.getScore();
-                        player.sendMessage("今" + String.valueOf(point) + "ポイント持っています");
+                        player.sendMessage( String.valueOf(point) + "ポイント持ってクリアしました!!");
                     }
                 }
             }
