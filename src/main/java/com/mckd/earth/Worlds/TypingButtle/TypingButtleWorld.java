@@ -96,7 +96,7 @@ public class TypingButtleWorld implements Listener {
         //World lobby = Bukkit.getWorld("world");
         //Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
-            player.performCommand("mvtp world");
+            player.performCommand("lobby");
             //player.teleport(location);
         }
     }
@@ -113,8 +113,9 @@ public class TypingButtleWorld implements Listener {
                     this.playerBlue.setHealth(health -1.0);
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0) {
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 40, 0);
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 40, 0);
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 60, 0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 60, 0);
+                        this.GameEnd();
                     }
                 }
                 if(player == this.playerBlue) {
@@ -122,11 +123,14 @@ public class TypingButtleWorld implements Listener {
                     this.playerRed.setHealth(health -1.0);
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
-                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,40,0);
-                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,40,0);
+                        this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,60,0);
+                        this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,60,0);
+                        this.GameEnd();
+
                     }
                 }
             }
         }
     }
+
 }
