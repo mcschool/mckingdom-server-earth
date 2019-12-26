@@ -59,6 +59,7 @@ public class PveWorld implements Listener {
                 world.getBlockAt(-498, 27, -117).setType(Material.FENCE);
                 world.getBlockAt(-498, 32, -127).setType(Material.FENCE);
                 world.getBlockAt(-497, 32, -127).setType(Material.FENCE);
+                this.waveCount = 1;
                 Collection<Entity> monsters = world.getEntitiesByClasses(Monster.class);
                 for (Entity monster : monsters) {
                     monster.remove();
