@@ -24,6 +24,7 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 
+import java.util.Collection;
 import java.util.List;
 
 public class PveWorld implements Listener {
@@ -52,12 +53,16 @@ public class PveWorld implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() <= 1) {
                 World world = player.getWorld();
-                world.getBlockAt(-501,19,-120).setType(Material.FENCE);
-                world.getBlockAt(-502,19,-120).setType(Material.FENCE);
-                world.getBlockAt(-498,27,-118).setType(Material.FENCE);
-                world.getBlockAt(-498,27,-117).setType(Material.FENCE);
-                world.getBlockAt(-498,32,-127).setType(Material.FENCE);
-                world.getBlockAt(-497,32,-127).setType(Material.FENCE);
+                world.getBlockAt(-501, 19, -120).setType(Material.FENCE);
+                world.getBlockAt(-502, 19, -120).setType(Material.FENCE);
+                world.getBlockAt(-498, 27, -118).setType(Material.FENCE);
+                world.getBlockAt(-498, 27, -117).setType(Material.FENCE);
+                world.getBlockAt(-498, 32, -127).setType(Material.FENCE);
+                world.getBlockAt(-497, 32, -127).setType(Material.FENCE);
+                Collection<Entity> monsters = world.getEntitiesByClasses(Monster.class);
+                for (Entity monster : monsters) {
+                    monster.remove();
+                }
                 new PveScheduler(this.plugin, player.getWorld(), this.waveCount).runTaskTimer(this.plugin, 0, 20);
             }
 
