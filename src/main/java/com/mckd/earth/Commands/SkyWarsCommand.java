@@ -9,9 +9,8 @@ public class SkyWarsCommand {
         Player player = null;
         if (sender instanceof Player) {
             player = (Player) sender;
-            if(player.getWorld().getName().equals("SkyWars")) {
-                player.performCommand("mvtp world");
-            }
+            player.performCommand("mvtp world");
+
         }
         return true;
     }
