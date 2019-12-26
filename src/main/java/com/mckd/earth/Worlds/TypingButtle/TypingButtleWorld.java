@@ -8,6 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import java.util.List;
 import java.util.Random;
 
@@ -96,8 +98,14 @@ public class TypingButtleWorld implements Listener {
         //World lobby = Bukkit.getWorld("world");
         //Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
-            player.performCommand("lobby");
+            //player.performCommand("lobby");
             //player.teleport(location);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    player.performCommand("mvtp world");
+                }
+            }.runTaskLater(this.plugin, 0);
         }
     }
 
