@@ -303,6 +303,9 @@ public class PveWorld implements Listener {
                     this.waveCount = 1;
                     for( Player player: world.getPlayers() ){
                         player.performCommand("mvtp world");
+                        Score score = obj.getScore(p.getDisplayName());
+                        int point = score.getScore();
+                        player.sendMessage("今" + String.valueOf(point) + "ポイント持っています");
                     }
                 }
             }
