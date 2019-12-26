@@ -113,10 +113,9 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerBlue.getHealth() == 0.0) {
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "によって倒された", "", 0, 40, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました", "", 0, 40, 0);
-                        player.sendMessage("ああああああ");
-                        World lobby = Bukkit.getWorld("world");
-                        Location location = new Location(lobby, -92, 10, -251);
-                        player.teleport(location);
+                        this.playerRed.sendMessage("aaa");
+                        this.playerBlue.performCommand("mvtp world");
+                        this.playerRed.performCommand("mvtp world");
                     }
                 }
                 if(player == this.playerBlue) {
@@ -126,17 +125,9 @@ public class TypingButtleWorld implements Listener {
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "によって倒された", "", 0,40,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました", "", 0,40,0);
-                        player.sendMessage("いいいいい");
-                        World lobby = Bukkit.getWorld("world");
-                        this.playerRed.sendMessage("うううう");
-                        this.playerBlue.sendMessage("うううう");
-                        Location location = new Location(lobby, -92, 10, -251);
-                        this.playerRed.sendMessage("ええええ");
-                        this.playerBlue.sendMessage("えええええ");
-                        this.playerRed.teleport(location);
-                        this.playerBlue.teleport(location);
-                        this.playerBlue.sendMessage("おおお");
-                        this.playerRed.sendMessage("おおお");
+                        this.playerRed.sendMessage("aaa");
+                        this.playerBlue.performCommand("mvtp world");
+                        this.playerRed.performCommand("mvtp world");
                     }
                 }
             }
