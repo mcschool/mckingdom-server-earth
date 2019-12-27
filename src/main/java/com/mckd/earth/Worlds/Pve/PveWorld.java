@@ -152,6 +152,7 @@ public class PveWorld implements Listener {
                 this.start(p);
             }
             if (line.equals("test1")) {
+                p.sendMessage("test1");
                 this.setPoint(p,point);
             }
                 // 鉄の剣
@@ -495,13 +496,17 @@ public class PveWorld implements Listener {
     }
 
     private void setPoint(Player player, int newPoint){
+        player.sendMessage("test2");
         FileConfiguration config = plugin.getConfig();
         int oldPoint = config.getInt("pve.point."+player.getUniqueId().toString());
         if( newPoint > oldPoint){
+            player.sendMessage("test3");
             config.set("pve.point."+player.getUniqueId().toString(),newPoint);
         }
+        player.sendMessage("test4");
         ConfigurationSection section = config.getConfigurationSection("pve.point");
         if(section == null){
+            player.sendMessage("test5");
             return;
         }
         for(String key : section.getKeys(false)){
