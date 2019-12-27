@@ -131,22 +131,24 @@ public class SkyWars implements Listener {
                 //火の島
                 worldchest.getBlockAt(447, 13, -901).setType(CHEST);
                 worldchest.getBlockAt(440, 16, -900).setType(CHEST);
+
                 //島1チェスト中身
                 Chest chestisland1of1 = (Chest) worldchest.getBlockAt(471, 11, -875).getState();
                 Inventory invisland1of1 = chestisland1of1.getInventory();
                 invisland1of1.clear();
                 invisland1of1.setItem(1, new ItemStack(STONE, 24));
                 invisland1of1.setItem(18, new ItemStack(WOOD_SWORD));
-                Chest chestisland1of2 = (Chest) worldchest.getBlockAt(469, 11, -875).getState();
+                Chest chestisland1of2 = (Chest) worldchest.getBlockAt(469, 11, -879).getState();
                 Inventory invisland1of2 = chestisland1of2.getInventory();
                 invisland1of2.clear();
                 invisland1of2.setItem(5, new ItemStack(WOOD, 32));
                 invisland1of2.setItem(20, new ItemStack(EGG, 16));
-                Chest chestisland1of3 = (Chest) worldchest.getBlockAt(469, 11, -875).getState();
+                Chest chestisland1of3 = (Chest) worldchest.getBlockAt(472, 11, -872).getState();
                 Inventory invisland1of3 = chestisland1of3.getInventory();
                 invisland1of3.clear();
                 invisland1of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland1of3.setItem(22, new ItemStack(LEATHER_HELMET));
+
                 //島2チェスト中身
                 Chest chestisland2of1 = (Chest) worldchest.getBlockAt(430, 11, -877).getState();
                 Inventory invisland2of1 = chestisland2of1.getInventory();
