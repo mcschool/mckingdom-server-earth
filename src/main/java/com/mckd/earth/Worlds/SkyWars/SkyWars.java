@@ -28,10 +28,6 @@ public class SkyWars implements Listener {
     }
 
 
-
-
-
-
     @EventHandler
     public void onPlayerDeathEvent2(PlayerDeathEvent e) {
         if (e.getEntity().getWorld().getName().equals("SkyWars")) {
@@ -69,8 +65,6 @@ public class SkyWars implements Listener {
             }
         }
     }
-
-
 
 
     @EventHandler
@@ -120,35 +114,35 @@ public class SkyWars implements Listener {
                     world.getBlockAt(440, 17, -874).setType(GLASS);
 
 
-
                     //ワールドに入った時にチェストを置く
-                if (players.size() == 1) {
-                    World worldchest = player.getWorld();
-                    worldchest.getBlockAt(476, 7, -874).setType(CHEST);
-                    worldchest.getBlockAt(476, 7, -876).setType(CHEST);
-                    worldchest.getBlockAt(476, 7, -878).setType(CHEST);
-                    Chest chest1 = (Chest) worldchest.getBlockAt(476, 7, -874).getState();
-                    Inventory inv1 = chest1.getInventory();
-                    inv1.clear();
-                    inv1.setItem(1, new ItemStack(STONE, 24));
-                    inv1.setItem(18, new ItemStack(STONE_SWORD));
-                    Chest chest2 = (Chest) worldchest.getBlockAt(476, 7, -876).getState();
-                    Inventory inv2 = chest2.getInventory();
-                    inv2.setItem(5, new ItemStack(WOOD, 32));
-                    inv2.setItem(20, new ItemStack(EGG, 16));
+                    if (players.size() == 1) {
+                        World worldchest = player.getWorld();
+                        worldchest.getBlockAt(476, 7, -874).setType(CHEST);
+                        worldchest.getBlockAt(476, 7, -876).setType(CHEST);
+                        worldchest.getBlockAt(476, 7, -878).setType(CHEST);
+                        Chest chest1 = (Chest) worldchest.getBlockAt(476, 7, -874).getState();
+                        Inventory inv1 = chest1.getInventory();
+                        inv1.clear();
+                        inv1.setItem(1, new ItemStack(STONE, 24));
+                        inv1.setItem(18, new ItemStack(STONE_SWORD));
+                        Chest chest2 = (Chest) worldchest.getBlockAt(476, 7, -876).getState();
+                        Inventory inv2 = chest2.getInventory();
+                        inv2.setItem(5, new ItemStack(WOOD, 32));
+                        inv2.setItem(20, new ItemStack(EGG, 16));
+                    }
+                    //ワールドに入った時にプレイヤーをテレポートさせる
+                    if (players.size() == 1) {
+                        Location location = new Location(player.getWorld(), 456.501, 15, -873.638);
+                        player.teleport(location);
+                    }
+                    if (players.size() == 2) {
+                        Location location = new Location(player.getWorld(), 440.510, 15, -873.491);
+                        player.teleport(location);
+                    }
+                    new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 }
-                //ワールドに入った時にプレイヤーをテレポートさせる
-                if (players.size() == 1) {
-                    Location location = new Location(player.getWorld(), 456.501, 15, -873.638);
-                    player.teleport(location);
-                }
-                if (players.size() == 2) {
-                    Location location = new Location(player.getWorld(), 440.510, 15, -873.491);
-                    player.teleport(location);
-                }
-                new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
             }
-        }
 
+        }
     }
 }
