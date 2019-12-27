@@ -62,7 +62,7 @@ public class PveWorld implements Listener {
     }
 
     private void start(Player player){
-        if (player.getWorld().getName().equals("pve") ) {
+        if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
 
             player.sendMessage("Mobs Killer");
 
