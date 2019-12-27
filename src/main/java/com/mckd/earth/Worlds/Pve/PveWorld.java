@@ -51,6 +51,10 @@ public class PveWorld implements Listener {
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
+            Location location = new Location(player.getWorld(), -497, 71, -109);
+            player.teleport(location);
+        }
+        if (player.getWorld().getName().equals("pve") && false) {
             player.sendMessage("Mobs Killer");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
