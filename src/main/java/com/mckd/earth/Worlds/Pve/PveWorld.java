@@ -7,6 +7,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +26,7 @@ import org.bukkit.material.Openable;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
+import ru.tehkode.permissions.backends.file.FileConfig;
 
 import java.util.Collection;
 import java.util.List;
@@ -146,6 +150,9 @@ public class PveWorld implements Listener {
                 Location location = new Location(p.getWorld(), -504, 13, -124);
                 p.teleport(location);
                 this.start(p);
+            }
+            if (line.equals("test1")) {
+                this.setPoint(p,point);
             }
                 // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
@@ -484,6 +491,23 @@ public class PveWorld implements Listener {
                 player.sendMessage(msg);
                 player.sendTitle(msg, "", 10, 40, 10);
             }
+        }
+    }
+
+    private void setPoint(Player player, int newPoint){
+        FileConfiguration config = plugin.getConfig();
+        int oldPoint = config.getInt("pve.point."+player.getUniqueId().toString());
+        if( newPoint > oldPoint){
+            config.set("pve.point."+player.getUniqueId().toString(),newPoint);
+        }
+        ConfigurationSection section = config.getConfigurationSection("pve.point");
+        if(section == null){
+            return;
+        }
+        for(String key : section.getKeys(false)){
+            List<String> list = section.getStringList(key);
+            player.sendMessage("key" + key);
+            player.sendMessage("list" + list.toString());
         }
     }
 
