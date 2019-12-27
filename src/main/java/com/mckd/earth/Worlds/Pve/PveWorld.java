@@ -80,7 +80,7 @@ public class PveWorld implements Listener {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
             }
-            Score score = obj.getScore(ChatColor.RED+player.getDisplayName());
+            Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
             player.setScoreboard(sb);
 
