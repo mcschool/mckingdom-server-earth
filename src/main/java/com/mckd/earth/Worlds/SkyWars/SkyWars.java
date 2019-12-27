@@ -80,63 +80,93 @@ public class SkyWars implements Listener {
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
-            if (players.size() == 2) {
+            if (players.size() == 1) {
                 new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
             }
             //ワールドに入った時にチェストを置く
             if (players.size() == 1) {
                 World world = player.getWorld();
                 //1人目のガラス
-                world.getBlockAt(456, 15, -873).setType(GLASS);
-                world.getBlockAt(456, 16, -873).setType(GLASS);
-                world.getBlockAt(457, 15, -874).setType(GLASS);
-                world.getBlockAt(457, 16, -874).setType(GLASS);
-                world.getBlockAt(455, 15, -874).setType(GLASS);
-                world.getBlockAt(455, 16, -874).setType(GLASS);
-                world.getBlockAt(456, 15, -875).setType(GLASS);
-                world.getBlockAt(456, 16, -875).setType(GLASS);
-                world.getBlockAt(456, 14, -874).setType(GLASS);
-                world.getBlockAt(456, 17, -874).setType(GLASS);
+                world.getBlockAt(473, 15, -874).setType(GLASS);
+                world.getBlockAt(473, 16, -874).setType(GLASS);
+                world.getBlockAt(474, 15, -875).setType(GLASS);
+                world.getBlockAt(474, 16, -875).setType(GLASS);
+                world.getBlockAt(472, 15, -875).setType(GLASS);
+                world.getBlockAt(472, 16, -875).setType(GLASS);
+                world.getBlockAt(473, 15, -876).setType(GLASS);
+                world.getBlockAt(473, 16, -876).setType(GLASS);
+                world.getBlockAt(473, 14, -875).setType(GLASS);
+                world.getBlockAt(473, 17, -875).setType(GLASS);
             }
 
             if (players.size() == 2) {
                 World world2 = player.getWorld();
                 //2人目のガラス
-                world2.getBlockAt(440, 15, -873).setType(GLASS);
-                world2.getBlockAt(440, 16, -873).setType(GLASS);
-                world2.getBlockAt(441, 15, -874).setType(GLASS);
-                world2.getBlockAt(441, 16, -874).setType(GLASS);
-                world2.getBlockAt(441, 15, -874).setType(GLASS);
-                world2.getBlockAt(441, 16, -874).setType(GLASS);
-                world2.getBlockAt(440, 15, -875).setType(GLASS);
-                world2.getBlockAt(440, 16, -875).setType(GLASS);
-                world2.getBlockAt(440, 14, -874).setType(GLASS);
-                world2.getBlockAt(440, 17, -874).setType(GLASS);
+                world2.getBlockAt(427, 15, -874).setType(GLASS);
+                world2.getBlockAt(427, 16, -874).setType(GLASS);
+                world2.getBlockAt(428, 15, -875).setType(GLASS);
+                world2.getBlockAt(428, 16, -875).setType(GLASS);
+                world2.getBlockAt(426, 15, -875).setType(GLASS);
+                world2.getBlockAt(426, 16, -875).setType(GLASS);
+                world2.getBlockAt(427, 15, -876).setType(GLASS);
+                world2.getBlockAt(427, 16, -876).setType(GLASS);
+                world2.getBlockAt(427, 14, -875).setType(GLASS);
+                world2.getBlockAt(427, 17, -875).setType(GLASS);
             }
 
             //ワールドに入った時にチェストを置く
             if (players.size() == 1) {
                 World worldchest = player.getWorld();
-                worldchest.getBlockAt(476, 7, -874).setType(CHEST);
-                worldchest.getBlockAt(476, 7, -876).setType(CHEST);
-                worldchest.getBlockAt(476, 7, -878).setType(CHEST);
-                Chest chest1 = (Chest) worldchest.getBlockAt(476, 7, -874).getState();
-                Inventory inv1 = chest1.getInventory();
-                inv1.clear();
-                inv1.setItem(1, new ItemStack(STONE, 24));
-                inv1.setItem(18, new ItemStack(STONE_SWORD));
-                Chest chest2 = (Chest) worldchest.getBlockAt(476, 7, -876).getState();
-                Inventory inv2 = chest2.getInventory();
-                inv2.setItem(5, new ItemStack(WOOD, 32));
-                inv2.setItem(20, new ItemStack(EGG, 16));
+                //島1
+                worldchest.getBlockAt(471, 11, -875).setType(CHEST);
+                worldchest.getBlockAt(469, 11, -879).setType(CHEST);
+                worldchest.getBlockAt(472, 6, -872).setType(CHEST);
+                //島2
+                worldchest.getBlockAt(430, 11, -877).setType(CHEST);
+                worldchest.getBlockAt(425, 11, -875).setType(CHEST);
+                worldchest.getBlockAt(420, 7, -871).setType(CHEST);
+                //氷野島
+                worldchest.getBlockAt(438, 16, -901).setType(CHEST);
+                worldchest.getBlockAt(455, 14, -857).setType(CHEST);
+                //火の島
+                worldchest.getBlockAt(447, 13, -855).setType(CHEST);
+                worldchest.getBlockAt(440, 16, -900).setType(CHEST);
+                //島1チェスト中身
+                Chest chestisland1of1 = (Chest) worldchest.getBlockAt(471, 11, -875).getState();
+                Inventory invisland1of1 = chestisland1of1.getInventory();
+                invisland1of1.clear();
+                invisland1of1.setItem(1, new ItemStack(STONE, 24));
+                invisland1of1.setItem(18, new ItemStack(WOOD_SWORD));
+                Chest chestisland1of2 = (Chest) worldchest.getBlockAt(469, 11, -875).getState();
+                Inventory invisland1of2 = chestisland1of2.getInventory();
+                invisland1of2.setItem(5, new ItemStack(WOOD, 32));
+                invisland1of2.setItem(20, new ItemStack(EGG, 16));
+                Chest chestisland1of3 = (Chest) worldchest.getBlockAt(469, 11, -875).getState();
+                Inventory invisland1of3 = chestisland1of3.getInventory();
+                invisland1of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
+                invisland1of3.setItem(22, new ItemStack(LEATHER_HELMET));
+                //島2チェスト中身
+                Chest chestisland2of1 = (Chest) worldchest.getBlockAt(430, 11, -877).getState();
+                Inventory invisland2of1 = chestisland2of1.getInventory();
+                invisland2of1.clear();
+                invisland2of1.setItem(1, new ItemStack(STONE, 24));
+                invisland2of1.setItem(18, new ItemStack(WOOD_SWORD));
+                Chest chestisland2of2 = (Chest) worldchest.getBlockAt(425, 11, -875).getState();
+                Inventory invisland2of2 = chestisland2of2.getInventory();
+                invisland2of2.setItem(5, new ItemStack(WOOD, 32));
+                invisland2of2.setItem(20, new ItemStack(EGG, 16));
+                Chest chestisland2of3 = (Chest) worldchest.getBlockAt(420, 7, -871).getState();
+                Inventory invisland2of3 = chestisland2of3.getInventory();
+                invisland2of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
+                invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
             }
             //ワールドに入った時にプレイヤーをテレポートさせる
             if (players.size() == 1) {
-                Location location = new Location(player.getWorld(), 456.501, 15, -873.638);
+                Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
                 player.teleport(location);
             }
             if (players.size() == 2) {
-                Location location = new Location(player.getWorld(), 440.510, 15, -873.491);
+                Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
             }
             new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
