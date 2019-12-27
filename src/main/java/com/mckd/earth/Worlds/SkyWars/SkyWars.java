@@ -93,16 +93,16 @@ public class SkyWars implements Listener {
             if (players.size() == 1) {
                 World world = player.getWorld();
                 //1人目のガラス
-                world.getBlockAt(456, 15, -871).setType(GLASS);
-                world.getBlockAt(456, 16, -871).setType(GLASS);
-                world.getBlockAt(457, 15, -870).setType(GLASS);
-                world.getBlockAt(457, 16, -870).setType(GLASS);
-                world.getBlockAt(455, 15, -870).setType(GLASS);
-                world.getBlockAt(455, 16, -870).setType(GLASS);
-                world.getBlockAt(456, 9, -873).setType(GLASS);
-                world.getBlockAt(456, 10, -873).setType(GLASS);
-                world.getBlockAt(456, 14, -870).setType(GLASS);
-                world.getBlockAt(456, 17, -870).setType(GLASS);
+                world.getBlockAt(456, 15, -873).setType(GLASS);
+                world.getBlockAt(456, 16, -873).setType(GLASS);
+                world.getBlockAt(457, 15, -874).setType(GLASS);
+                world.getBlockAt(457, 16, -874).setType(GLASS);
+                world.getBlockAt(455, 15, -874).setType(GLASS);
+                world.getBlockAt(455, 16, -874).setType(GLASS);
+                world.getBlockAt(456, 15, -875).setType(GLASS);
+                world.getBlockAt(456, 16, -875).setType(GLASS);
+                world.getBlockAt(456, 15, -874).setType(GLASS);
+                world.getBlockAt(456, 18, -874).setType(GLASS);
 
                 
                 //ワールドに入った時にチェストを置く
