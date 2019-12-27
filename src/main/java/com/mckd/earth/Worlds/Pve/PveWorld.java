@@ -71,7 +71,7 @@ public class PveWorld implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             for (Player p : players){
                 if(this.inTower(p)){
-                    p.sendMessage("Y:"+p.getLocation().getY());
+                    //p.sendMessage("Y:"+p.getLocation().getY());
                     inTowerCount++;
                 }
             }
@@ -333,7 +333,7 @@ public class PveWorld implements Listener {
                     this.waveCount = 1;
                     for( Player player: world.getPlayers() ){
                         player.performCommand("mvtp world");
-                        Score score = obj.getScore(p.getDisplayName());
+                        Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
                         player.sendMessage( String.valueOf(point) + "ポイント持ってクリアしました!!");
                     }
