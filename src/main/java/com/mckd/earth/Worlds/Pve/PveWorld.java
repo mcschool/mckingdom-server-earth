@@ -51,16 +51,16 @@ public class PveWorld implements Listener {
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
-            Location location = new Location(player.getWorld(), -497, 71, -109);
-            player.teleport(location);
-        }
-        if (player.getWorld().getName().equals("pve") && false) {
-            player.sendMessage("Mobs Killer");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
             player.getWorld().setPVP(false);
             player.getInventory().clear();
+            Location location = new Location(player.getWorld(), -497, 71, -109);
+            player.teleport(location);
+        }
+        if (player.getWorld().getName().equals("pve") && false) {
+            player.sendMessage("Mobs Killer");
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
             List<Player> players = player.getWorld().getPlayers();
