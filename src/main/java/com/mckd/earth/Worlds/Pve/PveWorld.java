@@ -62,13 +62,21 @@ public class PveWorld implements Listener {
     }
 
     private void start(Player player){
-        if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
+        if (player.getWorld().getName().equals("pve")) {
 
             player.sendMessage("Mobs Killer");
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
+            boolean inTowerFlag = false;
             List<Player> players = player.getWorld().getPlayers();
-            if (players.size() <= 1) {
+            for (Player p : players){
+                if(this.inTower(p)){
+                    p.sendMessage("Y:"+p.getLocation().getY());
+                    inTowerFlag = true;
+                }
+            }
+
+            if (players.size() <= 1 && inTowerFlag) {
                 World world = player.getWorld();
                 world.getBlockAt(-501, 19, -120).setType(Material.FENCE);
                 world.getBlockAt(-502, 19, -120).setType(Material.FENCE);
