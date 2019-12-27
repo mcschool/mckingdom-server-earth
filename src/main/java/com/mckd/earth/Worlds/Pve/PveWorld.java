@@ -517,7 +517,7 @@ public class PveWorld implements Listener {
 
             }
         }
-        Collections.srot(points, Collections.reverseOrder());
+        Collections.sort(points, Collections.reverseOrder());
 
         int i = 1;
         for (Integer point : points) {

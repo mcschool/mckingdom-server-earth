@@ -21,7 +21,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     public SkyWarsSchedulerChest(Earth plugin, World world) {
         this.plugin = plugin;
         this.world = world;
-        this.count = 20;
+        this.count = 70;
 
     }
 
@@ -35,7 +35,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
             inv1.setItem(2, new ItemStack(STONE, 24));
             inv1.setItem(19, new ItemStack(STONE_SWORD));
             inv1.setItem(18, new ItemStack(WOOD_SWORD));
-            this.count = 20;
+            this.count = 70;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
         }
     }
