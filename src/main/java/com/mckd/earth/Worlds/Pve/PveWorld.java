@@ -129,7 +129,7 @@ public class PveWorld implements Listener {
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         // プレーヤーがいるワールドがpveじゃなかったら何も終わり
-        if (!p.getWorld().getName().equals("pve") && this.inTower(p)) {
+        if (!p.getWorld().getName().equals("pve")) {
             return;
         }
         Block b = e.getClickedBlock();
