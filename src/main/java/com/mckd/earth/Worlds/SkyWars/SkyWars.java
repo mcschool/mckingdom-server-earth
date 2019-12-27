@@ -80,7 +80,7 @@ public class SkyWars implements Listener {
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
-            if (players.size() == 2) {
+            if (players.size() == 1) {
                 new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
             }
             //ワールドに入った時にチェストを置く
@@ -129,7 +129,7 @@ public class SkyWars implements Listener {
                 worldchest.getBlockAt(438, 16, -901).setType(CHEST);
                 worldchest.getBlockAt(455, 14, -857).setType(CHEST);
                 //火の島
-                worldchest.getBlockAt(447, 13, -855).setType(CHEST);
+                worldchest.getBlockAt(447, 13, -901).setType(CHEST);
                 worldchest.getBlockAt(440, 16, -900).setType(CHEST);
                 //島1チェスト中身
                 Chest chestisland1of1 = (Chest) worldchest.getBlockAt(471, 11, -875).getState();
@@ -139,10 +139,12 @@ public class SkyWars implements Listener {
                 invisland1of1.setItem(18, new ItemStack(WOOD_SWORD));
                 Chest chestisland1of2 = (Chest) worldchest.getBlockAt(469, 11, -875).getState();
                 Inventory invisland1of2 = chestisland1of2.getInventory();
+                invisland1of2.clear();
                 invisland1of2.setItem(5, new ItemStack(WOOD, 32));
                 invisland1of2.setItem(20, new ItemStack(EGG, 16));
                 Chest chestisland1of3 = (Chest) worldchest.getBlockAt(469, 11, -875).getState();
                 Inventory invisland1of3 = chestisland1of3.getInventory();
+                invisland1of3.clear();
                 invisland1of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland1of3.setItem(22, new ItemStack(LEATHER_HELMET));
                 //島2チェスト中身
@@ -153,10 +155,12 @@ public class SkyWars implements Listener {
                 invisland2of1.setItem(18, new ItemStack(WOOD_SWORD));
                 Chest chestisland2of2 = (Chest) worldchest.getBlockAt(425, 11, -875).getState();
                 Inventory invisland2of2 = chestisland2of2.getInventory();
+                invisland2of2.clear();
                 invisland2of2.setItem(5, new ItemStack(WOOD, 32));
                 invisland2of2.setItem(20, new ItemStack(EGG, 16));
                 Chest chestisland2of3 = (Chest) worldchest.getBlockAt(420, 7, -871).getState();
                 Inventory invisland2of3 = chestisland2of3.getInventory();
+                invisland2of2.clear();
                 invisland2of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
             }
