@@ -53,8 +53,20 @@ public class SkyWarsScheduler extends BukkitRunnable {
             world.getBlockAt(455, 16, -874).setType(Material.AIR);
             world.getBlockAt(456, 15, -875).setType(Material.AIR);
             world.getBlockAt(456, 16, -875).setType(Material.AIR);
-            world.getBlockAt(456, 15, -874).setType(Material.AIR);
-            world.getBlockAt(456, 18, -874).setType(Material.AIR);
+            world.getBlockAt(456, 14, -874).setType(Material.AIR);
+            world.getBlockAt(456, 17, -874).setType(Material.AIR);
+
+
+            world.getBlockAt(440, 15, -873).setType(Material.AIR);
+            world.getBlockAt(440, 16, -873).setType(Material.AIR);
+            world.getBlockAt(441, 15, -874).setType(Material.AIR);
+            world.getBlockAt(441, 16, -874).setType(Material.AIR);
+            world.getBlockAt(441, 15, -874).setType(Material.AIR);
+            world.getBlockAt(441, 16, -874).setType(Material.AIR);
+            world.getBlockAt(440, 15, -875).setType(Material.AIR);
+            world.getBlockAt(440, 16, -875).setType(Material.AIR);
+            world.getBlockAt(440, 14, -874).setType(Material.AIR);
+            world.getBlockAt(440, 17, -874).setType(Material.AIR);
         }
     }
 }
