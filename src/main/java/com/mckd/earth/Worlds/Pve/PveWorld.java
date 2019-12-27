@@ -38,10 +38,19 @@ public class PveWorld implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
+    private boolean inTower(Player player){
+        Location location = player.getLocation();
+        if(location.getY()>70){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        if (player.getWorld().getName().equals("pve")) {
+        if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
             player.sendMessage("Mobs Killer");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
@@ -100,7 +109,7 @@ public class PveWorld implements Listener {
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         // プレーヤーがいるワールドがpveじゃなかったら何も終わり
-        if (!p.getWorld().getName().equals("pve")) {
+        if (!p.getWorld().getName().equals("pve") && this.inTower(p)) {
             return;
         }
         Block b = e.getClickedBlock();
@@ -315,7 +324,7 @@ public class PveWorld implements Listener {
     @EventHandler
     public void noPlayerInteractEvent(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals("pve")) {
+        if (!player.getWorld().getName().equals("pve") && this.inTower(player)) {
             return;
         }
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -449,9 +458,11 @@ public class PveWorld implements Listener {
     }
 
     private void sendMessageToPlayers(World world, String msg){
-        for( Player player: world.getPlayers() ){
-            player.sendMessage(msg);
-            player.sendTitle(msg,"", 10,40,10);
+        for( Player player: world.getPlayers()) {
+            if (this.inTower(player)) {
+                player.sendMessage(msg);
+                player.sendTitle(msg, "", 10, 40, 10);
+            }
         }
     }
 
