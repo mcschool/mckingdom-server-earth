@@ -40,7 +40,6 @@ public class PveWorld implements Listener {
 
     private boolean inTower(Player player){
         Location location = player.getLocation();
-        player.sendMessage("test1:"+location.getY());
         if(location.getY()<70){
             return true;
         }else{
@@ -51,9 +50,7 @@ public class PveWorld implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("test2");
         if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
-            player.sendMessage("test3");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
@@ -62,7 +59,11 @@ public class PveWorld implements Listener {
             Location location = new Location(player.getWorld(), -497, 71, -109);
             player.teleport(location);
         }
-        if (player.getWorld().getName().equals("pve") && false) {
+    }
+
+    private void start(Player player){
+        if (player.getWorld().getName().equals("pve") ) {
+
             player.sendMessage("Mobs Killer");
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
@@ -133,7 +134,12 @@ public class PveWorld implements Listener {
             String line = sign.getLine(1);
             String line2 = sign.getLine(2);
             int point = score.getScore();
-            // 鉄の剣
+            if (line.equals("GameStart")) {
+                Location location = new Location(p.getWorld(), -504, 13, -124);
+                p.teleport(location);
+                this.start(p);
+            }
+                // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
