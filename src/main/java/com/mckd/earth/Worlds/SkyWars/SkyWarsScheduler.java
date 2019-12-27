@@ -35,38 +35,40 @@ public class SkyWarsScheduler extends BukkitRunnable {
         }
     }
 
-    private void sendMessageToPlayers(World world, String msg){
-        for( Player player: world.getPlayers() ){
+    private void sendMessageToPlayers(World world, String msg) {
+        for (Player player : world.getPlayers()) {
             player.sendMessage(msg);
-            player.sendTitle(msg,"", 0,20,0);
+            player.sendTitle(msg, "", 0, 20, 0);
         }
     }
-    private void changeGamemode(World world){
-        for( Player player: world.getPlayers() ){
+
+    private void changeGamemode(World world) {
+        for (Player player : world.getPlayers()) {
             player.setGameMode(GameMode.SURVIVAL);
-            //1人目のガラス
-            world.getBlockAt(456, 15, -873).setType(Material.AIR);
-            world.getBlockAt(456, 16, -873).setType(Material.AIR);
-            world.getBlockAt(457, 15, -874).setType(Material.AIR);
-            world.getBlockAt(457, 16, -874).setType(Material.AIR);
-            world.getBlockAt(455, 15, -874).setType(Material.AIR);
-            world.getBlockAt(455, 16, -874).setType(Material.AIR);
-            world.getBlockAt(456, 15, -875).setType(Material.AIR);
-            world.getBlockAt(456, 16, -875).setType(Material.AIR);
-            world.getBlockAt(456, 14, -874).setType(Material.AIR);
-            world.getBlockAt(456, 17, -874).setType(Material.AIR);
-
-
-            world.getBlockAt(440, 15, -873).setType(Material.AIR);
-            world.getBlockAt(440, 16, -873).setType(Material.AIR);
-            world.getBlockAt(441, 15, -874).setType(Material.AIR);
-            world.getBlockAt(441, 16, -874).setType(Material.AIR);
-            world.getBlockAt(441, 15, -874).setType(Material.AIR);
-            world.getBlockAt(441, 16, -874).setType(Material.AIR);
-            world.getBlockAt(440, 15, -875).setType(Material.AIR);
-            world.getBlockAt(440, 16, -875).setType(Material.AIR);
-            world.getBlockAt(440, 14, -874).setType(Material.AIR);
-            world.getBlockAt(440, 17, -874).setType(Material.AIR);
         }
+        //1人目のガラス
+        world.getBlockAt(456, 15, -873).setType(Material.AIR);
+        world.getBlockAt(456, 16, -873).setType(Material.AIR);
+        world.getBlockAt(457, 15, -874).setType(Material.AIR);
+        world.getBlockAt(457, 16, -874).setType(Material.AIR);
+        world.getBlockAt(455, 15, -874).setType(Material.AIR);
+        world.getBlockAt(455, 16, -874).setType(Material.AIR);
+        world.getBlockAt(456, 15, -875).setType(Material.AIR);
+        world.getBlockAt(456, 16, -875).setType(Material.AIR);
+        world.getBlockAt(456, 14, -874).setType(Material.AIR);
+        world.getBlockAt(456, 17, -874).setType(Material.AIR);
+
+
+        world.getBlockAt(440, 15, -873).setType(Material.AIR);
+        world.getBlockAt(440, 16, -873).setType(Material.AIR);
+        world.getBlockAt(441, 15, -874).setType(Material.AIR);
+        world.getBlockAt(441, 16, -874).setType(Material.AIR);
+        world.getBlockAt(441, 15, -874).setType(Material.AIR);
+        world.getBlockAt(441, 16, -874).setType(Material.AIR);
+        world.getBlockAt(440, 15, -875).setType(Material.AIR);
+        world.getBlockAt(440, 16, -875).setType(Material.AIR);
+        world.getBlockAt(440, 14, -874).setType(Material.AIR);
+        world.getBlockAt(440, 17, -874).setType(Material.AIR);
     }
 }
+
