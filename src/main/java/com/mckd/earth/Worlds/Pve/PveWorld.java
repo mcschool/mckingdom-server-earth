@@ -41,7 +41,7 @@ public class PveWorld implements Listener {
     private boolean inTower(Player player){
         Location location = player.getLocation();
         player.sendMessage("test1:"+location.getY());
-        if(location.getY()>70){
+        if(location.getY()<70){
             return true;
         }else{
             return false;
