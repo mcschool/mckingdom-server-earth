@@ -38,7 +38,7 @@ public class PveWorld implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private boolean inTower(Player player){
+    public static boolean inTower(Player player){
         Location location = player.getLocation();
         if(location.getY()<70){
             return true;
@@ -50,7 +50,7 @@ public class PveWorld implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
+        if (player.getWorld().getName().equals("pve")) {
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
