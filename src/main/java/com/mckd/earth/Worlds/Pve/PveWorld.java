@@ -514,7 +514,8 @@ public class PveWorld implements Listener {
         ArrayList<Integer> points = new ArrayList<>();
         for (String key : section.getKeys(false)) {
             if (key != player.getUniqueId().toString()) {
-
+                player.sendMessage("test6");
+                points.add(config.getInt("pve.point." + key))
             }
         }
         Collections.sort(points, Collections.reverseOrder());
