@@ -28,7 +28,9 @@ import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.backends.file.FileConfig;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class PveWorld implements Listener {
@@ -495,24 +497,41 @@ public class PveWorld implements Listener {
         }
     }
 
-    private void setPoint(Player player, int newPoint){
+    private void setPoint(Player player, int newPoint) {
         player.sendMessage("test2");
         FileConfiguration config = plugin.getConfig();
-        int oldPoint = config.getInt("pve.point."+player.getUniqueId().toString());
-        if( newPoint > oldPoint){
+        int oldPoint = config.getInt("pve.point." + player.getUniqueId().toString());
+        if (newPoint > oldPoint) {
             player.sendMessage("test3");
-            config.set("pve.point."+player.getUniqueId().toString(),newPoint);
+            config.set("pve.point." + player.getUniqueId().toString(), newPoint);
         }
         player.sendMessage("test4");
         ConfigurationSection section = config.getConfigurationSection("pve.point");
-        if(section == null){
+        if (section == null) {
             player.sendMessage("test5");
             return;
         }
-        for(String key : section.getKeys(false)){
-            List<String> list = section.getStringList(key);
-            player.sendMessage("key" + key);
-            player.sendMessage("list" + list.toString());
+        ArrayList<Integer> points = new ArrayList<>();
+        for (String key : section.getKeys(false)) {
+            if (key != player.getUniqueId().toString()) {
+
+            }
+        }
+        Collections.srot(points, Collections.reverseOrder());
+
+        int i = 1;
+        for (Integer point : points) {
+            player.sendMessage("ランキング" + i + "位: " + point);
+            i++;
+        }
+
+        if (points.contains(0) && points.get(0) <= newPoint) {
+            player.sendMessage("ランキング1位として登録されました!");
+        } else if (points.contains(1) && points.get(1)<= newPoint){
+            player.sendMessage("ランキング2位として登録されました!");
+        } else if (points.contains(2) && points.get(2)<= newPoint){
+            player.sendMessage("ランキング3位として登録されました!");
+        } else if (points.contains(3) && points.get(3)<= newPoint){
         }
     }
 
