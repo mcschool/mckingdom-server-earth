@@ -40,6 +40,7 @@ public class PveWorld implements Listener {
 
     private boolean inTower(Player player){
         Location location = player.getLocation();
+        player.sendMessage("test1:"+location.getY());
         if(location.getY()>70){
             return true;
         }else{
@@ -50,7 +51,9 @@ public class PveWorld implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage("test2");
         if (player.getWorld().getName().equals("pve") && this.inTower(player)) {
+            player.sendMessage("test3");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
