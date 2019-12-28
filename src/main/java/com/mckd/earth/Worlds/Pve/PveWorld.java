@@ -7,6 +7,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,8 +26,11 @@ import org.bukkit.material.Openable;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
+import ru.tehkode.permissions.backends.file.FileConfig;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class PveWorld implements Listener {
@@ -38,20 +44,45 @@ public class PveWorld implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
+    public static boolean inTower(Player player){
+        Location location = player.getLocation();
+        if(location.getY()<70){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals("pve")) {
-            player.sendMessage("Mobs Killer");
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
             player.getWorld().setPVP(false);
             player.getInventory().clear();
+            Location location = new Location(player.getWorld(), -497, 71, -109);
+            player.teleport(location);
+        }
+    }
+
+    private void start(Player player){
+        if (player.getWorld().getName().equals("pve")) {
+
+            player.sendMessage("Mobs Killer");
 
             // ワールドにいる人数が1人だった場合スケジューラースタート
+            int inTowerCount = 0;
             List<Player> players = player.getWorld().getPlayers();
-            if (players.size() <= 1) {
+            for (Player p : players){
+                if(this.inTower(p)){
+                    //p.sendMessage("Y:"+p.getLocation().getY());
+                    inTowerCount++;
+                }
+            }
+
+            if (inTowerCount <= 1) {
                 World world = player.getWorld();
                 world.getBlockAt(-501, 19, -120).setType(Material.FENCE);
                 world.getBlockAt(-502, 19, -120).setType(Material.FENCE);
@@ -117,7 +148,16 @@ public class PveWorld implements Listener {
             String line = sign.getLine(1);
             String line2 = sign.getLine(2);
             int point = score.getScore();
-            // 鉄の剣
+            if (line.equals("GameStart")) {
+                Location location = new Location(p.getWorld(), -504, 13, -124);
+                p.teleport(location);
+                this.start(p);
+            }
+            if (line.equals("test1")) {
+                p.sendMessage("test1");
+                this.setPoint(p,point);
+            }
+                // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
@@ -303,7 +343,7 @@ public class PveWorld implements Listener {
                     this.waveCount = 1;
                     for( Player player: world.getPlayers() ){
                         player.performCommand("mvtp world");
-                        Score score = obj.getScore(p.getDisplayName());
+                        Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
                         player.sendMessage( String.valueOf(point) + "ポイント持ってクリアしました!!");
                     }
@@ -315,7 +355,7 @@ public class PveWorld implements Listener {
     @EventHandler
     public void noPlayerInteractEvent(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals("pve")) {
+        if (!player.getWorld().getName().equals("pve") && this.inTower(player)) {
             return;
         }
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -449,9 +489,50 @@ public class PveWorld implements Listener {
     }
 
     private void sendMessageToPlayers(World world, String msg){
-        for( Player player: world.getPlayers() ){
-            player.sendMessage(msg);
-            player.sendTitle(msg,"", 10,40,10);
+        for( Player player: world.getPlayers()) {
+            if (this.inTower(player)) {
+                player.sendMessage(msg);
+                player.sendTitle(msg, "", 10, 40, 10);
+            }
+        }
+    }
+
+    private void setPoint(Player player, int newPoint) {
+        player.sendMessage("test2");
+        FileConfiguration config = plugin.getConfig();
+        int oldPoint = config.getInt("pve.point." + player.getUniqueId().toString());
+        if (newPoint > oldPoint) {
+            player.sendMessage("test3");
+            config.set("pve.point." + player.getUniqueId().toString(), newPoint);
+        }
+        player.sendMessage("test4");
+        ConfigurationSection section = config.getConfigurationSection("pve.point");
+        if (section == null) {
+            player.sendMessage("test5");
+            return;
+        }
+        ArrayList<Integer> points = new ArrayList<>();
+        for (String key : section.getKeys(false)) {
+            if (key != player.getUniqueId().toString()) {
+                player.sendMessage("test6");
+                points.add(config.getInt("pve.point." + key));
+            }
+        }
+        Collections.sort(points, Collections.reverseOrder());
+
+        int i = 1;
+        for (Integer point : points) {
+            player.sendMessage("ランキング" + i + "位: " + point);
+            i++;
+        }
+
+        if (points.contains(0) && points.get(0) <= newPoint) {
+            player.sendMessage("ランキング1位として登録されました!");
+        } else if (points.contains(1) && points.get(1)<= newPoint){
+            player.sendMessage("ランキング2位として登録されました!");
+        } else if (points.contains(2) && points.get(2)<= newPoint){
+            player.sendMessage("ランキング3位として登録されました!");
+        } else if (points.contains(3) && points.get(3)<= newPoint){
         }
     }
 

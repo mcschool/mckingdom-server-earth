@@ -151,9 +151,11 @@ public class PveScheduler extends BukkitRunnable {
     }
 
     private void sendMessageToPlayers(World world, String msg){
-        for( Player player: world.getPlayers() ){
-            player.sendMessage(msg);
-            player.sendTitle(msg,"", 0,20,0);
+        for( Player player: world.getPlayers()) {
+            if (PveWorld.inTower(player)) {
+                player.sendMessage(msg);
+                player.sendTitle(msg, "", 10, 40, 10);
+            }
         }
     }
 }
