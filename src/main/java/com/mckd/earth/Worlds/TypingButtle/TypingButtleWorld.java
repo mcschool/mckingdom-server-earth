@@ -51,7 +51,7 @@ public class TypingButtleWorld implements Listener {
         player.getWorld().setPVP(false);
         player.getInventory().clear();
 
-        //赤チーム
+        //赤チームだよ
         if(player.getWorld().getPlayers().size() == 1){
             Location location = new Location(player.getWorld(),-946, 18, 179);
             player.teleport(location);
