@@ -11,9 +11,10 @@ public class TypingButtleScheduler extends BukkitRunnable {
     Player player;
     int count;
 
-    public TypingButtleScheduler(Earth plugin, Player player, int count){
+    public TypingButtleScheduler(Earth plugin, Player player, Player player1,  int count){
         this.plugin = plugin;
         this.player = player;
+        this.player = player1;
         this.count = 5;
     }
 
