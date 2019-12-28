@@ -99,7 +99,8 @@ public class SkyWars implements Listener {
                 world.getBlockAt(473, 14, -875).setType(Material.GLASS);
                 world.getBlockAt(473, 17, -875).setType(Material.GLASS);
 
-                this.spawnChest(new Location(world, 471,11,-875));
+                this.spawnChest(new Location(world, 471,11,-875), 0);
+                this.spawnChest(new Location(world, 469, 11, -879), 1);
               /*  //島1
                 world.getBlockAt(471, 11, -875).setType(Material.CHEST);
                 world.getBlockAt(469, 11, -879).setType(Material.CHEST);
@@ -256,14 +257,20 @@ public class SkyWars implements Listener {
     }
 
 
-    public void spawnChest(Location location){
+    public void spawnChest(Location location, int type){
         World world = Bukkit.getWorld("SkyWars");
         world.getBlockAt(location).setType(Material.CHEST);
         Chest chest = (Chest)world.getBlockAt(location).getState();
         Inventory inv = chest.getInventory();
         inv.clear();
-        inv.setItem(1,new ItemStack(STONE,24));
-        inv.setItem(18,new ItemStack(WOOD_SWORD));
+        if (type == 0) {
+            inv.setItem(1, new ItemStack(STONE, 24));
+            inv.setItem(18, new ItemStack(WOOD_SWORD));
+        }
+        if (type == 1) {
+            inv.setItem(5, new ItemStack(WOOD, 32));
+            inv.setItem(20, new ItemStack(EGG, 16));
+        }
     }
 
 }
