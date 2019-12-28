@@ -110,9 +110,12 @@ public class TypingButtleWorld implements Listener {
         //World lobby = Bukkit.getWorld("world");
         //Location location = new Location(lobby, -92,10,-251);
         for(Player player:players){
-            //player.performCommand("lobby");
-            //player.teleport(location);
-            player.sendMessage(ChatColor.RED + "/lobby でロビーに戻れます");
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    player.performCommand("mvtp world");
+                }
+            }.runTaskLater(this.plugin, 20);
         }
     }
 
@@ -162,22 +165,6 @@ public class TypingButtleWorld implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteractEvent(PlayerInteractEvent event){
-        Player player = event.getPlayer();
-        if(!player.getWorld().getName().equals(this.worldname)) return;
-        if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-            if(event.getMaterial() == Material.CHEST){
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        player.performCommand("mvtp world");
-                    }
-                }.runTaskLater(this.plugin, 20);
-            }
-        }
-    }
-
-    @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
         if(!event.getEntity().getWorld().getName().equals(this.worldname)){
             Player player = event.getEntity();
@@ -196,22 +183,5 @@ public class TypingButtleWorld implements Listener {
         }
     }
 
-    /*
-    @EventHandler
-    public void onPlayerRespawnEvent(PlayerRespawnEvent event){
-        Player player = event.getPlayer();
-        if(player.getWorld().getName().equals(this.worldname)) return;
-        //青チーム
-        if(player == this.playerBlue){
-            Location location = new Location(this.playerBlue.getWorld(),-946,18, 166);
-            this.playerBlue.teleport(location);
-        }
-        //赤チーム
-        if(player == this.playerRed){
-            Location location = new Location(this.playerRed.getWorld(),-946, 18, 179);
-            this.playerRed.teleport(location);
-        }
-    }
-    */
 
 }
