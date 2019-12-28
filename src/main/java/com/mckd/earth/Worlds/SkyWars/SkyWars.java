@@ -167,16 +167,17 @@ public class SkyWars implements Listener {
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
             }
             //ワールドに入った時にプレイヤーをテレポートさせる
-            if (players.size() == 1) {
+            if (players.size() ==0) {
                 player.sendMessage("test1");
                 Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
                 player.teleport(location);
+                player.sendMessage(toString().valueOf(players.size()));
                 player.sendMessage("test2");
             }
             if (players.size() == 2) {
                 Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
-                player.sendMessage(toString().valueOf(players.size()));
+                player.sendMessage(String.valueOf(players.size()));
                 player.sendMessage("test3");
             }
             new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
