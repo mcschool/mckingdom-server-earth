@@ -176,6 +176,7 @@ public class SkyWars implements Listener {
             if (players.size() == 2) {
                 Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
+                player.sendMessage("test3");
             }
             new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
         }
