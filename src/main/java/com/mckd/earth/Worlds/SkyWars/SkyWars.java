@@ -80,9 +80,7 @@ public class SkyWars implements Listener {
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
-            if (players.size() == 1) {
-                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
-            }
+
             //ワールドに入った時にチェストを置くkだkjdくぁ
             if (players.size() == 1) {
                 player.sendMessage("test 0");
@@ -160,6 +158,8 @@ public class SkyWars implements Listener {
                 player.teleport(location);
                 player.sendMessage(toString().valueOf(players.size()));
                 player.sendMessage("test2");
+
+                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
 
             }
 
