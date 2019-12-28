@@ -51,7 +51,7 @@ public class TypingButtleWorld implements Listener {
         player.getWorld().setPVP(false);
         player.getInventory().clear();
 
-        //赤チーム
+        //赤チームだよ
         if(player.getWorld().getPlayers().size() == 1){
             Location location = new Location(player.getWorld(),-946, 18, 179);
             player.teleport(location);
@@ -122,10 +122,13 @@ public class TypingButtleWorld implements Listener {
     @EventHandler
     public void BlockBreakEvent(BlockBreakEvent event){
         if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
-            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+            if (event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
                 event.setCancelled(true);
             }
             if (event.getPlayer().getGameMode() == GameMode.CREATIVE){
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL){
                 event.setCancelled(true);
             }
         }
@@ -143,7 +146,7 @@ public class TypingButtleWorld implements Listener {
                     this.playerBlue.setHealth(health -2.0);
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0) {
-
+                        this.playerBlue.setHealth(2.0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "RED" + ChatColor.WHITE + "に倒されました〜", "", 0, 60, 0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE + "BLUE" + ChatColor.WHITE + "を倒しました!!", "", 0, 60, 0);
                         this.GameEnd();
@@ -154,6 +157,7 @@ public class TypingButtleWorld implements Listener {
                     this.playerRed.setHealth(health -2.0);
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
+                        this.playerRed.setHealth(2.0);
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,60,0);
                         this.playerBlue.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED+ "RED" + ChatColor.WHITE + "を倒しました!!", "", 0,60,0);
                         this.GameEnd();
