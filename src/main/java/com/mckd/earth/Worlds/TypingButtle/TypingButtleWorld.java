@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -112,6 +113,18 @@ public class TypingButtleWorld implements Listener {
             //player.performCommand("lobby");
             //player.teleport(location);
             player.sendMessage(ChatColor.RED + "/lobby でロビーに戻れます");
+        }
+    }
+
+    @EventHandler
+    public void BlockBreakEvent(BlockBreakEvent event){
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getGameMode() == GameMode.CREATIVE){
+                event.setCancelled(true);
+            }
         }
     }
 
