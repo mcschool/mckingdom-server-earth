@@ -127,7 +127,7 @@ public class SkyWars implements Listener {
                 invisland1of2.clear();
                 invisland1of2.setItem(5, new ItemStack(WOOD, 32));
                 invisland1of2.setItem(20, new ItemStack(EGG, 16));
-                Chest chestisland1of3 = (Chest) world.getBlockAt(472, 11, -872).getState();
+                Chest chestisland1of3 = (Chest) world.getBlockAt(472, 6, -872).getState();
                 Inventory invisland1of3 = chestisland1of3.getInventory();
                 invisland1of3.clear();
                 invisland1of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
