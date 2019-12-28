@@ -153,11 +153,9 @@ public class SkyWars implements Listener {
                 invisland2of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
 
-<<<<<<< HEAD
                 player.sendMessage("test12");
-=======
                 player.sendMessage("test 12");
->>>>>>> f80f153a0d819e71bc6d72da420d422d7ca3b294
+
 
             //ワールドに入った時にプレイヤーをテレポートさせる
                 player.sendMessage("test1");
