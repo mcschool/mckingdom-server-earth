@@ -83,6 +83,7 @@ public class SkyWars implements Listener {
 
             //ワールドに入った時にチェストを置くkだkjdくぁ
             if (players.size() == 1) {
+                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 player.sendMessage("test 0");
                 World world = player.getWorld();
                 //1人目のガラス
@@ -159,7 +160,7 @@ public class SkyWars implements Listener {
                 player.sendMessage(toString().valueOf(players.size()));
                 player.sendMessage("test2");
 
-                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+
 
             }
 
