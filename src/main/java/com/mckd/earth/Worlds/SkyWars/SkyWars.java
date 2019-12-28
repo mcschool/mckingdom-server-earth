@@ -167,7 +167,7 @@ public class SkyWars implements Listener {
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
             }
             //ワールドに入った時にプレイヤーをテレポートさせる
-            if (players.size() == 1) {
+            if (players.size() ==0) {
                 player.sendMessage("test1");
                 Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
                 player.teleport(location);
