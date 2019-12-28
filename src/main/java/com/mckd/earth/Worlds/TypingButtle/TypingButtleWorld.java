@@ -57,6 +57,7 @@ public class TypingButtleWorld implements Listener {
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 60, 80, 60);
             this.playerRed = player;
+
         }
 
         //青チーム
@@ -65,6 +66,7 @@ public class TypingButtleWorld implements Listener {
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 60, 80, 60);
             this.playerBlue = player;
+            new TypingButtleScheduler(this.plugin, player, 5).runTaskTimer(this.plugin,0,20);
             this.Start();
         }
         if(player.getWorld().getPlayers().size() > 2){
@@ -167,25 +169,5 @@ public class TypingButtleWorld implements Listener {
             }
         }
     }
-
-    @EventHandler
-    public void onPlayerDeathEvent(PlayerDeathEvent event){
-        if(!event.getEntity().getWorld().getName().equals(this.worldname)){
-            Player player = event.getEntity();
-            //赤チーム
-            if (player == this.playerRed){
-                this.playerRed.setHealth(2.0);
-                Location location = new Location(player.getWorld(),-946, 18, 179);
-                this.playerRed.teleport(location);
-            }
-            //青チーム
-            if (player == this.playerBlue){
-                this.playerBlue.setHealth(2.0);
-                Location location = new Location(player.getWorld(),-946,18, 166);
-                this.playerBlue.teleport(location);
-            }
-        }
-    }
-
 
 }
