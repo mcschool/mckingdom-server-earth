@@ -85,7 +85,6 @@ public class SkyWars implements Listener {
             //ワールドに入った時にチェストを置くkだkjdくぁ
             if (players.size() == 1) {
                 new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
-                player.sendMessage("test 0");
                 World world = player.getWorld();
                 //1人目のガラス
                 world.getBlockAt(473, 15, -874).setType(Material.GLASS);
@@ -157,15 +156,11 @@ public class SkyWars implements Listener {
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
                  */
 
-                player.sendMessage("test12");
-                player.sendMessage("test 12");
 
             //ワールドに入った時にプレイヤーをテレポートさせる
-                player.sendMessage("test1");
                 Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
                 player.teleport(location);
-                player.sendMessage(toString().valueOf(players.size()));
-                player.sendMessage("test2");
+
 
 
 
@@ -250,7 +245,7 @@ public class SkyWars implements Listener {
                 Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
                 player.sendMessage(String.valueOf(players.size()));
-                player.sendMessage("test3");
+
             }
             new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
         }
