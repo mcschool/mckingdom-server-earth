@@ -55,7 +55,7 @@ public class TypingButtleWorld implements Listener {
         if(player.getWorld().getPlayers().size() == 1){
             Location location = new Location(player.getWorld(),-946, 18, 179);
             player.teleport(location);
-            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 60, 80, 60);
+            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 0, 40, 0);
             this.playerRed = player;
 
         }
@@ -64,9 +64,9 @@ public class TypingButtleWorld implements Listener {
         if(player.getWorld().getPlayers().size() == 2){
             Location location1 = new Location(player.getWorld(),-946,18, 166);
             player.teleport(location1);
-            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 60, 80, 60);
+            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 0, 40, 0);
             this.playerBlue = player;
-            new TypingButtleScheduler(this.plugin, player, 5).runTaskTimer(this.plugin,0,20);
+            new TypingButtleScheduler(this.plugin, this.playerBlue, 5).runTaskTimer(this.plugin,0,20);
             this.Start();
         }
         if(player.getWorld().getPlayers().size() > 2){
