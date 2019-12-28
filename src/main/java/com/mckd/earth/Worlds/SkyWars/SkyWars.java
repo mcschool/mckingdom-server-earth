@@ -171,6 +171,7 @@ public class SkyWars implements Listener {
                 player.sendMessage("test1");
                 Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
                 player.teleport(location);
+                player.sendMessage(toString().valueOf(players.size()));
                 player.sendMessage("test2");
             }
             if (players.size() == 2) {
