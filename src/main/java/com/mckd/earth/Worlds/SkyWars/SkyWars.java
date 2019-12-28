@@ -85,6 +85,7 @@ public class SkyWars implements Listener {
             }
             //ワールドに入った時にチェストを置くkだkjdくぁ
             if (players.size() == 1) {
+                player.sendMessage("test 0");
                 World world = player.getWorld();
                 //1人目のガラス
                 world.getBlockAt(473, 15, -874).setType(GLASS);
