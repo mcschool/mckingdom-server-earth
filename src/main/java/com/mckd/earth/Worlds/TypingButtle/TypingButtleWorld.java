@@ -89,15 +89,15 @@ public class TypingButtleWorld implements Listener {
         int n = r.nextInt(10);
         String q = "a";
         if(n == 0) {q="hello";}
-        if(n == 1) {q="goodbye";}
+        if(n == 1) {q="good";}
         if(n == 2) {q="apple";}
-        if(n == 3) {q="banana";}
+        if(n == 3) {q="blue";}
         if(n == 4) {q="peach";}
-        if(n == 5) {q="goodmorning";}
+        if(n == 5) {q="red";}
         if(n == 6) {q="dog";}
-        if(n == 7) {q="mountain";}
-        if(n == 8) {q="yellow";}
-        if(n == 9) {q="orange";}
+        if(n == 7) {q="eye";}
+        if(n == 8) {q="nose";}
+        if(n == 9) {q="hair";}
         this.playerRed.sendTitle(q,"",0,20000,0);
         this.playerBlue.sendTitle(q,"",0,20000,0);
         this.current_qustion = q;
