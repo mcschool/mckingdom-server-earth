@@ -114,6 +114,8 @@ public class SkyWars implements Listener {
                 world.getBlockAt(447, 13, -901).setType(CHEST);
                 world.getBlockAt(440, 16, -900).setType(CHEST);
 
+                player.sendMessage("test 10");
+
                 //島1チェスト中身
                 Chest chestisland1of1 = (Chest) world.getBlockAt(471, 11, -875).getState();
                 Inventory invisland1of1 = chestisland1of1.getInventory();
@@ -131,6 +133,8 @@ public class SkyWars implements Listener {
                 invisland1of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland1of3.setItem(22, new ItemStack(LEATHER_HELMET));
 
+                player.sendMessage("test 11");
+
                 //島2チェスト中身
                 Chest chestisland2of1 = (Chest) world.getBlockAt(430, 11, -877).getState();
                 Inventory invisland2of1 = chestisland2of1.getInventory();
@@ -147,6 +151,8 @@ public class SkyWars implements Listener {
                 invisland2of2.clear();
                 invisland2of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
+
+                player.sendMessage("test 12");
 
             //ワールドに入った時にプレイヤーをテレポートさせる
                 player.sendMessage("test1");
