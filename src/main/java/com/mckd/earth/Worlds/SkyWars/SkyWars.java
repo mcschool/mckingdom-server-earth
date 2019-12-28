@@ -80,11 +80,10 @@ public class SkyWars implements Listener {
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
-            if (players.size() == 1) {
-                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
-            }
+
             //ワールドに入った時にチェストを置くkだkjdくぁ
             if (players.size() == 1) {
+                new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 player.sendMessage("test 0");
                 World world = player.getWorld();
                 //1人目のガラス
@@ -115,6 +114,8 @@ public class SkyWars implements Listener {
                 world.getBlockAt(440, 16, -900).setType(CHEST);
                 player.sendMessage("test 10");
 
+                player.sendMessage("test 10");
+
                 //島1チェスト中身
                 Chest chestisland1of1 = (Chest) world.getBlockAt(471, 11, -875).getState();
                 Inventory invisland1of1 = chestisland1of1.getInventory();
@@ -133,6 +134,8 @@ public class SkyWars implements Listener {
                 invisland1of3.setItem(22, new ItemStack(LEATHER_HELMET));
                 player.sendMessage("test11");
 
+                player.sendMessage("test 11");
+
                 //島2チェスト中身
                 Chest chestisland2of1 = (Chest) world.getBlockAt(430, 11, -877).getState();
                 Inventory invisland2of1 = chestisland2of1.getInventory();
@@ -150,7 +153,11 @@ public class SkyWars implements Listener {
                 invisland2of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
 
+<<<<<<< HEAD
                 player.sendMessage("test12");
+=======
+                player.sendMessage("test 12");
+>>>>>>> f80f153a0d819e71bc6d72da420d422d7ca3b294
 
             //ワールドに入った時にプレイヤーをテレポートさせる
                 player.sendMessage("test1");
@@ -158,6 +165,8 @@ public class SkyWars implements Listener {
                 player.teleport(location);
                 player.sendMessage(toString().valueOf(players.size()));
                 player.sendMessage("test2");
+
+
 
             }
 
