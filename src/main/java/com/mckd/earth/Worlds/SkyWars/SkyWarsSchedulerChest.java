@@ -30,7 +30,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     public void run() {
         this.count--;
         if (this.count < 1) {
-            Chest chestisland1of1 = (Chest) this.world.getBlockAt(471, 11, -875).getState();
+            Chest chestisland1of1 = (Chest) this.world.getBlockAt(471, 15, -875).getState();
             Inventory invisland1of1 = chestisland1of1.getInventory();
             invisland1of1.setItem(2, new ItemStack(STONE, 24));
             invisland1of1.setItem(19, new ItemStack(STONE_SWORD));
