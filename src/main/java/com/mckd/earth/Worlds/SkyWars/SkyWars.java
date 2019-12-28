@@ -158,10 +158,6 @@ public class SkyWars implements Listener {
 
                 player.sendMessage("test12");
                 player.sendMessage("test 12");
-<<<<<<< HEAD
-=======
-
->>>>>>> 79564f1015dcf3f24c93dafb60ee7bfb321430c4
 
             //ワールドに入った時にプレイヤーをテレポートさせる
                 player.sendMessage("test1");
