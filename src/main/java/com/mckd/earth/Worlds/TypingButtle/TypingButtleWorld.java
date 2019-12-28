@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -89,15 +90,15 @@ public class TypingButtleWorld implements Listener {
         int n = r.nextInt(10);
         String q = "a";
         if(n == 0) {q="hello";}
-        if(n == 1) {q="goodbye";}
+        if(n == 1) {q="good";}
         if(n == 2) {q="apple";}
-        if(n == 3) {q="banana";}
+        if(n == 3) {q="blue";}
         if(n == 4) {q="peach";}
-        if(n == 5) {q="goodmorning";}
+        if(n == 5) {q="red";}
         if(n == 6) {q="dog";}
-        if(n == 7) {q="mountain";}
-        if(n == 8) {q="yellow";}
-        if(n == 9) {q="orange";}
+        if(n == 7) {q="eye";}
+        if(n == 8) {q="nose";}
+        if(n == 9) {q="hair";}
         this.playerRed.sendTitle(q,"",0,20000,0);
         this.playerBlue.sendTitle(q,"",0,20000,0);
         this.current_qustion = q;
@@ -116,6 +117,18 @@ public class TypingButtleWorld implements Listener {
     }
 
     @EventHandler
+    public void BlockBreakEvent(BlockBreakEvent event){
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
+            if (event.getPlayer().getGameMode() == GameMode.CREATIVE){
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
     public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
         if(event.getPlayer().getWorld().getName().equals("ty")){
             Player player = event.getPlayer();
@@ -124,7 +137,7 @@ public class TypingButtleWorld implements Listener {
             if(mes.equals(question)){
                 if(player == this.playerRed){
                     double health = this.playerBlue.getHealth();
-                    this.playerBlue.setHealth(health -1.0);
+                    this.playerBlue.setHealth(health -2.0);
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0) {
 
@@ -135,7 +148,7 @@ public class TypingButtleWorld implements Listener {
                 }
                 if(player == this.playerBlue) {
                     double health = this.playerRed.getHealth();
-                    this.playerRed.setHealth(health -1.0);
+                    this.playerRed.setHealth(health -2.0);
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.BLUE+ "BLUE" + ChatColor.WHITE + "に倒されました〜", "", 0,60,0);
