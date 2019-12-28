@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.omg.CORBA.TypeCodePackage.BadKind;
 
 import java.util.List;
 
@@ -87,31 +88,32 @@ public class SkyWars implements Listener {
                 player.sendMessage("test 0");
                 World world = player.getWorld();
                 //1人目のガラス
-                world.getBlockAt(473, 15, -874).setType(GLASS);
-                world.getBlockAt(473, 16, -874).setType(GLASS);
-                world.getBlockAt(474, 15, -875).setType(GLASS);
-                world.getBlockAt(474, 16, -875).setType(GLASS);
-                world.getBlockAt(472, 15, -875).setType(GLASS);
-                world.getBlockAt(472, 16, -875).setType(GLASS);
-                world.getBlockAt(473, 15, -876).setType(GLASS);
-                world.getBlockAt(473, 16, -876).setType(GLASS);
-                world.getBlockAt(473, 14, -875).setType(GLASS);
-                world.getBlockAt(473, 17, -875).setType(GLASS);
+                world.getBlockAt(473, 15, -874).setType(Material.GLASS);
+                world.getBlockAt(473, 16, -874).setType(Material.GLASS);
+                world.getBlockAt(474, 15, -875).setType(Material.GLASS);
+                world.getBlockAt(474, 16, -875).setType(Material.GLASS);
+                world.getBlockAt(472, 15, -875).setType(Material.GLASS);
+                world.getBlockAt(472, 16, -875).setType(Material.GLASS);
+                world.getBlockAt(473, 15, -876).setType(Material.GLASS);
+                world.getBlockAt(473, 16, -876).setType(Material.GLASS);
+                world.getBlockAt(473, 14, -875).setType(Material.GLASS);
+                world.getBlockAt(473, 17, -875).setType(Material.GLASS);
 
-                //島1
-                world.getBlockAt(471, 11, -875).setType(CHEST);
-                world.getBlockAt(469, 11, -879).setType(CHEST);
-                world.getBlockAt(472, 6, -872).setType(CHEST);
+                this.spawnChest(new Location(world, 471,11,-875));
+              /*  //島1
+                world.getBlockAt(471, 11, -875).setType(Material.CHEST);
+                world.getBlockAt(469, 11, -879).setType(Material.CHEST);
+                world.getBlockAt(472, 6, -872).setType(Material.CHEST);
                 //島2
-                world.getBlockAt(430, 11, -877).setType(CHEST);
-                world.getBlockAt(425, 11, -875).setType(CHEST);
-                world.getBlockAt(420, 7, -871).setType(CHEST);
+                world.getBlockAt(430, 11, -877).setType(Material.CHEST);
+                world.getBlockAt(425, 11, -875).setType(Material.CHEST);
+                world.getBlockAt(420, 7, -871).setType(Material.CHEST);
                 //氷野島
-                world.getBlockAt(438, 16, -901).setType(CHEST);
-                world.getBlockAt(455, 14, -857).setType(CHEST);
+                world.getBlockAt(438, 16, -901).setType(Material.CHEST);
+                world.getBlockAt(455, 14, -857).setType(Material.CHEST);
                 //火の島
-                world.getBlockAt(447, 13, -901).setType(CHEST);
-                world.getBlockAt(440, 16, -900).setType(CHEST);
+                world.getBlockAt(447, 13, -901).setType(Material.CHEST);
+                world.getBlockAt(440, 16, -900).setType(Material.CHEST);
                 player.sendMessage("test 10");
 
                 player.sendMessage("test 10");
@@ -152,12 +154,10 @@ public class SkyWars implements Listener {
                 invisland2of2.clear();
                 invisland2of3.setItem(8, new ItemStack(LEATHER_CHESTPLATE));
                 invisland2of3.setItem(22, new ItemStack(LEATHER_HELMET));
+                 */
 
-<<<<<<< HEAD
                 player.sendMessage("test12");
-=======
                 player.sendMessage("test 12");
->>>>>>> f80f153a0d819e71bc6d72da420d422d7ca3b294
 
             //ワールドに入った時にプレイヤーをテレポートさせる
                 player.sendMessage("test1");
@@ -173,16 +173,16 @@ public class SkyWars implements Listener {
             if (players.size() == 2) {
                 World world2 = player.getWorld();
                 //2人目のガラス
-                world2.getBlockAt(427, 15, -874).setType(GLASS);
-                world2.getBlockAt(427, 16, -874).setType(GLASS);
-                world2.getBlockAt(428, 15, -875).setType(GLASS);
-                world2.getBlockAt(428, 16, -875).setType(GLASS);
-                world2.getBlockAt(426, 15, -875).setType(GLASS);
-                world2.getBlockAt(426, 16, -875).setType(GLASS);
-                world2.getBlockAt(427, 15, -876).setType(GLASS);
-                world2.getBlockAt(427, 16, -876).setType(GLASS);
-                world2.getBlockAt(427, 14, -875).setType(GLASS);
-                world2.getBlockAt(427, 17, -875).setType(GLASS);
+                world2.getBlockAt(427, 15, -874).setType(Material.GLASS);
+                world2.getBlockAt(427, 16, -874).setType(Material.GLASS);
+                world2.getBlockAt(428, 15, -875).setType(Material.GLASS);
+                world2.getBlockAt(428, 16, -875).setType(Material.GLASS);
+                world2.getBlockAt(426, 15, -875).setType(Material.GLASS);
+                world2.getBlockAt(426, 16, -875).setType(Material.GLASS);
+                world2.getBlockAt(427, 15, -876).setType(Material.GLASS);
+                world2.getBlockAt(427, 16, -876).setType(Material.GLASS);
+                world2.getBlockAt(427, 14, -875).setType(Material.GLASS);
+                world2.getBlockAt(427, 17, -875).setType(Material.GLASS);
             }
 
            /* //ワールドに入った時にチェストを置く
@@ -253,6 +253,17 @@ public class SkyWars implements Listener {
             }
             new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
         }
+    }
+
+
+    public void spawnChest(Location location){
+        World world = Bukkit.getWorld("SkyWars");
+        world.getBlockAt(location).setType(Material.CHEST);
+        Chest chest = (Chest)world.getBlockAt(location).getState();
+        Inventory inv = chest.getInventory();
+        inv.clear();
+        inv.setItem(1,new ItemStack(STONE,24));
+        inv.setItem(18,new ItemStack(WOOD_SWORD));
     }
 
 }
