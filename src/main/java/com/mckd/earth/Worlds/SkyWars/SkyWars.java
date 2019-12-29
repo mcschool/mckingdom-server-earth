@@ -204,6 +204,7 @@ public class SkyWars implements Listener {
         if (type == 0) {
             inv.setItem(1, new ItemStack(STONE, 24));
             inv.setItem(18, new ItemStack(WOOD_SWORD));
+            inv.setItem(21,new ItemStack(COOKED_CHICKEN,6));
         }
         if (type == 1) {
             inv.setItem(5, new ItemStack(WOOD, 32));

@@ -19,6 +19,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     private int count;
     private Earth plugin;
     private int enemyCount = 0;
+    public  Player player;
 
 
     public SkyWarsSchedulerChest(Earth plugin, World world) {
@@ -32,15 +33,12 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     @Override
     public void run() {
         this.count--;
+        World world = Bukkit.getWorld("SkyWars");
         if (this.count < 1) {
-            this.addChest(new Location(world,471, 11, -875),0);
-            /*Chest chestisland1of1 = (Chest) this.world.getBlockAt(471, 11, -875).getState();
-            Inventory invisland1of1 = chestisland1of1.getInventory();
-            invisland1of1.setItem(2, new ItemStack(STONE, 24));
-            invisland1of1.setItem(19, new ItemStack(STONE_SWORD));
-            invisland1of1.setItem(18, new ItemStack(WOOD_SWORD));*/
+            this.RefillChest(new Location(world,471, 11, -875),0);
             this.count = 70;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
+
         }
     }
     private void sendMessageToPlayers(World world, String msg){
@@ -51,7 +49,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     }
 
 
-    public void addChest(Location location, int type) {
+    public void RefillChest(Location location, int type) {
         World world = Bukkit.getWorld("SkyWars");
         Chest chest = (Chest) world.getBlockAt(location).getState();
         Inventory inv = chest.getInventory();
