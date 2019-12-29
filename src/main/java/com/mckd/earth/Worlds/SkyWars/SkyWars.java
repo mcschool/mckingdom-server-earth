@@ -107,6 +107,12 @@ public class SkyWars implements Listener {
                 this.spawnChest(new Location(world, 472, 6, -872), 2);
                 this.spawnChest(new Location(world, 420, 7, -871), 2);
 
+                this.spawnChest(new Location(world, 447, 16, -901), 3);
+                this.spawnChest(new Location(world, 447, 13, -855), 3);
+
+                this.spawnChest(new Location(world, 440, 16, -900), 4);
+                this.spawnChest(new Location(world, 455, 14, -857), 4);
+
               /*  //島1
                 world.getBlockAt(471, 11, -875).setType(Material.CHEST);
                 world.getBlockAt(469, 11, -879).setType(Material.CHEST);
@@ -212,6 +218,16 @@ public class SkyWars implements Listener {
         if (type == 2) {
             inv.setItem(9,new ItemStack(LEATHER_CHESTPLATE));
             inv.setItem(25,new ItemStack(LEATHER_HELMET));
+        }
+        if (type == 3) {
+            inv.setItem(11,new ItemStack(CHAINMAIL_BOOTS));
+            inv.setItem(26,new ItemStack(CHAINMAIL_LEGGINGS));
+            inv.setItem(26,new ItemStack(COOKED_BEEF,4));
+        }
+        if (type == 4) {
+            inv.setItem(3,new ItemStack(STONE_SWORD));
+            inv.setItem(19,new ItemStack(BOW));
+            inv.setItem(21,new ItemStack(ARROW,32));
         }
     }
 
