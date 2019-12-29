@@ -222,7 +222,7 @@ public class SkyWars implements Listener {
         if (type == 3) {
             inv.setItem(11,new ItemStack(CHAINMAIL_BOOTS));
             inv.setItem(26,new ItemStack(CHAINMAIL_LEGGINGS));
-            inv.setItem(26,new ItemStack(COOKED_BEEF,4));
+            inv.setItem(27,new ItemStack(COOKED_BEEF,4));
         }
         if (type == 4) {
             inv.setItem(3,new ItemStack(STONE_SWORD));
