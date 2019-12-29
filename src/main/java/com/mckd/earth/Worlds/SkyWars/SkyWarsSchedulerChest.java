@@ -19,7 +19,6 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     private int count;
     private Earth plugin;
     private int enemyCount = 0;
-    public  Player player;
 
 
     public SkyWarsSchedulerChest(Earth plugin, World world) {
@@ -33,12 +32,10 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     @Override
     public void run() {
         this.count--;
-        World world = Bukkit.getWorld("SkyWars");
         if (this.count < 1) {
             this.RefillChest(new Location(world,471, 11, -875),0);
             this.count = 70;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
-
         }
     }
     private void sendMessageToPlayers(World world, String msg){
