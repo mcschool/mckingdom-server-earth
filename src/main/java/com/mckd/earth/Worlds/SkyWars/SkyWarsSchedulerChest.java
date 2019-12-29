@@ -1,6 +1,9 @@
 package com.mckd.earth.Worlds.SkyWars;
 
 import com.mckd.earth.Earth;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
@@ -30,11 +33,12 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     public void run() {
         this.count--;
         if (this.count < 1) {
-            Chest chestisland1of1 = (Chest) this.world.getBlockAt(471, 15, -875).getState();
+            this.addChest(new Location(world,471, 11, -875),0);
+            /*Chest chestisland1of1 = (Chest) this.world.getBlockAt(471, 11, -875).getState();
             Inventory invisland1of1 = chestisland1of1.getInventory();
             invisland1of1.setItem(2, new ItemStack(STONE, 24));
             invisland1of1.setItem(19, new ItemStack(STONE_SWORD));
-            invisland1of1.setItem(18, new ItemStack(WOOD_SWORD));
+            invisland1of1.setItem(18, new ItemStack(WOOD_SWORD));*/
             this.count = 70;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
         }
@@ -43,6 +47,16 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
         for( Player player: world.getPlayers() ){
             player.sendMessage(msg);
             player.sendTitle(msg,"", 0,10,0);
+        }
+    }
+
+
+    public void addChest(Location location, int type) {
+        World world = Bukkit.getWorld("SkyWars");
+        Chest chest = (Chest) world.getBlockAt(location).getState();
+        Inventory inv = chest.getInventory();
+        if (type == 0) {
+            inv.setItem(7,new ItemStack(DIAMOND));
         }
     }
 }

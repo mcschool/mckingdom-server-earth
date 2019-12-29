@@ -98,14 +98,14 @@ public class SkyWars implements Listener {
                 world.getBlockAt(473, 14, -875).setType(Material.GLASS);
                 world.getBlockAt(473, 17, -875).setType(Material.GLASS);
 
-                this.spawnChest(new Location(world, 471,11,-875), 0);
-                this.spawnChest(new Location(world, 425,11,-875), 0);
+                this.spawnChest(new Location(world, 471, 11, -875), 0);
+                this.spawnChest(new Location(world, 425, 11, -875), 0);
 
                 this.spawnChest(new Location(world, 469, 11, -879), 1);
                 this.spawnChest(new Location(world, 431, 11, -879), 1);
 
-                this.spawnChest(new Location(world, 472, 6, -872), 1);
-                this.spawnChest(new Location(world, 420, 7, -871), 1);
+                this.spawnChest(new Location(world, 472, 6, -872), 2);
+                this.spawnChest(new Location(world, 420, 7, -871), 2);
 
               /*  //島1
                 world.getBlockAt(471, 11, -875).setType(Material.CHEST);
@@ -164,11 +164,9 @@ public class SkyWars implements Listener {
                  */
 
 
-            //ワールドに入った時にプレイヤーをテレポートさせる
+                //ワールドに入った時にプレイヤーをテレポートさせる
                 Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
                 player.teleport(location);
-
-
 
 
             }
@@ -186,17 +184,14 @@ public class SkyWars implements Listener {
                 world2.getBlockAt(427, 16, -876).setType(Material.GLASS);
                 world2.getBlockAt(427, 14, -875).setType(Material.GLASS);
                 world2.getBlockAt(427, 17, -875).setType(Material.GLASS);
-            }
 
-
-            if (players.size() == 2) {
                 Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
-                player.sendMessage(String.valueOf(players.size()));
-
             }
-            new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+
+
         }
+        new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
     }
 
 
