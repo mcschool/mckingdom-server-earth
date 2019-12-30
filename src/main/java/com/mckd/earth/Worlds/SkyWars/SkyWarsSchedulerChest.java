@@ -47,7 +47,6 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
 
 
     public void RefillChest(Location location, int type) {
-        World world = Bukkit.getWorld("SkyWars");
         Chest chest = (Chest) world.getBlockAt(location).getState();
         Inventory inv = chest.getInventory();
         if (type == 0) {

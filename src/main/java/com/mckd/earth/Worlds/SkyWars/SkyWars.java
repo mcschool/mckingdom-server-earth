@@ -81,8 +81,6 @@ public class SkyWars implements Listener {
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
-
-            //ワールドに入った時にチェストを置くkだkjdくぁ
             if (players.size() == 1) {
                 new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 World world = player.getWorld();
@@ -194,9 +192,8 @@ public class SkyWars implements Listener {
                 Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
             }
-
+            new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
         }
-        new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
     }
 
 
