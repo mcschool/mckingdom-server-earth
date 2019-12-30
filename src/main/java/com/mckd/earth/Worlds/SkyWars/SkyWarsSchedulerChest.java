@@ -31,12 +31,12 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
 
     @Override
     public void run() {
-        /*this.count--;
+       this.count--;
         if (this.count < 1) {
             this.RefillChest(new Location(world,471, 11, -875),0);
             this.count = 70;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
-        }*/
+        }
     }
     private void sendMessageToPlayers(World world, String msg){
         for( Player player: world.getPlayers() ){
