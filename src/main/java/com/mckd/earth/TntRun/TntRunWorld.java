@@ -37,7 +37,7 @@ public class TntRunWorld implements Listener {
 
         World world = player.getWorld();
         if (world.getPlayers().size() == 1) {
-            if (this.status.equals().size("wait")) {
+            if (this.status.equals("wait")) {
                 this.fillFirstFloor();
                 this.fillSecondFloor();
                 this.fillThirdFloor();
