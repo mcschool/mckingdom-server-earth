@@ -83,6 +83,7 @@ public class SkyWars implements Listener {
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
             if (players.size() == 1) {
                 new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+                new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 World world = player.getWorld();
                 //1人目のガラス
                 world.getBlockAt(473, 15, -874).setType(Material.GLASS);
@@ -192,7 +193,6 @@ public class SkyWars implements Listener {
                 Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
                 player.teleport(location);
             }
-            new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
         }
     }
 

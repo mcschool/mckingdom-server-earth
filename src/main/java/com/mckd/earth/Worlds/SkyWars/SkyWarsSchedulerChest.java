@@ -12,6 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Wood;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+
 import static org.bukkit.Material.*;
 
 public class SkyWarsSchedulerChest extends BukkitRunnable {
@@ -24,7 +26,7 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
     public SkyWarsSchedulerChest(Earth plugin, World world) {
         this.plugin = plugin;
         this.world = world;
-        this.count = 70;
+        this.count = 80;
 
     }
 
@@ -34,8 +36,9 @@ public class SkyWarsSchedulerChest extends BukkitRunnable {
        this.count--;
         if (this.count < 1) {
             this.RefillChest(new Location(world,471, 11, -875),0);
-            this.count = 70;
+            this.count = 80;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
+            this.cancel();
         }
     }
     private void sendMessageToPlayers(World world, String msg){
