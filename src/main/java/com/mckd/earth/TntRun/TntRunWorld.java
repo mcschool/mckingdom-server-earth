@@ -34,6 +34,16 @@ public class TntRunWorld implements Listener {
         player.getInventory().clear();
         player.setGameMode(GameMode.ADVENTURE);
         player.sendMessage("test1");
+
+        World world = player.getWorld();
+        if (world.getPlayers().size() == 1) {
+            if (this.status.equals().size("wait")) {
+                this.fillFirstFloor();
+                this.fillSecondFloor();
+                this.fillThirdFloor();
+
+            }
+        }
     }
 
     @EventHandler
@@ -84,6 +94,57 @@ public class TntRunWorld implements Listener {
         }
     }
 
+
+    public void fillFirstFloor() {
+        World world = Bukkit.getWorld("tnt");
+        Location location = new Location(world, 0, 0, 0);
+        Double nowX = location.getX();
+        Double nowZ = location.getZ();
+        for (int x = 0; x < 30 ;x++){
+            location.setX(nowX + x);
+            for (int z = 0; x < 30; z++) {
+                location.setZ(nowZ + z);
+                world.getBlockAt(location).setType(Material.TNT);
+            }
+        }
+    }
+
+    public void fillSecondFloor() {
+        World world = Bukkit.getWorld("tnt");
+        Location location = new Location(world,0,0,0);
+        location.add(0, 0, 0);
+        Double nowX = location.getX();
+        Double nowZ = location.getZ();
+        for (int X=0; X<30; X++) {
+            location.setX(nowX + X);
+            for (int z=0; z<30; z++) {
+                location.setZ (nowZ + z);
+                world.getBlockAt(location).setType(Material.TNT);
+
+            }
+
+
+        }
+    }
+    public void fillThirdFloor() {
+        World world =Bukkit.getWorld("tnt");
+        Location location = new Location(world, 0,0,0);
+        location.add(0, 0, 0);
+        Double nowX = location.getX();
+        Double nowZ = location.getZ();
+        for (int X=0; X<30; X++) {
+            location.setX(nowX + X);
+            for (int Z=0; Z<30; Z++) {
+                location.setX(nowX + Z);
+
+            }
+
+        }
+
+
+
+    }
+
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         Player player = e.getPlayer();
@@ -128,7 +189,7 @@ public class TntRunWorld implements Listener {
 
         }
     }
-
 }
+
 
 
