@@ -21,6 +21,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -75,6 +77,11 @@ public class TypingButtleWorld implements Listener {
             player.teleport(location2);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.GREEN + "観覧者", ChatColor.WHITE + "です", 60, 80, 60);
             this.playerGreen = player;
+            ItemStack itemStack = new ItemStack(Material.CHEST);
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            itemMeta.setDisplayName("ロビーに戻る");
+            itemStack.setItemMeta(itemMeta);
+            player.getInventory().addItem(itemStack);
         }
     }
 
@@ -166,6 +173,19 @@ public class TypingButtleWorld implements Listener {
                         this.GameEnd();
 
                     }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void PlayerInteractEvent(PlayerInteractEvent event) throws IOException {
+        Player player = event.getPlayer();
+        if (player.getWorld().getName().equals(this.worldname)) {
+            if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+                if (event.getMaterial() == Material.CHEST){
+                    this.playerGreen.sendMessage("ロビーに戻ります");
+                    this.GameEnd();
                 }
             }
         }
