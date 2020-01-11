@@ -504,10 +504,11 @@ public class PveWorld implements Listener {
 
     private void setPoint(Player player, int newPoint) {
         Integer oldPoint = this.getPoint(player);
-        if (newPoint > oldPoint) {
+        //if (newPoint > oldPoint) {
             FileConfiguration config = plugin.getConfig();
             config.set("pve." + player.getUniqueId().toString() + ".point", newPoint);
-        }
+            config.set("pve." + player.getUniqueId().toString() + ".name", player.getDisplayName());
+        //}
     }
 
     /**
@@ -520,7 +521,6 @@ public class PveWorld implements Listener {
         int i = 1;
         player.sendMessage("PVE ランキング");
         for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
-            player.sendMessage(rank.toString());
             player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
             i++;
         }
