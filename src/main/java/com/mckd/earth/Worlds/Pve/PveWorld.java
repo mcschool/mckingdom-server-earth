@@ -520,6 +520,7 @@ public class PveWorld implements Listener {
         int i = 1;
         player.sendMessage("PVE ランキング");
         for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
+            player.sendMessage(rank.toString());
             player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
             i++;
         }
