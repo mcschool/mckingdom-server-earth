@@ -158,6 +158,10 @@ public class PveWorld implements Listener {
                 p.sendMessage("ShowRank");
                 this.showRanking(p);
             }
+            if (line.equals("YanakaTest")) {
+                p.sendMessage("YanakaTest");
+                this.test(p);
+            }
             // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
@@ -575,5 +579,52 @@ public class PveWorld implements Listener {
             newRanking.put(entry.getKey(), entry.getValue());
         }
         return newRanking;
+    }
+
+    private void test(Player player){
+
+        HashMap<String, Integer> ranking = new HashMap<String, Integer>();
+        ValueComparator bvc = new ValueComparator(ranking);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+        ranking.put("red", 500);
+        ranking.put("blue", 10);
+        ranking.put("yellow", 200);
+        ranking.put("gray", 100);
+        ranking.put("white", 300);
+        ranking.put("black", 400);
+
+        int i = 0;
+        for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
+            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
+            i++;
+        }
+
+        sorted_map.putAll(ranking);
+
+        i = 0;
+        for (Map.Entry<String, Integer> rank : sorted_map.entrySet()) {
+            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
+            i++;
+        }
+    }
+
+
+}
+
+class ValueComparator implements Comparator<String> {
+    Map<String, Integer> base;
+
+    public ValueComparator(Map<String, Integer> base) {
+        this.base = base;
+    }
+
+    // Note: this comparator imposes orderings that are inconsistent with
+    // equals.
+    public int compare(String a, String b) {
+        if (base.get(a) >= base.get(b)) {
+            return -1;
+        } else {
+            return 1;
+        } // returning 0 would merge keys
     }
 }
