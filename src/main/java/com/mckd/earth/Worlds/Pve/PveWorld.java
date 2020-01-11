@@ -28,10 +28,7 @@ import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.backends.file.FileConfig;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PveWorld implements Listener {
 
@@ -497,45 +494,66 @@ public class PveWorld implements Listener {
         }
     }
 
+    /**
+     * ポイントの登録
+     * @param player
+     * @param newPoint
+     */
     private void setPoint(Player player, int newPoint) {
-        player.sendMessage("test2");
-        FileConfiguration config = plugin.getConfig();
-        int oldPoint = config.getInt("pve.point." + player.getUniqueId().toString());
+        Integer oldPoint = this.getPoint(player);
         if (newPoint > oldPoint) {
-            player.sendMessage("test3");
-            config.set("pve.point." + player.getUniqueId().toString(), newPoint);
-        }
-        player.sendMessage("test4");
-        ConfigurationSection section = config.getConfigurationSection("pve.point");
-        if (section == null) {
-            player.sendMessage("test5");
-            return;
-        }
-        ArrayList<Integer> points = new ArrayList<>();
-        for (String key : section.getKeys(false)) {
-            if (key != player.getUniqueId().toString()) {
-                player.sendMessage("test6");
-                points.add(config.getInt("pve.point." + key));
-            }
-        }
-        Collections.sort(points, Collections.reverseOrder());
-
-        int i = 1;
-        for (Integer point : points) {
-            player.sendMessage("ランキング" + i + "位: " + point);
-            i++;
-        }
-
-        if (points.contains(0) && points.get(0) <= newPoint) {
-            player.sendMessage("ランキング1位として登録されました!");
-        } else if (points.contains(1) && points.get(1)<= newPoint){
-            player.sendMessage("ランキング2位として登録されました!");
-        } else if (points.contains(2) && points.get(2)<= newPoint){
-            player.sendMessage("ランキング3位として登録されました!");
-        } else if (points.contains(3) && points.get(3)<= newPoint){
+            FileConfiguration config = plugin.getConfig();
+            config.set("pve." + player.getUniqueId().toString()+".point", newPoint);
         }
     }
 
+    /**
+     * ランキングの表示
+     * @param player
+     */
+    private void showRanking(Player player){
+        HashMap<String, Integer> ranking = this.getRanking();
+        int i = 1;
+        player.sendMessage("PvE ランキング");
+        for(Map.Entry<String, Integer> rank : ranking.entrySet()) {
+            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
+            i++;
+        }
+    }
+
+    private Integer getPoint(Player player){
+        FileConfiguration config = plugin.getConfig();
+        ConfigurationSection section = config.getConfigurationSection("pve");
+        if (section == null) {
+            return 0;
+        }
+        Integer point = 0;
+        for (String key : section.getKeys(false)) {
+            if (key.equals(player.getUniqueId().toString())) {
+                point = config.getInt("pve." + key + ".point");
+            }
+        }
+        return point;
+    }
+
+    private HashMap<String, Integer> getRanking(){
+        FileConfiguration config = plugin.getConfig();
+        ConfigurationSection section = config.getConfigurationSection("pve");
+        if (section == null) {
+            return null;
+        }
+        HashMap<String, Integer> ranking = new HashMap<>();
+        for (String key : section.getKeys(false)) {
+            String name = config.getString("pve." + key + ".name");
+            Integer point = config.getInt("pve." + key + ".point");
+            ranking.put(name, point);
+        }
+        // ソート
+        ranking.entrySet().stream()
+                .sorted(java.util.Collections.reverseOrder(java.util.Map.Entry.comparingByValue()));
+
+        return ranking;
+    }
 
 }
 
