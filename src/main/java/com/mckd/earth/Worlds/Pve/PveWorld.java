@@ -557,7 +557,7 @@ public class PveWorld implements Listener {
         }
         //ranking = this.sort(ranking);
         ranking.entrySet().stream()
-                .sorted(java.util.Map.Entry.comparingByValue());
+                .sorted(java.util.Collections.reverseOrder(java.util.Map.Entry.comparingByValue()));
         return ranking;
     }
 
