@@ -28,10 +28,7 @@ import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.backends.file.FileConfig;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PveWorld implements Listener {
 
@@ -44,11 +41,11 @@ public class PveWorld implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    public static boolean inTower(Player player){
+    public static boolean inTower(Player player) {
         Location location = player.getLocation();
-        if(location.getY()<70){
+        if (location.getY() < 70) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -67,7 +64,7 @@ public class PveWorld implements Listener {
         }
     }
 
-    private void start(Player player){
+    private void start(Player player) {
         if (player.getWorld().getName().equals("pve")) {
 
             player.sendMessage("Mobs Killer");
@@ -75,8 +72,8 @@ public class PveWorld implements Listener {
             // ワールドにいる人数が1人だった場合スケジューラースタート
             int inTowerCount = 0;
             List<Player> players = player.getWorld().getPlayers();
-            for (Player p : players){
-                if(this.inTower(p)){
+            for (Player p : players) {
+                if (this.inTower(p)) {
                     //p.sendMessage("Y:"+p.getLocation().getY());
                     inTowerCount++;
                 }
@@ -106,7 +103,7 @@ public class PveWorld implements Listener {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
-            obj.setDisplayName(ChatColor.GOLD+"ポイント");
+            obj.setDisplayName(ChatColor.GOLD + "ポイント");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -153,11 +150,15 @@ public class PveWorld implements Listener {
                 p.teleport(location);
                 this.start(p);
             }
-            if (line.equals("test1")) {
-                p.sendMessage("test1");
-                this.setPoint(p,point);
+            if (line.equals("RankSet")) {
+                p.sendMessage("RankSet");
+                this.setPoint(p, point);
             }
-                // 鉄の剣
+            if (line.equals("ShowRank")) {
+                p.sendMessage("ShowRank");
+                this.showRanking(p);
+            }
+            // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
@@ -200,7 +201,7 @@ public class PveWorld implements Listener {
             //矢
             if (line.equals("矢") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
-                    ItemStack item = new ItemStack(Material.ARROW,5);
+                    ItemStack item = new ItemStack(Material.ARROW, 5);
                     p.getInventory().addItem(item);
                     score.setScore(point - 100);
                 } else {
@@ -214,7 +215,7 @@ public class PveWorld implements Listener {
                     //ポーションの種類を準備する
                     PotionType potionType = PotionType.INSTANT_HEAL;
                     //ポーションの効果とかを準備する
-                    PotionData potionData = new PotionData(potionType,false,true);
+                    PotionData potionData = new PotionData(potionType, false, true);
                     //ポーションのメタ情報を準備する
                     PotionMeta meta = (PotionMeta) potion.getItemMeta();
                     //準備したポーションのデータをメタ情報にセットする
@@ -251,7 +252,7 @@ public class PveWorld implements Listener {
             //焼き鳥
             if (line.equals("焼き鳥") && line2.equals("-200ポイント")) {
                 if (point >= 200) {
-                    ItemStack item = new ItemStack(Material.COOKED_CHICKEN,2);
+                    ItemStack item = new ItemStack(Material.COOKED_CHICKEN, 2);
                     p.getInventory().addItem(item);
                     score.setScore(point - 200);
                 } else {
@@ -261,7 +262,7 @@ public class PveWorld implements Listener {
             //ラピスラズリ
             if (line.equals("ラピスラズリ") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
-                    ItemStack item = new ItemStack (Material.INK_SACK,1,(short) 4);
+                    ItemStack item = new ItemStack(Material.INK_SACK, 1, (short) 4);
                     p.getInventory().addItem(item);
                     score.setScore(point - 100);
                 } else {
@@ -283,7 +284,7 @@ public class PveWorld implements Listener {
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
                 //player.performCommand("mvtp world");
-                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin,0,20);
+                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin, 0, 20);
             }
         }
     }
@@ -293,36 +294,32 @@ public class PveWorld implements Listener {
         if (e.getEntity() instanceof Zombie) { //    if zombie dies
             e.getDrops().clear();
         }
-        if(e.getEntity() instanceof Skeleton) { // if Skeleton dies
+        if (e.getEntity() instanceof Skeleton) { // if Skeleton dies
             e.getDrops().clear();
         }
     }
 
 
-
-
-
-
     @EventHandler
-    public  void onEntityDeath(EntityDeathEvent event) {
+    public void onEntityDeath(EntityDeathEvent event) {
         World world = event.getEntity().getWorld();
         if (world.getName().equals("pve")) {
             Player p = event.getEntity().getKiller();
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = ((Scoreboard) sb).getObjective("point");
-            if( obj!=null) {
+            if (obj != null) {
                 Score score = obj.getScore(p.getDisplayName());
-                int point = (int)score.getScore();
-                score.setScore(point+100);
+                int point = (int) score.getScore();
+                score.setScore(point + 100);
                 p.setScoreboard(sb);
             }
 
-            if(this.waveCount>15) this.waveCount=1;
+            if (this.waveCount > 15) this.waveCount = 1;
             List<Entity> entities = world.getEntities();
             int count = 0;
-            for( Entity entity : world.getEntities() ){
-                if( entity.isDead()==false) {
+            for (Entity entity : world.getEntities()) {
+                if (entity.isDead() == false) {
                     if (entity instanceof Monster) {
                         count++;
                     }
@@ -333,19 +330,19 @@ public class PveWorld implements Listener {
                     this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
                     this.enemyCount = count;
                 }
-            }else{
-                this.sendMessageToPlayers(world,"全モンスターを倒しました!");
-                if( this.waveCount<15 ) {
+            } else {
+                this.sendMessageToPlayers(world, "全モンスターを倒しました!");
+                if (this.waveCount < 15) {
                     this.waveCount++;
-                    new PveScheduler(this.plugin,world,this.waveCount).runTaskTimer(this.plugin,0,20);
-                }else{
-                    this.sendMessageToPlayers(world,"ゲームクリア!");
+                    new PveScheduler(this.plugin, world, this.waveCount).runTaskTimer(this.plugin, 0, 20);
+                } else {
+                    this.sendMessageToPlayers(world, "ゲームクリア!");
                     this.waveCount = 1;
-                    for( Player player: world.getPlayers() ){
+                    for (Player player : world.getPlayers()) {
                         player.performCommand("mvtp world");
                         Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
-                        player.sendMessage( String.valueOf(point) + "ポイント持ってクリアしました!!");
+                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");
                     }
                 }
             }
@@ -385,87 +382,87 @@ public class PveWorld implements Listener {
                     BlockState state = block.getState();
                     Location location = e.getClickedBlock().getLocation();
                     World world = e.getPlayer().getWorld();
-                    Double  locationX =  Math.floor(location.getX());
-                    Double  locationY =  Math.floor(location.getY());
-                    Double  locationZ =  Math.floor(location.getZ());
+                    Double locationX = Math.floor(location.getX());
+                    Double locationY = Math.floor(location.getY());
+                    Double locationZ = Math.floor(location.getZ());
                     Boolean flag2f = false;
-                    if (locationX == -502){
+                    if (locationX == -502) {
                         if (locationY == 19) {
-                            if (locationZ == -120){
+                            if (locationZ == -120) {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),++locationX,locationY,locationZ);
+                                Location location2 = new Location(location.getWorld(), ++locationX, locationY, locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                                 flag2f = true;
                             }
                         }
                     }
-                    if (locationX == -501){
+                    if (locationX == -501) {
                         if (locationY == 19) {
-                            if (locationZ == -120){
+                            if (locationZ == -120) {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),--locationX,locationY,locationZ);
+                                Location location2 = new Location(location.getWorld(), --locationX, locationY, locationZ);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                                 flag2f = true;
                             }
                         }
                     }
                     Boolean flag4f = false;
-                    Double  locationX2 =  Math.floor(location.getX());
-                    Double  locationY2 =  Math.floor(location.getY());
-                    Double  locationZ2 =  Math.floor(location.getZ());
-                    if (locationX2 == -498){
-                        if (locationY2== 27) {
-                            if (locationZ2== -117){
+                    Double locationX2 = Math.floor(location.getX());
+                    Double locationY2 = Math.floor(location.getY());
+                    Double locationZ2 = Math.floor(location.getZ());
+                    if (locationX2 == -498) {
+                        if (locationY2 == 27) {
+                            if (locationZ2 == -117) {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),locationX2,locationY2,--locationZ2);
+                                Location location2 = new Location(location.getWorld(), locationX2, locationY2, --locationZ2);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                                 flag4f = true;
                             }
                         }
                     }
-                    if (locationX2== -498){
+                    if (locationX2 == -498) {
                         if (locationY2 == 27) {
-                            if (locationZ2 == -118){
+                            if (locationZ2 == -118) {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),locationX2,locationY2,++locationZ2);
+                                Location location2 = new Location(location.getWorld(), locationX2, locationY2, ++locationZ2);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                                 flag4f = true;
                             }
                         }
                     }
                     Boolean flag5f = false;
-                    Double  locationX3 =  Math.floor(location.getX());
-                    Double  locationY3 =  Math.floor(location.getY());
-                    Double  locationZ3 =  Math.floor(location.getZ());
-                    if (locationX3 == -497){
+                    Double locationX3 = Math.floor(location.getX());
+                    Double locationY3 = Math.floor(location.getY());
+                    Double locationZ3 = Math.floor(location.getZ());
+                    if (locationX3 == -497) {
                         if (locationY3 == 32) {
-                            if (locationZ3 == -127){
+                            if (locationZ3 == -127) {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),--locationX3,locationY3,locationZ3);
+                                Location location2 = new Location(location.getWorld(), --locationX3, locationY3, locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                                 flag5f = true;
                             }
                         }
                     }
-                    if (locationX3 == -498){
+                    if (locationX3 == -498) {
                         if (locationY3 == 32) {
-                            if (locationZ3 == -127){
+                            if (locationZ3 == -127) {
                                 location.getWorld().getBlockAt(location).setType(Material.AIR);
-                                Location location2 =new Location(location.getWorld(),++locationX3,locationY3,locationZ3);
+                                Location location2 = new Location(location.getWorld(), ++locationX3, locationY3, locationZ3);
                                 location2.getWorld().getBlockAt(location2).setType(Material.AIR);
                                 flag5f = true;
                             }
                         }
                     }
 
-                    if (flag2f == true){
-                        this.sendMessageToPlayers(world,"2階の扉を開けました");
+                    if (flag2f == true) {
+                        this.sendMessageToPlayers(world, "2階の扉を開けました");
                     }
-                    if (flag4f == true){
-                        this.sendMessageToPlayers(world,"4階の扉を開けました");
+                    if (flag4f == true) {
+                        this.sendMessageToPlayers(world, "4階の扉を開けました");
                     }
-                    if (flag5f == true){
-                        this.sendMessageToPlayers(world,"5階の扉を開けました");
+                    if (flag5f == true) {
+                        this.sendMessageToPlayers(world, "5階の扉を開けました");
                     }
 
 
@@ -481,15 +478,15 @@ public class PveWorld implements Listener {
                         Location location = e.getClickedBlock().getLocation();
                         location.getWorld().getBlockAt(location).setType(Material.AIR);
                     }*/
-                }else{
-                    p.sendMessage("後" + String.valueOf(500-point) + "ポイント必要です！");
+                } else {
+                    p.sendMessage("後" + String.valueOf(500 - point) + "ポイント必要です！");
                 }
             }
         }
     }
 
-    private void sendMessageToPlayers(World world, String msg){
-        for( Player player: world.getPlayers()) {
+    private void sendMessageToPlayers(World world, String msg) {
+        for (Player player : world.getPlayers()) {
             if (this.inTower(player)) {
                 player.sendMessage(msg);
                 player.sendTitle(msg, "", 10, 40, 10);
@@ -497,45 +494,69 @@ public class PveWorld implements Listener {
         }
     }
 
+
+    /**
+     * ポイント登録
+     *
+     * @param player
+     * @param newPoint
+     */
+
     private void setPoint(Player player, int newPoint) {
-        player.sendMessage("test2");
-        FileConfiguration config = plugin.getConfig();
-        int oldPoint = config.getInt("pve.point." + player.getUniqueId().toString());
+        Integer oldPoint = this.getPoint(player);
         if (newPoint > oldPoint) {
-            player.sendMessage("test3");
-            config.set("pve.point." + player.getUniqueId().toString(), newPoint);
-        }
-        player.sendMessage("test4");
-        ConfigurationSection section = config.getConfigurationSection("pve.point");
-        if (section == null) {
-            player.sendMessage("test5");
-            return;
-        }
-        ArrayList<Integer> points = new ArrayList<>();
-        for (String key : section.getKeys(false)) {
-            if (key != player.getUniqueId().toString()) {
-                player.sendMessage("test6");
-                points.add(config.getInt("pve.point." + key));
-            }
-        }
-        Collections.sort(points, Collections.reverseOrder());
-
-        int i = 1;
-        for (Integer point : points) {
-            player.sendMessage("ランキング" + i + "位: " + point);
-            i++;
-        }
-
-        if (points.contains(0) && points.get(0) <= newPoint) {
-            player.sendMessage("ランキング1位として登録されました!");
-        } else if (points.contains(1) && points.get(1)<= newPoint){
-            player.sendMessage("ランキング2位として登録されました!");
-        } else if (points.contains(2) && points.get(2)<= newPoint){
-            player.sendMessage("ランキング3位として登録されました!");
-        } else if (points.contains(3) && points.get(3)<= newPoint){
+            FileConfiguration config = plugin.getConfig();
+            config.set("pve." + player.getUniqueId().toString() + ".point", newPoint);
         }
     }
 
+    /**
+     * ランキング表示
+     *
+     * @param player
+     */
+    private void showRanking(Player player) {
+        HashMap<String, Integer> ranking = this.getRanking();
+        int i = 1;
+        player.sendMessage("PVE ランキング");
+        for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
+            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
+            i++;
+        }
+    }
 
+    private Integer getPoint(Player player) {
+        FileConfiguration config = plugin.getConfig();
+        ConfigurationSection section = config.getConfigurationSection("pve");
+        if (section == null) {
+            return 0;
+        }
+        Integer point = 0;
+        for (String key : section.getKeys(false)) {
+            if (key.equals(player.getUniqueId().toString())) {
+                point = config.getInt("pve." + key + ".point");
+
+            }
+        }
+        return point;
+
+    }
+
+    private HashMap<String, Integer> getRanking() {
+        FileConfiguration config = plugin.getConfig();
+        ConfigurationSection section = config.getConfigurationSection("pve");
+        if (section == null) {
+            return null;
+        }
+        HashMap<String, Integer> ranking = new HashMap<>();
+        for (String key : section.getKeys(false)) {
+            String name = config.getString("pve." + key + ".name");
+            Integer point = config.getInt("pve." + key + ".point");
+            ranking.put(name, point);
+        }
+        //ソート
+        ranking.entrySet().stream()
+                .sorted(java.util.Collections.reverseOrder(java.util.Map.Entry.comparingByValue()));
+        return ranking;
+    }
 }
-
