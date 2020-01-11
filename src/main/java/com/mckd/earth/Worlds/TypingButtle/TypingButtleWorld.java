@@ -67,6 +67,7 @@ public class TypingButtleWorld implements Listener {
             player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 0, 40, 0);
             this.playerBlue = player;
             //new TypingButtleScheduler(this.plugin, this.playerBlue, this.playerRed, 10).runTaskTimer(this.plugin,0,20);
+            this.Start();
         }
         if(player.getWorld().getPlayers().size() > 2){
             Location location2 = new Location(player.getWorld(),-946, 27, 170);
