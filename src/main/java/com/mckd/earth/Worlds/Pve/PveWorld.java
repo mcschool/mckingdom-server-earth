@@ -555,9 +555,21 @@ public class PveWorld implements Listener {
             Integer point = config.getInt("pve." + key + ".point");
             ranking.put(name, point);
         }
-        //ソート
+        //ranking = this.sort(ranking);
         ranking.entrySet().stream()
-                .sorted(java.util.Collections.reverseOrder(java.util.Map.Entry.comparingByValue()));
+                .sorted(java.util.Map.Entry.comparingByValue());
         return ranking;
     }
+
+    /*private  HashMap<String,Integer> sort(HashMap<String,Integer> ranking){
+        HashMap<String, Integer> newRanking = new HashMap<>();
+        for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
+            //player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
+            if(newRanking.size() == 0){
+                newRanking.put(rank.getKey(), rank.getValue());
+            }else{
+
+            }
+        }
+    }*/
 }
