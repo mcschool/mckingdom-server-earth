@@ -523,7 +523,7 @@ public class PveWorld implements Listener {
      * @param player
      */
     private void showRanking(Player player) {
-        HashMap<String, Integer> ranking = this.getRanking(player);
+        TreeMap<String, Integer> ranking = this.getRanking(player);
         int i = 1;
         player.sendMessage("PVE ランキング");
         for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
@@ -549,7 +549,7 @@ public class PveWorld implements Listener {
 
     }
 
-    private HashMap<String, Integer> getRanking(Player player) {
+    private TreeMap<String, Integer> getRanking(Player player) {
         FileConfiguration config = plugin.getConfig();
         ConfigurationSection section = config.getConfigurationSection("pve");
         if (section == null) {
@@ -573,7 +573,7 @@ public class PveWorld implements Listener {
             player.sendMessage(rank.getKey() + ": "+ rank.getValue());
         }
 
-        return sortedRanking;
+        return sorted_map;
     }
 
     private  HashMap<String,Integer> sort(HashMap<String,Integer> ranking) {
@@ -634,9 +634,9 @@ class ValueComparator implements Comparator<String> {
     // equals.
     public int compare(String a, String b) {
         if (base.get(a) >= base.get(b)) {
-            return 1;
-        } else {
             return -1;
+        } else {
+            return 1;
         } // returning 0 would merge keys
     }
 }
