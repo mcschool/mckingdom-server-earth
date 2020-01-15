@@ -1,5 +1,6 @@
 package com.mckd.earth.Worlds.Pve;
 
+import com.google.common.collect.Streams;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
 import org.bukkit.*;
@@ -23,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.material.Door;
 import org.bukkit.material.Openable;
+import org.bukkit.material.Step;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
@@ -554,12 +556,14 @@ public class PveWorld implements Listener {
             return null;
         }
         HashMap<String, Integer> ranking = new HashMap<>();
+        ValueComparator bvc = new ValueComparator(ranking);
         for (String key : section.getKeys(false)) {
             String name = config.getString("pve." + key + ".name");
             Integer point = config.getInt("pve." + key + ".point");
             ranking.put(name, point);
         }
-        ranking = this.sort(ranking);
+        TreeMap<String,Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+        sorted_map.putAll(ranking);
 
         return ranking;
     }
