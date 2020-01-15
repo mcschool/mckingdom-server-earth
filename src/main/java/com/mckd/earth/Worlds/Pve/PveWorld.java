@@ -557,12 +557,12 @@ public class PveWorld implements Listener {
         }
         HashMap<String, Integer> ranking = new HashMap<>();
         ValueComparator bvc = new ValueComparator(ranking);
+        TreeMap<String,Integer> sorted_map = new TreeMap<String, Integer>(bvc);
         for (String key : section.getKeys(false)) {
             String name = config.getString("pve." + key + ".name");
             Integer point = config.getInt("pve." + key + ".point");
             ranking.put(name, point);
         }
-        TreeMap<String,Integer> sorted_map = new TreeMap<String, Integer>(bvc);
         sorted_map.putAll(ranking);
 
         return ranking;
