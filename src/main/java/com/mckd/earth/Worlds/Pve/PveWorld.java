@@ -549,7 +549,7 @@ public class PveWorld implements Listener {
 
     }
 
-    private HashMap<String, Integer> getRanking() {
+    private HashMap<String, Integer> getRanking(Player player) {
         FileConfiguration config = plugin.getConfig();
         ConfigurationSection section = config.getConfigurationSection("pve");
         if (section == null) {
@@ -558,15 +558,19 @@ public class PveWorld implements Listener {
         HashMap<String, Integer> ranking = new HashMap<>();
         ValueComparator bvc = new ValueComparator(ranking);
         TreeMap<String,Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+        player.sendMessage("test1");
         for (String key : section.getKeys(false)) {
             String name = config.getString("pve." + key + ".name");
             Integer point = config.getInt("pve." + key + ".point");
             ranking.put(name, point);
+            player.sendMessage(name + ": "+ point);
         }
         sorted_map.putAll(ranking);
         HashMap<String, Integer> sortedRanking = new HashMap<>();
+        player.sendMessage("test2");
         for (Map.Entry<String, Integer> rank : sorted_map.entrySet()) {
             sortedRanking.put(rank.getKey(), rank.getValue());
+            player.sendMessage(rank.getKey() + ": "+ rank.getValue());
         }
 
         return sortedRanking;
