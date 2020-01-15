@@ -181,7 +181,7 @@ public class TntRunWorld implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();
-        if (player.getWorld().getName().equals("tntrun")) {
+        if (!player.getWorld().getName().equals("tntrun")) {
             return;
         }
         if (player.getGameMode() != GameMode.CREATIVE) {
