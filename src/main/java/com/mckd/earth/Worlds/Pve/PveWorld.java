@@ -153,7 +153,6 @@ public class PveWorld implements Listener {
                 this.start(p);
             }
             if (line.equals("クリアポイント")) {
-                p.sendMessage("ShowRank");
                 this.showRanking(p);
             }
             // 鉄の剣
@@ -503,11 +502,12 @@ public class PveWorld implements Listener {
 
     private void setPoint(Player player, int newPoint) {
         Integer oldPoint = this.getPoint(player);
-        //if (newPoint > oldPoint) {
+        if (newPoint > oldPoint) {
             FileConfiguration config = plugin.getConfig();
             config.set("pve." + player.getUniqueId().toString() + ".point", newPoint);
             config.set("pve." + player.getUniqueId().toString() + ".name", player.getDisplayName());
-        //}
+        }
+        plugin.saveConfig();
     }
 
     /**
@@ -520,8 +520,10 @@ public class PveWorld implements Listener {
         int i = 1;
         player.sendMessage("PVE ランキング");
         for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
-            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
-            i++;
+            if (i <= 10) {
+                player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
+                i++;
+            }
         }
     }
 
