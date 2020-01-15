@@ -523,7 +523,7 @@ public class PveWorld implements Listener {
      * @param player
      */
     private void showRanking(Player player) {
-        HashMap<String, Integer> ranking = this.getRanking();
+        HashMap<String, Integer> ranking = this.getRanking(player);
         int i = 1;
         player.sendMessage("PVE ランキング");
         for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
