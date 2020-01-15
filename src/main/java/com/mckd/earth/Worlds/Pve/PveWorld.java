@@ -564,8 +564,12 @@ public class PveWorld implements Listener {
             ranking.put(name, point);
         }
         sorted_map.putAll(ranking);
+        HashMap<String, Integer> sortedRanking = new HashMap<>();
+        for (Map.Entry<String, Integer> rank : sorted_map.entrySet()) {
+            sortedRanking.put(rank.getKey(), rank.getValue());
+        }
 
-        return ranking;
+        return sortedRanking;
     }
 
     private  HashMap<String,Integer> sort(HashMap<String,Integer> ranking) {
