@@ -152,17 +152,9 @@ public class PveWorld implements Listener {
                 p.teleport(location);
                 this.start(p);
             }
-            if (line.equals("RankSet")) {
-                p.sendMessage("RankSet");
-                this.setPoint(p, point);
-            }
-            if (line.equals("ShowRank")) {
+            if (line.equals("クリアポイント")) {
                 p.sendMessage("ShowRank");
                 this.showRanking(p);
-            }
-            if (line.equals("YanakaTest")) {
-                p.sendMessage("YanakaTest");
-                this.test(p);
             }
             // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
@@ -348,6 +340,7 @@ public class PveWorld implements Listener {
                         player.performCommand("mvtp world");
                         Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
+                        this.setPoint(player, point);
                         player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");
                     }
                 }
@@ -558,20 +551,12 @@ public class PveWorld implements Listener {
         HashMap<String, Integer> ranking = new HashMap<>();
         ValueComparator bvc = new ValueComparator(ranking);
         TreeMap<String,Integer> sorted_map = new TreeMap<String, Integer>(bvc);
-        player.sendMessage("test1");
         for (String key : section.getKeys(false)) {
             String name = config.getString("pve." + key + ".name");
             Integer point = config.getInt("pve." + key + ".point");
             ranking.put(name, point);
-            player.sendMessage(name + ": "+ point);
         }
         sorted_map.putAll(ranking);
-        HashMap<String, Integer> sortedRanking = new HashMap<>();
-        player.sendMessage("test2");
-        for (Map.Entry<String, Integer> rank : sorted_map.entrySet()) {
-            sortedRanking.put(rank.getKey(), rank.getValue());
-            player.sendMessage(rank.getKey() + ": "+ rank.getValue());
-        }
 
         return sorted_map;
     }
@@ -593,32 +578,7 @@ public class PveWorld implements Listener {
         return newRanking;
     }
 
-    private void test(Player player){
 
-        HashMap<String, Integer> ranking = new HashMap<String, Integer>();
-        ValueComparator bvc = new ValueComparator(ranking);
-        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
-        ranking.put("red", 500);
-        ranking.put("blue", 10);
-        ranking.put("yellow", 200);
-        ranking.put("gray", 100);
-        ranking.put("white", 300);
-        ranking.put("black", 400);
-
-        int i = 0;
-        for (Map.Entry<String, Integer> rank : ranking.entrySet()) {
-            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
-            i++;
-        }
-
-        sorted_map.putAll(ranking);
-
-        i = 0;
-        for (Map.Entry<String, Integer> rank : sorted_map.entrySet()) {
-            player.sendMessage(i + "位: " + rank.getKey() + " -> " + rank.getValue());
-            i++;
-        }
-    }
 
 
 }
