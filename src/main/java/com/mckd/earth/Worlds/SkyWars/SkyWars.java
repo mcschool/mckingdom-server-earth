@@ -71,7 +71,9 @@ public class SkyWars implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage("You changed world to " + player.getWorld().getName());
         if (player.getWorld().getName().equals("SkyWars")) {
+            player.sendMessage("You are at SkyWars.");
             player.sendMessage("SkyWars");
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
