@@ -21,6 +21,7 @@ import static org.bukkit.Material.*;
 public class SkyWars implements Listener {
 
     Earth plugin;
+    String worldName = "skywars";
 
     public SkyWars(Earth plugin) {
         this.plugin = plugin;
@@ -30,7 +31,7 @@ public class SkyWars implements Listener {
 
     @EventHandler
     public void onPlayerDeathEvent2(PlayerDeathEvent e) {
-        if (e.getEntity().getWorld().getName().equals("SkyWars")) {
+        if (e.getEntity().getWorld().getName().equals(this.worldName)) {
             Player player = e.getEntity();
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() >= 2) {
@@ -70,13 +71,9 @@ public class SkyWars implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("You changed world to " + player.getWorld().getName());
-        if (player.getWorld().getName().equals("skywars")) {
-            player.sendMessage("You are at skywars.");
-        }
-        if (player.getWorld().getName().equals("SkyWars")) {
+        if (player.getWorld().getName().equals(this.worldName)) {
             player.sendMessage("You are at SkyWars.");
-            player.sendMessage("SkyWars");
+            player.sendMessage(this.worldName);
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
             player.setFoodLevel(20);
@@ -203,7 +200,7 @@ public class SkyWars implements Listener {
 
 
     public void spawnChest(Location location, int type){
-        World world = Bukkit.getWorld("SkyWars");
+        World world = Bukkit.getWorld(this.worldName);
         world.getBlockAt(location).setType(Material.CHEST);
         Chest chest = (Chest)world.getBlockAt(location).getState();
         Inventory inv = chest.getInventory();
