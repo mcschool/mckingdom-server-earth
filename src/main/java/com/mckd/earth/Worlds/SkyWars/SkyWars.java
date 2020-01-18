@@ -13,7 +13,6 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.omg.CORBA.TypeCodePackage.BadKind;
 
 import java.util.List;
 
@@ -72,6 +71,9 @@ public class SkyWars implements Listener {
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         player.sendMessage("You changed world to " + player.getWorld().getName());
+        if (player.getWorld().getName().equals("skywars")) {
+            player.sendMessage("You are at skywars.");
+        }
         if (player.getWorld().getName().equals("SkyWars")) {
             player.sendMessage("You are at SkyWars.");
             player.sendMessage("SkyWars");
