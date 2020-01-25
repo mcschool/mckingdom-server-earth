@@ -55,13 +55,13 @@ public class SkyWars implements Listener {
                         player1.sendMessage("You Win !!");
                         player1.setHealth(20.0);
                         player1.setFoodLevel(10);
+                        player1.performCommand("WorldRestorer load skywars");
+                        player1.performCommand("mv modify set animals false");
+                        player1.performCommand("mv modify set monsters false");
                     }
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            player1.performCommand("WorldRestorer load skywars");
-                            player1.performCommand("mv modify set animals false");
-                            player1.performCommand("mv modify set monsters false");
                             player1.performCommand("mvtp world");
                         }
                     }.runTaskLater(this.plugin, 100);
