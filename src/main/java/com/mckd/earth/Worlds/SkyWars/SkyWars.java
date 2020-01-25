@@ -23,7 +23,7 @@ import static org.bukkit.Material.*;
 public class SkyWars implements Listener {
 
     Earth plugin;
-    String worldName = "skywars";
+    String worldName = "SkyWars";
     Boolean startFlag = false;
 
     public SkyWars(Earth plugin) {
