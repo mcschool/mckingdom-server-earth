@@ -206,11 +206,8 @@ public class SkyWars implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
-        player.sendMessage("t");
         if (inAbyss(player)){
-            player.sendMessage("test1");
-            double health = player.getHealth();
-            player.setHealth(health -2);
+            player.damage(player.getHealth());
         }
     }
 
