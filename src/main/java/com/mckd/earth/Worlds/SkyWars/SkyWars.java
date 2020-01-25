@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -184,6 +185,29 @@ public class SkyWars implements Listener {
             inv.setItem(3,new ItemStack(STONE_SWORD));
             inv.setItem(19,new ItemStack(BOW));
             inv.setItem(21,new ItemStack(ARROW,32));
+        }
+    }
+
+
+
+    public static boolean inkAbyss(Player player) {
+        Location location = player.getLocation();
+        if (location.getY() < -25) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @EventHandler
+    public void checkAbyss(PlayerInteractEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        if (inkAbyss(player)){
+            double health = player.getHealth();
+            player.setHealth(health -1000);
         }
     }
 
