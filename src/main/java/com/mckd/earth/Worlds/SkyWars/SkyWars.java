@@ -63,7 +63,7 @@ public class SkyWars implements Listener {
                             @Override
                             public void run() {
                                 player1.performCommand("mvtp world");
-                                player1.performCommand("WorldRestorer load skywars");
+                                player1.performCommand("WorldRestorer load skywars test1");
                             }
                         }.runTaskLater(this.plugin, 100);
                     } else {
