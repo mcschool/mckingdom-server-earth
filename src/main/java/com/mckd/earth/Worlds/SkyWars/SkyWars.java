@@ -210,7 +210,7 @@ public class SkyWars implements Listener {
         if (inAbyss(player)){
             player.sendMessage("test1");
             double health = player.getHealth();
-            player.setHealth(health -1000);
+            player.setHealth(health -2);
         }
     }
 
