@@ -190,7 +190,7 @@ public class SkyWars implements Listener {
 
 
 
-    public static boolean inkAbyss(Player player) {
+    public static boolean inAbyss(Player player) {
         Location location = player.getLocation();
         if (location.getY() < -25) {
             return true;
@@ -205,7 +205,9 @@ public class SkyWars implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
-        if (inkAbyss(player)){
+        player.sendMessage("t");
+        if (inAbyss(player)){
+            player.sendMessage("test1");
             double health = player.getHealth();
             player.setHealth(health -1000);
         }
