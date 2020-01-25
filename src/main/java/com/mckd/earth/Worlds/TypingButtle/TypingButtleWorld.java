@@ -121,6 +121,7 @@ public class TypingButtleWorld implements Listener {
         List<Player> players = world.getPlayers();
         //World lobby = Bukkit.getWorld("world");
         //Location location = new Location(lobby, -92,10,-251);
+        /*
         for(Player player:players){
             new BukkitRunnable() {
                 @Override
@@ -129,6 +130,9 @@ public class TypingButtleWorld implements Listener {
                 }
             }.runTaskLater(this.plugin, 20);
         }
+        */
+        this.playerRed.performCommand("mvtp world");
+        this.playerBlue.performCommand("mvto world");
     }
 
     @EventHandler
