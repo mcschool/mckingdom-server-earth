@@ -56,8 +56,6 @@ public class SkyWars implements Listener {
                         player1.setHealth(20.0);
                         player1.setFoodLevel(10);
                         player1.performCommand("WorldRestorer load skywars");
-                        player1.performCommand("mv modify set animals false");
-                        player1.performCommand("mv modify set monsters false");
                     }
                     new BukkitRunnable() {
                         @Override
@@ -75,6 +73,8 @@ public class SkyWars implements Listener {
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
+            player.performCommand("mv modify set animals false");
+            player.performCommand("mv modify set monsters false");
             player.sendMessage("You are at SkyWars.");
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
