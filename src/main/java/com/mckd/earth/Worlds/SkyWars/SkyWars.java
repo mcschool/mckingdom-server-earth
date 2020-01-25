@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -200,7 +201,7 @@ public class SkyWars implements Listener {
     }
 
     @EventHandler
-    public void checkAbyss(PlayerInteractEvent e) {
+    public void checkAbyss(PlayerMoveEvent e) {
         Player player = e.getPlayer();
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
