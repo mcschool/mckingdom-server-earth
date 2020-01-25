@@ -24,6 +24,7 @@ public class SkyWars implements Listener {
 
     Earth plugin;
     String worldName = "skywars";
+    Boolean startFlag = false;
 
     public SkyWars(Earth plugin) {
         this.plugin = plugin;
@@ -45,35 +46,7 @@ public class SkyWars implements Listener {
                     player.setGameMode(GameMode.SPECTATOR);
                 }
             }
-            int count = 0;
-            for (Player player1 : players) {
-                if (player1.getGameMode() == GameMode.SURVIVAL) {
-                    count++;
-                }
-            }
-            if (count == 1) {
-                for (Player player1 : players) {
-                    if (player1.getGameMode() == GameMode.SURVIVAL) {
-                        player1.sendMessage("You Win !!");
-                        player1.setHealth(20.0);
-                        player1.setFoodLevel(10);
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                player1.performCommand("mvtp world");
-                                player1.performCommand("WorldRestorer load skywars");
-                            }
-                        }.runTaskLater(this.plugin, 100);
-                    } else {
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                player1.performCommand("mvtp world");
-                            }
-                        }.runTaskLater(this.plugin, 80);
-                    }
-                }
-            }
+
         }
     }
 
@@ -96,6 +69,7 @@ public class SkyWars implements Listener {
             if (players.size() == 2) {
                 new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 new SkyWarsSchedulerChest(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+                startFlag = true;
             }
             if(players.size() == 1){
                 World world = player.getWorld();
@@ -211,5 +185,48 @@ public class SkyWars implements Listener {
         }
     }
 
+
+
+    @EventHandler
+    public void checkPlayers(PlayerMoveEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        if (!startFlag){
+            return;
+        }
+        List<Player> players = player.getWorld().getPlayers();
+
+        int count = 0;
+        for (Player player1 : players) {
+            if (player1.getGameMode() == GameMode.SURVIVAL) {
+                count++;
+            }
+        }
+        if (count == 1) {
+            for (Player player1 : players) {
+                if (player1.getGameMode() == GameMode.SURVIVAL) {
+                    player1.sendMessage("You Win !!");
+                    player1.setHealth(20.0);
+                    player1.setFoodLevel(10);
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            player1.performCommand("mvtp world");
+                            player1.performCommand("WorldRestorer load skywars");
+                        }
+                    }.runTaskLater(this.plugin, 100);
+                } else {
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            player1.performCommand("mvtp world");
+                        }
+                    }.runTaskLater(this.plugin, 80);
+                }
+            }
+        }
+    }
 }
 
