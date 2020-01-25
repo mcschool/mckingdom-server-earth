@@ -47,6 +47,35 @@ public class SkyWars implements Listener {
                 }
             }
 
+            int count = 0;
+            for (Player player1 : players) {
+                if (player1.getGameMode() == GameMode.SURVIVAL) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                for (Player player1 : players) {
+                    if (player1.getGameMode() == GameMode.SURVIVAL) {
+                        player1.sendMessage("You Win !!");
+                        player1.setHealth(20.0);
+                        player1.setFoodLevel(10);
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                player1.performCommand("mvtp world");
+                                player1.performCommand("WorldRestorer load skywars");
+                            }
+                        }.runTaskLater(this.plugin, 100);
+                    } else {
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                player1.performCommand("mvtp world");
+                            }
+                        }.runTaskLater(this.plugin, 80);
+                    }
+                }
+            }
         }
     }
 
@@ -187,7 +216,7 @@ public class SkyWars implements Listener {
 
 
 
-    @EventHandler
+    /*@EventHandler
     public void checkPlayers(PlayerMoveEvent e) {
         Player player = e.getPlayer();
         if (!player.getWorld().getName().equals(this.worldName)) {
@@ -227,6 +256,6 @@ public class SkyWars implements Listener {
                 }
             }
         }
-    }
+    }*/
 }
 
