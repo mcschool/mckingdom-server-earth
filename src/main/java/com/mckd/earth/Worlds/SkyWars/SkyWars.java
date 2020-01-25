@@ -83,6 +83,7 @@ public class SkyWars implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage(player.getWorld().getName());
         if (player.getWorld().getName().equals(this.worldName)) {
             player.performCommand("mv modify set animals false");
             player.performCommand("mv modify set monsters false");
