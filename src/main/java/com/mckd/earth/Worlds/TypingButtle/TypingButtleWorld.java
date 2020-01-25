@@ -72,6 +72,7 @@ public class TypingButtleWorld implements Listener {
             this.playerBlue.sendMessage("ああああ");
             this.Start();
         }
+        /*
         if(player.getWorld().getPlayers().size() > 2){
             Location location2 = new Location(player.getWorld(),-946, 27, 170);
             player.teleport(location2);
@@ -82,6 +83,16 @@ public class TypingButtleWorld implements Listener {
             itemMeta.setDisplayName("ロビーに戻る");
             itemStack.setItemMeta(itemMeta);
             player.getInventory().addItem(itemStack);
+        }
+        */
+        if (player.getWorld().getPlayers().size() > 3){
+            Location location2 = new Location(player.getWorld(),-946, 27, 170);
+            player.teleport(location2);
+            player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.GREEN + "観覧者", ChatColor.WHITE + "です", 60, 80, 60);
+            this.playerGreen = player;
+            this.GameEnd();
+            Location location3 = new Location(player.getWorld(), -946, 18, 179);
+            player.teleport(location3);
         }
     }
 

@@ -78,7 +78,6 @@ public class LobbyInventory {
         pve.setItemMeta(pveMate);
         inv.setItem(5,pve);
 
-
         ItemStack ty = new ItemStack(Material.DIAMOND);
         ItemMeta tyMate = ty.getItemMeta();
         tyMate.setDisplayName("TypingGame");
