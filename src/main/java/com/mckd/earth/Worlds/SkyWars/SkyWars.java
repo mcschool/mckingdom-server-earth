@@ -60,6 +60,7 @@ public class SkyWars implements Listener {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
+                            player1.sendMessage("test1");
                             player1.performCommand("mvtp world");
                         }
                     }.runTaskLater(this.plugin, 100);
