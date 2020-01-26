@@ -122,7 +122,7 @@ public class LobbyWorld implements Listener{
 
     public void changeWorld(Player player) {
         player.performCommand("mvtp world");
-        Location location = new Location(Bukkit.getWorld("world"),-102,4.5,-1502);
+        Location location = new Location(Bukkit.getWorld("world"),-107,3,-1506);
         player.teleport(location);
         // PlayerServiceでプレーヤー情報登録
         // PlayersService playerService = new PlayersService();
@@ -249,79 +249,6 @@ public class LobbyWorld implements Listener{
             e.setCancelled(true);
         }
     }
-
-    /**
-     * プレーヤが動いた時
-     * @param event
-     */
-    @EventHandler
-    public void onPlayerMoveEvent(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-
-
-        if(event.getPlayer().getWorld().getName().equals(this.worldName)) {
-
-            Boolean is_over = false;
-
-            if (player.getLocation().getX() > 144){
-                is_over = true;
-            }
-            if (player.getLocation().getX() < -412){
-                is_over = true;
-            }
-            if (player.getLocation().getZ() > -8){
-                is_over = true;
-            }
-            if (player.getLocation().getZ() < -367){
-                is_over = true;
-            }
-            if(is_over == true){
-                player.sendMessage("戻ってください〜い");
-            }
-
-
-
-
-            //現在地を取得する
-            Location location = event.getTo().clone();
-            //現在地にあるブロックを取得
-            Block block = location.getBlock();
-            try {
-                //ブロックについているIDを取得
-                String uniqueId = block.getMetadata("custom").get(0).asString();
-                //ブロックに toPvp.1 というIDが付いていたらプレーヤーをテレポートさせる
-                if (uniqueId.equals("teleport1")) {
-                    World world = Bukkit.getWorld(worldName);
-                    Location loc = new Location(world, -224, 4, -228);
-                    player.teleport(loc);
-                    world.spawnParticle(Particle.CLOUD, loc, 100, 1, 1.0, 1.0, 0.1);
-                }
-                if (uniqueId.equals("teleport2")) {
-                    World world = Bukkit.getWorld("World");
-                    Location loc = new Location(world, 39, 4, -228);
-                    player.teleport(loc);
-                    world.spawnParticle(Particle.CLOUD, loc, 100, 1, 1.0, 1.0, 0.1);
-                }
-                if (uniqueId.equals("teleport3")) {
-                    World world = Bukkit.getWorld(worldName);
-                    Location loc = new Location(world, -93, 4, -228);
-                    player.teleport(loc);
-                    world.spawnParticle(Particle.CLOUD, loc, 100, 1, 1.0, 1.0, 0.1);
-                }
-                if (uniqueId.equals("teleport4")) {
-                    World world = Bukkit.getWorld(worldName);
-                    Location loc = new Location(world, -93, 4, -228);
-                    player.teleport(loc);
-                    world.spawnParticle(Particle.CLOUD, loc, 100, 1, 1.0, 1.0, 0.1);
-                }
-            } catch (Exception ex) {
-
-            }
-
-
-        }
-    }
-
 
     /**
      * エンティティがダメージを受けた時
