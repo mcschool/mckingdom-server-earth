@@ -122,7 +122,7 @@ public class LobbyWorld implements Listener{
 
     public void changeWorld(Player player) {
         player.performCommand("mvtp world");
-        Location location = new Location(Bukkit.getWorld("world"),-107,3,-1506);
+        Location location = new Location(Bukkit.getWorld("world"),-106,3,-1506);
         player.teleport(location);
         // PlayerServiceでプレーヤー情報登録
         // PlayersService playerService = new PlayersService();
