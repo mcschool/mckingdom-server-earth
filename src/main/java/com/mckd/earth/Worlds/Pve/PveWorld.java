@@ -102,15 +102,11 @@ public class PveWorld implements Listener {
             }
 
             //Score board
-            player.sendMessage("a");
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
-            player.sendMessage("b");
             Scoreboard sb = sbm.getMainScoreboard();
-            player.sendMessage("c");
             Objective obj = sb.getObjective("point");
-            player.sendMessage("d");
+            // TODO: ↓でぬるぽが発生
             // obj.setDisplayName(ChatColor.GOLD + "ポイント");
-            player.sendMessage("e");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
