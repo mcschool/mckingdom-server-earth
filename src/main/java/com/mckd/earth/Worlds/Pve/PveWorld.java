@@ -146,10 +146,8 @@ public class PveWorld implements Listener {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
-            Score score = obj.getScore(p.getDisplayName());
             String line = sign.getLine(1);
             String line2 = sign.getLine(2);
-            int point = score.getScore();
             if (line.equals("GameStart")) {
                 p.sendMessage("d");
                 Location location = new Location(p.getWorld(), -504, 13, -124);
@@ -159,6 +157,8 @@ public class PveWorld implements Listener {
             if (line.equals("クリアポイント")) {
                 this.showRanking(p);
             }
+            Score score = obj.getScore(p.getDisplayName());
+            int point = score.getScore();
             // 鉄の剣
             if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
                 if (point >= 100) {
