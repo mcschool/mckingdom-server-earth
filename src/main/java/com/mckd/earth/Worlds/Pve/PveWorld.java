@@ -151,7 +151,7 @@ public class PveWorld implements Listener {
                 p.teleport(location);
                 this.start(p);
             }
-            if (line.equals("クリアポイント")) {
+            if (line.equals("クリア")) {
                 this.showRanking(p);
             }
             Score score = obj.getScore(p.getDisplayName());
