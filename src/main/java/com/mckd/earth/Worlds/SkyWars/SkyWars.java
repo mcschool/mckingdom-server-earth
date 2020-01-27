@@ -278,6 +278,7 @@ public class SkyWars implements Listener {
         }
         Block b = e.getClickedBlock();
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+            p.sendMessage("Game end, SkyWars is reloaded.");
             Sign sign;
             sign = (Sign) b.getState();
             String line = sign.getLine(1);
