@@ -106,11 +106,11 @@ public class PveWorld implements Listener {
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
             // TODO: ↓でぬるぽが発生
-            // obj.setDisplayName(ChatColor.GOLD + "ポイント");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
             }
+            obj.setDisplayName(ChatColor.GOLD + "ポイント");
             Score score = obj.getScore(player.getDisplayName());
             score.setScore(0);
             player.setScoreboard(sb);
