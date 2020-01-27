@@ -23,7 +23,7 @@ import static org.bukkit.Material.*;
 public class SkyWars implements Listener {
 
     Earth plugin;
-    String worldName = "skywars";
+    String worldName = "SkyWars";
     Boolean startFlag = false;
 
     public SkyWars(Earth plugin) {
@@ -63,7 +63,7 @@ public class SkyWars implements Listener {
                             @Override
                             public void run() {
                                 player1.performCommand("mvtp world");
-                                player1.performCommand("WorldRestorer load skywars test1");
+                                player1.performCommand("WorldRestorer load SkyWars");
                             }
                         }.runTaskLater(this.plugin, 100);
                     } else {
@@ -83,11 +83,10 @@ public class SkyWars implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage(player.getWorld().getName());
+        player.sendMessage("You are at "+player.getWorld().getName());
         if (player.getWorld().getName().equals(this.worldName)) {
             player.performCommand("mv modify set animals false");
             player.performCommand("mv modify set monsters false");
-            player.sendMessage("You are at SkyWars.");
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
             player.setFoodLevel(20);
