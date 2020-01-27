@@ -109,7 +109,7 @@ public class PveWorld implements Listener {
             player.sendMessage("c");
             Objective obj = sb.getObjective("point");
             player.sendMessage("d");
-            obj.setDisplayName(ChatColor.GOLD + "ポイント");
+            // obj.setDisplayName(ChatColor.GOLD + "ポイント");
             player.sendMessage("e");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
