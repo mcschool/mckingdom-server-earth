@@ -4,10 +4,13 @@ import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Pve.PveRespawnScheduler;
 import com.mckd.earth.Worlds.Pve.PveScheduler;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -15,6 +18,10 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.List;
 
@@ -260,5 +267,31 @@ public class SkyWars implements Listener {
             }
         }
     }*/
+
+
+    @EventHandler
+    public void signClick(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        // プレーヤーがいるワールドがpveじゃなかったら何も終わり
+        if (!p.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        Block b = e.getClickedBlock();
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+            Sign sign;
+            sign = (Sign) b.getState();
+            String line = sign.getLine(1);
+            String line2 = sign.getLine(2);
+            if (line.equals("GameEnd")) {
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        p.performCommand("mvtp world");
+                        p.performCommand("WorldRestorer load SkyWars");
+                    }
+                }.runTaskLater(this.plugin, 100);
+            }
+        }
+    }
 }
 
