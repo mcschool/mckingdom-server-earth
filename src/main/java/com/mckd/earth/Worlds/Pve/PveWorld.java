@@ -61,7 +61,7 @@ public class PveWorld implements Listener {
             player.setHealth(20.0);
             player.getWorld().setPVP(false);
             player.getInventory().clear();
-            Location location = new Location(player.getWorld(), -497, 71, -109);
+            Location location = new Location(player.getWorld(), -497, 77, -107);
             player.teleport(location);
         }
     }
