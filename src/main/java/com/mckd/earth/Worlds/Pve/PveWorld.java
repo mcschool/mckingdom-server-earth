@@ -130,12 +130,15 @@ public class PveWorld implements Listener {
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         // プレーヤーがいるワールドがpveじゃなかったら何も終わり
+        p.sendMessage("a");
         if (!p.getWorld().getName().equals("pve")) {
             return;
         }
+        p.sendMessage("b");
         Block b = e.getClickedBlock();
         // 右クリックした "かつ" クリックしたブロックが看板だった場合
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+            p.sendMessage("c");
             // ここでスコアをみてアイテムをあげる
             // あらかじめ利用する変数を用意しておく
             Sign sign;
@@ -148,6 +151,7 @@ public class PveWorld implements Listener {
             String line2 = sign.getLine(2);
             int point = score.getScore();
             if (line.equals("GameStart")) {
+                p.sendMessage("d");
                 Location location = new Location(p.getWorld(), -504, 13, -124);
                 p.teleport(location);
                 this.start(p);
