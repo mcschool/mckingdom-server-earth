@@ -102,10 +102,15 @@ public class PveWorld implements Listener {
             }
 
             //Score board
+            player.sendMessage("a");
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
+            player.sendMessage("b");
             Scoreboard sb = sbm.getMainScoreboard();
+            player.sendMessage("c");
             Objective obj = sb.getObjective("point");
+            player.sendMessage("d");
             obj.setDisplayName(ChatColor.GOLD + "ポイント");
+            player.sendMessage("e");
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -130,15 +135,12 @@ public class PveWorld implements Listener {
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         // プレーヤーがいるワールドがpveじゃなかったら何も終わり
-        p.sendMessage("a");
         if (!p.getWorld().getName().equals("pve")) {
             return;
         }
-        p.sendMessage("b");
         Block b = e.getClickedBlock();
         // 右クリックした "かつ" クリックしたブロックが看板だった場合
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
-            p.sendMessage("c");
             // ここでスコアをみてアイテムをあげる
             // あらかじめ利用する変数を用意しておく
             Sign sign;
@@ -149,7 +151,6 @@ public class PveWorld implements Listener {
             String line = sign.getLine(1);
             String line2 = sign.getLine(2);
             if (line.equals("GameStart")) {
-                p.sendMessage("d");
                 Location location = new Location(p.getWorld(), -504, 13, -124);
                 p.teleport(location);
                 this.start(p);
