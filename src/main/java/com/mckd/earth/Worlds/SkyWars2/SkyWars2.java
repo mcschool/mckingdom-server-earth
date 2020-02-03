@@ -93,12 +93,14 @@ public class SkyWars2 implements Listener {
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
             if (players.size() == 2) {
-                new SkyWarsScheduler2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
-                new SkyWarsSchedulerChest2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+                //new SkyWarsScheduler2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+                //new SkyWarsSchedulerChest2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 startFlag = true;
             }
             if(players.size() == 1){
                 World world = player.getWorld();
+                new SkyWarsScheduler2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
+                new SkyWarsSchedulerChest2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 //1人目のガラス
                 world.getBlockAt(-176, 16, -2).setType(Material.GLASS);
                 world.getBlockAt(-176, 17, -2).setType(Material.GLASS);

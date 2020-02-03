@@ -30,20 +30,20 @@ public class SkyWarsSchedulerChest2 extends BukkitRunnable {
     public void run() {
        this.count--;
         if (this.count < 1) {
-            this.RefillChest(new Location(world,471, 11, -875),0);
-            this.RefillChest(new Location(world,425, 11, -875),0);
+            this.RefillChest(new Location(world, -170, 13, -2), 0);
+            this.RefillChest(new Location(world, -238, 12, -2), 0);
 
-            this.RefillChest(new Location(world,469, 11, -879),1);
-            this.RefillChest(new Location(world,431, 11, -879),1);
+            this.RefillChest(new Location(world, -171, 8, -2), 1);
+            this.RefillChest(new Location(world, -237, 7, -2), 1);
 
-            this.RefillChest(new Location(world,472, 6, -872),2);
-            this.RefillChest(new Location(world,420, 7, -871),2);
+            this.RefillChest(new Location(world, -173, 8, 0), 2);
+            this.RefillChest(new Location(world, -235, 7, -4), 2);
 
-            this.RefillChest(new Location(world,447, 13, -855),3);
-            this.RefillChest(new Location(world,447, 16, -901),3);
+            this.RefillChest(new Location(world, -200, 12, 4), 3);
+            this.RefillChest(new Location(world, -211, 12, -6), 3);
 
-            this.RefillChest(new Location(world,455, 14, -857),4);
-            this.RefillChest(new Location(world,440, 16, -900),4);
+            this.RefillChest(new Location(world, -202, 6, 1), 4);
+            this.RefillChest(new Location(world, -208, 6, -5), 4);
             this.count = 80;
             this.sendMessageToPlayers(this.world,"チェストの中身が追加されました");
             this.cancel();
