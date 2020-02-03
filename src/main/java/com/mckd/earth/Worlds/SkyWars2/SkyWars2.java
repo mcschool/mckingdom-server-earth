@@ -124,13 +124,13 @@ public class SkyWars2 implements Listener {
                 this.spawnChest(new Location(world, 447, 13, -855), 3);
 
                 this.spawnChest(new Location(world, 440, 16, -900), 4);
-                this.spawnChest(new Location(world, 455, 14, -857), 4);
+                this.spawnChest(new Location(world, 455, 14, -857), 4);*/
 
 
 
 
                 //ワールドに入った時にプレイヤーをテレポートさせる
-                Location location = new Location(player.getWorld(), 473.494, 15, -874.500);
+                Location location = new Location(player.getWorld(), -174.504, 17, -1.504);
                 player.teleport(location);
 
 
@@ -140,19 +140,19 @@ public class SkyWars2 implements Listener {
                 //new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 World world2 = player.getWorld();
                 //2人目のガラス
-                world2.getBlockAt(427, 15, -874).setType(Material.GLASS);
-                world2.getBlockAt(427, 16, -874).setType(Material.GLASS);
-                world2.getBlockAt(428, 15, -875).setType(Material.GLASS);
-                world2.getBlockAt(428, 16, -875).setType(Material.GLASS);
-                world2.getBlockAt(426, 15, -875).setType(Material.GLASS);
-                world2.getBlockAt(426, 16, -875).setType(Material.GLASS);
-                world2.getBlockAt(427, 15, -876).setType(Material.GLASS);
-                world2.getBlockAt(427, 16, -876).setType(Material.GLASS);
-                world2.getBlockAt(427, 14, -875).setType(Material.GLASS);
-                world2.getBlockAt(427, 17, -875).setType(Material.GLASS);
+                world2.getBlockAt(-232, 16, -2).setType(Material.GLASS);
+                world2.getBlockAt(-232, 17, -2).setType(Material.GLASS);
+                world2.getBlockAt(-234, 16, -2).setType(Material.GLASS);
+                world2.getBlockAt(-234, 17, -2).setType(Material.GLASS);
+                world2.getBlockAt(-233, 16, -1).setType(Material.GLASS);
+                world2.getBlockAt(-233, 17, -1).setType(Material.GLASS);
+                world2.getBlockAt(-233, 16, -3).setType(Material.GLASS);
+                world2.getBlockAt(-233, 17, -3).setType(Material.GLASS);
+                world2.getBlockAt(-233, 15, -2).setType(Material.GLASS);
+                world2.getBlockAt(-233, 18, -2).setType(Material.GLASS);
 
-                Location location = new Location(player.getWorld(), 427.494, 15, -874.491);
-                player.teleport(location);*/
+                Location location = new Location(player.getWorld(), -233.508, 17, -1.521);
+                player.teleport(location);
             }
             if(players.size() >= 3){
                 player.setGameMode(GameMode.SPECTATOR);

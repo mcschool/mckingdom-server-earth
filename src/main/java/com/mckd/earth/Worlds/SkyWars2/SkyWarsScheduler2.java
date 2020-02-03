@@ -45,16 +45,16 @@ public class SkyWarsScheduler2 extends BukkitRunnable {
             player.setGameMode(GameMode.SURVIVAL);
         }
         //1人目のガラス
-        world.getBlockAt(473, 15, -874).setType(Material.AIR);
-        world.getBlockAt(473, 16, -874).setType(Material.AIR);
-        world.getBlockAt(474, 15, -875).setType(Material.AIR);
-        world.getBlockAt(474, 16, -875).setType(Material.AIR);
-        world.getBlockAt(472, 15, -875).setType(Material.AIR);
-        world.getBlockAt(472, 16, -875).setType(Material.AIR);
-        world.getBlockAt(473, 15, -876).setType(Material.AIR);
-        world.getBlockAt(473, 16, -876).setType(Material.AIR);
-        world.getBlockAt(473, 14, -875).setType(Material.AIR);
-        world.getBlockAt(473, 17, -875).setType(Material.AIR);
+        world.getBlockAt(-176, 16, -2).setType(Material.AIR);
+        world.getBlockAt(-176, 17, -2).setType(Material.AIR);
+        world.getBlockAt(-174, 16, -2).setType(Material.AIR);
+        world.getBlockAt(-174, 17, -2).setType(Material.AIR);
+        world.getBlockAt(-175, 16, -3).setType(Material.AIR);
+        world.getBlockAt(-175, 17, -3).setType(Material.AIR);
+        world.getBlockAt(-175, 16, -1).setType(Material.AIR);
+        world.getBlockAt(-175, 17, -1).setType(Material.AIR);
+        world.getBlockAt(-175, 15, -2).setType(Material.AIR);
+        world.getBlockAt(-175, 18, -2).setType(Material.AIR);
 
 
         world.getBlockAt(427, 15, -874).setType(Material.AIR);
