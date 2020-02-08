@@ -113,12 +113,18 @@ public class SkyWars2 implements Listener {
 
                 this.spawnChest(new Location(world, -170, 13, -2), 0);
                 this.spawnChest(new Location(world, -238, 12, -2), 0);
+                this.spawnChest(new Location(world, -205, 13, -34), 0);
+                this.spawnChest(new Location(world, -205, 13, 31), 0);
 
                 this.spawnChest(new Location(world, -171, 8, -2), 1);
                 this.spawnChest(new Location(world, -237, 7, -2), 1);
+                this.spawnChest(new Location(world, -205, 8, -33), 1);
+                this.spawnChest(new Location(world, -205, 8, 30), 1);
 
                 this.spawnChest(new Location(world, -173, 8, 0), 2);
                 this.spawnChest(new Location(world, -235, 7, -4), 2);
+                this.spawnChest(new Location(world, -203, 8, -31), 2);
+                this.spawnChest(new Location(world, -207, 8, 28), 2);
 
                 this.spawnChest(new Location(world, -200, 12, 4), 3);
                 this.spawnChest(new Location(world, -211, 12, -6), 3);
@@ -137,7 +143,6 @@ public class SkyWars2 implements Listener {
             }
 
             if (players.size() == 2) {
-                //new SkyWarsScheduler(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 World world2 = player.getWorld();
                 //2人目のガラス
                 world2.getBlockAt(-232, 16, -2).setType(Material.GLASS);
@@ -154,7 +159,44 @@ public class SkyWars2 implements Listener {
                 Location location = new Location(player.getWorld(), -232.508, 17, -1.542);
                 player.teleport(location);
             }
-            if(players.size() >= 3){
+
+            if (players.size() == 3) {
+                World world2 = player.getWorld();
+                //3人目のガラス
+                world2.getBlockAt(-205, 17, -28).setType(Material.GLASS);
+                world2.getBlockAt(-205, 18, -28).setType(Material.GLASS);
+                world2.getBlockAt(-205, 17, -30).setType(Material.GLASS);
+                world2.getBlockAt(-205, 18, -30).setType(Material.GLASS);
+                world2.getBlockAt(-206, 17, -29).setType(Material.GLASS);
+                world2.getBlockAt(-206, 18, -29).setType(Material.GLASS);
+                world2.getBlockAt(-204, 17, -29).setType(Material.GLASS);
+                world2.getBlockAt(-204, 18, -29).setType(Material.GLASS);
+                world2.getBlockAt(-205, 16, -29).setType(Material.GLASS);
+                world2.getBlockAt(-205, 19, -29).setType(Material.GLASS);
+
+                Location location = new Location(player.getWorld(), -204.511, 17, -1.542);
+                player.teleport(location);
+            }
+
+            if (players.size() == 4) {
+                World world2 = player.getWorld();
+                //4人目のガラス
+                world2.getBlockAt(-205, 17, 27).setType(Material.GLASS);
+                world2.getBlockAt(-205, 18, 27).setType(Material.GLASS);
+                world2.getBlockAt(-205, 17, 25).setType(Material.GLASS);
+                world2.getBlockAt(-205, 18, 25).setType(Material.GLASS);
+                world2.getBlockAt(-204, 17, 26).setType(Material.GLASS);
+                world2.getBlockAt(-204, 18, 26).setType(Material.GLASS);
+                world2.getBlockAt(-206, 17, 26).setType(Material.GLASS);
+                world2.getBlockAt(-206, 18, 26).setType(Material.GLASS);
+                world2.getBlockAt(-205, 16, 26).setType(Material.GLASS);
+                world2.getBlockAt(-205, 19, 26).setType(Material.GLASS);
+
+                Location location = new Location(player.getWorld(), -204.485, 17, -28.514);
+                player.teleport(location);
+            }
+
+            if(players.size() >= 5){
                 player.setGameMode(GameMode.SPECTATOR);
             }
         }
