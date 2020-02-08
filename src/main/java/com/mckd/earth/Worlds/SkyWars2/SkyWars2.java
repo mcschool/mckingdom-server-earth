@@ -151,7 +151,7 @@ public class SkyWars2 implements Listener {
                 world2.getBlockAt(-233, 15, -2).setType(Material.GLASS);
                 world2.getBlockAt(-233, 18, -2).setType(Material.GLASS);
 
-                Location location = new Location(player.getWorld(), -233.508, 17, -1.521);
+                Location location = new Location(player.getWorld(), -232.508, 17, -1.542);
                 player.teleport(location);
             }
             if(players.size() >= 3){
