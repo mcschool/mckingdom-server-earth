@@ -93,7 +93,7 @@ public class SkyWars2 implements Listener {
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             // ワールドにいる人数が1人だ以上だった場合スケジューラースタート
-            if (players.size() == 1) {
+            if (players.size() == 2) {
                 new SkyWarsScheduler2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 new SkyWarsSchedulerChest2(this.plugin, player.getWorld()).runTaskTimer(this.plugin, 0, 20);
                 startFlag = true;
