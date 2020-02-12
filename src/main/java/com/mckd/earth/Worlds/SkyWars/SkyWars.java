@@ -70,8 +70,9 @@ public class SkyWars implements Listener {
                             @Override
                             public void run() {
                                 player1.performCommand("mvtp world");
+                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"tell 4tqff test1");
                                 //player1.performCommand("WorldRestorer load SkyWars");
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load SkyWars2");
+                                //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load SkyWars2");
                             }
                         }.runTaskLater(this.plugin, 100);
                     } else {
