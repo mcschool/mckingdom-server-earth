@@ -3,7 +3,12 @@ package com.mckd.earth.Worlds.TypingButtle;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Worlds.Lobby.LobbyInventory;
 import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +24,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.ByteArrayOutputStream;
@@ -158,6 +164,7 @@ public class TypingButtleWorld implements Listener {
                 if(player == this.playerRed){
                     double health = this.playerBlue.getHealth();
                     this.playerBlue.setHealth(health -2.0);
+                    this.playerRed.sendMessage("REDの残りの体力は" + this.playerBlue.getHealth() + "です");
                     this.Start();
                     if (this.playerBlue.getHealth() == 0.0) {
                         this.playerBlue.setHealth(2.0);
@@ -169,6 +176,7 @@ public class TypingButtleWorld implements Listener {
                 if(player == this.playerBlue) {
                     double health = this.playerRed.getHealth();
                     this.playerRed.setHealth(health -2.0);
+                    this.playerBlue.sendMessage("REDの残りの体力は" + this.playerRed.getHealth() + "です");
                     this.Start();
                     if (this.playerRed.getHealth() == 0.0){
                         this.playerRed.setHealth(2.0);
