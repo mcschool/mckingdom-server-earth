@@ -186,8 +186,8 @@ public class TypingButtleWorld implements Listener {
                     }
                 }
             }
+            event.setCancelled(true);
         }
-        event.setCancelled(true);
     }
 
     @EventHandler
