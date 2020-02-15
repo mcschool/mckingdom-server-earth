@@ -180,9 +180,7 @@ public class TypingButtleWorld implements Listener {
                 }
             }
         }
-        if (!event.getPlayer().getWorld().getName().equals(this.worldname)){
-            event.setCancelled(true);
-        }
+        event.setCancelled(true);
     }
 
     @EventHandler
