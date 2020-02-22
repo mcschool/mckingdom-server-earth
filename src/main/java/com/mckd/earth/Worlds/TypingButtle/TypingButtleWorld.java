@@ -197,7 +197,7 @@ public class TypingButtleWorld implements Listener {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 if (event.getMaterial() == Material.CHEST){
                     this.playerGreen.sendMessage("ロビーに戻ります");
-                    this.GameEnd();
+                    this.playerGreen.performCommand("mvtp world");
                 }
             }
         }
