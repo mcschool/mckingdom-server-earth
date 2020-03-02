@@ -46,7 +46,7 @@ public class DropWorld implements Listener {
     public void BlockPlaceEvent(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
-            Location location = new Location(player.getWorld(), 0,0,0);
+            Location location = new Location(player.getWorld(), -1063,5,-626);
             Random random = new Random();
             location.setX(random.nextInt(10));
             location.setY(random.nextInt(10));
