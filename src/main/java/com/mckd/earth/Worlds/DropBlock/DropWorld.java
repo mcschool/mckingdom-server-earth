@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -38,12 +40,19 @@ public class DropWorld implements Listener {
         player.setFoodLevel(20);
         player.getWorld().setPVP(false);
 
-        Location location = new Location(player.getWorld(), 0,0,0);
-        Random random = new Random();
-        location.setX(random.nextInt(10));
-        location.setY(random.nextInt(10));
-        location.setZ(random.nextInt(10));
-        player.teleport(location);
+    }
+
+    @EventHandler
+    public void BlockPlaceEvent(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
+            Location location = new Location(player.getWorld(), 0,0,0);
+            Random random = new Random();
+            location.setX(random.nextInt(10));
+            location.setY(random.nextInt(10));
+            location.setZ(random.nextInt(10));
+            player.teleport(location);
+        }
     }
 }
 
