@@ -6,6 +6,7 @@ import com.mckd.earth.Commands.SkyWarsCommand;
 import com.mckd.earth.TntRun.TntRunWorld;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
+import com.mckd.earth.Worlds.DropBlock.DropWorld;
 import com.mckd.earth.Worlds.Lobby.LobbyWorld;
 import com.mckd.earth.Worlds.Party.PartyWorld;
 import com.mckd.earth.Worlds.Pve.PveWorld;
@@ -37,6 +38,7 @@ public final class Earth extends JavaPlugin {
         new SkyWars(this);
         new SkyWars2(this);
         new TypingButtleWorld(this);
+        new DropWorld(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
