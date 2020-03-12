@@ -53,53 +53,14 @@ public class DropWorld implements Listener {
             Sign sign;
             sign = (Sign) block.getState();
             String line = sign.getLine(1);
-            String line2 = sign.getLine(2);
             if (line.equals("YES")){
                 player.sendMessage("あなたの前世は豚です");
-            }
-            if (line.equals("NO")){
+            }else{
                 player.sendMessage("朝ごはんは毎日食べる");
                 if (line.equals("YES")){
                     player.sendMessage("鳩が寄ってくる");
-                    if (line.equals("YES")){
-                        player.sendMessage("掛け算が割と得意");
-                        if (line.equals("YES")){
-                            player.sendMessage(("あなたの前世はみじんこです"));
-                        }
-                        if (line.equals("NO")){
-                            player.sendMessage("道路に落ちている軍手をよく食べている");
-                        }
-                    }
-                    if (line.equals("NO")){
-                        player.sendMessage("雲を眺めるのが好き");
-                    }
-                }
-                if (line.equals("NO")){
-                    player.sendMessage("水をよく飲む");
-                    if (line.equals("YES")){
-                        player.sendMessage("雲を眺めるのが好き");
-                        if (line.equals("YES")){
-                            player.sendMessage("道路に落ちている軍手をよく食べる");
-                            if (line.equals("YES")){
-                                player.sendMessage("あなたの前世は.....ないです");
-                            }
-                            if (line.equals("NO")){
-                                player.sendMessage("あなたの前世は醤油ですかね");
-                            }
-                        }
-                        if (line.equals("NO")){
-                            player.sendMessage("あなたの前世は食物繊維です");
-                        }
-                    }
-                    if (line.equals("NO")){
-                        player.sendMessage("肉と魚だったら、どちらかといえば魚");
-                        if (line.equals("YES")){
-                            player.sendMessage("あなたの前世は食物繊維です");
-                        }
-                        if (line.equals("NO")){
-                            player.sendMessage("あなたの前世は自由の女神です");
-                        }
-                    }
+                }else{
+                    player.sendMessage("雲を眺めるのが好き");
                 }
             }
         }
