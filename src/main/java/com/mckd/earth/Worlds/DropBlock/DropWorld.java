@@ -54,10 +54,10 @@ public class DropWorld implements Listener {
             String line = sign.getLine(1);
             String line2 = sign.getLine(2);
             player.sendMessage("あなたの前世は王子様orお姫様だと思う");
-            if (line.equals("はい")){
+            if (line.equals("YES")){
                 player.sendMessage("あなたの前世は豚です");
             }
-            if (line.equals("いいえ")){
+            if (line.equals("NO")){
                 player.sendMessage("朝ごはんは毎日食べる");
             }
         }
