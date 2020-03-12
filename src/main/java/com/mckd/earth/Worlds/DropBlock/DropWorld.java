@@ -41,24 +41,5 @@ public class DropWorld implements Listener {
         player.getWorld().setPVP(false);
 
     }
-
-    @EventHandler
-    public void BlockPlaceEvent(BlockPlaceEvent event) {
-        Player player = event.getPlayer();
-        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
-            Random random = new Random();
-            int minx =100;
-            int maxx = 100;
-            int minz = 100;
-            int maxz = 100;
-
-            int x = random.nextInt(maxx - (minx) + 1) + (minx);
-            int z = random.nextInt(maxz - (minz) + 1) + (minz);
-            int y = player.getWorld().getHighestBlockAt(x, z).getY();
-            Location loc = new Location(player.getWorld(), x,y,z);
-
-            player.teleport(loc);
-        }
-    }
 }
 
