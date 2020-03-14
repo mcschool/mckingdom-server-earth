@@ -68,7 +68,7 @@ public class DropWorld implements Listener {
         }
     }*/
 
-    EventHandler
+    @EventHandler
     public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         String mes = event.getMessage();
