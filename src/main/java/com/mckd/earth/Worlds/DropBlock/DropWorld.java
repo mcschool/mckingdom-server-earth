@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
@@ -42,6 +43,7 @@ public class DropWorld implements Listener {
         player.sendMessage("あなたの前世は王子様orお姫様だと思う");
     }
 
+    /*
     @EventHandler
     public void signClick(PlayerInteractEvent event){
         Player player = event.getPlayer();
@@ -62,6 +64,24 @@ public class DropWorld implements Listener {
                 }else{
                     player.sendMessage("雲を眺めるのが好き");
                 }
+            }
+        }
+    }*/
+
+    EventHandler
+    public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
+        Player player = event.getPlayer();
+        String mes = event.getMessage();
+        if (mes.equals("y")){
+            player.sendMessage("あなたの前世は豚です");
+        }
+        if (mes.equals("n")){
+            player.sendMessage("朝ごはんは毎日食べている");
+            if (mes.equals("y")){
+                player.sendMessage("鳩が乗ってくる");
+            }
+            if (mes.equals("n")){
+                player.sendMessage("雲を眺めるのが好き");
             }
         }
     }
