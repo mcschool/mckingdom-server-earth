@@ -74,14 +74,13 @@ public class DropWorld implements Listener {
         String mes = event.getMessage();
         if (mes.equals("y")){
             player.sendMessage("あなたの前世は豚です");
-        }
-        if (mes.equals("n")){
-            player.sendMessage("朝ごはんは毎日食べている");
-            if (mes.equals("n") && mes.equals("y")){
-                player.sendMessage("鳩が乗ってくる");
-            }
-            if (mes.equals("n") && mes.equals("n")){
-                player.sendMessage("雲を眺めるのが好き");
+        }else{
+            if (mes.equals("n")){
+                player.sendMessage("朝ごはんは毎日食べている");
+            }else{
+                if (mes.equals("y")){
+                    player.sendMessage("鳩が乗ってくる");
+                }
             }
         }
     }
