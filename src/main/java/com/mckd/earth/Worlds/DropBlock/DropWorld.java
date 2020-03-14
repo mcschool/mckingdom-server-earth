@@ -77,10 +77,10 @@ public class DropWorld implements Listener {
         }
         if (mes.equals("n")){
             player.sendMessage("朝ごはんは毎日食べている");
-            if (mes.equals("y")){
+            if (mes.equals("n") && mes.equals("y")){
                 player.sendMessage("鳩が乗ってくる");
             }
-            if (mes.equals("n")){
+            if (mes.equals("n") && mes.equals("n")){
                 player.sendMessage("雲を眺めるのが好き");
             }
         }
