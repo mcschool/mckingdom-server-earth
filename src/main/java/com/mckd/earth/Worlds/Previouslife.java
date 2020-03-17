@@ -25,20 +25,17 @@ public class Previouslife implements Listener {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
             this.playerRed = player;
+            player.setGameMode(GameMode.ADVENTURE);
+            player.setPlayerWeather(WeatherType.CLEAR);
+            player.setFoodLevel(20);
+            player.setHealth(20);
+            player.getInventory().clear();
 
+            player.sendMessage("これからあなたの前世診断を始めます");
+
+            this.Start();
         }
-        player.setGameMode(GameMode.ADVENTURE);
-        player.setPlayerWeather(WeatherType.CLEAR);
-        player.setFoodLevel(20);
-        player.setHealth(20);
-        player.getInventory().clear();
-
-        player.sendMessage("これからあなたの前世診断を始めます");
-
-        this.Start();
-
     }
-
 
 
 
