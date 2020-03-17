@@ -25,7 +25,6 @@ public class Previouslife implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("You ar at "+ player.getWorld().getName());
         if (player.getWorld().getName().equals(this.worldName)) {
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
@@ -35,7 +34,7 @@ public class Previouslife implements Listener {
 
             player.sendMessage("これからあなたの前世診断を始めます");
 
-            //this.Start();
+            this.Start();
 
         }
     }
