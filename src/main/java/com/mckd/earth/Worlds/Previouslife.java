@@ -21,6 +21,7 @@ public class Previouslife implements Listener {
     public Previouslife(Earth plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
+
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
@@ -34,7 +35,7 @@ public class Previouslife implements Listener {
 
             player.sendMessage("これからあなたの前世診断を始めます");
 
-            this.Start();
+            //this.Start();
             /*Random r = new Random();
             int n = r.nextInt(10);
             String q = "a";
@@ -52,37 +53,58 @@ public class Previouslife implements Listener {
         }
     }
 
-    public void Start(){
+    public void Start() {
         Random r = new Random();
         int n = r.nextInt(10);
         String q = "a";
-        if(n == 0) {q="hello";}
-        if(n == 1) {q="good";}
-        if(n == 2) {q="apple";}
-        if(n == 3) {q="blue";}
-        if(n == 4) {q="peach";}
-        if(n == 5) {q="red";}
-        if(n == 6) {q="dog";}
-        if(n == 7) {q="eye";}
-        if(n == 8) {q="nose";}
-        if(n == 9) {q="hair";}
+        if (n == 0) {
+            q = "hello";
+        }
+        if (n == 1) {
+            q = "good";
+        }
+        if (n == 2) {
+            q = "apple";
+        }
+        if (n == 3) {
+            q = "blue";
+        }
+        if (n == 4) {
+            q = "peach";
+        }
+        if (n == 5) {
+            q = "red";
+        }
+        if (n == 6) {
+            q = "dog";
+        }
+        if (n == 7) {
+            q = "eye";
+        }
+        if (n == 8) {
+            q = "nose";
+        }
+        if (n == 9) {
+            q = "hair";
+        }
         this.current_qustion = q;
     }
 
     @EventHandler
-    public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
-        if(event.getPlayer().getWorld().getName().equals("Previouslife")){
+    public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event) {
+        if (event.getPlayer().getWorld().getName().equals("Previouslife")) {
             Player player = event.getPlayer();
             String mes = event.getMessage();
             String question = this.current_qustion;
-            if(mes.equals(question)){
+            if (mes.equals(question)) {
 
 
             }
             event.setCancelled(true);
         }
     }
-  /*  private void sendMessageToPlayers(World world, String msg) {
+
+    /*private void sendMessageToPlayers(World world, String msg) {
         for (Player player : world.getPlayers()) {
             player.sendMessage(msg);
             player.sendTitle(msg, "", 10, 40, 10);
