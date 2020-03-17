@@ -87,8 +87,9 @@ public class Previouslife implements Listener {
             String mes = event.getMessage();
             String question = this.current_qustion;
             if (mes.equals(question)) {
-
-
+                if (player == this.playerRed) {
+                    this.Start();
+                }
             }
             event.setCancelled(true);
         }
