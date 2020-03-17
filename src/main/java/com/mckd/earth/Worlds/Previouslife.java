@@ -35,7 +35,7 @@ public class Previouslife implements Listener {
 
             player.sendMessage("これからあなたの前世診断を始めます");
 
-            //this.Start();
+            this.Start();
             /*Random r = new Random();
             int n = r.nextInt(10);
             String q = "a";
