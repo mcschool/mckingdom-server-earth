@@ -25,7 +25,7 @@ public class Previouslife implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("You ar at" + player.getWorld().getName());
+        player.sendMessage("You ar at "+ player.getWorld().getName());
         if (player.getWorld().getName().equals(this.worldName)) {
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
@@ -40,7 +40,7 @@ public class Previouslife implements Listener {
         }
     }
 
-    /*public void Start() {
+    public void Start() {
         Random r = new Random();
         int n = r.nextInt(10);
         String q = "a";
@@ -91,7 +91,7 @@ public class Previouslife implements Listener {
         }
     }
 
-    private void sendMessageToPlayers(World world, String msg) {
+    /*private void sendMessageToPlayers(World world, String msg) {
         for (Player player : world.getPlayers()) {
             player.sendMessage(msg);
             player.sendTitle(msg, "", 10, 40, 10);
