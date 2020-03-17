@@ -1,34 +1,20 @@
 package com.mckd.earth.Worlds.TypingButtle;
 
 import com.mckd.earth.Earth;
-import com.mckd.earth.Worlds.Lobby.LobbyInventory;
 import org.bukkit.*;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -196,6 +182,8 @@ public class TypingButtleWorld implements Listener {
         if (player.getWorld().getName().equals(this.worldname)) {
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
                 if (event.getMaterial() == Material.CHEST){
+                    this.playerGreen.sendMessage("ロビーに戻ります!");
+                    this.GameEnd();
                     this.playerGreen.sendMessage("ロビーに戻ります");
                     this.playerGreen.performCommand("mvtp world");
                 }
