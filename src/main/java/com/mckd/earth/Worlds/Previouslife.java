@@ -1,10 +1,7 @@
 package com.mckd.earth.Worlds;
 
 import com.mckd.earth.Earth;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.WeatherType;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +13,7 @@ import java.util.Random;
 public class Previouslife implements Listener {
     String worldName = "Previouslife";
     String current_qustion;
+    Player playerRed;
 
 
     public Previouslife(Earth plugin) {
@@ -26,18 +24,23 @@ public class Previouslife implements Listener {
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
-            player.setGameMode(GameMode.ADVENTURE);
-            player.setPlayerWeather(WeatherType.CLEAR);
-            player.setFoodLevel(20);
-            player.setHealth(20);
-            player.getInventory().clear();
-
-            player.sendMessage("これからあなたの前世診断を始めます");
-
-            this.Start();
+            this.playerRed = player;
 
         }
+        player.setGameMode(GameMode.ADVENTURE);
+        player.setPlayerWeather(WeatherType.CLEAR);
+        player.setFoodLevel(20);
+        player.setHealth(20);
+        player.getInventory().clear();
+
+        player.sendMessage("これからあなたの前世診断を始めます");
+
+        this.Start();
+
     }
+
+
+
 
     public void Start() {
         Random r = new Random();
@@ -73,6 +76,7 @@ public class Previouslife implements Listener {
         if (n == 9) {
             q = "hair";
         }
+        this.playerRed.sendTitle(q,"",0,20000,0);
         this.current_qustion = q;
     }
 
