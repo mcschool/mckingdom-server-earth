@@ -44,7 +44,7 @@ public class Previouslife implements Listener {
         int n = r.nextInt(10);
         String q = "a";
         if (n == 0) {
-            q = "hello";
+            q = "あなたの前世は王子様だと思いますか or お姫様だと思いますか";
         }
         if (n == 1) {
             q = "good";
