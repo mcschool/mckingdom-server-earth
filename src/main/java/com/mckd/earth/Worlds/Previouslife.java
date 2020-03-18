@@ -81,6 +81,11 @@ public class Previouslife implements Listener {
         this.current_qustion = q;
     }
 
+    public void Next() {
+        String u = "あなたはセミです";
+        this.playerRed.sendTitle(u,"a",0,20000,0);
+    }
+
 
     public void Correct_answer() {
         String c = "yes";
@@ -101,7 +106,7 @@ public class Previouslife implements Listener {
             String question = this.Correct_answer;
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
-                    this.Start();
+                    this.Next();
                 }
             }
             event.setCancelled(true);
