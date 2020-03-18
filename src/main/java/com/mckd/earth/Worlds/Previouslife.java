@@ -48,34 +48,34 @@ public class Previouslife implements Listener {
         int n = r.nextInt(10);
         String q = "a";
         if (n == 0) {
-            q = "yes";
+            q = "前世は王様だと思う";
         }
         if (n == 1) {
-            q = "good";
+            q = "前世は毎日朝ごはん食べている";
         }
         if (n == 2) {
-            q = "apple";
+            q = "前世は水をよく飲む";
         }
         if (n == 3) {
-            q = "blue";
+            q = "勉強が得意";
         }
         if (n == 4) {
-            q = "peach";
+            q = "空を見るのが好き";
         }
         if (n == 5) {
-            q = "red";
+            q = "運動が得意";
         }
         if (n == 6) {
-            q = "dog";
+            q = "肉と魚だったら肉の方が好き";
         }
         if (n == 7) {
-            q = "eye";
+            q = "人間じゃなかった";
         }
         if (n == 8) {
-            q = "nose";
+            q = "大食い";
         }
         if (n == 9) {
-            q = "hair";
+            q = "毎日充実していた";
         }
         this.playerRed.sendTitle(q,"",0,20000,0);
         this.current_qustion = q;
