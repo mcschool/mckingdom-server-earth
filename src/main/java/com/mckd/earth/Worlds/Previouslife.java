@@ -87,7 +87,7 @@ public class Previouslife implements Listener {
         if (n == 0) {
             a = "yes";
         }
-
+        this.playerRed.sendMessage(a);
         this.Correct_answer = a;
     }
 
