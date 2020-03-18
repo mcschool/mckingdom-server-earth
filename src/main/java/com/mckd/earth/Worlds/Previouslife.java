@@ -83,7 +83,7 @@ public class Previouslife implements Listener {
 
     public void Next() {
         String u = "あなたはセミです";
-        this.playerRed.sendTitle(u,"a",0,20000,0);
+        this.playerRed.sendTitle(u,"",0,20000,0);
     }
 
 
