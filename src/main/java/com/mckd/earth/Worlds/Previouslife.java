@@ -13,6 +13,7 @@ import java.util.Random;
 public class Previouslife implements Listener {
     String worldName = "Previouslife";
     String current_qustion;
+    String Correct_answer;
     Player playerRed;
 
 
@@ -34,6 +35,7 @@ public class Previouslife implements Listener {
             player.sendMessage("これからあなたの前世診断を始めます");
 
             this.Start();
+            this.Correct_answer();
         }
     }
 
@@ -44,7 +46,7 @@ public class Previouslife implements Listener {
         int n = r.nextInt(10);
         String q = "a";
         if (n == 0) {
-            q = "12345"; q = "yes";
+            q = "yes";
         }
         if (n == 1) {
             q = "good";
@@ -77,12 +79,24 @@ public class Previouslife implements Listener {
         this.current_qustion = q;
     }
 
+
+    public void Correct_answer() {
+        Random r = new Random();
+        int n = r.nextInt(10);
+        String a = "q";
+        if (n == 0) {
+            a = "yes";
+        }
+
+        this.Correct_answer = a;
+    }
+
     @EventHandler
     public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event) {
         if (event.getPlayer().getWorld().getName().equals("Previouslife")) {
             Player player = event.getPlayer();
             String mes = event.getMessage();
-            String question = this.current_qustion;
+            String question = this.Correct_answer;
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
                     this.Start();
