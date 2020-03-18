@@ -82,7 +82,24 @@ public class Previouslife implements Listener {
     }
 
     public void Next() {
-        String u = "あなたはセミです";
+        Random r = new Random();
+        int n = r.nextInt(10);
+        String u = "a";
+        if (n == 0) {
+            u = "あなたの前世はセミです";
+        }
+        if (n == 1) {
+            u = "あなたの前世は醤油です";
+        }
+        if (n == 2) {
+            u = "あなたの前世は織田信長です";
+        }
+        if (n == 3) {
+            u = "あなたの前世はみじんこです";
+        }
+        if (n == 4) {
+            u = "あなたの前世はコンクリートです";
+        }
         this.playerRed.sendTitle(u,"",0,20000,0);
     }
 
@@ -106,7 +123,14 @@ public class Previouslife implements Listener {
             String question = this.Correct_answer;
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
-                    this.Next();
+                    Random r = new Random();
+                    int n = r.nextInt(10);
+                    if (n ==0){
+                        this.Next();
+                    }
+                    if (n == 1) {
+                        this.Start();
+                    }
                 }
             }
             event.setCancelled(true);
@@ -122,7 +146,14 @@ public class Previouslife implements Listener {
             String question = this.Incorrect_answer;
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
-                    this.Start();
+                    Random r = new Random();
+                    int n = r.nextInt(10);
+                    if (n ==0){
+                        this.Next();
+                    }
+                    if (n == 1) {
+                        this.Start();
+                    }
                 }
             }
             event.setCancelled(true);
