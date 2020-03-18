@@ -81,13 +81,13 @@ public class Previouslife implements Listener {
 
 
     public void Correct_answer() {
-        Random r = new Random();
-        int n = r.nextInt(10);
-        String a = "q";
-        if (n == 0) {
+        //Random r = new Random();
+        //int n = r.nextInt(10);
+        String a = "yes";
+        /*if (n == 0) {
             a = "yes";
-        }
-        this.playerRed.sendMessage(a);
+        }*/
+        //this.playerRed.sendMessage(a);
         this.Correct_answer = a;
     }
 
