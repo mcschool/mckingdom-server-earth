@@ -14,6 +14,7 @@ public class Previouslife implements Listener {
     String worldName = "Previouslife";
     String current_qustion;
     String Correct_answer;
+    String Incorrect_answer;
     Player playerRed;
 
 
@@ -36,6 +37,7 @@ public class Previouslife implements Listener {
 
             this.Start();
             this.Correct_answer();
+            this.Incorrect_answer();
         }
     }
 
@@ -81,14 +83,14 @@ public class Previouslife implements Listener {
 
 
     public void Correct_answer() {
-        //Random r = new Random();
-        //int n = r.nextInt(10);
-        String a = "yes";
-        /*if (n == 0) {
-            a = "yes";
-        }*/
-        //this.playerRed.sendMessage(a);
-        this.Correct_answer = a;
+        String c = "yes";
+        this.Correct_answer = c;
+    }
+
+
+    public void Incorrect_answer(){
+        String i = "no";
+        this.Incorrect_answer = i;
     }
 
     @EventHandler
@@ -97,6 +99,22 @@ public class Previouslife implements Listener {
             Player player = event.getPlayer();
             String mes = event.getMessage();
             String question = this.Correct_answer;
+            if (mes.equals(question)) {
+                if (player == this.playerRed) {
+                    this.Start();
+                }
+            }
+            event.setCancelled(true);
+        }
+    }
+
+
+    @EventHandler
+    public void onAsyncPlayerChatEvent2(AsyncPlayerChatEvent event) {
+        if (event.getPlayer().getWorld().getName().equals("Previouslife")) {
+            Player player = event.getPlayer();
+            String mes = event.getMessage();
+            String question = this.Incorrect_answer;
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
                     this.Start();
