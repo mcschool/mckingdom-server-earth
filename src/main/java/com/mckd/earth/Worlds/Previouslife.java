@@ -83,7 +83,7 @@ public class Previouslife implements Listener {
 
     public void Next() {
         Random r = new Random();
-        int n = r.nextInt(10);
+        int n = r.nextInt(5);
         String u = "a";
         if (n == 0) {
             u = "あなたの前世はセミです";
@@ -124,7 +124,7 @@ public class Previouslife implements Listener {
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
                     Random r = new Random();
-                    int n = r.nextInt(10);
+                    int n = r.nextInt(3);
                     if (n ==0){
                         this.Next();
                     }
@@ -147,7 +147,7 @@ public class Previouslife implements Listener {
             if (mes.equals(question)) {
                 if (player == this.playerRed) {
                     Random r = new Random();
-                    int n = r.nextInt(10);
+                    int n = r.nextInt(3);
                     if (n ==0){
                         this.Next();
                     }
