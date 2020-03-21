@@ -49,46 +49,46 @@ public class Previouslife2 implements Listener {
 
     public void Start() {
         String q = "";
-        if (nowQs == "1-1") {
+        if (nowQs.equals("1-1")) {
             q = "1-1";
         }
-        if (nowQs == "1-2") {
+        if (nowQs.equals("1-2")) {
             q = "1-2";
         }
-        if (nowQs == "1-3") {
+        if (nowQs.equals("1-3")) {
             q = "1-3";
         }
-        if (nowQs == "1-4") {
+        if (nowQs.equals("1-4")) {
             q = "1-4";
         }
-        if (nowQs == "1-5") {
+        if (nowQs.equals("1-5")) {
             q = "1-5";
         }
-        if (nowQs == "2-1") {
+        if (nowQs.equals("2-1")) {
             q = "2-1";
         }
-        if (nowQs == "2-2") {
+        if (nowQs.equals("2-2")) {
             q = "2-2";
         }
-        if (nowQs == "2-3") {
+        if (nowQs.equals("2-3")) {
             q = "2-3";
         }
-        if (nowQs == "2-4") {
+        if (nowQs.equals("2-4")) {
             q = "2-4";
         }
-        if (nowQs == "3-2") {
+        if (nowQs.equals("3-2")) {
             q = "3-2";
         }
-        if (nowQs == "3-3") {
+        if (nowQs.equals("3-3")) {
             q = "3-3";
         }
-        if (nowQs == "3-4") {
+        if (nowQs.equals("3-4")) {
             q = "3-4";
         }
-        if (nowQs == "4-2") {
+        if (nowQs.equals("4-2")) {
             q = "4-2";
         }
-        if (nowQs == "4-3") {
+        if (nowQs.equals("4-3")) {
             q = "4-3";
         }
             this.playerRed.sendTitle(q, "", 0, 20000, 0);
@@ -108,92 +108,92 @@ public class Previouslife2 implements Listener {
                 String line = sign.getLine(1);
                 if (line.equals("Yes")) {
                     player.chat("yes");
-                    if(nowQs == "1-1"){
+                    if(nowQs.equals("1-1")){
                         nowQs = "2-1";
                     }
-                    if(nowQs == "1-2"){
+                    if(nowQs.equals("1-2")){
                         nowQs = "2-2";
                     }
-                    if(nowQs == "1-3"){
+                    if(nowQs.equals("1-3")){
                         nowQs = "2-3";
                     }
-                    if(nowQs == "1-4"){
+                    if(nowQs.equals("1-4")){
                         nowQs = "2-4";
                     }
-                    if(nowQs == "1-5"){
+                    if(nowQs.equals("1-5")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "2-1"){
+                    if(nowQs.equals("2-1")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "2-2"){
+                    if(nowQs.equals("2-2")){
                         nowQs = "3-2";
                     }
-                    if(nowQs == "2-3"){
+                    if(nowQs.equals("2-3")){
                         nowQs = "3-3";
                     }
-                    if(nowQs == "2-4"){
+                    if(nowQs.equals("2-4")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "3-2"){
+                    if(nowQs.equals("3-2")){
                         nowQs = "4-2";
                     }
-                    if(nowQs == "3-3"){
+                    if(nowQs.equals("3-3")){
                         nowQs = "4-3";
                     }
-                    if(nowQs == "3-4"){
+                    if(nowQs.equals("3-4")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "4-2"){
+                    if(nowQs.equals("4-2")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "4-3"){
+                    if(nowQs.equals("4-3")){
                         nowQs = "1-1";
                     }
 
                 }
                 if (line.equals("No")) {
                     player.chat("no");
-                    if(nowQs == "1-1"){
+                    if(nowQs.equals("1-1")){
                         nowQs = "1-2";
                     }
-                    if(nowQs == "1-2"){
+                    if(nowQs.equals("1-2")){
                         nowQs = "1-3";
                     }
-                    if(nowQs == "1-3"){
+                    if(nowQs.equals("1-3")){
                         nowQs = "1-4";
                     }
-                    if(nowQs == "1-4"){
+                    if(nowQs.equals("1-4")){
                         nowQs = "1-5";
                     }
-                    if(nowQs == "1-5"){
+                    if(nowQs.equals("1-5")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "2-1"){
+                    if(nowQs.equals("2-1")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "2-2"){
+                    if(nowQs.equals("2-2")){
                         nowQs = "2-3";
                     }
-                    if(nowQs == "2-3"){
+                    if(nowQs.equals("2-3")){
                         nowQs = "2-4";
                     }
-                    if(nowQs == "2-4"){
+                    if(nowQs.equals("2-4")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "3-2"){
+                    if(nowQs.equals("3-2")){
                         nowQs = "3-3";
                     }
-                    if(nowQs == "3-3"){
+                    if(nowQs.equals("3-3")){
                         nowQs = "3-4";
                     }
-                    if(nowQs == "3-4"){
+                    if(nowQs.equals("3-4")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "4-2"){
+                    if(nowQs.equals("4-2")){
                         nowQs = "1-1";
                     }
-                    if(nowQs == "4-3"){
+                    if(nowQs.equals("4-3")){
                         nowQs = "1-1";
                     }
                 }
