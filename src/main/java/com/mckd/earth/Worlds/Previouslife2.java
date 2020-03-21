@@ -144,58 +144,31 @@ public class Previouslife2 implements Listener {
                 String line = sign.getLine(1);
                 if (line.equals("Yes")) {
                     player.chat("yes");
-
+                        if (player == this.playerRed) {
+                            Random r = new Random();
+                            int n = r.nextInt(2);
+                            if (n ==0){
+                                this.Next();
+                            }
+                            if (n == 1) {
+                                this.Start();
+                            }
+                        }
                 }
                 if (line.equals("No")) {
                     player.chat("no");
-                }
-            }
-        }
-    }
-
-
-    @EventHandler
-    public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event) {
-        if (event.getPlayer().getWorld().getName().equals("Previouslife")) {
-            Player player = event.getPlayer();
-            String mes = event.getMessage();
-            String question = this.Correct_answer;
-            if (mes.equals(question)) {
-                if (player == this.playerRed) {
-                    Random r = new Random();
-                    int n = r.nextInt(3);
-                    if (n ==0){
-                        this.Next();
-                    }
-                    if (n == 1) {
-                        this.Start();
+                    if (player == this.playerRed) {
+                        Random r = new Random();
+                        int n = r.nextInt(2);
+                        if (n ==0){
+                            this.Next();
+                        }
+                        if (n == 1) {
+                            this.Start();
+                        }
                     }
                 }
             }
-            event.setCancelled(true);
-        }
-    }
-
-
-    @EventHandler
-    public void onAsyncPlayerChatEvent2(AsyncPlayerChatEvent event) {
-        if (event.getPlayer().getWorld().getName().equals("Previouslife")) {
-            Player player = event.getPlayer();
-            String mes = event.getMessage();
-            String question = this.Incorrect_answer;
-            if (mes.equals(question)) {
-                if (player == this.playerRed) {
-                    Random r = new Random();
-                    int n = r.nextInt(3);
-                    if (n ==0){
-                        this.Next();
-                    }
-                    if (n == 1) {
-                        this.Start();
-                    }
-                }
-            }
-            event.setCancelled(true);
         }
     }
 }
