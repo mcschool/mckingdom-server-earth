@@ -18,6 +18,7 @@ import java.util.Random;
 public class Previouslife2 implements Listener {
     Player playerRed;
     String worldName = "Previouslife2";
+    String current_qustion;
 
 
 
@@ -71,6 +72,7 @@ public class Previouslife2 implements Listener {
         }
 
         this.playerRed.sendTitle(q, "", 0, 20000, 0);
+        this.current_qustion = q;
     }
 
     public void Next(){
@@ -93,6 +95,8 @@ public class Previouslife2 implements Listener {
             q = "あなたの前世はコンクリートです";
         }
         this.playerRed.sendTitle(q, "", 0, 20000, 0);
+        this.current_qustion = q;
+
     }
 
     @EventHandler
