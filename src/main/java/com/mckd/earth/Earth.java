@@ -39,6 +39,7 @@ public final class Earth extends JavaPlugin {
         new SkyWars2(this);
         new TypingButtleWorld(this);
         new Previouslife(this);
+        new Previouslife2(this);
         new DropWorld(this);
         // new TestWorld(this);
 
