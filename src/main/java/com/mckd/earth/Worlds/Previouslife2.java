@@ -18,13 +18,15 @@ import java.util.Random;
 public class Previouslife2 implements Listener {
     Player playerRed;
     String worldName = "Previouslife2";
-    String current_qustion;
+    String nowQs = "1-1";
 
 
 
     public Previouslife2(Earth plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
+
+
 
 
     @EventHandler
@@ -46,58 +48,54 @@ public class Previouslife2 implements Listener {
 
 
     public void Start() {
-        Random r = new Random();
-        int n = r.nextInt(7);
-        String q = "a";
-        if (n == 0) {
-            q = "ゲームが好き";
+        String q = "";
+        if (nowQs == "1-1") {
+            q = "1-1";
         }
-        if (n == 1) {
-            q = "朝ごはんを食べた";
+        if (nowQs == "1-2") {
+            q = "1-2";
         }
-        if (n == 2) {
-            q = "水をよく飲む";
+        if (nowQs == "1-3") {
+            q = "1-3";
         }
-        if (n == 3) {
-            q = "勉強が得意";
+        if (nowQs == "1-4") {
+            q = "1-4";
         }
-        if (n == 4) {
-            q = "空を見るのが好き";
+        if (nowQs == "1-5") {
+            q = "1-5";
         }
-        if (n == 5) {
-            q = "運動が得意";
+        if (nowQs == "2-1") {
+            q = "2-1";
         }
-        if (n == 6) {
-            q = "肉と魚だったら肉の方が好き";
+        if (nowQs == "2-2") {
+            q = "2-2";
         }
-
-        this.playerRed.sendTitle(q, "", 0, 20000, 0);
-        this.current_qustion = q;
-    }
-
-    public void Next(){
-        Random r = new Random();
-        int n = r.nextInt(5);
-        String q = "a";
-        if (n == 0) {
-            q = "あなたの前世はセミです";
+        if (nowQs == "2-3") {
+            q = "2-3";
         }
-        if (n == 1) {
-            q = "あなたの前世は醤油です";
+        if (nowQs == "2-4") {
+            q = "2-4";
         }
-        if (n == 2) {
-            q = "あなたの前世は織田信長です";
+        if (nowQs == "3-2") {
+            q = "3-2";
         }
-        if (n == 3) {
-            q = "あなたの前世はみじんこです";
+        if (nowQs == "3-3") {
+            q = "3-3";
         }
-        if (n == 4) {
-            q = "あなたの前世はコンクリートです";
+        if (nowQs == "3-4") {
+            q = "3-4";
         }
-        this.playerRed.sendTitle(q,"", 0, 20000, 0);
-        this.current_qustion = q;
+        if (nowQs == "4-2") {
+            q = "4-2";
+        }
+        if (nowQs == "4-3") {
+            q = "4-3";
+        }
+            this.playerRed.sendTitle(q, "", 0, 20000, 0);
 
     }
+
+
 
     @EventHandler
     public void signClick(PlayerInteractEvent e) {
@@ -110,30 +108,17 @@ public class Previouslife2 implements Listener {
                 String line = sign.getLine(1);
                 if (line.equals("Yes")) {
                     player.chat("yes");
-                        if (player == this.playerRed) {
-                            Random r = new Random();
-                            int n = r.nextInt(2);
-                            if (n ==0){
-                                this.Next();
-                            }
-                            if (n == 1) {
-                                this.Start();
-                            }
-                        }
+                    if(nowQs == "1-1"){
+                        nowQs = "2-1";
+                    }
                 }
                 if (line.equals("No")) {
                     player.chat("no");
-                    if (player == this.playerRed) {
-                        Random r = new Random();
-                        int n = r.nextInt(2);
-                        if (n ==0){
-                            this.Next();
-                        }
-                        if (n == 1) {
-                            this.Start();
-                        }
+                    if(nowQs == "1-1"){
+                        nowQs = "1-2";
                     }
                 }
+                this.Start();
             }
         }
     }
