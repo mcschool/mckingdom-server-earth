@@ -19,6 +19,7 @@ public class Previouslife2 implements Listener {
     Player playerRed;
     String worldName = "Previouslife2";
     String nowQs = "1-1";
+    Boolean flag = false;
 
 
 
@@ -106,102 +107,131 @@ public class Previouslife2 implements Listener {
         if (player.getWorld().getName().equals(this.worldName)) {
             Block b = e.getClickedBlock();
             if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+                this.flag = true;
                 Sign sign;
                 sign = (Sign) b.getState();
                 String line = sign.getLine(1);
                 if (line.equals("Yes")) {
                     player.chat("yes");
-                    if(this.nowQs.equals("1-1")){
+                    if(flag && this.nowQs.equals("1-1")){
                         player.sendMessage("test1");
                         this.nowQs = "2-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-2")){
+                    if(flag && this.nowQs.equals("1-2")){
                         this.nowQs = "2-2";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-3")){
+                    if(flag && this.nowQs.equals("1-3")){
                         this.nowQs = "2-3";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-4")){
+                    if(flag && this.nowQs.equals("1-4")){
                         this.nowQs = "2-4";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-5")){
+                    if(flag && this.nowQs.equals("1-5")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-1")){
+                    if(flag && this.nowQs.equals("2-1")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-2")){
+                    if(flag && this.nowQs.equals("2-2")){
                         this.nowQs = "3-2";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-3")){
+                    if(flag && this.nowQs.equals("2-3")){
                         this.nowQs = "3-3";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-4")){
+                    if(flag && this.nowQs.equals("2-4")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("3-2")){
+                    if(flag && this.nowQs.equals("3-2")){
                         this.nowQs = "4-2";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("3-3")){
+                    if(flag && this.nowQs.equals("3-3")){
                         this.nowQs = "4-3";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("3-4")){
+                    if(flag && this.nowQs.equals("3-4")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("4-2")){
+                    if(flag && this.nowQs.equals("4-2")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("4-3")){
+                    if(flag && this.nowQs.equals("4-3")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
 
                 }
                 if (line.equals("No")) {
                     player.chat("no");
-                    if(this.nowQs.equals("1-1")){
+                    if(flag && this.nowQs.equals("1-1")){
                         this.nowQs = "1-2";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-2")){
+                    if(flag && this.nowQs.equals("1-2")){
                         this.nowQs = "1-3";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-3")){
+                    if(flag && this.nowQs.equals("1-3")){
                         this.nowQs = "1-4";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-4")){
+                    if(flag && this.nowQs.equals("1-4")){
                         this.nowQs = "1-5";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("1-5")){
+                    if(flag && this.nowQs.equals("1-5")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-1")){
+                    if(flag && this.nowQs.equals("2-1")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-2")){
+                    if(flag && this.nowQs.equals("2-2")){
                         this.nowQs = "2-3";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-3")){
+                    if(flag && this.nowQs.equals("2-3")){
                         this.nowQs = "2-4";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("2-4")){
+                    if(flag && this.nowQs.equals("2-4")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("3-2")){
+                    if(flag && this.nowQs.equals("3-2")){
                         this.nowQs = "3-3";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("3-3")){
+                    if(flag && this.nowQs.equals("3-3")){
                         this.nowQs = "3-4";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("3-4")){
+                    if(flag && this.nowQs.equals("3-4")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("4-2")){
+                    if(flag && this.nowQs.equals("4-2")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
-                    if(this.nowQs.equals("4-3")){
+                    if(flag && this.nowQs.equals("4-3")){
                         this.nowQs = "1-1";
+                        flag = false;
                     }
                 }
-                player.sendMessage("test2");
+                player.sendMessage("test2:"+this.nowQs);
                 this.Start();
             }
         }
