@@ -21,6 +21,8 @@ public class Previouslife2 implements Listener {
     String worldName = "Previouslife2";
     String Correct_answer;
     String Incorrect_answer;
+    String current_qustion;
+
 
 
     public Previouslife2(Earth plugin) {
@@ -60,7 +62,6 @@ public class Previouslife2 implements Listener {
         String g = "g";
         if (n == 0) {
             a = "前世は王様だと思う";
-
         }
         if (n == 1) {
             b = "前世は毎日朝ごはん食べている";
@@ -88,6 +89,13 @@ public class Previouslife2 implements Listener {
         this.playerRed.sendTitle(e, "", 0, 20000, 0);
         this.playerRed.sendTitle(f, "", 0, 20000, 0);
         this.playerRed.sendTitle(g, "", 0, 20000, 0);
+        this.current_qustion = a;
+        this.current_qustion = b;
+        this.current_qustion = c;
+        this.current_qustion = d;
+        this.current_qustion = e;
+        this.current_qustion = f;
+        this.current_qustion = g;
     }
 
     public void Next(){
