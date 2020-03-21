@@ -50,6 +50,7 @@ public class Previouslife2 implements Listener {
     public void Start() {
         String q = "";
         if (nowQs.equals("1-1")) {
+            this.playerRed.sendMessage("NG");
             q = "1-1";
         }
         if (nowQs.equals("1-2")) {
