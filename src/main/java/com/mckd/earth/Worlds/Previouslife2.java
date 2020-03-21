@@ -53,6 +53,7 @@ public class Previouslife2 implements Listener {
             q = "1-1";
         }
         if (nowQs.equals("1-2")) {
+            this.playerRed.sendMessage("test3");
             q = "1-2";
         }
         if (nowQs.equals("1-3")) {
@@ -65,6 +66,7 @@ public class Previouslife2 implements Listener {
             q = "1-5";
         }
         if (nowQs.equals("2-1")) {
+            this.playerRed.sendMessage("test4");
             q = "2-1";
         }
         if (nowQs.equals("2-2")) {
@@ -109,6 +111,7 @@ public class Previouslife2 implements Listener {
                 if (line.equals("Yes")) {
                     player.chat("yes");
                     if(nowQs.equals("1-1")){
+                        player.sendMessage("test1");
                         nowQs = "2-1";
                     }
                     if(nowQs.equals("1-2")){
@@ -197,6 +200,7 @@ public class Previouslife2 implements Listener {
                         nowQs = "1-1";
                     }
                 }
+                player.sendMessage("test2");
                 this.Start();
             }
         }
