@@ -18,9 +18,6 @@ import java.util.Random;
 public class Previouslife2 implements Listener {
     Player playerRed;
     String worldName = "Previouslife2";
-    String Correct_answer;
-    String Incorrect_answer;
-    //String current_qustion;
 
 
 
@@ -43,8 +40,6 @@ public class Previouslife2 implements Listener {
             player.sendMessage("これからあなたの前世診断を始めます");
 
             this.Start();
-            this.Correct_answer();
-            this.Incorrect_answer();
         }
     }
 
@@ -54,13 +49,13 @@ public class Previouslife2 implements Listener {
         int n = r.nextInt(7);
         String q = "a";
         if (n == 0) {
-            q = "前世は王様だと思う";
+            q = "ゲームが好き";
         }
         if (n == 1) {
-            q = "前世は毎日朝ごはん食べている";
+            q = "朝ごはんを食べた";
         }
         if (n == 2) {
-            q = "前世は水をよく飲む";
+            q = "水をよく飲む";
         }
         if (n == 3) {
             q = "勉強が得意";
@@ -76,7 +71,6 @@ public class Previouslife2 implements Listener {
         }
 
         this.playerRed.sendTitle(q, "", 0, 20000, 0);
-        //this.current_qustion = q;
     }
 
     public void Next(){
@@ -84,39 +78,21 @@ public class Previouslife2 implements Listener {
         int n = r.nextInt(7);
         String q = "a";
         if (n == 0) {
-            q = "前世は王様だと思う222";
+            q = "あなたの前世はセミです";
         }
         if (n == 1) {
-            q = "前世は毎日朝ごはん食べている22";
+            q = "あなたの前世は醤油です";
         }
         if (n == 2) {
-            q = "前世は水をよく飲む222";
+            q = "あなたの前世は織田信長です";
         }
         if (n == 3) {
-            q = "勉強が得意222";
+            q = "あなたの前世はみじんこです";
         }
         if (n == 4) {
-            q = "空を見るのが好き222";
-        }
-        if (n == 5) {
-            q = "運動が得意2222";
-        }
-        if (n == 6) {
-            q = "肉と魚だったら肉の方が好き222";
+            q = "あなたの前世はコンクリートです";
         }
         this.playerRed.sendTitle(q, "", 0, 20000, 0);
-    }
-
-
-    public void Correct_answer() {
-        String c = "yes";
-        this.Correct_answer = c;
-    }
-
-
-    public void Incorrect_answer(){
-        String i = "no";
-        this.Incorrect_answer = i;
     }
 
     @EventHandler
