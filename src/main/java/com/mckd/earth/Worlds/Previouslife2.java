@@ -111,11 +111,90 @@ public class Previouslife2 implements Listener {
                     if(nowQs == "1-1"){
                         nowQs = "2-1";
                     }
+                    if(nowQs == "1-2"){
+                        nowQs = "2-2";
+                    }
+                    if(nowQs == "1-3"){
+                        nowQs = "2-3";
+                    }
+                    if(nowQs == "1-4"){
+                        nowQs = "2-4";
+                    }
+                    if(nowQs == "1-5"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "2-1"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "2-2"){
+                        nowQs = "3-2";
+                    }
+                    if(nowQs == "2-3"){
+                        nowQs = "3-3";
+                    }
+                    if(nowQs == "2-4"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "3-2"){
+                        nowQs = "4-2";
+                    }
+                    if(nowQs == "3-3"){
+                        nowQs = "4-3";
+                    }
+                    if(nowQs == "3-4"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "4-2"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "4-3"){
+                        nowQs = "1-1";
+                    }
+
                 }
                 if (line.equals("No")) {
                     player.chat("no");
                     if(nowQs == "1-1"){
                         nowQs = "1-2";
+                    }
+                    if(nowQs == "1-2"){
+                        nowQs = "1-3";
+                    }
+                    if(nowQs == "1-3"){
+                        nowQs = "1-4";
+                    }
+                    if(nowQs == "1-4"){
+                        nowQs = "1-5";
+                    }
+                    if(nowQs == "1-5"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "2-1"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "2-2"){
+                        nowQs = "2-3";
+                    }
+                    if(nowQs == "2-3"){
+                        nowQs = "2-4";
+                    }
+                    if(nowQs == "2-4"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "3-2"){
+                        nowQs = "3-3";
+                    }
+                    if(nowQs == "3-3"){
+                        nowQs = "3-4";
+                    }
+                    if(nowQs == "3-4"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "4-2"){
+                        nowQs = "1-1";
+                    }
+                    if(nowQs == "4-3"){
+                        nowQs = "1-1";
                     }
                 }
                 this.Start();
