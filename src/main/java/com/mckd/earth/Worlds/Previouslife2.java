@@ -100,6 +100,12 @@ public class Previouslife2 implements Listener {
     }
 
 
+    public void nextQs(String now, String next){
+        if(this.flag && this.nowQs.equals(now)){
+            this.nowQs = next;
+            this.flag = false;
+        }
+    }
 
     @EventHandler
     public void signClick(PlayerInteractEvent e) {
@@ -113,27 +119,13 @@ public class Previouslife2 implements Listener {
                 String line = sign.getLine(1);
                 if (line.equals("Yes")) {
                     player.chat("yes");
-                    if(flag && this.nowQs.equals("1-1")){
-                        player.sendMessage("test1");
-                        this.nowQs = "2-1";
-                        flag = false;
-                    }
-                    if(flag && this.nowQs.equals("1-2")){
-                        this.nowQs = "2-2";
-                        flag = false;
-                    }
-                    if(flag && this.nowQs.equals("1-3")){
-                        this.nowQs = "2-3";
-                        flag = false;
-                    }
-                    if(flag && this.nowQs.equals("1-4")){
-                        this.nowQs = "2-4";
-                        flag = false;
-                    }
-                    if(flag && this.nowQs.equals("1-5")){
-                        this.nowQs = "1-1";
-                        flag = false;
-                    }
+
+                    this.nextQs("1-1", "2-1");
+                    this.nextQs("1-2", "2-2");
+                    this.nextQs("1-3", "2-3");
+                    this.nextQs("1-4", "2-4");
+                    this.nextQs("1-5", "1-1");
+
                     if(flag && this.nowQs.equals("2-1")){
                         this.nowQs = "1-1";
                         flag = false;
