@@ -42,7 +42,8 @@ public class Previouslife2 implements Listener {
             player.sendMessage("これからあなたの前世診断を始めます");
 
             this.Start();
-            this.Next();
+            this.Correct_answer();
+            this.Incorrect_answer();
         }
     }
 
