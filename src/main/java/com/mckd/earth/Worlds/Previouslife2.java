@@ -53,49 +53,31 @@ public class Previouslife2 implements Listener {
     public void Start() {
         Random r = new Random();
         int n = r.nextInt(7);
-        String a = "a";
-        String b = "b";
-        String c = "c";
-        String d = "d";
-        String e = "e";
-        String f = "f";
-        String g = "g";
+        String q = "a";
         if (n == 0) {
-            a = "前世は王様だと思う";
+            q = "前世は王様だと思う";
         }
         if (n == 1) {
-            b = "前世は毎日朝ごはん食べている";
+            q = "前世は毎日朝ごはん食べている";
         }
         if (n == 2) {
-            c = "前世は水をよく飲む";
+            q = "前世は水をよく飲む";
         }
         if (n == 3) {
-            d = "勉強が得意";
+            q = "勉強が得意";
         }
         if (n == 4) {
-            e = "空を見るのが好き";
+            q = "空を見るのが好き";
         }
         if (n == 5) {
-            f = "運動が得意";
+            q = "運動が得意";
         }
         if (n == 6) {
-            g = "肉と魚だったら肉の方が好き";
+            q = "肉と魚だったら肉の方が好き";
         }
 
-        this.playerRed.sendTitle(a, "", 0, 20000, 0);
-        this.playerRed.sendTitle(b, "", 0, 20000, 0);
-        this.playerRed.sendTitle(c, "", 0, 20000, 0);
-        this.playerRed.sendTitle(d, "", 0, 20000, 0);
-        this.playerRed.sendTitle(e, "", 0, 20000, 0);
-        this.playerRed.sendTitle(f, "", 0, 20000, 0);
-        this.playerRed.sendTitle(g, "", 0, 20000, 0);
-        this.current_qustion = a;
-        this.current_qustion = b;
-        this.current_qustion = c;
-        this.current_qustion = d;
-        this.current_qustion = e;
-        this.current_qustion = f;
-        this.current_qustion = g;
+        this.playerRed.sendTitle(q, "", 0, 20000, 0);
+        this.current_qustion = q;
     }
 
     public void Next(){
