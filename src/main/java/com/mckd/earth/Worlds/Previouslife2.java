@@ -77,7 +77,7 @@ public class Previouslife2 implements Listener {
 
     public void Next(){
         Random r = new Random();
-        int n = r.nextInt(7);
+        int n = r.nextInt(5);
         String q = "a";
         if (n == 0) {
             q = "あなたの前世はセミです";
@@ -94,7 +94,7 @@ public class Previouslife2 implements Listener {
         if (n == 4) {
             q = "あなたの前世はコンクリートです";
         }
-        this.playerRed.sendTitle(q, "", 0, 20000, 0);
+        this.playerRed.sendTitle(q,"", 0, 20000, 0);
         this.current_qustion = q;
 
     }
