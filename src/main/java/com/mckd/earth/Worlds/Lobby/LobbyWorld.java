@@ -243,9 +243,6 @@ public class LobbyWorld implements Listener{
             player.sendMessage("権限がありません (;´･Д･)ｽﾏｿｫ････");
 
         }
-        if (e.getCurrentItem().getType() == Material.ENDER_PEARL){
-            player.performCommand("mvtp oni");
-        }
         return;
     }
 
