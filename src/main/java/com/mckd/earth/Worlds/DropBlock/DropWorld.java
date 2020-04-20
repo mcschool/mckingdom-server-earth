@@ -72,17 +72,7 @@ public class DropWorld implements Listener {
     public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event){
         Player player = event.getPlayer();
         String mes = event.getMessage();
-        if (mes.equals("y")){
-            player.sendMessage("あなたの前世は豚です");
-        }else{
-            if (mes.equals("n")){
-                player.sendMessage("朝ごはんは毎日食べている");
-            }else{
-                if (mes.equals("y")){
-                    player.sendMessage("鳩が乗ってくる");
-                }
-            }
-        }
+        
     }
 }
 

@@ -41,6 +41,7 @@ public final class Earth extends JavaPlugin {
         new Previouslife(this);
         new Previouslife2(this);
         new DropWorld(this);
+        new OniWorld(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
