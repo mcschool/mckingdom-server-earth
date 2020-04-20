@@ -1,7 +1,5 @@
 package com.mckd.earth.Worlds.Lobby;
 
-import com.google.gson.JsonParser;
-import com.google.gson.JsonObject;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Utils.HttpReq;
 import com.mckd.earth.Worlds.Lobby.LobbyInventory;
@@ -108,6 +106,7 @@ public class LobbyWorld implements Listener{
         bossBar.addPlayer(event.getPlayer());
         player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
+        /*
         HttpReq req = new HttpReq();
         JsonObject obj = new JsonObject();
         obj.addProperty("uuid", event.getPlayer().getUniqueId().toString());
