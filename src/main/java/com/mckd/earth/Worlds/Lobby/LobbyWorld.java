@@ -222,6 +222,10 @@ public class LobbyWorld implements Listener{
         if (e.getCurrentItem().getType() == Material.BOW){
             player.performCommand("mvtp SkyWars2");
         }
+
+        if (e.getCurrentItem().getType() == Material.ENDER_PEARL){
+            player.performCommand("mvtp oni");
+        }
         // トリップワイヤーフック: クリエになる
         if (e.getCurrentItem().getType() == Material.TRIPWIRE_HOOK){
             //KAzuki_I

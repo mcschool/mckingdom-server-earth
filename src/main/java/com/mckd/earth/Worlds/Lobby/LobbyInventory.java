@@ -96,7 +96,7 @@ public class LobbyInventory {
         sw.setItemMeta(swMate);
         inv.setItem(19,sw);
 
-        ItemStack oni = new ItemStack(Material.BOW);
+        ItemStack oni = new ItemStack(Material.ENDER_PEARL);
         ItemMeta oniMate = oni.getItemMeta();
         oniMate.setDisplayName("学校鬼ごっこ");
         List<String> oniLores = new ArrayList<>();
