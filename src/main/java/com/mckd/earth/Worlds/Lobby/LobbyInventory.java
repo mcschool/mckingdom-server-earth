@@ -87,6 +87,15 @@ public class LobbyInventory {
         ty.setItemMeta(tyMate);
         inv.setItem(7,ty);
 
+        ItemStack sw = new ItemStack(Material.BOW);
+        ItemMeta swMate = sw.getItemMeta();
+        swMate.setDisplayName("SkyWars");
+        List<String> swLores = new ArrayList<>();
+        swLores.add("SkyWars");
+        swMate.setLore(swLores);
+        sw.setItemMeta(swMate);
+        inv.setItem(10,sw);
+
         // クリエ: シーランタン
         // ========================
         /*
