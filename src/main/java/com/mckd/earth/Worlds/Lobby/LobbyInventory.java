@@ -94,7 +94,16 @@ public class LobbyInventory {
         swLores.add("SkyWars");
         swMate.setLore(swLores);
         sw.setItemMeta(swMate);
-        inv.setItem(10,sw);
+        inv.setItem(19,sw);
+
+        ItemStack oni = new ItemStack(Material.BOW);
+        ItemMeta oniMate = oni.getItemMeta();
+        oniMate.setDisplayName("学校鬼ごっこ");
+        List<String> oniLores = new ArrayList<>();
+        oniLores.add("学校で鬼ごっこ");
+        oniMate.setLore(oniLores);
+        oni.setItemMeta(oniMate);
+        inv.setItem(21,oni);
 
         // クリエ: シーランタン
         // ========================
