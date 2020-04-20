@@ -17,24 +17,29 @@ WantedBy=multi-user.target
 
 ### 起動
 ```
-$ sudo systemctl start mckearth.earth
+$ sudo systemctl start mckearth
 ```
 
 ### 再起動
 ```
-$ sudo systemctl start mckearth.earth
+$ sudo systemctl start mckearth
 ```
 
 ### 停止
 ```
-$ sudo systemctl stop mckearth.earth
+$ sudo systemctl stop mckearth
 ```
 
 ### 状態
 ```
-$ sudo systemctl status mckearth.earth
+$ sudo systemctl status mckearth
 ```
 
+
+### bungee起動
+```
+$ sudo systemctl start mckbungee
+```
 
 ## d
 ```
