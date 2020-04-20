@@ -54,7 +54,7 @@ public class OniWorld implements Listener {
             player.sendMessage(p.getUniqueId().toString());
         }*/
         if (player.getWorld().getPlayers().size() == 1) {
-            Location location = new Location(player.getWorld(),-550,4,-120);
+            Location location = new Location(player.getWorld(),-551,4,-120);
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "鬼" + ChatColor.WHITE + "です", "プレイヤーを捕まえましょう", 60, 80, 60);
             player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 1000 * 20, 0));
