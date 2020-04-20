@@ -39,6 +39,7 @@ public final class Earth extends JavaPlugin {
         new SkyWars2(this);
         new TypingButtleWorld(this);
         new DropWorld(this);
+        new OniWorld(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
