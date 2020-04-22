@@ -7,6 +7,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+
 public class SkyWarsScheduler2 extends BukkitRunnable {
     private final World world;
     private int count;
@@ -17,7 +19,8 @@ public class SkyWarsScheduler2 extends BukkitRunnable {
     public SkyWarsScheduler2(Earth plugin, World world) {
         this.plugin = plugin;
         this.world = world;
-        this.count = 10;
+        this.count = 20;
+
 
     }
 
@@ -91,4 +94,6 @@ public class SkyWarsScheduler2 extends BukkitRunnable {
         world.getBlockAt(-205, 19, 26).setType(Material.AIR);
     }
 }
+
+
 
