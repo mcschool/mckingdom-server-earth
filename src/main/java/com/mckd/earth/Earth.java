@@ -12,6 +12,7 @@ import com.mckd.earth.Worlds.Party.PartyWorld;
 import com.mckd.earth.Worlds.Pve.PveWorld;
 import com.mckd.earth.Worlds.SkyWars.SkyWars;
 import com.mckd.earth.Worlds.SkyWars2.SkyWars2;
+import com.mckd.earth.Worlds.TntGame.TntGameWorld;
 import com.mckd.earth.Worlds.TypingButtle.TypingButtleWorld;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -42,6 +43,7 @@ public final class Earth extends JavaPlugin {
         new Previouslife2(this);
         new DropWorld(this);
         new OniWorld(this);
+        new TntGameWorld(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
