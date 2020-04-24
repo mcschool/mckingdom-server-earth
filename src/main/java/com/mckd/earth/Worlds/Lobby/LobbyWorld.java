@@ -59,7 +59,6 @@ public class LobbyWorld implements Listener{
             Location location = event.getPlayer().getLocation();
             player.setMaxHealth(20);
             player.setHealth(player.getMaxHealth());
-            player.getWorld().setPVP(false );
 
             // 管理者権限(admin)を持っている場合
             PermissionUser user = PermissionsEx.getUser(event.getPlayer());
@@ -141,6 +140,7 @@ public class LobbyWorld implements Listener{
             player.setFlying(false);
             player.setGravity(true);
             player.setGameMode(GameMode.SURVIVAL);
+            player.getWorld().setPVP(false);
             // ロビーでのプレーヤーの状態変更(空腹度とか)
             // LobbyUtil.initPlayerStatus(player);
             // ゲームメニュー用の "紙" 渡す
