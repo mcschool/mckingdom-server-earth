@@ -1,7 +1,6 @@
 package com.mckd.earth.Worlds.Athletic;
 
-import com.google.common.cache.AbstractCache;
-import com.google.gson.JsonObject;
+
 import com.mckd.earth.Earth;
 import com.mckd.earth.Utils.HttpReq;
 import org.bukkit.*;

@@ -59,7 +59,7 @@ public class LobbyWorld implements Listener{
             Location location = event.getPlayer().getLocation();
             player.setMaxHealth(20);
             player.setHealth(player.getMaxHealth());
-            player.getWorld().setPVP(false);
+            player.getWorld().setPVP(false );
 
             // 管理者権限(admin)を持っている場合
             PermissionUser user = PermissionsEx.getUser(event.getPlayer());
