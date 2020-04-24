@@ -1,10 +1,11 @@
 package com.mckd.earth.Utils;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
 import com.mckd.earth.Config;
 import com.sun.jndi.toolkit.url.Uri;
 import jdk.nashorn.internal.parser.JSONParser;
+import ru.tehkode.libs.com.google.gson.JsonObject;
+import ru.tehkode.libs.com.google.gson.JsonParser;
 
 import java.io.*;
 import java.net.HttpURLConnection;

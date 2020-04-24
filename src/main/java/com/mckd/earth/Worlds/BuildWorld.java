@@ -2,11 +2,16 @@ package com.mckd.earth.Worlds;
 
 import com.mckd.earth.Earth;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class BuildWorld implements Listener {
 
@@ -26,12 +31,27 @@ public class BuildWorld implements Listener {
     }
 
     @EventHandler
-    public void onPlayerChangeWorld(PlayerChangedWorldEvent event){
+    public void onPlayerChangedWorld(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (!event.getPlayer().getWorld().getName().equals(this.worldName)) return;
-        if (player.getUniqueId().toString().equals("0f7c2404-2d4f-33b2-b297-8a03c2712fa1")){
-            player.setGameMode(GameMode.CREATIVE);
-            return;
+        player.getInventory().clear();
+        ItemStack itemStack = new ItemStack(Material.BED);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemStack.setItemMeta(itemMeta);
+        player.getInventory().addItem(itemStack);
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) return;
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR)){
+            if (event.getMaterial() == Material.BED){
+                if (player.getUniqueId().toString().equals("0f7c2404-2d4f-33b2-b297-8a03c2712fa1")){
+                    player.setGameMode(GameMode.CREATIVE);
+                    return;
+                }
+            }
         }
     }
 }
