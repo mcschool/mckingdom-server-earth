@@ -116,15 +116,6 @@ public class TntGameWorld implements Listener {
     }
 
     @EventHandler
-    public void BlockPlaceEvent(BlockPlaceEvent event) {
-        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
-            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
     public void BlockBreakEvent(BlockBreakEvent event){
         if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
