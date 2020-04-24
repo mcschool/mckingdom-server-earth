@@ -40,7 +40,7 @@ public class TntGameWorld implements Listener {
         //革のチェストプレート
         ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
         ItemMeta chestplateMeta = chestplate.getItemMeta();
-        helmet.setItemMeta(chestplateMeta);
+        chestplate.setItemMeta(chestplateMeta);
         this.playerRed.getInventory().setItem(2, chestplate);
         this.playerBlue.getInventory().setItem(2, chestplate);
         //革のレギンス
