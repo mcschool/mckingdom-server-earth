@@ -6,6 +6,8 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.ItemStack;
@@ -29,7 +31,7 @@ public class TntGameWorld implements Listener {
     public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (!player.getWorld().getName().equals(this.worldname)) return;
-        player.setGameMode(GameMode.ADVENTURE);
+        player.setGameMode(GameMode.SURVIVAL);
         player.setPlayerWeather(WeatherType.CLEAR);
         player.setHealth(20.0);
         player.setFoodLevel(20);
@@ -110,6 +112,24 @@ public class TntGameWorld implements Listener {
             this.playerRed.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
             this.playerBlue.sendTitle(ChatColor.BLUE + "You LOSE...", "", 0,60,0);
             this.GameEnd();
+        }
+    }
+
+    @EventHandler
+    public void BlockPlaceEvent(BlockPlaceEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void BlockBreakEvent(BlockBreakEvent event){
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
         }
     }
 

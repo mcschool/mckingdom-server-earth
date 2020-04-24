@@ -1,6 +1,7 @@
 package com.mckd.earth.Worlds.TntGame;
 
 import com.mckd.earth.Earth;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -24,6 +25,7 @@ public class TntGameScheduler extends BukkitRunnable {
         this.player.sendMessage("ゲーム開始まで" + String.valueOf(count) + "秒");
 
         if (this.count < 1){
+            this.player.sendMessage(ChatColor.RED + "ゲーム開始");
             this.cancel();
         }
     }
