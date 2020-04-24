@@ -227,6 +227,11 @@ public class LobbyWorld implements Listener{
         if (e.getCurrentItem().getType() == Material.ENDER_PEARL){
             player.performCommand("mvtp oni");
         }
+
+        if(e.getCurrentItem().getType() == Material.TNT){
+            player.performCommand("mvtp minigame");
+
+        }
         // トリップワイヤーフック: クリエになる
         if (e.getCurrentItem().getType() == Material.TRIPWIRE_HOOK){
             //KAzuki_I
