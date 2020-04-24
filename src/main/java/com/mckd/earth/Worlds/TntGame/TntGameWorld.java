@@ -2,10 +2,13 @@ package com.mckd.earth.Worlds.TntGame;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class TntGameWorld implements Listener {
     Player playerRed;
@@ -28,6 +31,44 @@ public class TntGameWorld implements Listener {
         player.setFoodLevel(20);
         player.getWorld().setPVP(false);
         player.getInventory().clear();
+        //革のヘルメット
+        ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
+        ItemMeta helmetMeta = helmet.getItemMeta();
+        helmet.setItemMeta(helmetMeta);
+        this.playerRed.getInventory().setItem(1, helmet);
+        this.playerBlue.getInventory().setItem(1, helmet);
+        //革のチェストプレート
+        ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+        ItemMeta chestplateMeta = chestplate.getItemMeta();
+        helmet.setItemMeta(chestplateMeta);
+        this.playerRed.getInventory().setItem(2, chestplate);
+        this.playerBlue.getInventory().setItem(2, chestplate);
+        //革のレギンス
+        ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
+        ItemMeta leggingsMeta = leggings.getItemMeta();
+        leggings.setItemMeta(leggingsMeta);
+        this.playerRed.getInventory().setItem(3, leggings);
+        this.playerBlue.getInventory().setItem(3, leggings);
+        //革のブーツ
+        ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
+        ItemMeta bootsMeta = boots.getItemMeta();
+        boots.setItemMeta(bootsMeta);
+        this.playerRed.getInventory().setItem(4, boots);
+        this.playerBlue.getInventory().setItem(4, boots);
+        //肉64枚
+        ItemStack beef = new ItemStack(Material.COOKED_BEEF, 10);
+        ItemMeta beefMeta = beef.getItemMeta();
+        beef.setItemMeta(beefMeta);
+        this.playerRed.getInventory().setItem(5, beef);
+        this.playerBlue.getInventory().setItem(5, beef);
+        //TNT2スタック
+        ItemStack tnt = new ItemStack(Material.TNT, 64);
+        ItemMeta tntMeta = tnt.getItemMeta();
+        tnt.setItemMeta(tntMeta);
+        this.playerRed.getInventory().setItem(6, tnt);
+        this.playerRed.getInventory().setItem(7, tnt);
+        this.playerBlue.getInventory().setItem(6, tnt);
+        this.playerBlue.getInventory().setItem(7,tnt);
 
         if (player.getWorld().getPlayers().size() == 1){
             Location location1 = new Location(player.getWorld(),778,6,-628);
