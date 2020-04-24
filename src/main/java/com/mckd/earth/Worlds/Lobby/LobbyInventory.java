@@ -105,6 +105,15 @@ public class LobbyInventory {
         oni.setItemMeta(oniMate);
         inv.setItem(21,oni);
 
+        ItemStack tnt = new ItemStack(Material.TNT);
+        ItemMeta tntMeta = tnt.getItemMeta();
+        tntMeta.setDisplayName("昔懐かしボンバーマン！？");
+        List<String> tntLores = new ArrayList<>();
+        tntLores.add("TNTで爆発ゲーム");
+        tntMeta.setLore(tntLores);
+        tnt.setItemMeta(tntMeta);
+        inv.setItem(23, tnt);
+
         // クリエ: シーランタン
         // ========================
         /*
