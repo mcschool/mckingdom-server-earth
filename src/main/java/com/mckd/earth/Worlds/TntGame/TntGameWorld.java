@@ -6,9 +6,13 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.List;
 
 public class TntGameWorld implements Listener {
     Player playerRed;
@@ -75,6 +79,37 @@ public class TntGameWorld implements Listener {
             player.teleport(location2);
             player.sendTitle(ChatColor.BLUE+ "あなたは青チームです",  "", 0, 40, 0);
             this.playerBlue = player;
+            new TntGameScheduler(this.plugin, this.playerBlue, 5).runTaskTimer(this.plugin,0,40);
+            new TntGameScheduler(this.plugin, this.playerRed, 5).runTaskTimer(this.plugin,0,40);
+        }
+    }
+
+    public void GameEnd(){
+        World world = Bukkit.getWorld(this.worldname);
+        List<Player> players = world.getPlayers();
+        for(Player player:players){
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    player.performCommand("mvtp world");
+                }
+            }.runTaskLater(this.plugin, 20);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerDeathEvent(PlayerDeathEvent event){
+        if (this.playerRed.getHealth() == 0.0){
+            this.playerRed.setHealth(2.0);
+            this.playerBlue.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
+            this.playerRed.sendTitle(ChatColor.BLUE + "You LOSE...", "", 0,60,0);
+            this.GameEnd();
+        }
+        if (this.playerBlue.getHealth() == 0.0){
+            this.playerBlue.setHealth(2.0);
+            this.playerRed.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
+            this.playerBlue.sendTitle(ChatColor.BLUE + "You LOSE...", "", 0,60,0);
+            this.GameEnd();
         }
     }
 
