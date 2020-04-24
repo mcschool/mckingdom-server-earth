@@ -37,9 +37,9 @@ public class TntGameWorld implements Listener {
         }
 
         if(player.getWorld().getPlayers().size() == 2){
-            Location location1 = new Location(player.getWorld(),748,6, -607);
-            player.teleport(location1);
-            player.sendTitle(ChatColor.BLUE+ "あなたは青チームです",  "です", 0, 40, 0);
+            Location location2 = new Location(player.getWorld(),748,6, -607);
+            player.teleport(location2);
+            player.sendTitle(ChatColor.BLUE+ "あなたは青チームです",  "", 0, 40, 0);
             this.playerBlue = player;
         }
     }
