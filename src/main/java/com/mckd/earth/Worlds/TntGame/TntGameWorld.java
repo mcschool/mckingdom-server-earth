@@ -4,6 +4,7 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -11,10 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -88,7 +86,7 @@ public class TntGameWorld implements Listener {
         player.getInventory().setItem(7,potion);
         player.getInventory().setItem(8,potion);
         //チェスト設置
-        this.spawnChest(new Location(world, 812,6,-597),0);
+        this.spawnChest(new Location(world, 812,6,-581),0);
         this.spawnChest(new Location(world, 812,6,-592),1);
 
 
@@ -147,6 +145,17 @@ public class TntGameWorld implements Listener {
         if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
                 event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void BlockDamageByEntityEvent(EntityExplodeEvent event){
+        if (event.getEntity() instanceof Creeper){
+            for(Block block : event.blockList().toArray(new Block[event.blockList().size()])){
+                if (block.getType() == Material.CHEST){
+                    event.setCancelled(true);
+                }
             }
         }
     }
