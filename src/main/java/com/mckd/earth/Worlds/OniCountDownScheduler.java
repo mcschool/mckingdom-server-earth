@@ -19,8 +19,8 @@ public class OniCountDownScheduler extends BukkitRunnable {
         this.count--;
         this.player.sendTitle(String.valueOf(count), "", 0, 20, 0);
         if (this.count < 1){
-            player.performCommand("mvtp world");
             this.cancel();
+            this.player.sendMessage("鬼から逃げきれ！");
         }
     }
 }

@@ -3,16 +3,25 @@ package com.mckd.earth.Worlds.TntGame;
 import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByBlockEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
@@ -31,6 +40,7 @@ public class TntGameWorld implements Listener {
     @EventHandler
     public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
+        World world = player.getWorld();
         if (!player.getWorld().getName().equals(this.worldname)) return;
         player.setGameMode(GameMode.SURVIVAL);
         player.setPlayerWeather(WeatherType.CLEAR);
@@ -70,6 +80,11 @@ public class TntGameWorld implements Listener {
         player.getInventory().setItem(6, tnt);
         player.getInventory().setItem(7, tnt);
 
+        ItemStack potion = new ItemStack(Material.POTION);
+        PotionMeta pm = (PotionMeta) potion.getItemMeta();
+        pm.setBasePotionData(new PotionData(PotionType.NIGHT_VISION));
+        player.getInventory().setItem(8,potion);
+
         if (player.getWorld().getPlayers().size() == 1){
             Location location1 = new Location(player.getWorld(),842.1,6,-598.5);
             player.teleport(location1);
@@ -89,6 +104,8 @@ public class TntGameWorld implements Listener {
         if (player.getWorld().getPlayers().size() > 2){
             player.performCommand("mvtp world");
         }
+
+        this.spawnChest(new Location(world, 812,6,-597),0);
     }
 
     public void GameEnd(){
@@ -126,12 +143,21 @@ public class TntGameWorld implements Listener {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
                 event.setCancelled(true);
             }
-            if (event.getBlock().getType() == Material.CHEST){
-                event.setCancelled(true);
-            }
         }
     }
 
+    public void spawnChest(Location location, int type){
+        World world = Bukkit.getWorld(this.worldname);
+        world.getBlockAt(location).setType(Material.CHEST);
+        Chest chest = (Chest)world.getBlockAt(location).getState();
+        Inventory inv = chest.getInventory();
+        inv.clear();
+        if (type == 0) {
+            inv.setItem(1, new ItemStack(Material.DIAMOND_BOOTS));
+            inv.setItem(9, new ItemStack(Material.IRON_CHESTPLATE));
+            inv.setItem(20, new ItemStack(Material.DIAMOND_LEGGINGS));
+        }
+    }
 }
 
 
