@@ -87,15 +87,6 @@ public class TntGameWorld implements Listener {
         potion.setItemMeta(pm);
         player.getInventory().setItem(7,potion);
         player.getInventory().setItem(8,potion);
-        //チェスト設置
-        this.spawnChest(new Location(world, 812.5,6,-581.5),0);
-        this.spawnChest(new Location(world, 812,6,-592),1);
-        this.spawnChest(new Location(world, 822, 6,-590),2);
-        this.spawnChest(new Location(world, 835,6,-599), 3);
-        this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
-        this.spawnChest(new Location(world,834,6,-577), 5);
-        this.spawnChest(new Location(world, 827.5,6,-586),6);
-
 
         if (player.getWorld().getPlayers().size() == 1){
             Location location1 = new Location(player.getWorld(),842.1,6,-598.5);
@@ -103,6 +94,7 @@ public class TntGameWorld implements Listener {
             player.sendTitle(ChatColor.RED + "あなたは赤チームです", "", 0,60,0);
             this.playerRed = player;
         }
+
 
         if(player.getWorld().getPlayers().size() == 2){
             Location location2 = new Location(player.getWorld(),812.6,6, -577.5);
@@ -114,8 +106,19 @@ public class TntGameWorld implements Listener {
         }
 
         if (player.getWorld().getPlayers().size() > 2){
+            player.sendMessage("すでにゲームで遊ばれています");
             player.performCommand("mvtp world");
         }
+
+        //チェスト設置
+        this.spawnChest(new Location(world, 812.5,6,-581.5),0);
+        this.spawnChest(new Location(world, 812,6,-592),1);
+        this.spawnChest(new Location(world, 822, 6,-590),2);
+        this.spawnChest(new Location(world, 835,6,-599), 3);
+        this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
+        this.spawnChest(new Location(world,834,6,-577), 5);
+        this.spawnChest(new Location(world, 827.5,6,-586),6);
+
     }
 
     public void GameEnd(){
