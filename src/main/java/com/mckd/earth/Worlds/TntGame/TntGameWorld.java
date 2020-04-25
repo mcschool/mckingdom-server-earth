@@ -2,6 +2,7 @@ package com.mckd.earth.Worlds.TntGame;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -123,6 +124,9 @@ public class TntGameWorld implements Listener {
     public void BlockBreakEvent(BlockBreakEvent event){
         if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
+            if (event.getBlock().getType() == Material.CHEST){
                 event.setCancelled(true);
             }
         }
