@@ -243,10 +243,14 @@ public class TntGameWorld implements Listener {
         }
 
         if (type == 6){
+
+            inv.setItem(1, new ItemStack(Material.IRON_CHESTPLATE));
+            /*
             ItemStack apple2 = new ItemStack(Material.GOLDEN_APPLE,5,(byte)1);
             ItemMeta apple2Meta = apple2.getItemMeta();
             apple2.setItemMeta(apple2Meta);
             inv.setItem(1, apple2);
+            */
         }
     }
 }
