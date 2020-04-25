@@ -48,43 +48,49 @@ public class TntGameWorld implements Listener {
         player.setFoodLevel(20);
         player.getWorld().setPVP(false);
         player.getInventory().clear();
+
         //革のヘルメット
         ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
         ItemMeta helmetMeta = helmet.getItemMeta();
         helmet.setItemMeta(helmetMeta);
-        player.getInventory().setItem(1, helmet);
+        player.getInventory().setItem(0, helmet);
         //革のチェストプレート
         ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
         ItemMeta chestplateMeta = chestplate.getItemMeta();
         chestplate.setItemMeta(chestplateMeta);
-        player.getInventory().setItem(2, chestplate);
+        player.getInventory().setItem(1, chestplate);
         //革のレギンス
         ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
         ItemMeta leggingsMeta = leggings.getItemMeta();
         leggings.setItemMeta(leggingsMeta);
-        player.getInventory().setItem(3, leggings);
+        player.getInventory().setItem(2, leggings);
         //革のブーツ
         ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
         ItemMeta bootsMeta = boots.getItemMeta();
         boots.setItemMeta(bootsMeta);
-        player.getInventory().setItem(4, boots);
+        player.getInventory().setItem(3, boots);
         //肉64枚
         ItemStack beef = new ItemStack(Material.COOKED_BEEF, 10);
         ItemMeta beefMeta = beef.getItemMeta();
         beef.setItemMeta(beefMeta);
-        player.getInventory().setItem(5, beef);
+        player.getInventory().setItem(4, beef);
         //TNT2スタック
         ItemStack tnt = new ItemStack(Material.TNT, 64);
         ItemMeta tntMeta = tnt.getItemMeta();
         tnt.setItemMeta(tntMeta);
+        player.getInventory().setItem(5, tnt);
         player.getInventory().setItem(6, tnt);
-        player.getInventory().setItem(7, tnt);
 
         ItemStack potion = new ItemStack(Material.POTION);
         PotionMeta pm = (PotionMeta) potion.getItemMeta();
         pm.setBasePotionData(new PotionData(PotionType.NIGHT_VISION));
         potion.setItemMeta(pm);
+        player.getInventory().setItem(7,potion);
         player.getInventory().setItem(8,potion);
+        //チェスト設置
+        this.spawnChest(new Location(world, 812,6,-597),0);
+        this.spawnChest(new Location(world, 812,6,-592),1);
+
 
         if (player.getWorld().getPlayers().size() == 1){
             Location location1 = new Location(player.getWorld(),842.1,6,-598.5);
@@ -105,8 +111,6 @@ public class TntGameWorld implements Listener {
         if (player.getWorld().getPlayers().size() > 2){
             player.performCommand("mvtp world");
         }
-
-        this.spawnChest(new Location(world, 812,6,-597),0);
     }
 
     public void GameEnd(){
@@ -157,6 +161,13 @@ public class TntGameWorld implements Listener {
             inv.setItem(1, new ItemStack(Material.DIAMOND_BOOTS));
             inv.setItem(9, new ItemStack(Material.IRON_CHESTPLATE));
             inv.setItem(20, new ItemStack(Material.DIAMOND_LEGGINGS));
+        }
+        if (type == 1){
+            ItemStack potion = new ItemStack(Material.POTION);
+            PotionMeta pm = (PotionMeta) potion.getItemMeta();
+            pm.setBasePotionData(new PotionData(PotionType.REGEN));
+            potion.setItemMeta(pm);
+            inv.setItem(3, potion);
         }
     }
 }
