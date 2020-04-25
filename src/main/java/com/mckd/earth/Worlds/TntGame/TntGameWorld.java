@@ -4,6 +4,7 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -91,6 +92,9 @@ public class TntGameWorld implements Listener {
         this.spawnChest(new Location(world, 812,6,-592),1);
         this.spawnChest(new Location(world, 822, 6,-590),2);
         this.spawnChest(new Location(world, 835,6,-599), 3);
+        this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
+        this.spawnChest(new Location(world,834,6,-577), 5);
+        this.spawnChest(new Location(world, 827.5,6,-586),6);
 
 
         if (player.getWorld().getPlayers().size() == 1){
@@ -182,6 +186,64 @@ public class TntGameWorld implements Listener {
         if (type == 3) {
             inv.setItem(2, new ItemStack(Material.IRON_HELMET));
             inv.setItem(17, new ItemStack(Material.BREAD,5));
+        }
+        if (type == 4){
+            inv.setItem(1, new ItemStack(Material.BOW));
+            inv.setItem(4,new ItemStack(Material.ARROW,64));
+            inv.setItem(11,new ItemStack(Material.TOTEM));
+            inv.setItem(12, new ItemStack(Material.TOTEM));
+            inv.setItem(19, new ItemStack(Material.DIAMOND_HELMET));
+            inv.setItem(20, new ItemStack(Material.DIAMOND_CHESTPLATE));
+            inv.setItem(24, new ItemStack(Material.DIAMOND_LEGGINGS));
+            inv.setItem(26, new ItemStack(Material.DIAMOND_BOOTS));
+            inv.setItem(31, new ItemStack(Material.SHIELD));
+
+            ItemStack potion1 = new ItemStack(Material.POTION);
+            PotionMeta pm1 = (PotionMeta) potion1.getItemMeta();
+            pm1.setBasePotionData(new PotionData(PotionType.INSTANT_HEAL));
+            potion1.setItemMeta(pm1);
+            inv.setItem(39, potion1);
+
+            ItemStack potion2 = new ItemStack(Material.POTION);
+            PotionMeta pm2 = (PotionMeta) potion2.getItemMeta();
+            pm2.setBasePotionData(new PotionData(PotionType.REGEN));
+            potion2.setItemMeta(pm2);
+            inv.setItem(45, potion2);
+
+            ItemStack apple = new ItemStack(Material.GOLDEN_APPLE,20,(byte)1);
+            ItemMeta appleMeta = apple.getItemMeta();
+            apple.setItemMeta(appleMeta);
+            inv.setItem(49,apple);
+        }
+
+        if (type == 5){
+            ItemStack potion3 = new ItemStack(Material.SPLASH_POTION);
+            PotionMeta pm3 = (PotionMeta) potion3.getItemMeta();
+            pm3.setBasePotionData(new PotionData(PotionType.POISON));
+            potion3.setItemMeta(pm3);
+            inv.setItem(1,potion3);
+            inv.setItem(2,potion3);
+
+            inv.setItem(3, new ItemStack(Material.TNT,64));
+
+            ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 15,(byte)1);
+            ItemMeta gappleMeta = gapple.getItemMeta();
+            gapple.setItemMeta(gappleMeta);
+            inv.setItem(4,gapple);
+
+            ItemStack enchant = new ItemStack(Material.IRON_CHESTPLATE);
+            ItemMeta enchantMeta = enchant.getItemMeta();
+            enchantMeta.addEnchant(Enchantment.PROTECTION_FALL, 5,true);
+            enchantMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS,5,true);
+            enchantMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+            enchantMeta.addEnchant(Enchantment.THORNS,3,true);
+        }
+
+        if (type == 6){
+            ItemStack apple2 = new ItemStack(Material.GOLDEN_APPLE,5,(byte)1);
+            ItemMeta apple2Meta = apple2.getItemMeta();
+            apple2.setItemMeta(apple2Meta);
+            inv.setItem(1, apple2);
         }
     }
 }
