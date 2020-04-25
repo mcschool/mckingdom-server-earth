@@ -240,6 +240,7 @@ public class TntGameWorld implements Listener {
             enchantMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS,5,true);
             enchantMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
             enchantMeta.addEnchant(Enchantment.THORNS,3,true);
+            enchant.setItemMeta(enchantMeta);
             inv.setItem(4,enchant);
         }
 
