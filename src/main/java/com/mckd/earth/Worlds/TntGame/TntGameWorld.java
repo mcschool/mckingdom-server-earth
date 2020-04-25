@@ -70,14 +70,14 @@ public class TntGameWorld implements Listener {
         player.getInventory().setItem(7, tnt);
 
         if (player.getWorld().getPlayers().size() == 1){
-            Location location1 = new Location(player.getWorld(),837.1,6,-602);
+            Location location1 = new Location(player.getWorld(),842.1,6,-598.5);
             player.teleport(location1);
             player.sendTitle(ChatColor.RED + "あなたは赤チームです", "", 0,60,0);
             this.playerRed = player;
         }
 
         if(player.getWorld().getPlayers().size() == 2){
-            Location location2 = new Location(player.getWorld(),807.6,6, -581);
+            Location location2 = new Location(player.getWorld(),812.6,6, -577.5);
             player.teleport(location2);
             player.sendTitle(ChatColor.BLUE+ "あなたは青チームです",  "", 0, 40, 0);
             this.playerBlue = player;
