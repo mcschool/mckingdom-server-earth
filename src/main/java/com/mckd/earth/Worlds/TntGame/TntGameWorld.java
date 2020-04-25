@@ -102,7 +102,7 @@ public class TntGameWorld implements Listener {
         this.spawnChest(new Location(world, 835,6,-599), 3);
         this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
         this.spawnChest(new Location(world,834,6,-577), 5);
-        this.spawnChest(new Location(world, 827.5,6,-586),6);
+        this.spawnChest(new Location(world, 827.5,6,-585),6);
 
 
         if(player.getWorld().getPlayers().size() == 2){
