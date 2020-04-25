@@ -83,6 +83,7 @@ public class TntGameWorld implements Listener {
         ItemStack potion = new ItemStack(Material.POTION);
         PotionMeta pm = (PotionMeta) potion.getItemMeta();
         pm.setBasePotionData(new PotionData(PotionType.NIGHT_VISION));
+        potion.setItemMeta(pm);
         player.getInventory().setItem(8,potion);
 
         if (player.getWorld().getPlayers().size() == 1){
