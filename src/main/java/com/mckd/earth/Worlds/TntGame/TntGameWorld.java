@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -89,6 +90,7 @@ public class TntGameWorld implements Listener {
         this.spawnChest(new Location(world, 812.5,6,-581.5),0);
         this.spawnChest(new Location(world, 812,6,-592),1);
         this.spawnChest(new Location(world, 822, 6,-590),2);
+        this.spawnChest(new Location(world, 835,6,-599), 3);
 
 
         if (player.getWorld().getPlayers().size() == 1){
@@ -150,15 +152,9 @@ public class TntGameWorld implements Listener {
         }
     }
 
-    @EventHandler
-    public void BlockDamageByEntityEvent(EntityExplodeEvent event){
-        if (event.getEntity() instanceof Creeper){
-            for(Block block : event.blockList().toArray(new Block[event.blockList().size()])){
-                if (block.getType() == Material.CHEST){
-                    event.setCancelled(true);
-                }
-            }
-        }
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void EntityExplodeEvent(EntityExplodeEvent event){
+        event.setCancelled(true);
     }
 
     public void spawnChest(Location location, int type){
@@ -182,6 +178,10 @@ public class TntGameWorld implements Listener {
         if (type == 2){
             inv.setItem(2, new ItemStack(Material.SHIELD));
             inv.setItem(25, new ItemStack(Material.IRON_BOOTS));
+        }
+        if (type == 3) {
+            inv.setItem(2, new ItemStack(Material.IRON_HELMET));
+            inv.setItem(17, new ItemStack(Material.BREAD,5));
         }
     }
 }
