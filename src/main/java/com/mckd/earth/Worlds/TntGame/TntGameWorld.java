@@ -88,6 +88,13 @@ public class TntGameWorld implements Listener {
         player.getInventory().setItem(7,potion);
         player.getInventory().setItem(8,potion);
 
+        if (player.getWorld().getPlayers().size() == 1){
+            Location location1 = new Location(player.getWorld(),842.1,6,-598.5);
+            player.teleport(location1);
+            player.sendTitle(ChatColor.RED + "あなたは赤チームです", "", 0,60,0);
+            this.playerRed = player;
+        }
+
         //チェスト設置
         this.spawnChest(new Location(world, 812.5,6,-581.5),0);
         this.spawnChest(new Location(world, 812,6,-592),1);
@@ -96,13 +103,6 @@ public class TntGameWorld implements Listener {
         this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
         this.spawnChest(new Location(world,834,6,-577), 5);
         this.spawnChest(new Location(world, 827.5,6,-586),6);
-
-        if (player.getWorld().getPlayers().size() == 1){
-            Location location1 = new Location(player.getWorld(),842.1,6,-598.5);
-            player.teleport(location1);
-            player.sendTitle(ChatColor.RED + "あなたは赤チームです", "", 0,60,0);
-            this.playerRed = player;
-        }
 
 
         if(player.getWorld().getPlayers().size() == 2){
