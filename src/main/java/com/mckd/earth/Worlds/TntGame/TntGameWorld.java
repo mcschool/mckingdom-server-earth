@@ -70,19 +70,23 @@ public class TntGameWorld implements Listener {
         player.getInventory().setItem(7, tnt);
 
         if (player.getWorld().getPlayers().size() == 1){
-            Location location1 = new Location(player.getWorld(),778,6,-628);
+            Location location1 = new Location(player.getWorld(),837.1,6,-602);
             player.teleport(location1);
             player.sendTitle(ChatColor.RED + "あなたは赤チームです", "", 0,60,0);
             this.playerRed = player;
         }
 
         if(player.getWorld().getPlayers().size() == 2){
-            Location location2 = new Location(player.getWorld(),748,6, -607);
+            Location location2 = new Location(player.getWorld(),807.6,6, -581);
             player.teleport(location2);
             player.sendTitle(ChatColor.BLUE+ "あなたは青チームです",  "", 0, 40, 0);
             this.playerBlue = player;
             new TntGameScheduler(this.plugin, this.playerBlue, 5).runTaskTimer(this.plugin,0,40);
             new TntGameScheduler(this.plugin, this.playerRed, 5).runTaskTimer(this.plugin,0,40);
+        }
+
+        if (player.getWorld().getPlayers().size() > 2){
+            player.performCommand("mvtp world");
         }
     }
 
