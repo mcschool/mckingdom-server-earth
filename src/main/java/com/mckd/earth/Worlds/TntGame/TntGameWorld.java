@@ -86,8 +86,9 @@ public class TntGameWorld implements Listener {
         player.getInventory().setItem(7,potion);
         player.getInventory().setItem(8,potion);
         //チェスト設置
-        this.spawnChest(new Location(world, 812,6,-581),0);
+        this.spawnChest(new Location(world, 812.5,6,-581.5),0);
         this.spawnChest(new Location(world, 812,6,-592),1);
+        this.spawnChest(new Location(world, 822, 6,-590),2);
 
 
         if (player.getWorld().getPlayers().size() == 1){
@@ -177,6 +178,10 @@ public class TntGameWorld implements Listener {
             pm.setBasePotionData(new PotionData(PotionType.REGEN));
             potion.setItemMeta(pm);
             inv.setItem(3, potion);
+        }
+        if (type == 2){
+            inv.setItem(2, new ItemStack(Material.SHIELD));
+            inv.setItem(25, new ItemStack(Material.IRON_BOOTS));
         }
     }
 }
