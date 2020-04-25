@@ -101,9 +101,7 @@ public class TntGameWorld implements Listener {
         this.spawnChest(new Location(world, 822, 6,-590),2);
         this.spawnChest(new Location(world, 835,6,-599), 3);
         this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
-        player.sendMessage("ああああ");
         this.spawnChest(new Location(world,834.5,6,-577.5), 5);
-        player.sendMessage("いいいい");
         this.spawnChest(new Location(world, 827.5,6,-586),6);
 
 
@@ -194,31 +192,31 @@ public class TntGameWorld implements Listener {
         }
         if (type == 4){
             inv.setItem(1, new ItemStack(Material.BOW));
-            inv.setItem(4,new ItemStack(Material.ARROW,64));
-            inv.setItem(11,new ItemStack(Material.TOTEM));
-            inv.setItem(12, new ItemStack(Material.TOTEM));
-            inv.setItem(19, new ItemStack(Material.DIAMOND_HELMET));
-            inv.setItem(20, new ItemStack(Material.DIAMOND_CHESTPLATE));
-            inv.setItem(24, new ItemStack(Material.DIAMOND_LEGGINGS));
-            inv.setItem(26, new ItemStack(Material.DIAMOND_BOOTS));
-            inv.setItem(31, new ItemStack(Material.SHIELD));
+            inv.setItem(2,new ItemStack(Material.ARROW,64));
+            inv.setItem(3,new ItemStack(Material.TOTEM));
+            inv.setItem(4, new ItemStack(Material.TOTEM));
+            inv.setItem(5, new ItemStack(Material.DIAMOND_HELMET));
+            inv.setItem(6, new ItemStack(Material.DIAMOND_CHESTPLATE));
+            inv.setItem(7, new ItemStack(Material.DIAMOND_LEGGINGS));
+            inv.setItem(8, new ItemStack(Material.DIAMOND_BOOTS));
+            inv.setItem(9, new ItemStack(Material.SHIELD));
 
             ItemStack potion1 = new ItemStack(Material.POTION);
             PotionMeta pm1 = (PotionMeta) potion1.getItemMeta();
             pm1.setBasePotionData(new PotionData(PotionType.INSTANT_HEAL));
             potion1.setItemMeta(pm1);
-            inv.setItem(39, potion1);
+            inv.setItem(10, potion1);
 
             ItemStack potion2 = new ItemStack(Material.POTION);
             PotionMeta pm2 = (PotionMeta) potion2.getItemMeta();
             pm2.setBasePotionData(new PotionData(PotionType.REGEN));
             potion2.setItemMeta(pm2);
-            inv.setItem(45, potion2);
+            inv.setItem(11, potion2);
 
             ItemStack apple = new ItemStack(Material.GOLDEN_APPLE,20,(byte)1);
             ItemMeta appleMeta = apple.getItemMeta();
             apple.setItemMeta(appleMeta);
-            inv.setItem(49,apple);
+            inv.setItem(12,apple);
         }
 
         if (type == 5){
