@@ -102,7 +102,7 @@ public class TntGameWorld implements Listener {
         this.spawnChest(new Location(world, 835,6,-599), 3);
         this.spawnChest(new Location(world, 842.5,6,-596.5), 4);
         this.spawnChest(new Location(world,834.5,6,-577.5), 5);
-        this.spawnChest(new Location(world, 827.5,6,-586),6);
+        this.spawnChest(new Location(world, 827,6,-586),6);
 
 
         if(player.getWorld().getPlayers().size() == 2){
@@ -171,52 +171,52 @@ public class TntGameWorld implements Listener {
         Inventory inv = chest.getInventory();
         inv.clear();
         if (type == 0) {
-            inv.setItem(1, new ItemStack(Material.DIAMOND_BOOTS));
-            inv.setItem(9, new ItemStack(Material.IRON_CHESTPLATE));
-            inv.setItem(20, new ItemStack(Material.DIAMOND_LEGGINGS));
+            inv.setItem(0, new ItemStack(Material.DIAMOND_BOOTS));
+            inv.setItem(1, new ItemStack(Material.IRON_CHESTPLATE));
+            inv.setItem(2, new ItemStack(Material.DIAMOND_LEGGINGS));
         }
         if (type == 1){
             ItemStack potion = new ItemStack(Material.POTION);
             PotionMeta pm = (PotionMeta) potion.getItemMeta();
             pm.setBasePotionData(new PotionData(PotionType.REGEN));
             potion.setItemMeta(pm);
-            inv.setItem(3, potion);
+            inv.setItem(0, potion);
         }
         if (type == 2){
-            inv.setItem(2, new ItemStack(Material.SHIELD));
-            inv.setItem(25, new ItemStack(Material.IRON_BOOTS));
+            inv.setItem(0, new ItemStack(Material.SHIELD));
+            inv.setItem(1, new ItemStack(Material.IRON_BOOTS));
         }
         if (type == 3) {
-            inv.setItem(2, new ItemStack(Material.IRON_HELMET));
-            inv.setItem(17, new ItemStack(Material.BREAD,5));
+            inv.setItem(0, new ItemStack(Material.IRON_HELMET));
+            inv.setItem(1, new ItemStack(Material.BREAD,5));
         }
         if (type == 4){
-            inv.setItem(1, new ItemStack(Material.BOW));
-            inv.setItem(2,new ItemStack(Material.ARROW,64));
-            inv.setItem(3,new ItemStack(Material.TOTEM));
-            inv.setItem(4, new ItemStack(Material.TOTEM));
-            inv.setItem(5, new ItemStack(Material.DIAMOND_HELMET));
-            inv.setItem(6, new ItemStack(Material.DIAMOND_CHESTPLATE));
-            inv.setItem(7, new ItemStack(Material.DIAMOND_LEGGINGS));
-            inv.setItem(8, new ItemStack(Material.DIAMOND_BOOTS));
-            inv.setItem(9, new ItemStack(Material.SHIELD));
+            inv.setItem(0, new ItemStack(Material.BOW));
+            inv.setItem(1,new ItemStack(Material.ARROW,64));
+            inv.setItem(2,new ItemStack(Material.TOTEM));
+            inv.setItem(3, new ItemStack(Material.TOTEM));
+            inv.setItem(4, new ItemStack(Material.DIAMOND_HELMET));
+            inv.setItem(5, new ItemStack(Material.DIAMOND_CHESTPLATE));
+            inv.setItem(6, new ItemStack(Material.DIAMOND_LEGGINGS));
+            inv.setItem(7, new ItemStack(Material.DIAMOND_BOOTS));
+            inv.setItem(8, new ItemStack(Material.SHIELD));
 
             ItemStack potion1 = new ItemStack(Material.POTION);
             PotionMeta pm1 = (PotionMeta) potion1.getItemMeta();
             pm1.setBasePotionData(new PotionData(PotionType.INSTANT_HEAL));
             potion1.setItemMeta(pm1);
-            inv.setItem(10, potion1);
+            inv.setItem(9, potion1);
 
             ItemStack potion2 = new ItemStack(Material.POTION);
             PotionMeta pm2 = (PotionMeta) potion2.getItemMeta();
             pm2.setBasePotionData(new PotionData(PotionType.REGEN));
             potion2.setItemMeta(pm2);
-            inv.setItem(11, potion2);
+            inv.setItem(10, potion2);
 
             ItemStack apple = new ItemStack(Material.GOLDEN_APPLE,20,(byte)1);
             ItemMeta appleMeta = apple.getItemMeta();
             apple.setItemMeta(appleMeta);
-            inv.setItem(12,apple);
+            inv.setItem(11,apple);
         }
 
         if (type == 5){
@@ -224,15 +224,15 @@ public class TntGameWorld implements Listener {
             PotionMeta pm3 = (PotionMeta) potion3.getItemMeta();
             pm3.setBasePotionData(new PotionData(PotionType.POISON));
             potion3.setItemMeta(pm3);
+            inv.setItem(0,potion3);
             inv.setItem(1,potion3);
-            inv.setItem(2,potion3);
 
-            inv.setItem(3, new ItemStack(Material.TNT,64));
+            inv.setItem(2, new ItemStack(Material.TNT,64));
 
             ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 15,(byte)1);
             ItemMeta gappleMeta = gapple.getItemMeta();
             gapple.setItemMeta(gappleMeta);
-            inv.setItem(4,gapple);
+            inv.setItem(3,gapple);
 
             ItemStack enchant = new ItemStack(Material.IRON_CHESTPLATE);
             ItemMeta enchantMeta = enchant.getItemMeta();
@@ -240,13 +240,14 @@ public class TntGameWorld implements Listener {
             enchantMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS,5,true);
             enchantMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
             enchantMeta.addEnchant(Enchantment.THORNS,3,true);
+            inv.setItem(4,enchant);
         }
 
         if (type == 6){
             ItemStack apple2 = new ItemStack(Material.GOLDEN_APPLE,10,(byte)1);
             ItemMeta apple2Meta = apple2.getItemMeta();
             apple2.setItemMeta(apple2Meta);
-            inv.setItem(1, apple2);
+            inv.setItem(0, apple2);
         }
     }
 }
