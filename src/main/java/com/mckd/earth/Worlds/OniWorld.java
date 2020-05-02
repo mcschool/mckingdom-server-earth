@@ -2,10 +2,7 @@ package com.mckd.earth.Worlds;
 
 
 import com.mckd.earth.Earth;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,9 +15,12 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
+
+import java.util.Set;
 
 public class OniWorld implements Listener {
     private Earth plugin;
@@ -64,7 +64,10 @@ public class OniWorld implements Listener {
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "逃げる人" + ChatColor.WHITE + "です", "鬼から逃げきりましょう", 60, 80, 60);
             new OniCountDownScheduler(this.plugin, player,10).runTaskTimer(this.plugin,0,20);
         }
+
     }
+
+
     @EventHandler
     public void BlockBreakEvent(BlockBreakEvent event){
         if (event.getPlayer().getWorld().getName().equals(this.worldName)){
