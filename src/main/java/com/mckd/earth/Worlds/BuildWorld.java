@@ -47,7 +47,7 @@ public class BuildWorld implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) return;
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR)){
             if (event.getMaterial() == Material.BED){
-                if (player.getUniqueId().toString().equals("0f7c2404-2d4f-33b2-b297-8a03c2712fa1")){
+                if (player.getUniqueId().toString().equals("b8438a10825c46a1862ef0f12323ee89")){
                     player.setGameMode(GameMode.CREATIVE);
                     return;
                 }
