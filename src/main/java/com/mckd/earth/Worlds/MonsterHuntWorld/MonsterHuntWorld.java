@@ -1,10 +1,7 @@
 package com.mckd.earth.Worlds.MonsterHuntWorld;
 
 import com.mckd.earth.Earth;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +10,11 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+
 public class MonsterHuntWorld implements Listener {
     Earth plugin;
+    Player player;
     String worldname = "monhun";
 
     public MonsterHuntWorld(Earth plugin){
@@ -35,14 +35,19 @@ public class MonsterHuntWorld implements Listener {
         //プレイヤーをテレポートさせる
         Location location = new Location(world,424,4,1079);
         player.teleport(location);
-        //プレイヤーに特殊な剣をあげる
-        ItemStack enchant = new ItemStack(Material.IRON_SWORD);
-        ItemMeta enchantMeta = enchant.getItemMeta();
-        enchantMeta.addEnchant(Enchantment.KNOCKBACK,100,true);
-        enchantMeta.addEnchant(Enchantment.DAMAGE_ARTHROPODS,100,true);
-        enchant.setItemMeta(enchantMeta);
-        player.getInventory().setItem(1,enchant);
         //スケジューラーを開始させる
         new MonsterHuntScheduler(this.plugin,10).runTaskTimer(this.plugin,0,20);
+    }
+
+    public ItemStack getStrongSword(){
+        ItemStack item =  new ItemStack(Material.IRON_SWORD);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.addEnchant(Enchantment.DAMAGE_ARTHROPODS,6,true);
+        itemMeta.addEnchant(Enchantment.DURABILITY,3,true);
+        item.setItemMeta(itemMeta);
+        player.getInventory().setItem(1,item);
+        item.setDurability((short) 100);
+        return item;
+
     }
 }
