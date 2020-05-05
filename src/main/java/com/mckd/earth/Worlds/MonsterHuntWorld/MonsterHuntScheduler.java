@@ -7,13 +7,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class MonsterHuntScheduler extends BukkitRunnable {
     private Earth plugin;
-    public World world;
     public Player player;
     public int count;
 
     public MonsterHuntScheduler(Earth plugin,int count){
         this.plugin = plugin;
-        this.world = world;
         this.count = 10;
     }
 
