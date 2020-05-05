@@ -23,7 +23,7 @@ public class MonsterHuntWorld implements Listener {
     }
 
     @EventHandler
-    public void onPlayerchangedWorldEvent(PlayerChangedWorldEvent event){
+    public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         World world = player.getWorld();
         if (!player.getWorld().getName().equals(this.worldname)) return;
@@ -42,5 +42,7 @@ public class MonsterHuntWorld implements Listener {
         enchantMeta.addEnchant(Enchantment.DAMAGE_ARTHROPODS,100,true);
         enchant.setItemMeta(enchantMeta);
         player.getInventory().setItem(1,enchant);
+        //スケジューラーを開始させる
+        new MonsterHuntScheduler(this.plugin,10).runTaskTimer(this.plugin,0,20);
     }
 }
