@@ -37,6 +37,8 @@ public class MonsterHuntWorld implements Listener {
         player.teleport(location);
         //スケジューラーを開始させる
         new MonsterHuntScheduler(this.plugin,10).runTaskTimer(this.plugin,0,20);
+        //最強ソード
+        this.getStrongSword();
     }
 
     public ItemStack getStrongSword(){
