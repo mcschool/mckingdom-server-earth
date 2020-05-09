@@ -115,8 +115,8 @@ public class TntGameWorld implements Listener {
         }
 
         if (player.getWorld().getPlayers().size() > 2){
-            player.sendMessage("すでにゲームで遊ばれています");
             player.performCommand("mvtp world");
+            player.sendMessage("すでにゲームで遊ばれています");
         }
 
     }
@@ -136,7 +136,7 @@ public class TntGameWorld implements Listener {
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
-        if (!event.getEntity().getWorld().equals(this.worldname)) return;
+        if (!event.getEntity().getWorld().getName().equals(this.worldname)) return;
         if (this.playerRed.getHealth() == 0.0){
             this.playerRed.setHealth(2.0);
             this.playerBlue.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
