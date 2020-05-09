@@ -142,7 +142,7 @@ public class OniWorld implements Listener {
                                 for (Player p :event.getEntity().getWorld().getPlayers()){
                                     p.sendTitle("ゲームが終了しました","ロビーに戻ります",40,40,40);
                                     player.removePotionEffect(PotionEffectType.GLOWING);
-                                    new OniCountDownScheduler(this.plugin,p,5).runTaskTimer(this.plugin,0,20);
+                                    player.performCommand("mvtp world");
                                 }
                             }
                         }
