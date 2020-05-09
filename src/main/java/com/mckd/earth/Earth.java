@@ -8,7 +8,6 @@ import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
 import com.mckd.earth.Worlds.DropBlock.DropWorld;
 import com.mckd.earth.Worlds.Lobby.LobbyWorld;
-import com.mckd.earth.Worlds.MonsterHuntWorld.MonsterHuntWorld;
 import com.mckd.earth.Worlds.Party.PartyWorld;
 import com.mckd.earth.Worlds.Pve.PveWorld;
 import com.mckd.earth.Worlds.SkyWars.SkyWars;
