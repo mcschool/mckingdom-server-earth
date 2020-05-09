@@ -251,6 +251,16 @@ public class TntGameWorld implements Listener {
             inv.setItem(0, apple2);
         }
     }
+
+    @EventHandler
+    public void onBlockPlaceEvent(BlockPlaceEvent event){
+        Block block = event.getBlock();
+        Player player = event.getPlayer();
+        int y = block.getLocation().getBlockY();
+        if (y > 6.0){
+            event.setCancelled(true);
+        }
+    }
 }
 
 
