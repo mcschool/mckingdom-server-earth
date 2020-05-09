@@ -258,7 +258,7 @@ public class TntGameWorld implements Listener {
         Player player = event.getPlayer();
         int y = block.getLocation().getBlockY();
         if (y > 6.0){
-            event.isCancelled();
+            event.setCancelled(true);
         }
     }
 }
