@@ -62,7 +62,6 @@ public class OniWorld implements Listener {
             Location location1 = new Location(player.getWorld(),-669,4,-121);
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "逃げる人" + ChatColor.WHITE + "です", "鬼から逃げきりましょう", 60, 80, 60);
-            new OniCountDownScheduler(this.plugin, player,10).runTaskTimer(this.plugin,0,20);
         }
 
     }
@@ -144,7 +143,6 @@ public class OniWorld implements Listener {
                                     p.sendMessage("ゲームが終了しました。ロビーに戻ります");
                                     new OniCountDownScheduler(this.plugin, p,5).runTaskTimer(this.plugin,0,20);
                                     p.removePotionEffect(PotionEffectType.GLOWING);
-                                    p.performCommand("mvtp world");
                                 }
                             }
                         }
