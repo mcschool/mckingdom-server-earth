@@ -20,7 +20,6 @@ public class OniCountDownScheduler extends BukkitRunnable {
         this.player.sendTitle(String.valueOf(count), "", 0, 20, 0);
         if (this.count < 1){
             this.cancel();
-            this.player.sendMessage("鬼から逃げきれ！");
         }
     }
 }
