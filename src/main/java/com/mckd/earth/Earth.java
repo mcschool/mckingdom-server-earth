@@ -45,11 +45,7 @@ public final class Earth extends JavaPlugin {
         new DropWorld(this);
         new OniWorld(this);
         new TntGameWorld(this);
-<<<<<<< HEAD
-        new MonsterHuntWorld(this);
         new ArcherBattle(this);
-=======
->>>>>>> bec580e04c9ab05b424c2cc623898f897bf62917
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");

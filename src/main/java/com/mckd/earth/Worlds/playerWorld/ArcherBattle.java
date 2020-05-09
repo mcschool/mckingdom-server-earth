@@ -14,7 +14,6 @@ public class ArcherBattle implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-
 }
 
 
