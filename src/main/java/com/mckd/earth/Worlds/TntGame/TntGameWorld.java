@@ -31,7 +31,6 @@ public class TntGameWorld implements Listener {
     Player playerBlue;
     Earth plugin;
     String worldname = "minigame";
-    Player player;
 
     public TntGameWorld(Earth plugin) {
         this.plugin = plugin;
@@ -137,7 +136,7 @@ public class TntGameWorld implements Listener {
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
-        if (!player.getWorld().getName().equals(this.worldname)) return;
+        if (!event.getEntity().getWorld().equals(this.worldname)) return;
         if (this.playerRed.getHealth() == 0.0){
             this.playerRed.setHealth(2.0);
             this.playerBlue.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
@@ -256,7 +255,7 @@ public class TntGameWorld implements Listener {
 
     @EventHandler
     public void onBlockPlaceEvent(BlockPlaceEvent event){
-        if (!player.getWorld().getName().equals(this.worldname)) return;
+        if (!event.getBlock().getWorld().getName().equals(this.worldname)) return;
         Block block = event.getBlock();
         Player player = event.getPlayer();
         int y = block.getLocation().getBlockY();
