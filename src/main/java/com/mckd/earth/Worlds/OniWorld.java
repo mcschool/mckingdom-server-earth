@@ -120,6 +120,7 @@ public class OniWorld implements Listener {
     @EventHandler
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player) {
+            World world = event.getEntity().getWorld();
             Player damager = (Player) event.getDamager();
             if (event.getEntity().getWorld().getName().equals(this.worldName)) {
                 //ダメージを受けたエンティティがプレイヤーの場合
@@ -139,10 +140,10 @@ public class OniWorld implements Listener {
                             }
                             if (allOni){
                                 //終了
-                                for (Player p :event.getEntity().getWorld().getPlayers()){
+                                for (Player p :world.getPlayers()){
                                     p.sendTitle("ゲームが終了しました","ロビーに戻ります",40,40,40);
-                                    player.removePotionEffect(PotionEffectType.GLOWING);
-                                    player.performCommand("mvtp world");
+                                    p.removePotionEffect(PotionEffectType.GLOWING);
+                                    p.performCommand("mvtp world");
                                 }
                             }
                         }
