@@ -27,6 +27,7 @@ public final class Earth extends JavaPlugin {
         String env = System.getenv("MCK_ENV");
         System.out.println(env);
         System.out.println("=====================================");
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         // Plugin startup logic
         new SharedEvent(this);
