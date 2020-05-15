@@ -196,6 +196,7 @@ public class LobbyWorld implements Listener{
                 player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
                 // player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
             } catch (org.bukkit.plugin.messaging.ChannelNotRegisteredException ex) {
+                ex.printStackTrace();
                 Bukkit.getLogger().warning(" ERROR - Usage of bungeecord connect effects is not possible. Your server is not having bungeecord support (Bungeecord channel is not registered in your minecraft server)!");
             }
 //            baos.close();
