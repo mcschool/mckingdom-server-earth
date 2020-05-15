@@ -183,15 +183,23 @@ public class LobbyWorld implements Listener{
 
         // ダイヤのつるはし: サバイバルに行く(サーバー移動)
         if(e.getCurrentItem().getType() == Material.YELLOW_FLOWER) {
-            player.sendMessage("生活サーバーに移動します");
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(baos);
-            dos.writeUTF("Connect");
-            dos.writeUTF("life"); // サーバー名だけいれればOK
-            player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
-            baos.close();
-            dos.close();
-            player.performCommand("server life");
+            try {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                DataOutputStream dos = new DataOutputStream(baos);
+                try {
+                    dos.writeUTF("Connect");
+                    dos.writeUTF("life"); // サーバー名だけいれればOK
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    Bukkit.getLogger().info("-- bungee -----");
+                }
+                player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
+                // player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
+            } catch (org.bukkit.plugin.messaging.ChannelNotRegisteredException ex) {
+                Bukkit.getLogger().warning(" ERROR - Usage of bungeecord connect effects is not possible. Your server is not having bungeecord support (Bungeecord channel is not registered in your minecraft server)!");
+            }
+//            baos.close();
+//            dos.close();
         }
         // チェスト: 建築ワールドに行く
         if(e.getCurrentItem().getType() == Material.CHEST){
