@@ -114,6 +114,15 @@ public class LobbyInventory {
         tnt.setItemMeta(tntMeta);
         inv.setItem(23, tnt);
 
+        ItemStack flower = new ItemStack(Material.YELLOW_FLOWER);
+        ItemMeta flowerMeta = tnt.getItemMeta();
+        tntMeta.setDisplayName("生活サーバー");
+        List<String> flowerLores = new ArrayList<>();
+        flowerLores.add("みんなでのんびり生活サーバー");
+        flowerMeta.setLore(flowerLores);
+        flower.setItemMeta(flowerMeta);
+        inv.setItem(25, flower);
+
         // クリエ: シーランタン
         // ========================
         /*

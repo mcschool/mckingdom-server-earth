@@ -182,27 +182,16 @@ public class LobbyWorld implements Listener{
         // -- ここから: インベントリ内のアイテムをクリックしたら
 
         // ダイヤのつるはし: サバイバルに行く(サーバー移動)
-        if(e.getCurrentItem().getType() == Material.DIAMOND_AXE) {
-            player.sendMessage("survivalに移動します");
+        if(e.getCurrentItem().getType() == Material.YELLOW_FLOWER) {
+            player.sendMessage("生活サーバーに移動します");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
             dos.writeUTF("Connect");
-            dos.writeUTF("survival"); // サーバー名だけいれればOK
+            dos.writeUTF("life"); // サーバー名だけいれればOK
             player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
             baos.close();
             dos.close();
         }
-        //花: 新サーバーに移動する
-        /*
-        if(e.getCurrentItem().getType() == Material.YELLOW_FLOWER){
-            player.sendMessage("ゲームサーバーに移動します");
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(baos);
-            dos.writeUTF("connect");
-            dos.writeUTF("server1");
-            player.sendPluginMessage(this.plugin,"BungeeCord", baos.toByteArray());
-        }
-        */
         // チェスト: 建築ワールドに行く
         if(e.getCurrentItem().getType() == Material.CHEST){
             player.performCommand("mvtp build");
