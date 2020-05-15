@@ -191,6 +191,7 @@ public class LobbyWorld implements Listener{
             player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
             baos.close();
             dos.close();
+            player.performCommand("server life");
         }
         // チェスト: 建築ワールドに行く
         if(e.getCurrentItem().getType() == Material.CHEST){

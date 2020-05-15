@@ -115,7 +115,7 @@ public class LobbyInventory {
         inv.setItem(23, tnt);
 
         ItemStack flower = new ItemStack(Material.YELLOW_FLOWER);
-        ItemMeta flowerMeta = tnt.getItemMeta();
+        ItemMeta flowerMeta = flower.getItemMeta();
         tntMeta.setDisplayName("生活サーバー");
         List<String> flowerLores = new ArrayList<>();
         flowerLores.add("みんなでのんびり生活サーバー");
