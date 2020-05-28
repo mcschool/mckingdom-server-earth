@@ -15,6 +15,7 @@ import com.mckd.earth.Worlds.SkyWars2.SkyWars2;
 import com.mckd.earth.Worlds.TntGame.TntGameWorld;
 import com.mckd.earth.Worlds.TypingButtle.TypingButtleWorld;
 import com.mckd.earth.Worlds.playerWorld.ArcherBattle;
+import com.mckd.earth.Worlds.playerWorld.keidoro;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,6 +48,7 @@ public final class Earth extends JavaPlugin {
         new OniWorld(this);
         new TntGameWorld(this);
         new ArcherBattle(this);
+        new keidoro(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
