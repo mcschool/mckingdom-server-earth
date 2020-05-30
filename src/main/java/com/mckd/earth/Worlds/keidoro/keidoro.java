@@ -102,7 +102,7 @@ public class keidoro implements Listener {
                     if(this.isOni(damager)){
                         if(isEscaper(player)){
                             Location location = new Location(player.getWorld(), 1830, 6, 208);
-                           player.teleport(location);
+                            player.teleport(location);
                            this.playertukamatteru = player;
                             boolean alltukamatta = true;
                             for(Player p : e.getEntity().getWorld().getPlayers()){
