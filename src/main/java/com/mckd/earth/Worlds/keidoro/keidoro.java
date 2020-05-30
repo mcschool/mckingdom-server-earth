@@ -17,9 +17,6 @@ public class keidoro implements Listener {
 
     Earth plugin;
     String worldName = "keidoro";
-    Player playerNigeru;
-    Player playerOni;
-    Player playertukamatteru;
 
     public keidoro(Earth plugin) {
         this.plugin = plugin;
@@ -50,12 +47,14 @@ public class keidoro implements Listener {
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "鬼" + ChatColor.WHITE + "です", "プレイヤーを捕まえましょう", 60, 80, 60);
             player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 1000 * 20, 0));
-            this.playerOni = player;
+            player.setDisplayName("Oni");
+            player.setCustomName("Oni");
         } else {
             Location location1 = new Location(player.getWorld(),1832,6,226);
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "逃げる人" + ChatColor.WHITE + "です", "鬼から逃げきりましょう", 60, 80, 60);
-            this.playerNigeru = player;
+            player.setDisplayName("Escaper");
+            player.setCustomName("Escaper");
         }
 
     }
@@ -102,10 +101,12 @@ public class keidoro implements Listener {
                     Player player  = (Player)e.getEntity();
                     if(this.isOni(damager)){
                         if(isEscaper(player)){
+                            player.setDisplayName("caught");
+                            player.setCustomName("caught");
                             player.sendMessage("test1");
                             Location location = new Location(player.getWorld(), 1830, 6, 208);
                             player.teleport(location);
-                            this.playertukamatteru = player;
+                            player.setDisplayName("caught");
                             boolean alltukamatta = true;
                             for(Player p : e.getEntity().getWorld().getPlayers()){
                                 if(isEscaper(p)){
@@ -132,8 +133,7 @@ public class keidoro implements Listener {
     }
 
     private boolean isOni(Player player) {
-        if (player.hasPotionEffect(PotionEffectType.GLOWING)){
-            this.playerOni = player;
+        if (player.getDisplayName().equals("Oni")){
             return true;
         }
 
@@ -142,18 +142,15 @@ public class keidoro implements Listener {
 
     private boolean isEscaper(Player player) {
         player.sendMessage("test2");
-        if (!isOni(player)&&!istukamatteru(player)){
-            this.playerNigeru = player;
+        if (player.getDisplayName().equals("Escaper")){
             return true;
         }
         return false;
     }
 
-    private boolean istukamatteru(Player player) {
+    private boolean isTukamatteru(Player player) {
         player.sendMessage("test3");
-        if (!isOni(player)&&!isEscaper(player)){
-            player.hasPotionEffect(PotionEffectType.BLINDNESS);
-            this.playertukamatteru = player;
+        if (player.getDisplayName().equals("caught")){
             return true;
         }
 
