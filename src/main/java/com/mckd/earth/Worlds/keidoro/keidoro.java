@@ -101,22 +101,20 @@ public class keidoro implements Listener {
                     Player player  = (Player)e.getEntity();
                     if(this.isOni(damager)){
                         if(isEscaper(player)){
-                            player.setDisplayName("caught");
-                            player.setCustomName("caught");
-                            player.sendMessage("test1");
+                            player.setDisplayName("Caught");
+                            player.setCustomName("Caught");
                             Location location = new Location(player.getWorld(), 1830, 6, 208);
                             player.teleport(location);
-                            player.setDisplayName("caught");
-                            boolean alltukamatta = true;
+                            boolean allCaught = true;
                             for(Player p : e.getEntity().getWorld().getPlayers()){
                                 if(isEscaper(p)){
-                                    alltukamatta = false;
+                                    allCaught = false;
                                 }
                             }
                             for (Player p : e.getEntity().getWorld().getPlayers()) {
                                 p.sendTitle("", "「" + player.getName() + "」さんが捕まりました!", 40, 40, 40);
                             }
-                            if (alltukamatta){
+                            if (allCaught){
 
                                 for (Player p :world.getPlayers()){
                                     p.sendMessage("ゲームが終了しました。ロビーに戻ります");
@@ -141,15 +139,13 @@ public class keidoro implements Listener {
     }
 
     private boolean isEscaper(Player player) {
-        player.sendMessage("test2");
         if (player.getDisplayName().equals("Escaper")){
             return true;
         }
         return false;
     }
 
-    private boolean isTukamatteru(Player player) {
-        player.sendMessage("test3");
+    private boolean isCaught(Player player) {
         if (player.getDisplayName().equals("caught")){
             return true;
         }
