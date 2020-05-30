@@ -15,7 +15,7 @@ import com.mckd.earth.Worlds.SkyWars2.SkyWars2;
 import com.mckd.earth.Worlds.TntGame.TntGameWorld;
 import com.mckd.earth.Worlds.TypingButtle.TypingButtleWorld;
 import com.mckd.earth.Worlds.playerWorld.ArcherBattle;
-import com.mckd.earth.Worlds.playerWorld.keidoro;
+import com.mckd.earth.Worlds.keidoro.keidoro;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -34,14 +34,10 @@ public class OniWorld implements Listener {
         Player player = event.getPlayer();
         World world = player.getWorld();
         if (!player.getWorld().getName().equals(this.worldName)) return;
-        //インベントリを空にする
         player.getInventory().clear();
-        //ゲームモード変更
         player.setGameMode(GameMode.SURVIVAL);
-        //空腹度をMAXにする
         player.setFoodLevel(20);
         player.getWorld().setPVP(true);
-        //体力をMAXにする
         player.setHealth(18.0);
         for (Player p :world.getPlayers()){
             if (isOni(p)){
@@ -50,16 +46,13 @@ public class OniWorld implements Listener {
                 player.sendMessage(p.getDisplayName());
             }
         }
-        /*for (Player p : world.getPlayers()){
-            player.sendMessage(p.getUniqueId().toString());
-        }*/
         if (player.getWorld().getPlayers().size() == 1) {
-            Location location = new Location(player.getWorld(),-551,4,-120);
+            Location location = new Location(player.getWorld(),1835,6,218);
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "鬼" + ChatColor.WHITE + "です", "プレイヤーを捕まえましょう", 60, 80, 60);
             player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 1000 * 20, 0));
         } else {
-            Location location1 = new Location(player.getWorld(),-669,4,-121);
+            Location location1 = new Location(player.getWorld(),1835,6,227);
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "逃げる人" + ChatColor.WHITE + "です", "鬼から逃げきりましょう", 60, 80, 60);
         }
