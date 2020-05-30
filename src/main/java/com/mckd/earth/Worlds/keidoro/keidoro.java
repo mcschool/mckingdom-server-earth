@@ -55,7 +55,7 @@ public class keidoro implements Listener {
             Location location1 = new Location(player.getWorld(),1832,6,226);
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "逃げる人" + ChatColor.WHITE + "です", "鬼から逃げきりましょう", 60, 80, 60);
-            this.isEscaper(player);
+            this.playerNigeru = player;
         }
 
     }
