@@ -141,6 +141,7 @@ public class keidoro implements Listener {
     }
 
     private boolean isEscaper(Player player) {
+        player.sendMessage("test2");
         if (!isOni(player)&&!istukamatteru(player)){
             this.playerNigeru = player;
             return true;
@@ -149,6 +150,7 @@ public class keidoro implements Listener {
     }
 
     private boolean istukamatteru(Player player) {
+        player.sendMessage("test3");
         if (!isOni(player)&&!isEscaper(player)){
             player.hasPotionEffect(PotionEffectType.BLINDNESS);
             this.playertukamatteru = player;
