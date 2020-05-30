@@ -1,7 +1,6 @@
 package com.mckd.earth.Worlds.keidoro;
 
 import com.mckd.earth.Earth;
-import com.mckd.earth.Worlds.OniCountDownScheduler;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,14 +29,10 @@ public class keidoro implements Listener {
         Player player = event.getPlayer();
         World world = player.getWorld();
         if (!player.getWorld().getName().equals(this.worldName)) return;
-        //インベントリを空にする
         player.getInventory().clear();
-        //ゲームモード変更
         player.setGameMode(GameMode.SURVIVAL);
-        //空腹度をMAXにする
         player.setFoodLevel(20);
         player.getWorld().setPVP(true);
-        //体力をMAXにする
         player.setHealth(18.0);
         for (Player p :world.getPlayers()){
             if (isOni(p)){
@@ -46,9 +41,7 @@ public class keidoro implements Listener {
                 player.sendMessage(p.getDisplayName());
             }
         }
-        /*for (Player p : world.getPlayers()){
-            player.sendMessage(p.getUniqueId().toString());
-        }*/
+
         if (player.getWorld().getPlayers().size() == 1) {
             Location location = new Location(player.getWorld(),-551,4,-120);
             player.teleport(location);
