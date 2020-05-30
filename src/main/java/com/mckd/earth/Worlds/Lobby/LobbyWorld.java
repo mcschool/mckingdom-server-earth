@@ -188,7 +188,7 @@ public class LobbyWorld implements Listener{
                 DataOutputStream dos = new DataOutputStream(baos);
                 try {
                     dos.writeUTF("Connect");
-                    //dos.writeUTF("life"); // サーバー名だけいれればOK
+                    dos.writeUTF("life"); // サーバー名だけいれればOK
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     Bukkit.getLogger().info("-- bungee -----");
