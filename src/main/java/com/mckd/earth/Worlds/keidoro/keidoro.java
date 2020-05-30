@@ -55,6 +55,7 @@ public class keidoro implements Listener {
             Location location1 = new Location(player.getWorld(),1832,6,226);
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "逃げる人" + ChatColor.WHITE + "です", "鬼から逃げきりましょう", 60, 80, 60);
+            this.isEscaper(player);
         }
 
     }
@@ -103,7 +104,7 @@ public class keidoro implements Listener {
                         if(isEscaper(player)){
                             Location location = new Location(player.getWorld(), 1830, 6, 208);
                             player.teleport(location);
-                           this.playertukamatteru = player;
+                            this.playertukamatteru = player;
                             boolean alltukamatta = true;
                             for(Player p : e.getEntity().getWorld().getPlayers()){
                                 if(isEscaper(p)){
@@ -148,6 +149,7 @@ public class keidoro implements Listener {
 
     private boolean istukamatteru(Player player) {
         if (!isOni(player)&&!isEscaper(player)){
+            player.hasPotionEffect(PotionEffectType.BLINDNESS);
             this.playertukamatteru = player;
             return true;
         }
