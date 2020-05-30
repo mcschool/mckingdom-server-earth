@@ -17,6 +17,9 @@ public class keidoro implements Listener {
 
     Earth plugin;
     String worldName = "keidoro";
+    Player playerNigeru;
+    Player playerOni;
+    Player playertukamatteru;
 
     public keidoro(Earth plugin) {
         this.plugin = plugin;
@@ -47,6 +50,7 @@ public class keidoro implements Listener {
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE + "あなたは" + ChatColor.RED + "鬼" + ChatColor.WHITE + "です", "プレイヤーを捕まえましょう", 60, 80, 60);
             player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 1000 * 20, 0));
+            this.playerOni = player;
         } else {
             Location location1 = new Location(player.getWorld(),1832,6,226);
             player.teleport(location1);
@@ -99,6 +103,7 @@ public class keidoro implements Listener {
                         if(isEscaper(player)){
                             Location location = new Location(player.getWorld(), 1830, 6, 208);
                            player.teleport(location);
+                           this.playertukamatteru = player;
                             boolean alltukamatta = true;
                             for(Player p : e.getEntity().getWorld().getPlayers()){
                                 if(isEscaper(p)){
@@ -126,7 +131,7 @@ public class keidoro implements Listener {
 
     private boolean isOni(Player player) {
         if (player.hasPotionEffect(PotionEffectType.GLOWING)){
-
+            this.playerOni = player;
             return true;
         }
 
@@ -134,9 +139,19 @@ public class keidoro implements Listener {
     }
 
     private boolean isEscaper(Player player) {
-        if (!isOni(player)){
+        if (!isOni(player)&&!istukamatteru(player)){
+            this.playerNigeru = player;
             return true;
         }
+        return false;
+    }
+
+    private boolean istukamatteru(Player player) {
+        if (!isOni(player)&&!isEscaper(player)){
+            this.playertukamatteru = player;
+            return true;
+        }
+
         return false;
     }
 
