@@ -118,7 +118,7 @@ public class LobbyInventory {
         ItemMeta flowerMeta = flower.getItemMeta();
         tntMeta.setDisplayName("生活サーバー");
         List<String> flowerLores = new ArrayList<>();
-        flowerLores.add("みんなでのんびり生活サーバー");
+        flowerLores.add("メンテ中です。16:30くらいまで入れません");
         flowerMeta.setLore(flowerLores);
         flower.setItemMeta(flowerMeta);
         inv.setItem(25, flower);
