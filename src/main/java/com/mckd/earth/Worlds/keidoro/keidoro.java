@@ -146,7 +146,7 @@ public class keidoro implements Listener {
                 Sign sign;
                 sign = (Sign) block.getState();
                 String line = sign.getLine(1);
-                if (line.equals("Clock here")){
+                if (line.equals("Click here")){
                     player.setDisplayName("Escaper");
                     player.setCustomName("Escaper");
                 }
