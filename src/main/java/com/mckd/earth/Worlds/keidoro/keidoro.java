@@ -2,14 +2,18 @@ package com.mckd.earth.Worlds.keidoro;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -126,6 +130,26 @@ public class keidoro implements Listener {
                     }
                 }
 
+            }
+        }
+    }
+
+    @EventHandler
+    public void PlayerInteractEvent(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)){
+            return;
+        }
+        Block block =  event.getClickedBlock();
+        if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
+            if (event.getMaterial() == Material.SIGN){
+                Sign sign;
+                sign = (Sign) block.getState();
+                String line = sign.getLine(1);
+                if (line.equals("Clock here")){
+                    player.setDisplayName("Escaper");
+                    player.setCustomName("Escaper");
+                }
             }
         }
     }
