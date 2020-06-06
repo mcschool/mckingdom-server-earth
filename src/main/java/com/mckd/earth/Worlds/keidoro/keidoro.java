@@ -146,11 +146,13 @@ public class keidoro implements Listener {
                 sign = (Sign) block.getState();
                 String line = sign.getLine(1);
                 if (line.equals("Click here")){
-                    Bukkit.getLogger().info("ログです");
-                    player.setDisplayName(null);
-                    player.setCustomName(null);
-                    player.setDisplayName("Escaper");
-                    player.setCustomName("Escaper");
+                    if (player.getDisplayName().equals("Caught")){
+                        Bukkit.getLogger().info("ログです");
+                        player.setDisplayName(null);
+                        player.setCustomName(null);
+                        player.setDisplayName("Escaper");
+                        player.setCustomName("Escaper");
+                    }
                 }
             }
         }
