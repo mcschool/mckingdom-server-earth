@@ -156,6 +156,9 @@ public class LobbyWorld implements Listener{
             player.sendMessage("https://mc-kingdom.com/");
             player.sendMessage("");
             player.sendMessage(ChatColor.YELLOW + "=====================");
+            player.sendMessage(ChatColor.RED+"溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
+            player.sendMessage(ChatColor.RED+"一人ひとりの行動・発言はログで取得できます。");
+            player.sendMessage(ChatColor.BLUE+"みんなが気持ちよく遊べるように心がけてください");
         }
         // this.sidebar(player);
         /*
