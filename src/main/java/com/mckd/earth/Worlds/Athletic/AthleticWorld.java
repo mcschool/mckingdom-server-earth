@@ -94,6 +94,7 @@ public class AthleticWorld implements Listener {
 
     public void setInventory(Player player) {
         this.inv = Bukkit.createInventory(null, 54, "すべてのステージ");
+        /*
         this.inv.setItem(0, setItemStack(Material.EMPTY_MAP, "入門タイムアタック Create by red_skt"));
         this.inv.setItem(1, setItemStack(Material.EMPTY_MAP, "羊毛パラダイス! Create by MarkCreative4"));
         this.inv.setItem(2, setItemStack(Material.EMPTY_MAP, "暗闇の世界 Create by MarkCreative4"));
@@ -112,6 +113,8 @@ public class AthleticWorld implements Listener {
         this.inv.setItem(15,setItemStack(Material.EMPTY_MAP,"泳げたい焼きくんアスレ Create by taiyaki23"));
         this.inv.setItem(16,setItemStack(Material.EMPTY_MAP,"初心者アスレ Create by momizi_tubaki"));
         this.inv.setItem(17,setItemStack(Material.EMPTY_MAP,"草が生えるアスレ Create by momizi_tubaki"));
+         */
+        this.inv.setItem(1, setItemStack(Material.EMPTY_MAP,"ホワイトの炎&草 Create by naotontonton"));
     }
 
     public ItemStack setItemStack(Material material, String name) {
@@ -144,6 +147,12 @@ public class AthleticWorld implements Listener {
                     int index = e.getRawSlot();
                     // クリックしたindexでステージ移動
                     //入門タイムアタック
+                    if (index == 0){
+                        Location location = new Location(player.getWorld(),-213,63,523);
+                        player.teleport(location);
+                        this.setConfigration(0,"ホワイトの炎&草", player,location);
+                    }
+                    /*
                     if (index == 0){
                         Location location = new Location(player.getWorld(),-305,67,302);
                         player.teleport(location);
@@ -261,6 +270,7 @@ public class AthleticWorld implements Listener {
                         player.teleport(location);
                         this.setConfigration(17, "草が生えるアスレ", player, location);
                     }
+                     */
                 }
             }
         }
