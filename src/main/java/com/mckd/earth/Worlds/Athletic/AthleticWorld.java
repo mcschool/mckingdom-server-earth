@@ -114,7 +114,7 @@ public class AthleticWorld implements Listener {
         this.inv.setItem(16,setItemStack(Material.EMPTY_MAP,"初心者アスレ Create by momizi_tubaki"));
         this.inv.setItem(17,setItemStack(Material.EMPTY_MAP,"草が生えるアスレ Create by momizi_tubaki"));
          */
-        this.inv.setItem(1, setItemStack(Material.EMPTY_MAP,"ホワイトの炎&草 Create by naotontonton"));
+        this.inv.setItem(0, setItemStack(Material.EMPTY_MAP,"ホワイトの炎&草 Create by naotontonton"));
     }
 
     public ItemStack setItemStack(Material material, String name) {
