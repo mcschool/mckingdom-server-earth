@@ -3,6 +3,7 @@ package com.mckd.earth.TntRun;
 import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +13,9 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.List;
 
@@ -33,18 +37,31 @@ public class TntRunWorld implements Listener {
         }
         player.getInventory().clear();
         player.setGameMode(GameMode.ADVENTURE);
-
         World world = player.getWorld();
-        if (world.getPlayers().size() == 1) {
-            if (this.status.equals("wait")) {
-                this.fillFirstFloor();
-                this.fillSecondFloor();
-                this.fillThirdFloor();
+        Location location = new Location(world,555,4,434);
+        player.teleport(location);
 
+    }
+
+    @EventHandler
+    public void signClick(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        if (!p.getWorld().getName().equals("tntrun")) {
+            return;
+        }
+        Block b = e.getClickedBlock();
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+            Sign sign;
+            sign = (Sign) b.getState();
+            String line = sign.getLine(1);
+            if (line.equals("GameStart")) {
+                Location location = new Location(p.getWorld(), 393.9, 33, 374.5);
+                p.teleport(location);
             }
         }
     }
 
+    /*
     @EventHandler
     public void onPlayerIntract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
@@ -188,6 +205,7 @@ public class TntRunWorld implements Listener {
 
         }
     }
+    */
 }
 
 
