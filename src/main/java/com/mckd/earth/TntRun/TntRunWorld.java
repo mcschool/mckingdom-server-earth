@@ -28,12 +28,11 @@ public class TntRunWorld implements Listener {
     @EventHandler
     public void onPlayerChanged(PlayerChangedWorldEvent e) {
         Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals("tnt")) {
+        if (!player.getWorld().getName().equals("tntrun")) {
             return;
         }
         player.getInventory().clear();
         player.setGameMode(GameMode.ADVENTURE);
-        player.sendMessage("test1");
 
         World world = player.getWorld();
         if (world.getPlayers().size() == 1) {
@@ -49,7 +48,7 @@ public class TntRunWorld implements Listener {
     @EventHandler
     public void onPlayerIntract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals("tnt")) {
+        if (!player.getWorld().getName().equals("tntrun")) {
             return;
         }
 
@@ -67,7 +66,7 @@ public class TntRunWorld implements Listener {
     }
 
     public void start() {
-        World world = Bukkit.getWorld("tnt");
+        World world = Bukkit.getWorld("tntrun");
         world.setPVP(false);
         List<Player> players = world.getPlayers();
         int c = 0;
@@ -80,7 +79,7 @@ public class TntRunWorld implements Listener {
     }
 
     public void fillFloor(Player player) {
-        World world = Bukkit.getWorld("tnt");
+        World world = Bukkit.getWorld("tntrun");
         Location location = player.getLocation();
         location.add(0, 10, 0);
         Double nowX = location.getX();
@@ -96,7 +95,7 @@ public class TntRunWorld implements Listener {
 
 
     public void fillFirstFloor() {
-        World world = Bukkit.getWorld("tnt");
+        World world = Bukkit.getWorld("tntrun");
         Location location = new Location(world, 0, 0, 0);
         Double nowX = location.getX();
         Double nowZ = location.getZ();
@@ -110,7 +109,7 @@ public class TntRunWorld implements Listener {
     }
 
     public void fillSecondFloor() {
-        World world = Bukkit.getWorld("tnt");
+        World world = Bukkit.getWorld("tntrun");
         Location location = new Location(world,0,0,0);
         location.add(0, 0, 0);
         Double nowX = location.getX();
@@ -127,7 +126,7 @@ public class TntRunWorld implements Listener {
         }
     }
     public void fillThirdFloor() {
-        World world =Bukkit.getWorld("tnt");
+        World world =Bukkit.getWorld("tntrun");
         Location location = new Location(world, 0,0,0);
         location.add(0, 0, 0);
         Double nowX = location.getX();
@@ -148,7 +147,7 @@ public class TntRunWorld implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
         Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals("tnt")) {
+        if (!player.getWorld().getName().equals("tntrun")) {
             return;
         }
 
