@@ -23,7 +23,7 @@ public class TntRunWorld implements Listener {
 
     Earth plugin;
     String status = "wait";
-    String woldname = "tntrun";
+    String worldname = "tntrun";
 
     public TntRunWorld(Earth plugin) {
         this.plugin = plugin;
@@ -37,7 +37,7 @@ public class TntRunWorld implements Listener {
             return;
         }
         player.getInventory().clear();
-        player.setGameMode(GameMode.ADVENTURE);
+        player.setGameMode(GameMode.SURVIVAL);
         World world = player.getWorld();
         Location location = new Location(world,555,4,434);
         player.teleport(location);
@@ -65,13 +65,23 @@ public class TntRunWorld implements Listener {
     public void onPlayerMoveEvent(PlayerMoveEvent event){
         Player player = event.getPlayer();
         World world = player.getWorld();
-        if (event.getPlayer().getWorld().getName().equals(this.woldname)){
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)){
             return;
         }
         Location location = event.getPlayer().getLocation().clone().subtract(0,-1,0);
         Block block = location.getBlock();
         if (block.getType() == Material.TNT){
             world.getBlockAt(location).setType(Material.AIR);
+        }
+    }
+
+    @EventHandler
+    public void BlockBreakEvent(BlockBreakEvent event) {
+        if (event.getPlayer().getWorld().getName().equals(this.worldname)) {
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                event.getPlayer().sendMessage("壊せないよ");
+                event.setCancelled(true);
+            }
         }
     }
 }
