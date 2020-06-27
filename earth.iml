@@ -42,7 +42,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.4">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/HolographicDisplays-2.4.4-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/HolographicDisplays.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

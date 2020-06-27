@@ -5,12 +5,17 @@ import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Utils.HttpReq;
 import com.mckd.earth.Worlds.Lobby.LobbyInventory;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.npc.MemoryNPCDataStore;
+import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.npc.NPCRegistry;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -132,6 +137,10 @@ public class LobbyWorld implements Listener{
 
         Hologram hologram = HologramsAPI.createHologram(this.plugin, new Location(player.getWorld(), -106, 3, -1506));
         hologram.appendTextLine("YYYYYYYYYYYYY");
+
+//        NPCRegistry registry = CitizensAPI.createAnonymousNPCRegistry(new MemoryNPCDataStore());
+//        NPC npc = registry.createNPC(EntityType.PLAYER, "MarkCs8");
+//        npc.spawn(new Location(player.getWorld(), -106, 5, -1506));
 
         // タイトル
         player.sendTitle(
