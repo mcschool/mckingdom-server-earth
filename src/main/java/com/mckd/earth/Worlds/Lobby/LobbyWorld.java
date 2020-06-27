@@ -1,5 +1,7 @@
 package com.mckd.earth.Worlds.Lobby;
 
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import com.mckd.earth.Earth;
 import com.mckd.earth.Utils.HttpReq;
 import com.mckd.earth.Worlds.Lobby.LobbyInventory;
@@ -127,6 +129,9 @@ public class LobbyWorld implements Listener{
         // PlayerServiceでプレーヤー情報登録
         // PlayersService playerService = new PlayersService();
         // playerService.login(player);
+
+        Hologram hologram = HologramsAPI.createHologram(this.plugin, new Location(player.getWorld(), -106, 3, -1506));
+        hologram.appendTextLine("YYYYYYYYYYYYY");
 
         // タイトル
         player.sendTitle(

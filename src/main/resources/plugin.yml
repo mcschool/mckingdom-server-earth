@@ -2,6 +2,7 @@ name: Earth
 version: ${project.version}
 main: com.mckd.earth.Earth
 api-version: 1.12
+softdepend: [HolographicDisplays]
 commands:
   email:
     description: email setting
