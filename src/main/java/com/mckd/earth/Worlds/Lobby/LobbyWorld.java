@@ -135,8 +135,8 @@ public class LobbyWorld implements Listener{
         // PlayersService playerService = new PlayersService();
         // playerService.login(player);
 
-        Hologram hologram = HologramsAPI.createHologram(this.plugin, new Location(player.getWorld(), -106, 3, -1506));
-        hologram.appendTextLine("YYYYYYYYYYYYY");
+        //Hologram hologram = HologramsAPI.createHologram(this.plugin, new Location(player.getWorld(), -106, 3, -1506));
+        //hologram.appendTextLine("YYYYYYYYYYYYY");
 
 //        NPCRegistry registry = CitizensAPI.createAnonymousNPCRegistry(new MemoryNPCDataStore());
 //        NPC npc = registry.createNPC(EntityType.PLAYER, "MarkCs8");

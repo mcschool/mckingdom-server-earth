@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -39,6 +41,20 @@ public class BuildWorld implements Listener {
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemStack.setItemMeta(itemMeta);
         player.getInventory().addItem(itemStack);
+    }
+
+    @EventHandler
+    public void onBlockSpread(BlockSpreadEvent e) {
+        if(e.getBlock().getWorld().getName().equals(this.worldName)){
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBlockBurn(BlockBurnEvent e) {
+        if (e.getBlock().getWorld().getName().equals(this.worldName)) {
+            e.setCancelled(true);
+        }
     }
 
     @EventHandler
