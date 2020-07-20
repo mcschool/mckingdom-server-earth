@@ -347,12 +347,15 @@ public class PveWorld implements Listener {
         }
     }
 
+
+
     @EventHandler
     public void noPlayerInteractEvent(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         if (!player.getWorld().getName().equals("pve") && this.inTower(player)) {
             return;
         }
+
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
             if (block.getType() == Material.FENCE) {
@@ -526,6 +529,9 @@ public class PveWorld implements Listener {
             }
         }
     }
+
+
+
 
     private Integer getPoint(Player player) {
         FileConfiguration config = plugin.getConfig();
