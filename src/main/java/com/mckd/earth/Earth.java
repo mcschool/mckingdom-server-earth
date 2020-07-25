@@ -16,6 +16,7 @@ import com.mckd.earth.Worlds.TntGame.TntGameWorld;
 import com.mckd.earth.Worlds.TypingButtle.TypingButtleWorld;
 import com.mckd.earth.Worlds.playerWorld.ArcherBattle;
 import com.mckd.earth.Worlds.keidoro.keidoro;
+import com.mckd.earth.Worlds.water.water;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -49,6 +50,7 @@ public final class Earth extends JavaPlugin {
         new TntGameWorld(this);
         new ArcherBattle(this);
         new keidoro(this);
+        new water(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
