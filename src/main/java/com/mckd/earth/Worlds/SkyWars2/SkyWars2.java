@@ -81,10 +81,11 @@ public class SkyWars2 implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
+        player.getWorld();
         player.sendMessage("You are at "+player.getWorld().getName());
         if (player.getWorld().getName().equals(this.worldName)) {
-            player.performCommand("mv modify set animals false");
-            player.performCommand("mv modify set monsters false");
+            //player.performCommand("mv modify set animals false");
+            //player.performCommand("mv modify set monsters false");
             player.setGameMode(GameMode.ADVENTURE);
             player.setPlayerWeather(WeatherType.CLEAR);
             player.setFoodLevel(20);
