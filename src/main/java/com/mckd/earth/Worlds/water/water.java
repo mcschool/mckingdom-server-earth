@@ -1,11 +1,13 @@
 package com.mckd.earth.Worlds.water;
 
 import com.mckd.earth.Earth;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 import java.util.List;
@@ -32,4 +34,17 @@ public class water implements Listener {
         Location location = new Location(player.getWorld(), 483.500,95,-781.500);
         player.teleport(location);
     }
+
+    @EventHandler
+    public void BlockBreakEvent(BlockBreakEvent event){
+        if (event.getPlayer().getWorld().getName().equals(this.worldName)){
+            if (event.getPlayer().getGameMode() == GameMode.SURVIVAL){
+                event.setCancelled(true);
+            }
+        }
+    }
+
+
+
+
 }
