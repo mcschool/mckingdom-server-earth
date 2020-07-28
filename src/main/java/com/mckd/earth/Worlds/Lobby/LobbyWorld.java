@@ -109,7 +109,7 @@ public class LobbyWorld implements Listener{
         Player player = event.getPlayer();
         this.changeWorld(event.getPlayer());
         // Bossbar
-        BossBar bossBar = this.plugin.getServer().createBossBar("★★ ようこそ MCKINGDOM へ ★★", BarColor.BLUE, BarStyle.SOLID);
+        BossBar bossBar = this.plugin.getServer().createBossBar("★★ ようこっそ MCKINGDOM へ ★★", BarColor.BLUE, BarStyle.SOLID);
         bossBar.addPlayer(event.getPlayer());
         player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 
