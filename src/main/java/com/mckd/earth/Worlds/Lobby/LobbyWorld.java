@@ -246,7 +246,11 @@ public class LobbyWorld implements Listener{
 
         if(e.getCurrentItem().getType() == Material.TNT){
             player.performCommand("mvtp minigame");
-
+        }
+        if (e.getCurrentItem().getType() == Material.ITEM_FRAME){
+            player.performCommand("mvtp world");
+            Location location = new Location(player.getWorld(),-123,15,-1610);
+            player.teleport(location);
         }
         // トリップワイヤーフック: クリエになる
         if (e.getCurrentItem().getType() == Material.TRIPWIRE_HOOK){
@@ -500,9 +504,6 @@ public class LobbyWorld implements Listener{
                 }
                 if (event.getMaterial() == Material.DIAMOND_SWORD){
                     player.performCommand("mvtp pve");
-                }
-                if (event.getMaterial() == Material.ITEM_FRAME){
-                    player.performCommand("tp -123 15 -1610");
                 }
             }
         }
