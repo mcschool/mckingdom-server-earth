@@ -502,8 +502,7 @@ public class LobbyWorld implements Listener{
                     player.performCommand("mvtp pve");
                 }
                 if (event.getMaterial() == Material.ITEM_FRAME){
-                    Location location = new Location(player.getWorld(),-123,15,-1610);
-                    player.teleport(location);
+                    player.performCommand("tp -123 15 -1610");
                 }
             }
         }
