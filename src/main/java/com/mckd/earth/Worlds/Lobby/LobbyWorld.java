@@ -501,6 +501,10 @@ public class LobbyWorld implements Listener{
                 if (event.getMaterial() == Material.DIAMOND_SWORD){
                     player.performCommand("mvtp pve");
                 }
+                if (event.getMaterial() == Material.ITEM_FRAME){
+                    Location location = new Location(player.getWorld(),-123,15,-1610);
+                    player.teleport(location);
+                }
             }
         }
     }
