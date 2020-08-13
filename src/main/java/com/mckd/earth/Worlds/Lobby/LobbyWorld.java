@@ -450,6 +450,15 @@ public class LobbyWorld implements Listener{
                     if (line.equals("HOME")) {           teleport(new Location(world, -93, 4, -228), player); }
                 }
                 */
+                if (block.getType() == Material.SIGN_POST){
+                    Sign sign;
+                    sign = (Sign) block.getState();
+                    String line = sign.getLine(1);
+                    if (line.equals("Museum")){
+                        Location location = new Location(player.getWorld(),-123,15,-1610);
+                        player.teleport(location);
+                    }
+                }
             }
             if(event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
                 if(event.getMaterial() == Material.LEASH) {
@@ -473,15 +482,7 @@ public class LobbyWorld implements Listener{
                     baos.close();
                     dos.close();
                 }
-                if (block.getType() == Material.SIGN_POST){
-                    Sign sign;
-                    sign = (Sign) block.getState();
-                    String line = sign.getLine(1);
-                    if (line.equals("Museum")){
-                        Location location = new Location(player.getWorld(),-123,15,-1610);
-                        player.teleport(location);
-                    }
-                }
+
                 /*
                 if (event.getMaterial() == Material.YELLOW_FLOWER){
                     player.sendMessage("ゲームサーバーに移動します");
