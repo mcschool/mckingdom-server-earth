@@ -123,6 +123,15 @@ public class LobbyInventory {
         flower.setItemMeta(flowerMeta);
         inv.setItem(25, flower);
 
+        ItemStack frame = new ItemStack(Material.ITEM_FRAME);
+        ItemMeta frameMeta = frame.getItemMeta();
+        frameMeta.setDisplayName("MC美術館");
+        List<String> frameLores = new ArrayList<>();
+        frameLores.add("みんなの作品を鑑賞できる美術館へ行きます");
+        frameMeta.setLore(frameLores);
+        frame.setItemMeta(frameMeta);
+        inv.setItem(37,frame);
+
         // クリエ: シーランタン
         // ========================
         /*
