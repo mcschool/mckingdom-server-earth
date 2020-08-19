@@ -37,11 +37,9 @@ public class water implements Listener {
 
     @EventHandler
     public void BlockBreakEvent(BlockBreakEvent event){
-        if (event.getPlayer().getWorld().getName().equals(this.worldName)){
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL){
                 event.setCancelled(true);
             }
-        }
     }
 
 

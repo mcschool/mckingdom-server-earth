@@ -205,6 +205,7 @@ public class SkyWars2 implements Listener {
     }
 
 
+
     public void spawnChest(Location location, int type){
         World world = Bukkit.getWorld(this.worldName);
         world.getBlockAt(location).setType(Material.CHEST);
