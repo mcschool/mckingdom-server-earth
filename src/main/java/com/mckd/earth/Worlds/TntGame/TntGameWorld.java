@@ -39,6 +39,7 @@ public class TntGameWorld implements Listener {
 
     @EventHandler
     public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event){
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load minigame");
         Player player = event.getPlayer();
         World world = player.getWorld();
         if (!player.getWorld().getName().equals(this.worldname)) return;
