@@ -137,7 +137,6 @@ public class TntGameWorld implements Listener {
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
         if (!event.getEntity().getWorld().getName().equals(this.worldname)) return;
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load minigame");
         if (this.playerRed.getHealth() == 0.0){
             this.playerRed.setHealth(2.0);
             this.playerBlue.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
@@ -150,6 +149,7 @@ public class TntGameWorld implements Listener {
             this.playerBlue.sendTitle(ChatColor.BLUE + "You LOSE...", "", 0,60,0);
             this.GameEnd();
         }
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load minigame");
     }
 
     @EventHandler
