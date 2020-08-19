@@ -62,6 +62,18 @@ public class PveWorld implements Listener {
             player.getInventory().clear();
             Location location = new Location(player.getWorld(), -497, 77, -107);
             player.teleport(location);
+            if (player.getGameMode() == GameMode.CREATIVE) {
+                Bukkit.broadcastMessage(player.getName() + " is in Creative!");
+            }
+
+            if (player.getGameMode() == GameMode.SURVIVAL) {
+                Bukkit.broadcastMessage(player.getName() + " is in Survival!");
+            }
+
+            if (player.getGameMode() == GameMode.ADVENTURE) {
+                Bukkit.broadcastMessage(player.getName() + " is in Adventure!");
+            }
+
         }
     }
 

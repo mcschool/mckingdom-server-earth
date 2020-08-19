@@ -1,7 +1,6 @@
 package com.mckd.earth;
 
 import com.mckd.earth.Commands.EmailCommand;
-import com.mckd.earth.Commands.GamemodeCommand;
 import com.mckd.earth.Commands.PveSecvetCommand;
 import com.mckd.earth.Commands.SkyWarsCommand;
 import com.mckd.earth.TntRun.TntRunWorld;
@@ -73,9 +72,6 @@ public final class Earth extends JavaPlugin {
         }
         if(command.getName().equalsIgnoreCase("lobby")){
             SkyWarsCommand.command(sender, command,label,args);
-        }
-        if(command.getName().equalsIgnoreCase("checkgamemode")){
-            GamemodeCommand.command(sender,command,label,args);
         }
         return true;
     }
