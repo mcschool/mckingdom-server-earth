@@ -42,7 +42,6 @@ public class TntGameWorld implements Listener {
         Player player = event.getPlayer();
         World world = player.getWorld();
         if (!player.getWorld().getName().equals(this.worldname)) return;
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load minigame");
         player.setGameMode(GameMode.SURVIVAL);
         player.setPlayerWeather(WeatherType.CLEAR);
         player.setHealth(20.0);
@@ -138,6 +137,7 @@ public class TntGameWorld implements Listener {
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event){
         if (!event.getEntity().getWorld().getName().equals(this.worldname)) return;
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load minigame");
         if (this.playerRed.getHealth() == 0.0){
             this.playerRed.setHealth(2.0);
             this.playerBlue.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
