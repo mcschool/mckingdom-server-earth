@@ -1,13 +1,11 @@
 package com.mckd.earth.Worlds.water;
 
 import com.mckd.earth.Earth;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 <<<<<<< HEAD
 import org.bukkit.block.Block;
 =======
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Item;
 >>>>>>> 4ae1adf9b4c94a5ce68018950ac20475e6cb4f69
 import org.bukkit.entity.Player;
@@ -18,6 +16,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class water implements Listener {
     }
 
     @EventHandler
-    public void signClick(PlayerInteractEvent e){
+    public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
         if (!p.getWorld().getName().equals("pve")) {
@@ -68,16 +69,20 @@ public class water implements Listener {
 
         Block b = e.getClickedBlock();
 
-        if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
 
+            Sign sign;
+            sign = (Sign) b.getState();
+            //ScoreboardManager sbm = Bukkit.ScoreboardManager();
+            //Scoreboard sb = sbm.getMainScoreboard();
+            //Objective obj = sb.getObjective("point");
+            String line = sign.getLine(1);
+            String line2 = sign.getLine(2);
+            if (line.equals("GameStart")) {
+                Location location = new Location(p.getWorld(), 452, 23, -776);
+                p.teleport(location);
+                // this.start(p);
+            }
         }
     }
 
-
-
-
-
-
-
-
-}
