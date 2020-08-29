@@ -149,6 +149,7 @@ public class TntGameWorld implements Listener {
             this.playerBlue.sendTitle(ChatColor.BLUE + "You LOSE...", "", 0,60,0);
             this.GameEnd();
         }
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"WorldRestorer load minigame");
     }
 
     @EventHandler
