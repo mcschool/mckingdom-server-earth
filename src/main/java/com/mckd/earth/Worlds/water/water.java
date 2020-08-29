@@ -5,11 +5,14 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
@@ -44,6 +47,21 @@ public class water implements Listener {
             if (event.getPlayer().getGameMode() == GameMode.SURVIVAL){
                 event.setCancelled(true);
             }
+    }
+
+    @EventHandler
+    public void signClick(PlayerInteractEvent e){
+        Player p = e.getPlayer();
+
+        if (!p.getWorld().getName().equals("pve")) {
+            return;
+        }
+
+        Block b = e.getClickedBlock();
+
+        if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType() == Material.SIGN_POST) {
+
+        }
     }
 
 
