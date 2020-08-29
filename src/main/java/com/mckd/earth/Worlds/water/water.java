@@ -5,6 +5,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,8 +36,13 @@ public class water implements Listener {
         player.getInventory().clear();
         Location location = new Location(player.getWorld(), 483.500,95,-781.500);
         player.teleport(location);
+
         ItemStack itemStack = new ItemStack(Material.SNOW_BALL);
         player.getInventory().addItem(itemStack);
+
+        ItemStack itemstack1 = new ItemStack(Material.BOOK);
+        player.getInventory().addItem(itemstack1);
+
     }
 
     @EventHandler
