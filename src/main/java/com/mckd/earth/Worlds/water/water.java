@@ -3,12 +3,14 @@ package com.mckd.earth.Worlds.water;
 import com.mckd.earth.Earth;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
@@ -33,6 +35,8 @@ public class water implements Listener {
         player.getInventory().clear();
         Location location = new Location(player.getWorld(), 483.500,95,-781.500);
         player.teleport(location);
+        ItemStack itemStack = new ItemStack(Material.SNOW_BALL);
+        player.getInventory().addItem(itemStack);
     }
 
     @EventHandler
@@ -41,6 +45,10 @@ public class water implements Listener {
                 event.setCancelled(true);
             }
     }
+
+
+
+
 
 
 
