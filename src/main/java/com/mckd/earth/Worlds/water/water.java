@@ -60,7 +60,7 @@ public class water implements Listener {
     public void signClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
-        if (!p.getWorld().getName().equals("pve")) {
+        if (!p.getWorld().getName().equals("water")) {
             return;
         }
 
