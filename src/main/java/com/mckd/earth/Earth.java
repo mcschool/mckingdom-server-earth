@@ -3,7 +3,7 @@ package com.mckd.earth;
 import com.mckd.earth.Commands.EmailCommand;
 import com.mckd.earth.Commands.PveSecvetCommand;
 import com.mckd.earth.Commands.SkyWarsCommand;
-import com.mckd.earth.TntRun.TntRunWorld;
+import com.mckd.earth.Worlds.TntRun.TntRunWorld;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
 import com.mckd.earth.Worlds.DropBlock.DropWorld;

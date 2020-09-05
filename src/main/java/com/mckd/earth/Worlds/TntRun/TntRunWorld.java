@@ -1,4 +1,4 @@
-package com.mckd.earth.TntRun;
+package com.mckd.earth.Worlds.TntRun;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
@@ -12,12 +12,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-
-import java.util.List;
 
 public class TntRunWorld implements Listener {
 
@@ -71,6 +65,7 @@ public class TntRunWorld implements Listener {
         Location location = event.getPlayer().getLocation().clone().subtract(0,-1,0);
         Block block = location.getBlock();
         if (block.getType() == Material.TNT){
+            player.sendMessage(block.getType().name());
             world.getBlockAt(location).setType(Material.AIR);
         }
     }

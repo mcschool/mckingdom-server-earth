@@ -142,6 +142,7 @@ public class TntGameWorld implements Listener {
             this.playerBlue.sendTitle(ChatColor.RED + "You WIN!", "", 0,60,0);
             this.playerRed.sendTitle(ChatColor.BLUE + "You LOSE...", "", 0,60,0);
             this.GameEnd();
+
         }
         if (this.playerBlue.getHealth() == 0.0){
             this.playerBlue.setHealth(2.0);
@@ -160,6 +161,7 @@ public class TntGameWorld implements Listener {
             }
         }
     }
+
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void EntityExplodeEvent(EntityExplodeEvent event){
