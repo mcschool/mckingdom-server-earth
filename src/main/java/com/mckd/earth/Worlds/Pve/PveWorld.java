@@ -303,7 +303,7 @@ public class PveWorld implements Listener {
 
     @EventHandler
     public void Entitytoentitydamage(EntityDamageByEntityEvent e){
-        if (e.getEntity() instanceof Player) {
+        if (e.getEntity() instanceof Entity) {
             e.setCancelled(true);;
         }
 
