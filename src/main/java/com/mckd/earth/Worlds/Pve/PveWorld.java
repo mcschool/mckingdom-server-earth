@@ -1,6 +1,7 @@
 package com.mckd.earth.Worlds.Pve;
 
 import com.mckd.earth.Earth;
+import com.mckd.earth.Worlds.SkyWars.SkyWars;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -29,6 +30,7 @@ public class PveWorld implements Listener {
     private Earth plugin;
     private int waveCount = 1;
     private int enemyCount = 0;
+
 
     public PveWorld(Earth plugin) {
         this.plugin = plugin;
@@ -301,13 +303,13 @@ public class PveWorld implements Listener {
         }
     }
 
-    @EventHandler
-    public void Entitytoentitydamage(EntityDamageByEntityEvent e){
-        if (e.getEntity() instanceof Entity) {
-            e.setCancelled(true);;
-        }
+    //@EventHandler
+    //public void Entitytoentitydamage(EntityDamageByEntityEvent e){
+    //    if (e.getEntityType() instanceof Monster) {
+    //        e.setCancelled(true);;
+   //     }
 
-    }
+    //}
 
 
     @EventHandler
