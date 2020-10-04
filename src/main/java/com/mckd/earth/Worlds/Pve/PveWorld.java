@@ -11,6 +11,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -300,28 +301,30 @@ public class PveWorld implements Listener {
         }
     }
 
+    @EventHandler
+    public void Entitytoentitydamage(EntityDamageByEntityEvent e){
+        if (e.getEntity() instanceof Player) {
+            e.setCancelled(true);;
+        }
+
+    }
+
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         World world = event.getEntity().getWorld();
         if (world.getName().equals("pve")) {
             Player p = event.getEntity().getKiller();
-            p.sendMessage("1");
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = ((Scoreboard) sb).getObjective("point");
-            p.sendMessage("2");
             if (obj != null) {
-                p.sendMessage("3");
                 Score score = obj.getScore(p.getDisplayName());
                 int point = (int) score.getScore();
-                p.sendMessage("4");
                 score.setScore(point + 100);
                 p.setScoreboard(sb);
             }
-            p.sendMessage("5");
             if (this.waveCount > 15) this.waveCount = 1;
-            p.sendMessage("6");
             List<Entity> entities = world.getEntities();
             int count = 0;
             for (Entity entity : world.getEntities()) {
