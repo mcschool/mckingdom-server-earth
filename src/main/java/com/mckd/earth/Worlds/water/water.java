@@ -4,20 +4,16 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 
-import java.util.List;
 
 public class water implements Listener {
     Earth plugin;
@@ -81,6 +77,16 @@ public class water implements Listener {
                 // this.start(p);
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerDeathEvent(PlayerDeathEvent e){
+        Player player = e.getEntity();
+
+        if(!player.getWorld().getName().equals(worldName)){
+            return;
+        }
+        
     }
 }
 

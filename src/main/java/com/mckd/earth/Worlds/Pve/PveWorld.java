@@ -1,13 +1,10 @@
 package com.mckd.earth.Worlds.Pve;
 
 import com.mckd.earth.Earth;
-import com.mckd.earth.Worlds.Pve.PveScheduler;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
@@ -18,16 +15,11 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.material.Door;
-import org.bukkit.material.Openable;
-import org.bukkit.material.Step;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
-import ru.tehkode.permissions.backends.file.FileConfig;
 
 import java.util.*;
 
@@ -314,17 +306,22 @@ public class PveWorld implements Listener {
         World world = event.getEntity().getWorld();
         if (world.getName().equals("pve")) {
             Player p = event.getEntity().getKiller();
+            p.sendMessage("1");
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = ((Scoreboard) sb).getObjective("point");
+            p.sendMessage("2");
             if (obj != null) {
+                p.sendMessage("3");
                 Score score = obj.getScore(p.getDisplayName());
                 int point = (int) score.getScore();
+                p.sendMessage("4");
                 score.setScore(point + 100);
                 p.setScoreboard(sb);
             }
-
+            p.sendMessage("5");
             if (this.waveCount > 15) this.waveCount = 1;
+            p.sendMessage("6");
             List<Entity> entities = world.getEntities();
             int count = 0;
             for (Entity entity : world.getEntities()) {
