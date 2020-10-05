@@ -328,10 +328,13 @@ public class PveWorld implements Listener {
                     }
                 }
             }
+            p.sendMessage("1");
             if (count > 0) {
+                p.sendMessage("2");
                 if (this.enemyCount != count) {
                     this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
                     this.enemyCount = count;
+                    p.sendMessage("3");
                 }
             } else {
                 this.sendMessageToPlayers(world, "全モンスターを倒しました!");
