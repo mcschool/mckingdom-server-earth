@@ -302,22 +302,10 @@ public class PveWorld implements Listener {
     }
 
 
-
-
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         World world = event.getEntity().getWorld();
         if (world.getName().equals("pve")) {
-            Player p = event.getEntity().getKiller();
-            ScoreboardManager sbm = Bukkit.getScoreboardManager();
-            Scoreboard sb = sbm.getMainScoreboard();
-            Objective obj = ((Scoreboard) sb).getObjective("point");
-            if (obj != null) {
-                Score score = obj.getScore(p.getDisplayName());
-                int point = (int) score.getScore();
-                score.setScore(point + 100);
-                p.setScoreboard(sb);
-            }
             if (this.waveCount > 15) this.waveCount = 1;
             List<Entity> entities = world.getEntities();
             int count = 0;
@@ -328,13 +316,10 @@ public class PveWorld implements Listener {
                     }
                 }
             }
-            p.sendMessage("1");
             if (count > 0) {
-                p.sendMessage("2");
                 if (this.enemyCount != count) {
                     this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
                     this.enemyCount = count;
-                    p.sendMessage("3");
                 }
             } else {
                 this.sendMessageToPlayers(world, "全モンスターを倒しました!");
@@ -346,15 +331,30 @@ public class PveWorld implements Listener {
                     this.waveCount = 1;
                     for (Player player : world.getPlayers()) {
                         player.performCommand("mvtp world");
-                        Score score = obj.getScore(player.getDisplayName());
+                        /*Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
                         this.setPoint(player, point);
-                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");
+                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");*/
                     }
                 }
             }
+            Player p = event.getEntity().getKiller();
+            ScoreboardManager sbm = Bukkit.getScoreboardManager();
+            Scoreboard sb = sbm.getMainScoreboard();
+            Objective obj = ((Scoreboard) sb).getObjective("point");
+            if (obj != null) {
+                Score score = obj.getScore(p.getDisplayName());
+                int point = (int) score.getScore();
+                score.setScore(point + 100);
+                p.setScoreboard(sb);
+            }
+
         }
     }
+
+
+
+
 
 
 
