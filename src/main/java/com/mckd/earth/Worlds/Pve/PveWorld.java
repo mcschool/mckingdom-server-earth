@@ -322,7 +322,7 @@ public class PveWorld implements Listener {
             List<Entity> entities = world.getEntities();
             int count = 0;
             for (Entity entity : world.getEntities()) {
-                if (entity.isDead() == true) {
+                if (entity.isDead() == false) {
                     if (entity instanceof Monster) {
                         count++;
                     }
