@@ -321,15 +321,10 @@ public class PveWorld implements Listener {
             if (this.waveCount > 15) this.waveCount = 1;
             List<Entity> entities = world.getEntities();
             int count = 0;
-            p.sendMessage("1");
             for (Entity entity : world.getEntities()) {
-                p.sendMessage("2");
-                if (entity.isDead() == false) {
-                    p.sendMessage("3");
+                if (entity.isDead() == true) {
                     if (entity instanceof Monster) {
-                        p.sendMessage("4");
                         count++;
-                        p.sendMessage("5");
                     }
                 }
             }
