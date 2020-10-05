@@ -12,9 +12,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -303,13 +301,7 @@ public class PveWorld implements Listener {
         }
     }
 
-    //@EventHandler
-    //public void Entitytoentitydamage(EntityDamageByEntityEvent e){
-    //    if (e.getEntityType() instanceof Monster) {
-    //        e.setCancelled(true);;
-   //     }
 
-    //}
 
 
     @EventHandler
@@ -329,10 +321,15 @@ public class PveWorld implements Listener {
             if (this.waveCount > 15) this.waveCount = 1;
             List<Entity> entities = world.getEntities();
             int count = 0;
+            p.sendMessage("1");
             for (Entity entity : world.getEntities()) {
+                p.sendMessage("2");
                 if (entity.isDead() == false) {
+                    p.sendMessage("3");
                     if (entity instanceof Monster) {
+                        p.sendMessage("4");
                         count++;
+                        p.sendMessage("5");
                     }
                 }
             }
