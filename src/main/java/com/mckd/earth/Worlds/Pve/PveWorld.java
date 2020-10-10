@@ -52,6 +52,7 @@ public class PveWorld implements Listener {
             player.setFoodLevel(20);
             player.setHealth(20.0);
             player.getActivePotionEffects().clear();
+            player.sendMessage("test");
             player.getWorld().setPVP(false);
             player.getInventory().clear();
             Location location = new Location(player.getWorld(), -497, 77, -107);
