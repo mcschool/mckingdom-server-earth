@@ -51,6 +51,7 @@ public class PveWorld implements Listener {
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
+            player.getActivePotionEffects().clear();
             player.getWorld().setPVP(false);
             player.getInventory().clear();
             Location location = new Location(player.getWorld(), -497, 77, -107);
@@ -321,7 +322,7 @@ public class PveWorld implements Listener {
                     this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
                     this.enemyCount = count;
                 }
-            } else {
+            }  else {
                 this.sendMessageToPlayers(world, "全モンスターを倒しました!");
                 if (this.waveCount < 15) {
                     this.waveCount++;
