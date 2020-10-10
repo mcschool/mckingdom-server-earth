@@ -17,6 +17,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class water implements Listener {
     Earth plugin;
+    Player playerRed;
+    Player playerBlue;
     String worldName = "water";
 
     public water(Earth plugin) {
@@ -31,6 +33,24 @@ public class water implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
+
+        //赤チームだよ
+        if(player.getWorld().getPlayers().size() >= 2){
+            Location location = new Location(player.getWorld(),565.009, 24, -792.045);
+            player.teleport(location);
+            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 0, 40, 0);
+            this.playerRed = player;
+
+        }
+
+        //青チーム
+        if(player.getWorld().getPlayers().size() < 2){
+            Location location1 = new Location(player.getWorld(),451.974,24, -776.006);
+            player.teleport(location1);
+            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 0, 40, 0);
+            this.playerBlue = player;
+        }
+
         player.setFoodLevel(20);
         player.setHealth(20.0);
         player.getInventory().clear();
