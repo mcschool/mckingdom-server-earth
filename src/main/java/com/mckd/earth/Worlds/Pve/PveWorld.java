@@ -55,7 +55,6 @@ public class PveWorld implements Listener {
             for(PotionEffect effect:player.getActivePotionEffects()){
                 player.removePotionEffect(effect.getType());
             }
-            player.sendMessage("test");
             player.getWorld().setPVP(false);
             player.getInventory().clear();
             Location location = new Location(player.getWorld(), -497, 77, -107);
