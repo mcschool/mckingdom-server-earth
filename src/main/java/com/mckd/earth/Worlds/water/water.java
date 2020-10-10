@@ -54,14 +54,10 @@ public class water implements Listener {
         player.setFoodLevel(20);
         player.setHealth(20.0);
         player.getInventory().clear();
-        Location location = new Location(player.getWorld(), 483.500, 95, -781.500);
-        player.teleport(location);
 
         ItemStack itemStack = new ItemStack(Material.SNOW_BALL);
         player.getInventory().addItem(itemStack);
 
-        ItemStack itemstack1 = new ItemStack(Material.BOOK);
-        player.getInventory().addItem(itemstack1);
 
     }
 
