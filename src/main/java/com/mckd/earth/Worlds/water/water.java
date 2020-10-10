@@ -35,7 +35,7 @@ public class water implements Listener {
         }
 
         //赤チームだよ
-        if(player.getWorld().getPlayers().size() >= 2){
+        if(player.getWorld().getPlayers().size() > 2){
             Location location = new Location(player.getWorld(),565.009, 24, -792.045);
             player.teleport(location);
             player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 0, 40, 0);
@@ -44,7 +44,7 @@ public class water implements Listener {
         }
 
         //青チーム
-        if(player.getWorld().getPlayers().size() < 2){
+        if(player.getWorld().getPlayers().size() <= 2){
             Location location1 = new Location(player.getWorld(),451.974,24, -776.006);
             player.teleport(location1);
             player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 0, 40, 0);
