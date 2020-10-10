@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
 
@@ -51,7 +52,9 @@ public class PveWorld implements Listener {
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
-            player.getActivePotionEffects().clear();
+            for(PotionEffect effect:player.getActivePotionEffects()){
+                player.removePotionEffect(effect.getType());
+            }
             player.sendMessage("test");
             player.getWorld().setPVP(false);
             player.getInventory().clear();
