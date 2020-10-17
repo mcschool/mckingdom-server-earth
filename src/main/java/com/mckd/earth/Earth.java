@@ -2,7 +2,7 @@ package com.mckd.earth;
 
 import com.mckd.earth.Commands.EmailCommand;
 import com.mckd.earth.Commands.PveSecvetCommand;
-import com.mckd.earth.Commands.SkyWarsCommand;
+import com.mckd.earth.Commands.LobbyCommand;
 import com.mckd.earth.Worlds.TntRun.TntRunWorld;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
@@ -71,7 +71,7 @@ public final class Earth extends JavaPlugin {
             PveSecvetCommand.command(sender, command,label,args);
         }
         if(command.getName().equalsIgnoreCase("lobby")){
-            SkyWarsCommand.command(sender, command,label,args);
+            LobbyCommand.command(sender, command,label,args);
         }
         return true;
     }
