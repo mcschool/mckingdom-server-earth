@@ -4,23 +4,21 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 
-import java.util.List;
 
 public class water implements Listener {
     Earth plugin;
+    Player playerRed;
+    Player playerBlue;
     String worldName = "water";
 
     public water(Earth plugin) {
@@ -35,17 +33,31 @@ public class water implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
+
+        //赤チームだよ
+        if(player.getWorld().getPlayers().size() > 2){
+            Location location = new Location(player.getWorld(),565.009, 24, -792.045);
+            player.teleport(location);
+            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.RED + "赤チーム" + ChatColor.WHITE + "です", 0, 40, 0);
+            this.playerRed = player;
+
+        }
+
+        //青チーム
+        if(player.getWorld().getPlayers().size() <= 2){
+            Location location1 = new Location(player.getWorld(),451.974,24, -776.006);
+            player.teleport(location1);
+            player.sendTitle(ChatColor.WHITE+ "あなたは", ChatColor.BLUE + "青チーム" + ChatColor.WHITE + "です", 0, 40, 0);
+            this.playerBlue = player;
+        }
+
         player.setFoodLevel(20);
         player.setHealth(20.0);
         player.getInventory().clear();
-        Location location = new Location(player.getWorld(), 483.500, 95, -781.500);
-        player.teleport(location);
 
         ItemStack itemStack = new ItemStack(Material.SNOW_BALL);
         player.getInventory().addItem(itemStack);
 
-        ItemStack itemstack1 = new ItemStack(Material.BOOK);
-        player.getInventory().addItem(itemstack1);
 
     }
 
@@ -84,10 +96,13 @@ public class water implements Listener {
     }
 
     @EventHandler
-    public void sendMessage(BlockBreakEvent event) {
-        Player player = event.getPlayer();
-        player.sendMessage("テストメッセージ送信です");
-    }
+    public void onPlayerDeathEvent(PlayerDeathEvent e){
+        Player player = e.getEntity();
 
+        if(!player.getWorld().getName().equals(worldName)){
+            return;
+        }
+        
+    }
 }
 

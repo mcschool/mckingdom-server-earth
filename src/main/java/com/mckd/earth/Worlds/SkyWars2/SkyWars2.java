@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
@@ -90,7 +91,12 @@ public class SkyWars2 implements Listener {
             player.setPlayerWeather(WeatherType.CLEAR);
             player.setFoodLevel(20);
             player.setHealth(20.0);
-            player.getWorld().setPVP(true);
+            for(PotionEffect effect:player.getActivePotionEffects()){
+                player.removePotionEffect(effect.getType());
+
+            }
+
+                player.getWorld().setPVP(true);
             player.getInventory().clear();
             List<Player> players = player.getWorld().getPlayers();
             if (players.size() == 4) {

@@ -1,33 +1,26 @@
 package com.mckd.earth.Worlds.Pve;
 
 import com.mckd.earth.Earth;
-import com.mckd.earth.Worlds.Pve.PveScheduler;
+import com.mckd.earth.Worlds.SkyWars.SkyWars;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.material.Door;
-import org.bukkit.material.Openable;
-import org.bukkit.material.Step;
 import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.*;
-import ru.tehkode.permissions.backends.file.FileConfig;
 
 import java.util.*;
 
@@ -36,6 +29,7 @@ public class PveWorld implements Listener {
     private Earth plugin;
     private int waveCount = 1;
     private int enemyCount = 0;
+
 
     public PveWorld(Earth plugin) {
         this.plugin = plugin;
@@ -58,6 +52,9 @@ public class PveWorld implements Listener {
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
+            for(PotionEffect effect:player.getActivePotionEffects()){
+                player.removePotionEffect(effect.getType());
+            }
             player.getWorld().setPVP(false);
             player.getInventory().clear();
             Location location = new Location(player.getWorld(), -497, 77, -107);
@@ -313,17 +310,6 @@ public class PveWorld implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
         World world = event.getEntity().getWorld();
         if (world.getName().equals("pve")) {
-            Player p = event.getEntity().getKiller();
-            ScoreboardManager sbm = Bukkit.getScoreboardManager();
-            Scoreboard sb = sbm.getMainScoreboard();
-            Objective obj = ((Scoreboard) sb).getObjective("point");
-            if (obj != null) {
-                Score score = obj.getScore(p.getDisplayName());
-                int point = (int) score.getScore();
-                score.setScore(point + 100);
-                p.setScoreboard(sb);
-            }
-
             if (this.waveCount > 15) this.waveCount = 1;
             List<Entity> entities = world.getEntities();
             int count = 0;
@@ -339,7 +325,7 @@ public class PveWorld implements Listener {
                     this.sendMessageToPlayers(world, "モンスターは残り" + count + "匹!");
                     this.enemyCount = count;
                 }
-            } else {
+            }  else {
                 this.sendMessageToPlayers(world, "全モンスターを倒しました!");
                 if (this.waveCount < 15) {
                     this.waveCount++;
@@ -349,15 +335,30 @@ public class PveWorld implements Listener {
                     this.waveCount = 1;
                     for (Player player : world.getPlayers()) {
                         player.performCommand("mvtp world");
-                        Score score = obj.getScore(player.getDisplayName());
+                        /*Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
                         this.setPoint(player, point);
-                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");
+                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");*/
                     }
                 }
             }
+            Player p = event.getEntity().getKiller();
+            ScoreboardManager sbm = Bukkit.getScoreboardManager();
+            Scoreboard sb = sbm.getMainScoreboard();
+            Objective obj = ((Scoreboard) sb).getObjective("point");
+            if (obj != null) {
+                Score score = obj.getScore(p.getDisplayName());
+                int point = (int) score.getScore();
+                score.setScore(point + 100);
+                p.setScoreboard(sb);
+            }
+
         }
     }
+
+
+
+
 
 
 
