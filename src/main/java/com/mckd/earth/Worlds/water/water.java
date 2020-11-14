@@ -4,12 +4,14 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -111,5 +113,18 @@ public class water implements Listener {
         Player player = event.getPlayer();
         player.sendMessage("壊したな？");
     }
+    @EventHandler
+    public void arrowShoot(ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Arrow) {
+            World w = e.getEntity().getWorld();
+            Arrow arrow = (Arrow) e.getEntity();
+            Location loc = arrow.getLocation();
+            w.strikeLightning(loc);
+            w.createExplosion(loc, 10);
+        }
+    }
+
+
+
 }
 
