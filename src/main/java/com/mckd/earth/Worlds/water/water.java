@@ -123,12 +123,31 @@ public class water implements Listener {
             for (Player player : w.getPlayers()) {
                 player.sendMessage("throw egg");
             }
-            Egg egg = (Egg)event.getEntity();
+            Egg egg = (Egg) event.getEntity();
             Location loc = egg.getLocation();
             w.spawnEntity(loc, EntityType.CREEPER);
 
 
+        }
+    }
 
+     @EventHandler
+     public void signClick2(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        Block b = e.getClickedBlock();
+        if(p.getWorld().getName().equals("test") &&
+                e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
+                b.getType() == Material.SIGN_POST
+                ){
+            Sign sign = (Sign) b.getState();
+            String line = sign.getLine(1);
+            if(line.equals("Survival") ) {
+                p.setGameMode(GameMode.SURVIVAL);
+                p.setFoodLevel(20);
+                p.setHealth(20.0);
+                p.getWorld().setPVP(false);
+                p.getInventory().clear();
+            }
         }
     }
 
