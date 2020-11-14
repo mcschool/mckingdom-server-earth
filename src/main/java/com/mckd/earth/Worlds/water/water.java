@@ -120,6 +120,9 @@ public class water implements Listener {
     public void spawnCreeper(ProjectileHitEvent event) {
         if (event.getEntity() instanceof Egg) {
             World w = event.getEntity().getWorld();
+            for (Player player : w.getPlayers()) {
+                player.sendMessage("throw egg");
+            }
             Egg egg = (Egg)event.getEntity();
             Location loc = egg.getLocation();
             w.spawnEntity(loc, EntityType.CREEPER);
