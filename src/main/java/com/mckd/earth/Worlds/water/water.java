@@ -113,16 +113,8 @@ public class water implements Listener {
         Player player = event.getPlayer();
         player.sendMessage("壊したな？");
     }
-    @EventHandler
-    public void arrowShoot(ProjectileHitEvent e) {
-        if (e.getEntity() instanceof Arrow) {
-            World w = e.getEntity().getWorld();
-            Arrow arrow = (Arrow) e.getEntity();
-            Location loc = arrow.getLocation();
-            w.strikeLightning(loc);
-            w.createExplosion(loc, 10);
-        }
-    }
+
+
 
 
 
