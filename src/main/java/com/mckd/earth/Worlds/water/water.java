@@ -104,5 +104,12 @@ public class water implements Listener {
         }
         
     }
+
+
+    @EventHandler
+    public void sendMessage(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        player.sendMessage("テストメッセージ送信です");
+    }
 }
 
