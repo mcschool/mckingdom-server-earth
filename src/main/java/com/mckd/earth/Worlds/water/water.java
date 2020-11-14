@@ -135,7 +135,7 @@ public class water implements Listener {
      public void signClick2(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         Block b = e.getClickedBlock();
-        if(p.getWorld().getName().equals("test") &&
+        if(p.getWorld().getName().equals("water") &&
                 e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
                 b.getType() == Material.SIGN_POST
                 ){
