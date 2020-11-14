@@ -5,6 +5,8 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -114,7 +116,18 @@ public class water implements Listener {
         player.sendMessage("壊したな？");
     }
 
+    @EventHandler
+    public void spawnCreeper(ProjectileHitEvent event) {
+        if (event.getEntity() instanceof Egg) {
+            World w = event.getEntity().getWorld();
+            Egg egg = (Egg)event.getEntity();
+            Location loc = egg.getLocation();
+            w.spawnEntity(loc, EntityType.CREEPER);
 
+
+
+        }
+    }
 
 
 
