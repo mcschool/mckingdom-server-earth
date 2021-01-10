@@ -4,12 +4,16 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -104,5 +108,50 @@ public class water implements Listener {
         }
         
     }
+
+
+    @EventHandler
+    public void sendMessage(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        player.sendMessage("壊したな？");
+    }
+
+    @EventHandler
+    public void spawnCreeper(ProjectileHitEvent event) {
+        if (event.getEntity() instanceof Egg) {
+            World w = event.getEntity().getWorld();
+            for (Player player : w.getPlayers()) {
+                player.sendMessage("throw egg");
+            }
+            Egg egg = (Egg) event.getEntity();
+            Location loc = egg.getLocation();
+            w.spawnEntity(loc, EntityType.CREEPER);
+
+
+        }
+    }
+
+     @EventHandler
+     public void signClick2(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        Block b = e.getClickedBlock();
+        if(p.getWorld().getName().equals("water") &&
+                e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
+                b.getType() == Material.SIGN_POST
+                ){
+            Sign sign = (Sign) b.getState();
+            String line = sign.getLine(1);
+            if(line.equals("Survival") ) {
+                p.setGameMode(GameMode.SURVIVAL);
+                p.setFoodLevel(20);
+                p.setHealth(20.0);
+                p.getWorld().setPVP(false);
+                p.getInventory().clear();
+            }
+        }
+    }
+
+
+
 }
 
