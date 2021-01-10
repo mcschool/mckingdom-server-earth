@@ -10,11 +10,9 @@ public class VIPCommand {
         Player player = null;
         if (sender instanceof Player) {
             player = (Player) sender;
+            //yurelx↓
             if (player.getWorld().getName().equals("build")) {
                 if (player.getUniqueId().toString().equals("de944974-473d-33bd-a6ec-04370d649004")){
-                    player.setGameMode(GameMode.CREATIVE);
-                }
-                if (player.getUniqueId().toString().equals("3bbeb6a5-66dc-3233-8e93-8747a907dd9c")){
                     player.setGameMode(GameMode.CREATIVE);
                 }
             }
