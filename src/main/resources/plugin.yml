@@ -10,3 +10,5 @@ commands:
     description: pve point add
   lobby:
     description: go to lobby
+  vip_creative:
+    description: vip creative
