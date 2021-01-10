@@ -10,7 +10,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 public class PveSecvetCommand {
-    public  static boolean command(CommandSender sender, Command command, String label, String args[]) {
+    public static boolean command(CommandSender sender, Command command, String label, String args[]) {
         Player player = null;
         if (player.getWorld().getName().equals("pve")) {
             if (sender instanceof Player) {
@@ -25,7 +25,9 @@ public class PveSecvetCommand {
                     player.setScoreboard(sb);
                 }
             }
-            return true;
         }
+        return true;
     }
 }
+
+
