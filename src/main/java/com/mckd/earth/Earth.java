@@ -3,6 +3,7 @@ package com.mckd.earth;
 import com.mckd.earth.Commands.EmailCommand;
 import com.mckd.earth.Commands.PveSecvetCommand;
 import com.mckd.earth.Commands.LobbyCommand;
+import com.mckd.earth.Commands.VIPCommand;
 import com.mckd.earth.Worlds.TntRun.TntRunWorld;
 import com.mckd.earth.Worlds.*;
 import com.mckd.earth.Worlds.Athletic.AthleticWorld;
@@ -72,6 +73,9 @@ public final class Earth extends JavaPlugin {
         }
         if(command.getName().equalsIgnoreCase("lobby")){
             LobbyCommand.command(sender, command,label,args);
+        }
+        if(command.getName().equalsIgnoreCase("vpi_creative")){
+            VIPCommand.command(sender, command,label,args);
         }
         return true;
     }

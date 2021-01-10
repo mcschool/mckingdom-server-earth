@@ -16,15 +16,11 @@ public class PveSecvetCommand {
                 player = (Player) sender;
                 if (player.getWorld().getName().equals("pve")) {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
-                player.sendMessage("test3");
                 Scoreboard sb = sbm.getMainScoreboard();
                 Objective obj = ((Scoreboard) sb).getObjective("point");
-                player.sendMessage("test4");
                 if (obj != null) {
-                    player.sendMessage("test5");
                     Score score = obj.getScore(player.getDisplayName());
                     int point = (int) score.getScore();
-                    player.sendMessage("test6");
                     score.setScore(point + 2000);
                     player.setScoreboard(sb);
                 }
