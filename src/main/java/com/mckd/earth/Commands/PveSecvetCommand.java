@@ -10,12 +10,11 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 public class PveSecvetCommand {
-    public static boolean command(CommandSender sender, Command command,Player player, String label, String args[]) {
-        player.sendMessage("test1");
-        if (player.getWorld().getName().equals("pve")) {
-            player.sendMessage("test2");
+    public static boolean command(CommandSender sender, Command command, String label, String args[]) {
+        Player player = null;
             if (sender instanceof Player) {
                 player = (Player) sender;
+                if (player.getWorld().getName().equals("pve")) {
                 ScoreboardManager sbm = Bukkit.getScoreboardManager();
                 player.sendMessage("test3");
                 Scoreboard sb = sbm.getMainScoreboard();
