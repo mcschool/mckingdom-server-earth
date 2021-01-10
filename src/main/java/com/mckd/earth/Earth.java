@@ -74,7 +74,7 @@ public final class Earth extends JavaPlugin {
         if(command.getName().equalsIgnoreCase("lobby")){
             LobbyCommand.command(sender, command,label,args);
         }
-        if(command.getName().equalsIgnoreCase("vpi_creative")){
+        if(command.getName().equalsIgnoreCase("vip_creative")){
             VIPCommand.command(sender, command,label,args);
         }
         return true;
