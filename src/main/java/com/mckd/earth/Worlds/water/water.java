@@ -110,11 +110,11 @@ public class water implements Listener {
     }
 
 
-    @EventHandler
+    /*@EventHandler
     public void sendMessage(BlockBreakEvent event) {
         Player player = event.getPlayer();
         player.sendMessage("壊したな？");
-    }
+    }*/
 
     @EventHandler
     public void spawnCreeper(ProjectileHitEvent event) {
