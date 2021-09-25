@@ -76,7 +76,7 @@ public class SkyWars implements Listener {
                             }
                         }.runTaskLater(this.plugin, 100);
                     } else {
-                        new BukkitRunnable() {
+                            new BukkitRunnable() {
                             @Override
                             public void run() {
                                 player1.performCommand("mvtp world");

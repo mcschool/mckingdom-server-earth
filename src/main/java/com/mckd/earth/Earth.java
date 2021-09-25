@@ -52,6 +52,7 @@ public final class Earth extends JavaPlugin {
         new ArcherBattle(this);
         new keidoro(this);
         new water(this);
+        new TestRPG(this);
         // new TestWorld(this);
 
         // System.out.println("=== start LobbyWorldScheduler ===");
