@@ -59,18 +59,6 @@ public class PveWorld implements Listener {
             player.getInventory().clear();
             Location location = new Location(player.getWorld(), -497, 77, -107);
             player.teleport(location);
-            if (player.getGameMode() == GameMode.CREATIVE) {
-                Bukkit.broadcastMessage(player.getName() + " is in Creative!");
-            }
-
-            if (player.getGameMode() == GameMode.SURVIVAL) {
-                Bukkit.broadcastMessage(player.getName() + " is in Survival!");
-            }
-
-            if (player.getGameMode() == GameMode.ADVENTURE) {
-                Bukkit.broadcastMessage(player.getName() + " is in Adventure!");
-            }
-
         }
     }
 
@@ -113,6 +101,7 @@ public class PveWorld implements Listener {
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = sb.getObjective("point");
+            sb.resetScores(player.getName());
             // TODO: ↓でぬるぽが発生
             if (obj == null) {
                 obj = sb.registerNewObjective("point", "test");
