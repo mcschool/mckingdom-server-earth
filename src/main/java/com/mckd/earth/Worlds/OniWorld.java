@@ -69,7 +69,7 @@ public class OniWorld implements Listener {
             Sign sign;
             sign = (Sign) block.getState();
 
-            String line = sign.getLine(0);
+            String line = sign.getLine(1);
 
             if(line.equals("aa")) {
                 this.Map();
@@ -80,6 +80,7 @@ public class OniWorld implements Listener {
                 for (Map.Entry<String, String> entrySet : uuid.entrySet()) {
                     player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
                 }
+                player.sendMessage("testです");
             }
         }
     }
