@@ -71,20 +71,11 @@ public class OniWorld implements Listener {
 
             String line = sign.getLine(1);
 
-            if(line.equals("aa")) {
-                player.sendMessage("あ");
+            if(line.equals("test")) {
                 this.Map();
-                /*for (Player p : world.getPlayers()) {
+                for (Player p : world.getPlayers()) {
                     p.getUniqueId();
-                }*/
-                /*uuid.put("3","test3");
-                player.sendMessage("い");
-                for (Map.Entry<String, String> entrySet : uuid.entrySet()) {
-                    player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
                 }
-                player.sendMessage("う");
-                player.sendMessage(uuid.get("0"));
-                player.sendMessage(uuid.get("3"));*/
             }
         }
     }
