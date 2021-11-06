@@ -11,7 +11,6 @@ import com.mckd.earth.Worlds.DropBlock.DropWorld;
 import com.mckd.earth.Worlds.Lobby.LobbyWorld;
 import com.mckd.earth.Worlds.Party.PartyWorld;
 import com.mckd.earth.Worlds.Pve.PveWorld;
-import com.mckd.earth.Worlds.SkyWars.SkyWars;
 import com.mckd.earth.Worlds.SkyWars2.SkyWars2;
 import com.mckd.earth.Worlds.TntGame.TntGameWorld;
 import com.mckd.earth.Worlds.TypingButtle.TypingButtleWorld;
@@ -41,7 +40,6 @@ public final class Earth extends JavaPlugin {
         new BuildWorld(this);
         new PveWorld(this);
         new TntRunWorld(this);
-        new SkyWars(this);
         new SkyWars2(this);
         new TypingButtleWorld(this);
         new Previouslife2(this);

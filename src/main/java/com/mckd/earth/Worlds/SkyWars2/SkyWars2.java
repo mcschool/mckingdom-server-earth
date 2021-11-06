@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.bukkit.Material.*;
 
@@ -76,6 +77,16 @@ public class SkyWars2 implements Listener {
                 }
             }
         }
+    }
+
+
+    public void Random() {
+
+            Random r = new Random();
+            int n = r.nextInt(10);
+            String q = "a";
+            
+
     }
 
 
