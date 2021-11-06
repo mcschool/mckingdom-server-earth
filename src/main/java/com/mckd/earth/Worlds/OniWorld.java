@@ -81,6 +81,8 @@ public class OniWorld implements Listener {
                     player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
                 }
                 player.sendMessage("testです");
+                player.sendMessage(uuid.get("0"));
+                player.sendMessage(uuid.get("3"));
             }
         }
     }
