@@ -55,7 +55,7 @@ public class LobbyWorld implements Listener{
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    @EventHandler
+    /*@EventHandler
     public void PlayerMoveEvent(PlayerMoveEvent event) {
         if (event.getPlayer().getWorld().equals(this.worldName)) {
             Player player = event.getPlayer();
@@ -90,7 +90,7 @@ public class LobbyWorld implements Listener{
                 world.spawnParticle(Particle.FLAME, location3, 3, 1, 1, 1, 0);
             }
         }
-    }
+    }*/
     
 
 
