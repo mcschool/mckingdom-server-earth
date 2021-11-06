@@ -3,15 +3,19 @@ package com.mckd.earth.Worlds;
 
 import com.mckd.earth.Earth;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -20,15 +24,69 @@ import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class OniWorld implements Listener {
     private Earth plugin;
     String worldName = "oni";
+
     public OniWorld(Earth plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
+
+    public void Map() {
+
+        Map<String, String> uuid = new HashMap<>();
+
+        uuid.put("0", "test");
+        uuid.put("1", "test1");
+        uuid.put("2", "test2");
+    }
+
+    public void random(){
+        Random random = new Random();
+        int randomValue = random.nextInt(2);
+    }
+
+
+
+    @EventHandler
+    public void PlayerInteractEvent(PlayerInteractEvent e,Map<String,String> uuid) {
+        Player player = e.getPlayer();
+        if(!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        World world = player.getWorld();
+        Block block = e.getClickedBlock();
+
+
+        if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
+
+            Sign sign;
+            sign = (Sign) block.getState();
+
+            String line = sign.getLine(0);
+
+            if(line.equals("aa")) {
+                this.Map();
+                /*for (Player p : world.getPlayers()) {
+                    p.getUniqueId();
+                }*/
+                uuid.put("3","test3");
+                for (Map.Entry<String, String> entrySet : uuid.entrySet()) {
+                    player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
+                }
+            }
+        }
+    }
+
+
+
+
     @EventHandler
     public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
@@ -46,6 +104,7 @@ public class OniWorld implements Listener {
                 player.sendMessage(p.getDisplayName());
             }
         }
+
         if (player.getWorld().getPlayers().size() == 1) {
             Location location = new Location(player.getWorld(),1783,4,219);
             player.teleport(location);
