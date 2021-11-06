@@ -55,7 +55,7 @@ public class OniWorld implements Listener {
 
 
     @EventHandler
-    public void PlayerInteractEvent(PlayerInteractEvent e,Map<String,String> uuid) {
+    public void PlayerInteractEvent(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         if(!player.getWorld().getName().equals(this.worldName)) {
             return;
@@ -77,14 +77,14 @@ public class OniWorld implements Listener {
                 /*for (Player p : world.getPlayers()) {
                     p.getUniqueId();
                 }*/
-                uuid.put("3","test3");
+                /*uuid.put("3","test3");
                 player.sendMessage("い");
                 for (Map.Entry<String, String> entrySet : uuid.entrySet()) {
                     player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
                 }
                 player.sendMessage("う");
                 player.sendMessage(uuid.get("0"));
-                player.sendMessage(uuid.get("3"));
+                player.sendMessage(uuid.get("3"));*/
             }
         }
     }
