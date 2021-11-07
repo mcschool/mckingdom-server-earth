@@ -36,15 +36,17 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private Map<String,String> addUniqueId() {
+    private Map<String,String> addUniqueId(Player player) {
 
         //Map<String, String> uuid = new HashMap<>();
 
-        addUniqueId().put("0", "test");
-        addUniqueId().put("1", "test1");
-        addUniqueId().put("2", "test2");
+        addUniqueId(player).put("0", "test");
+        addUniqueId(player).put("1", "test1");
+        addUniqueId(player).put("2", "test2");
 
-        return addUniqueId();
+        player.sendMessage("map.addUniqueId");
+
+        return addUniqueId(player);
     }
 
     /*private void test(){
@@ -78,11 +80,12 @@ public class OniWorld implements Listener {
 
             if(line.equals("test")) {
                 player.sendMessage("あ");
-                Map<String,String> UniqueId = this.addUniqueId();
+                Map<String,String> addUniqueId = this.addUniqueId(player);
+
                 player.sendMessage("い");
-                player.sendMessage(UniqueId.get("0"));
-                UniqueId.put("3","test3");
-                player.sendMessage(UniqueId.get("3"));
+                player.sendMessage(addUniqueId.get("0"));
+                addUniqueId.put("3","test3");
+                player.sendMessage(addUniqueId.get("3"));
                 for (Player p : world.getPlayers()) {
                     p.getUniqueId();
                 }
