@@ -72,7 +72,7 @@ public class OniWorld implements Listener {
         UUID result = UniqueId.get(random);
 
         player.sendMessage(String.valueOf(result));
-        player.sendMessage(String.valueOf(UniqueId.get(i)));
+        //player.sendMessage(String.valueOf(UniqueId.get(i)));
 
     }
 
