@@ -125,6 +125,9 @@ public class OniWorld implements Listener {
                     player.sendMessage(String.valueOf(oni));
                 }
             }
+            if (line.equals("add")){
+                oni.add(firstoni);
+            }
 
         }
     }
