@@ -80,6 +80,7 @@ public class OniWorld implements Listener {
         player.sendMessage(String.valueOf(result));
 
         this.firstoni = result;
+        oni.add(result);
 
 
 
@@ -230,7 +231,7 @@ public class OniWorld implements Listener {
             UUID uuid = player.getUniqueId();
             //ダメージを受けたエンティティがプレイヤーの場合
             if (event.getEntity() instanceof Player) {
-                if (oni.contains(event.getDamager().getUniqueId()) || event.getDamager().getUniqueId() == firstoni) {
+                if (oni.contains(event.getDamager().getUniqueId())) {
                     oni.add(uuid);
                     player.setDisplayName(ChatColor.RED + "鬼" + player.getName());
                     if(oni.size() ==  player.getWorld().getPlayers().size()) {
