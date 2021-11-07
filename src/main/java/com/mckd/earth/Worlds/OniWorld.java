@@ -19,7 +19,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scoreboard.*;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -27,7 +26,6 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 public class OniWorld implements Listener {
     private Earth plugin;
@@ -38,14 +36,21 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    public void Map() {
+    private Map<String,String> addUniqueId() {
 
-        Map<String, String> uuid = new HashMap<>();
+        //Map<String, String> uuid = new HashMap<>();
 
-        uuid.put("0", "test");
-        uuid.put("1", "test1");
-        uuid.put("2", "test2");
+        addUniqueId().put("0", "test");
+        addUniqueId().put("1", "test1");
+        addUniqueId().put("2", "test2");
+
+        return addUniqueId();
     }
+
+    /*private void test(){
+        Map<String,String> uuid = this.Map();
+
+    }*/
 
     public void random(){
         Random random = new Random();
@@ -72,7 +77,12 @@ public class OniWorld implements Listener {
             String line = sign.getLine(1);
 
             if(line.equals("test")) {
-                this.Map();
+                player.sendMessage("あ");
+                Map<String,String> UniqueId = this.addUniqueId();
+                player.sendMessage("い");
+                player.sendMessage(UniqueId.get("0"));
+                UniqueId.put("3","test3");
+                player.sendMessage(UniqueId.get("3"));
                 for (Player p : world.getPlayers()) {
                     p.getUniqueId();
                 }
