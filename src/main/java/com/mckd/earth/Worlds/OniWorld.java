@@ -28,8 +28,10 @@ import java.util.*;
 
 public class OniWorld implements Listener {
     private Earth plugin;
+    private List<UUID> oni = new ArrayList<UUID>();
     String worldName = "oni";
     UUID firstoni;
+
 
 
     public OniWorld(Earth plugin) {
@@ -37,12 +39,13 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private List<UUID> oniList(Player player){
+    /*private List<UUID> oniList(Player player) {
 
         List<UUID> oni = new ArrayList<UUID>();
 
+
         return oni;
-    }
+    }*/
 
 
 
@@ -89,7 +92,7 @@ public class OniWorld implements Listener {
 
     private void addList(Player player){
 
-        List<UUID> oni = this.oniList(player);
+        //List<UUID> oni = this.oniList(player);
 
         UUID uuid = player.getUniqueId();
         //oni.add(uuid);
@@ -112,7 +115,7 @@ public class OniWorld implements Listener {
             return;
         }
 
-        List<UUID> oni = this.oniList(player);
+        //List<UUID> oni = this.oniList(player);
         Block block = e.getClickedBlock();
 
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
@@ -235,7 +238,7 @@ public class OniWorld implements Listener {
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(this.worldName)) {
             Player player = (Player) event.getEntity();
-            List<UUID> oni = this.oniList(player);
+            //List<UUID> oni = this.oniList(player);
             World world = event.getEntity().getWorld();
             Player damager = (Player) event.getDamager();
             //ダメージを受けたエンティティがプレイヤーの場合
