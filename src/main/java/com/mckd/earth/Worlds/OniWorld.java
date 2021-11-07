@@ -32,56 +32,48 @@ public class OniWorld implements Listener {
     private Earth plugin;
     String worldName = "oni";
 
+
     public OniWorld(Earth plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private Map<String,String> UniqueIdMap(Player player) {
 
-        Map<String, String> UniqueId = new HashMap<>();
 
-        UniqueId.put("0", "test");
-        UniqueId.put("1", "test1");
-        UniqueId.put("2", "test2");
+    private Map<Integer,UUID> UniqueIdMap(Player player) {
 
-        //player.sendMessage("map.addUniqueId");
+        Map<Integer, UUID> UniqueId = new HashMap<>();
+
+
 
         return UniqueId;
     }
 
-    private void addUniqueId(Player player){
-        player.sendMessage("か");
+
+    private void addUniqueId(Player player) {
         World world = player.getWorld();
 
+        Map<Integer, UUID> UniqueId = this.UniqueIdMap(player);
+
+        Integer i = 0;
         for (Player p : world.getPlayers()) {
             UUID uuid = p.getPlayer().getUniqueId();
+            player.sendMessage(String.valueOf(i));
             player.sendMessage(String.valueOf(uuid));
+            UniqueId.put(i, uuid);
+            i++;
         }
 
-        Map<String,String> UniqueId = this.UniqueIdMap(player);
+        for(Map.Entry<Integer,UUID> entrySet : UniqueId.entrySet()){
+            player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
+        }
 
-        /*int i = 1;
-        for (Map.Entry<String,String> uuid : UniqueId.entrySet()) {
-            if(i <= 3) {
-                player.sendMessage(uuid.getKey() + "  " + uuid.getValue());
-                i++;
-            }
-        }*/
+        int random = new Random().nextInt(UniqueId.size());
+        UUID result = UniqueId.get(random);
 
-        player.sendMessage("き");
-        player.sendMessage(UniqueId.get("0"));
-        player.sendMessage("く");
-        UniqueId.put("4","test4");
-        player.sendMessage("け");
-        player.sendMessage(UniqueId.get("4"));
+        player.sendMessage(String.valueOf(result));
+        player.sendMessage(String.valueOf(UniqueId.get(i)));
 
-
-    }
-
-    public void random(){
-        Random random = new Random();
-        int randomValue = random.nextInt(2);
     }
 
 
@@ -92,20 +84,17 @@ public class OniWorld implements Listener {
         if(!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
-        World world = player.getWorld();
-        Block block = e.getClickedBlock();
 
+        Block block = e.getClickedBlock();
 
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
 
             Sign sign;
             sign = (Sign) block.getState();
-
             String line = sign.getLine(1);
 
             if(line.equals("test")) {
                 this.addUniqueId(player);
-                player.sendMessage("あ");
             }
         }
     }
