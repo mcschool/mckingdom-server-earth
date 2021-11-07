@@ -74,6 +74,7 @@ public class OniWorld implements Listener {
             player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
         }
 
+
         int random = new Random().nextInt(UniqueId.size());
         UUID result = UniqueId.get(random);
 
@@ -86,6 +87,22 @@ public class OniWorld implements Listener {
 
     }
 
+    private void addList(Player player){
+
+        List<UUID> oni = this.oniList(player);
+
+        UUID uuid = player.getUniqueId();
+        oni.add(uuid);
+
+        if (oni.contains(player.getUniqueId())) {
+            player.sendMessage("Listい含まれています");
+            player.sendMessage(String.valueOf(oni));
+        } else {
+            player.sendMessage("Listに含まれていません");
+            player.sendMessage(String.valueOf(oni));
+        }
+    }
+
 
 
     @EventHandler
@@ -96,7 +113,6 @@ public class OniWorld implements Listener {
         }
 
         Block block = e.getClickedBlock();
-        List<UUID> oni = this.oniList(player);
 
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
 
@@ -117,18 +133,8 @@ public class OniWorld implements Listener {
                     player.sendMessage(String.valueOf(this.firstoni));
                 }
             }
-            if (line.equals("list")){
-                if (oni.contains(e.getPlayer().getUniqueId())) {
-                    player.sendMessage("Listい含まれています");
-                    player.sendMessage(String.valueOf(oni));
-                } else {
-                    player.sendMessage("Listに含まれていません");
-                    player.sendMessage(String.valueOf(oni));
-                }
-            }
             if (line.equals("add")){
-                oni.add(firstoni);
-                player.sendMessage(String.valueOf(oni));
+                this.addList(player);
             }
 
         }
