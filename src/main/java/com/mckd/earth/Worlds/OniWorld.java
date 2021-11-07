@@ -17,9 +17,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scoreboard.Team;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -115,14 +113,27 @@ public class OniWorld implements Listener {
             return;
         }
 
-        //List<UUID> oni = this.oniList(player);
         Block block = e.getClickedBlock();
+        World world = player.getWorld();
+        Location location = new Location(player.getWorld(),-556,5,-121);
+        Location location1 = new Location(player.getWorld(),-640,5,-121);
 
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
 
             Sign sign;
             sign = (Sign) block.getState();
             String line = sign.getLine(1);
+            if (line.equals("Start")) {
+                this.addUniqueId(player);
+                for (Player p : world.getPlayers()){
+                    if(p.getUniqueId() == firstoni){
+                        p.teleport(location);
+                    } else {
+                        p.teleport(location1);
+                    }
+                }
+                player.getWorld().setPVP(true);
+            }
 
             if(line.equals("test")) {
                 this.addUniqueId(player);
@@ -199,12 +210,7 @@ public class OniWorld implements Listener {
             }
         }
     }
-    @EventHandler
-    public void onPlayerMoveEvent(PlayerMoveEvent event){
-        Player player = event.getPlayer();
-        if (player.getWorld().getPlayers().size() == 1){
-        }
-    }
+
     @EventHandler
     public void AsyncPlayerChatEvent(AsyncPlayerChatEvent event){
         if (event.getPlayer().getWorld().getName().equals(this.worldName)) {
@@ -225,71 +231,46 @@ public class OniWorld implements Listener {
         }
     }
 
-    /*@EventHandler
+    @EventHandler
     public void onFoodLevelChangeEvent(FoodLevelChangeEvent event){
         String worldname = event.getEntity().getWorld().getName();
         if (worldname.equals(this.worldName)){
             event.setCancelled(true);
             return;
         }
-    }*/
+    }
 
     @EventHandler
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(this.worldName)) {
             Player player = (Player) event.getEntity();
-            //List<UUID> oni = this.oniList(player);
             World world = event.getEntity().getWorld();
             Player damager = (Player) event.getDamager();
+            UUID uuid = player.getUniqueId();
             //ダメージを受けたエンティティがプレイヤーの場合
             if (event.getEntity() instanceof Player) {
                 if (oni.contains(event.getDamager().getUniqueId())) {
-
-                    boolean allOni = true;
-                    for (Player p : event.getEntity().getWorld().getPlayers()) {
-                        if (isEscaper(p)) {
-                            allOni = false;
+                    oni.add(uuid);
+                    player.setDisplayName(ChatColor.RED + "鬼" + player.getName());
+                    if(oni.size() ==  player.getWorld().getPlayers().size()) {
+                        for (Player p : world.getPlayers()){
+                            p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
+                            new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
+                            List<UUID> oni = new ArrayList<UUID>();
                         }
+                    } else {
+                        return;
                     }
                     for (Player p : event.getEntity().getWorld().getPlayers()) {
                         p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
                     }
-                    if (allOni) {
-                        //終了
-                        for (Player p : world.getPlayers()) {
-                            p.sendMessage("ゲームが終了しました。ロビーに戻ります");
-                            new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
-                            p.removePotionEffect(PotionEffectType.GLOWING);
-                        }
-                    }
+
                 } else {
+                    event.setCancelled(true);
                 }
             }
         }
     }
 
 
-    //鬼という定義を作る
-    private boolean isOni(Player player) {
-        if (player.hasPotionEffect(PotionEffectType.GLOWING)){
-            /*player.sendMessage(player.getEquipment().getHelmet().getType().toString());
-            player.sendMessage(player.getDisplayName() + "鬼だ");*/
-            return true;
-        }
-        /*player.sendMessage(player.getDisplayName() + "人だ");
-        player.sendMessage(player.getEquipment().getHelmet().getType().toString());*/
-        return false;
-    }
-    private boolean isEscaper(Player player) {
-        if (!isOni(player)){
-            return true;
-        }
-        return false;
-    }
-    private boolean isFirstJoiner(Player player){
-        if (player.getWorld().getPlayers().size() == 1){
-            return true;
-        }
-        return false;
-    }
 }
