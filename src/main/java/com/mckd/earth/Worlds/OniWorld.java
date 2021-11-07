@@ -44,7 +44,7 @@ public class OniWorld implements Listener {
         UniqueId.put("1", "test1");
         UniqueId.put("2", "test2");
 
-        player.sendMessage("map.addUniqueId");
+        //player.sendMessage("map.addUniqueId");
 
         return addUniqueId(player);
     }
