@@ -38,21 +38,29 @@ public class OniWorld implements Listener {
 
     private Map<String,String> addUniqueId(Player player) {
 
-        //Map<String, String> uuid = new HashMap<>();
+        HashMap<String, String> UniqueId = new HashMap<>();
 
-        addUniqueId(player).put("0", "test");
-        addUniqueId(player).put("1", "test1");
-        addUniqueId(player).put("2", "test2");
+        UniqueId.put("0", "test");
+        UniqueId.put("1", "test1");
+        UniqueId.put("2", "test2");
 
         player.sendMessage("map.addUniqueId");
 
         return addUniqueId(player);
     }
 
-    /*private void test(){
-        Map<String,String> uuid = this.Map();
+    private void test(Player player){
+        player.sendMessage("か");
+        Map<String,String> UniqueId = this.addUniqueId(player);
+        player.sendMessage("き");
+        player.sendMessage(UniqueId.get("0"));
+        player.sendMessage("く");
+        UniqueId.put("4","test4");
+        player.sendMessage("け");
+        player.sendMessage(UniqueId.get("4"));
 
-    }*/
+
+    }
 
     public void random(){
         Random random = new Random();
@@ -79,6 +87,7 @@ public class OniWorld implements Listener {
             String line = sign.getLine(1);
 
             if(line.equals("test")) {
+                this.test(player);
                 player.sendMessage("あ");
                 Map<String,String> UniqueId = this.addUniqueId(player);
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"tell nankotsu029 test");
