@@ -36,7 +36,7 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private Map<String,String> addUniqueId(Player player) {
+    private HashMap<String,String> addUniqueId(Player player) {
 
         HashMap<String, String> UniqueId = new HashMap<>();
 
@@ -51,7 +51,16 @@ public class OniWorld implements Listener {
 
     private void test(Player player){
         player.sendMessage("か");
-        Map<String,String> UniqueId = this.addUniqueId(player);
+        HashMap<String,String> UniqueId = this.addUniqueId(player);
+
+        int i = 1;
+        for (Map.Entry<String,String> uuid : UniqueId.entrySet()) {
+            if(i <= 3) {
+                player.sendMessage(uuid.getKey() + "  " + uuid.getValue());
+                i++;
+            }
+        }
+
         player.sendMessage("き");
         player.sendMessage(UniqueId.get("0"));
         player.sendMessage("く");
@@ -89,7 +98,7 @@ public class OniWorld implements Listener {
             if(line.equals("test")) {
                 this.test(player);
                 player.sendMessage("あ");
-                Map<String,String> UniqueId = this.addUniqueId(player);
+                HashMap<String,String> UniqueId = this.addUniqueId(player);
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"tell nankotsu029 test");
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"gamemode 0 nankotsu029");
                 player.sendMessage("い");
