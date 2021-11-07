@@ -80,12 +80,13 @@ public class OniWorld implements Listener {
 
             if(line.equals("test")) {
                 player.sendMessage("あ");
-                Map<String,String> addUniqueId = this.addUniqueId(player);
-
+                Map<String,String> UniqueId = this.addUniqueId(player);
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"tell nankotsu029 test");
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"gamemode 0 nankotsu029");
                 player.sendMessage("い");
-                player.sendMessage(addUniqueId.get("0"));
-                addUniqueId.put("3","test3");
-                player.sendMessage(addUniqueId.get("3"));
+                player.sendMessage(UniqueId.get("0"));
+                UniqueId.put("3","test3");
+                player.sendMessage(UniqueId.get("3"));
                 for (Player p : world.getPlayers()) {
                     p.getUniqueId();
                 }
