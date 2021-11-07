@@ -51,7 +51,7 @@ public class OniWorld implements Listener {
 
     private void test(Player player){
         player.sendMessage("か");
-        HashMap<String,String> UniqueId = this.addUniqueId(player);
+        /*HashMap<String,String> UniqueId = this.addUniqueId(player);
 
         int i = 1;
         for (Map.Entry<String,String> uuid : UniqueId.entrySet()) {
@@ -59,14 +59,14 @@ public class OniWorld implements Listener {
                 player.sendMessage(uuid.getKey() + "  " + uuid.getValue());
                 i++;
             }
-        }
+        }*/
 
         player.sendMessage("き");
-        player.sendMessage(UniqueId.get("0"));
+        //player.sendMessage(UniqueId.get("0"));
         player.sendMessage("く");
-        UniqueId.put("4","test4");
+        //UniqueId.put("4","test4");
         player.sendMessage("け");
-        player.sendMessage(UniqueId.get("4"));
+        //player.sendMessage(UniqueId.get("4"));
 
 
     }
