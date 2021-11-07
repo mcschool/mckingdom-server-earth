@@ -81,6 +81,7 @@ public class OniWorld implements Listener {
 
         this.firstoni = result;
 
+
         //player.sendMessage(String.valueOf(UniqueId.get(i)));
 
     }
@@ -127,6 +128,7 @@ public class OniWorld implements Listener {
             }
             if (line.equals("add")){
                 oni.add(firstoni);
+                player.sendMessage(String.valueOf(oni));
             }
 
         }
