@@ -36,9 +36,9 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private HashMap<String,String> addUniqueId(Player player) {
+    private Map<String,String> addUniqueId(Player player) {
 
-        HashMap<String, String> UniqueId = new HashMap<>();
+        Map<String, String> UniqueId = new HashMap<>();
 
         UniqueId.put("0", "test");
         UniqueId.put("1", "test1");
@@ -46,14 +46,17 @@ public class OniWorld implements Listener {
 
         //player.sendMessage("map.addUniqueId");
 
-        return addUniqueId(player);
+        return UniqueId;
     }
 
     private void test(Player player){
         player.sendMessage("か");
-        /*HashMap<String,String> UniqueId = this.addUniqueId(player);
 
-        int i = 1;
+        //String str = addUniqueId(player).get("0");
+
+        Map<String,String> UniqueId = this.addUniqueId(player);
+
+        /*int i = 1;
         for (Map.Entry<String,String> uuid : UniqueId.entrySet()) {
             if(i <= 3) {
                 player.sendMessage(uuid.getKey() + "  " + uuid.getValue());
@@ -62,11 +65,11 @@ public class OniWorld implements Listener {
         }*/
 
         player.sendMessage("き");
-        //player.sendMessage(UniqueId.get("0"));
+        player.sendMessage(UniqueId.get("0"));
         player.sendMessage("く");
-        //UniqueId.put("4","test4");
+        UniqueId.put("4","test4");
         player.sendMessage("け");
-        //player.sendMessage(UniqueId.get("4"));
+        player.sendMessage(UniqueId.get("4"));
 
 
     }
@@ -98,7 +101,7 @@ public class OniWorld implements Listener {
             if(line.equals("test")) {
                 this.test(player);
                 player.sendMessage("あ");
-                HashMap<String,String> UniqueId = this.addUniqueId(player);
+                /*HashMap<String,String> UniqueId = this.addUniqueId(player);
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"tell nankotsu029 test");
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"gamemode 0 nankotsu029");
                 player.sendMessage("い");
@@ -107,7 +110,7 @@ public class OniWorld implements Listener {
                 player.sendMessage(UniqueId.get("3"));
                 for (Player p : world.getPlayers()) {
                     p.getUniqueId();
-                }
+                }*/
             }
         }
     }
