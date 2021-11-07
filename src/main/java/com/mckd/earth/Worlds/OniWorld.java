@@ -26,6 +26,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 public class OniWorld implements Listener {
     private Earth plugin;
@@ -36,7 +37,7 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private Map<String,String> addUniqueId(Player player) {
+    private Map<String,String> UniqueIdMap(Player player) {
 
         Map<String, String> UniqueId = new HashMap<>();
 
@@ -49,12 +50,10 @@ public class OniWorld implements Listener {
         return UniqueId;
     }
 
-    private void test(Player player){
+    private void addUniqueId(Player player){
         player.sendMessage("か");
 
-        //String str = addUniqueId(player).get("0");
-
-        Map<String,String> UniqueId = this.addUniqueId(player);
+        Map<String,String> UniqueId = this.UniqueIdMap(player);
 
         /*int i = 1;
         for (Map.Entry<String,String> uuid : UniqueId.entrySet()) {
@@ -99,18 +98,12 @@ public class OniWorld implements Listener {
             String line = sign.getLine(1);
 
             if(line.equals("test")) {
-                this.test(player);
+                this.addUniqueId(player);
                 player.sendMessage("あ");
-                /*HashMap<String,String> UniqueId = this.addUniqueId(player);
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"tell nankotsu029 test");
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"gamemode 0 nankotsu029");
-                player.sendMessage("い");
-                player.sendMessage(UniqueId.get("0"));
-                UniqueId.put("3","test3");
-                player.sendMessage(UniqueId.get("3"));
                 for (Player p : world.getPlayers()) {
-                    p.getUniqueId();
-                }*/
+                    UUID x = p.getPlayer().getUniqueId();
+                    player.sendMessage(String.valueOf(x));
+                }
             }
         }
     }
