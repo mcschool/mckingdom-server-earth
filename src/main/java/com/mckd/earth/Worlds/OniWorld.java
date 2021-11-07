@@ -16,8 +16,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.potion.PotionEffectType;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -84,25 +82,9 @@ public class OniWorld implements Listener {
         this.firstoni = result;
 
 
-        //player.sendMessage(String.valueOf(UniqueId.get(i)));
 
     }
 
-    private void addList(Player player){
-
-        //List<UUID> oni = this.oniList(player);
-
-        UUID uuid = player.getUniqueId();
-        //oni.add(uuid);
-
-        if (oni.contains(player.getUniqueId())) {
-            player.sendMessage("Listに含まれています");
-            player.sendMessage(String.valueOf(oni));
-        } else {
-            player.sendMessage("Listに含まれていません");
-            player.sendMessage(String.valueOf(oni));
-        }
-    }
 
 
 
@@ -149,7 +131,6 @@ public class OniWorld implements Listener {
                 }
             }
             if (line.equals("add")){
-                //this.addList(player);
 
                 UUID uuid = player.getUniqueId();
                 oni.add(uuid);
@@ -249,7 +230,7 @@ public class OniWorld implements Listener {
             UUID uuid = player.getUniqueId();
             //ダメージを受けたエンティティがプレイヤーの場合
             if (event.getEntity() instanceof Player) {
-                if (oni.contains(event.getDamager().getUniqueId())) {
+                if (oni.contains(event.getDamager().getUniqueId()) || event.getDamager().getUniqueId() == firstoni) {
                     oni.add(uuid);
                     player.setDisplayName(ChatColor.RED + "鬼" + player.getName());
                     if(oni.size() ==  player.getWorld().getPlayers().size()) {
