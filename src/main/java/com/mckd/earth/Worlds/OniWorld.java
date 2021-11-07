@@ -92,10 +92,10 @@ public class OniWorld implements Listener {
         List<UUID> oni = this.oniList(player);
 
         UUID uuid = player.getUniqueId();
-        oni.add(uuid);
+        //oni.add(uuid);
 
         if (oni.contains(player.getUniqueId())) {
-            player.sendMessage("Listい含まれています");
+            player.sendMessage("Listに含まれています");
             player.sendMessage(String.valueOf(oni));
         } else {
             player.sendMessage("Listに含まれていません");
