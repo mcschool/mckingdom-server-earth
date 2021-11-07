@@ -31,6 +31,7 @@ import java.util.UUID;
 public class OniWorld implements Listener {
     private Earth plugin;
     String worldName = "oni";
+    UUID oni;
 
 
     public OniWorld(Earth plugin) {
@@ -72,6 +73,9 @@ public class OniWorld implements Listener {
         UUID result = UniqueId.get(random);
 
         player.sendMessage(String.valueOf(result));
+
+        this.oni = result;
+
         //player.sendMessage(String.valueOf(UniqueId.get(i)));
 
     }
@@ -95,6 +99,15 @@ public class OniWorld implements Listener {
 
             if(line.equals("test")) {
                 this.addUniqueId(player);
+            }
+            if (line.equals("oni")){
+                if (e.getPlayer().getUniqueId() == oni){
+                    player.sendMessage("あなたは鬼です");
+                    player.sendMessage(String.valueOf(this.oni));
+                } else {
+                    player.sendMessage("あなたは鬼じゃないです");
+                    player.sendMessage(String.valueOf(this.oni));
+                }
             }
         }
     }
