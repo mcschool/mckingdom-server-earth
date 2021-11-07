@@ -24,21 +24,24 @@ import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class OniWorld implements Listener {
     private Earth plugin;
     String worldName = "oni";
     UUID firstoni;
-    Team oni;
 
 
     public OniWorld(Earth plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    private List<UUID> oniList(Player player){
+
+        List<UUID> oni = new ArrayList<UUID>();
+
+        return oni;
     }
 
 
@@ -92,6 +95,7 @@ public class OniWorld implements Listener {
         }
 
         Block block = e.getClickedBlock();
+        List<UUID> oni = this.oniList(player);
 
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
 
@@ -112,13 +116,16 @@ public class OniWorld implements Listener {
                     player.sendMessage(String.valueOf(this.firstoni));
                 }
             }
-            if (line.equals("team")){
-                this.oni = (Team) player;
-                player.sendMessage(String.valueOf(this.oni));
+            if (line.equals("list")){
+                if (oni.contains(e.getPlayer().getUniqueId())) {
+                    player.sendMessage("Listい含まれています");
+                    player.sendMessage(String.valueOf(oni));
+                } else {
+                    player.sendMessage("Listに含まれていません");
+                    player.sendMessage(String.valueOf(oni));
+                }
             }
-            if (line.equals("noteam")){
-                player.sendMessage(String.valueOf(this.oni));
-            }
+
         }
     }
 
@@ -194,12 +201,14 @@ public class OniWorld implements Listener {
     @EventHandler
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         if (event.getEntity().getWorld().getName().equals(this.worldName)) {
+            Player player = (Player) event.getEntity();
+            List<UUID> oni = this.oniList(player);
             World world = event.getEntity().getWorld();
             Player damager = (Player) event.getDamager();
             //ダメージを受けたエンティティがプレイヤーの場合
             if (event.getEntity() instanceof Player) {
-                Player player = (Player) event.getEntity();
-                if (event.getDamager().getUniqueId() == firstoni) {
+                if (oni.contains(event.getDamager().getUniqueId())) {
+
                     boolean allOni = true;
                     for (Player p : event.getEntity().getWorld().getPlayers()) {
                         if (isEscaper(p)) {
