@@ -52,6 +52,12 @@ public class OniWorld implements Listener {
 
     private void addUniqueId(Player player){
         player.sendMessage("か");
+        World world = player.getWorld();
+
+        for (Player p : world.getPlayers()) {
+            UUID uuid = p.getPlayer().getUniqueId();
+            player.sendMessage(String.valueOf(uuid));
+        }
 
         Map<String,String> UniqueId = this.UniqueIdMap(player);
 
@@ -100,10 +106,6 @@ public class OniWorld implements Listener {
             if(line.equals("test")) {
                 this.addUniqueId(player);
                 player.sendMessage("あ");
-                for (Player p : world.getPlayers()) {
-                    UUID x = p.getPlayer().getUniqueId();
-                    player.sendMessage(String.valueOf(x));
-                }
             }
         }
     }
