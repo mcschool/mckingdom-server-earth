@@ -233,12 +233,12 @@ public class OniWorld implements Listener {
             if (event.getEntity() instanceof Player) {
                 if (oni.contains(event.getDamager().getUniqueId())) {
                     oni.add(uuid);
-                    player.setDisplayName(ChatColor.RED + "鬼" + player.getName());
                     if(oni.size() ==  player.getWorld().getPlayers().size()) {
                         for (Player p : world.getPlayers()){
                             p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
                             new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
-                            List<UUID> oni = new ArrayList<UUID>();
+                            oni.clear();
+
                         }
                     } else {
                         return;
