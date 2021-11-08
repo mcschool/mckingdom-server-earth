@@ -12,6 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -35,21 +36,11 @@ public class OniWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    /*private List<UUID> oniList(Player player) {
-
-        List<UUID> oni = new ArrayList<UUID>();
-
-
-        return oni;
-    }*/
-
 
 
     private Map<Integer,UUID> UniqueIdMap(Player player) {
 
         Map<Integer, UUID> UniqueId = new HashMap<>();
-
-
 
         return UniqueId;
     }
@@ -98,21 +89,26 @@ public class OniWorld implements Listener {
 
         Block block = e.getClickedBlock();
         World world = player.getWorld();
+
         Location location = new Location(player.getWorld(),-556,5,-121);
-        Location location1 = new Location(player.getWorld(),-640,5,-121);
+        Location location2 = new Location(player.getWorld(),-640,5,-121);
 
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType() == Material.SIGN_POST){
 
             Sign sign;
             sign = (Sign) block.getState();
             String line = sign.getLine(1);
+
             if (line.equals("Start")) {
+                oni.clear();
                 this.addUniqueId(player);
                 for (Player p : world.getPlayers()){
                     if(p.getUniqueId() == firstoni){
                         p.teleport(location);
+                        p.sendTitle(ChatColor.RED +"","",0,100,0 );
                     } else {
-                        p.teleport(location1);
+                        p.teleport(location2);
+                        p.sendTitle(ChatColor.BLUE + "","",0,100,0);
                     }
                 }
                 player.getWorld().setPVP(true);
@@ -165,11 +161,13 @@ public class OniWorld implements Listener {
     public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         World world = player.getWorld();
+        Location location = new Location(player.getWorld(),-489,12,-121);
         if (!player.getWorld().getName().equals(this.worldName)) return;
         player.getInventory().clear();
         player.setGameMode(GameMode.SURVIVAL);
-        player.setFoodLevel(20);
         player.getWorld().setPVP(false);
+        player.teleport(location);
+        player.setFoodLevel(20);
         player.setHealth(20.0);
 
 
@@ -215,12 +213,28 @@ public class OniWorld implements Listener {
 
     @EventHandler
     public void onFoodLevelChangeEvent(FoodLevelChangeEvent event){
-        String worldname = event.getEntity().getWorld().getName();
-        if (worldname.equals(this.worldName)){
+        if (event.getEntity().getWorld().getName().equals(this.worldName)){
             event.setCancelled(true);
             return;
         }
     }
+
+    @EventHandler
+    public void EntityDamageEvent(EntityDamageEvent e){
+        if (!e.getEntity().getWorld().getName().equals(this.worldName)){
+            return;
+        }
+        if (e.getEntity() instanceof  Player){
+            if (e.getCause() == EntityDamageEvent.DamageCause.FALL){
+                e.setCancelled(true);
+            } else {
+                return;
+            }
+        }
+    }
+
+
+
 
     @EventHandler
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
@@ -231,22 +245,21 @@ public class OniWorld implements Listener {
             UUID uuid = player.getUniqueId();
             //ダメージを受けたエンティティがプレイヤーの場合
             if (event.getEntity() instanceof Player) {
-                if (oni.contains(event.getDamager().getUniqueId())) {
-                    oni.add(uuid);
-                    if(oni.size() ==  player.getWorld().getPlayers().size()) {
-                        for (Player p : world.getPlayers()){
-                            p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
-                            new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
-                            oni.clear();
-
+                if (oni.contains(damager.getUniqueId())) {
+                    if (!oni.contains(player.getUniqueId())) {
+                        oni.add(uuid);
+                        if (oni.size() == player.getWorld().getPlayers().size()) {
+                            for (Player p : world.getPlayers()) {
+                                p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
+                                new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
+                                oni.clear();
+                            }
                         }
-                    } else {
-                        return;
-                    }
-                    for (Player p : event.getEntity().getWorld().getPlayers()) {
-                        p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
-                    }
+                        for (Player p : player.getWorld().getPlayers()) {
+                            p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
+                        }
 
+                    }
                 } else {
                     event.setCancelled(true);
                 }
