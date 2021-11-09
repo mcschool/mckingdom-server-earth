@@ -17,6 +17,8 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -73,6 +75,32 @@ public class OniWorld implements Listener {
         this.firstoni = result;
         oni.add(result);
 
+        Player playerOni = Bukkit.getPlayer(this.firstoni);
+
+        ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
+        LeatherArmorMeta helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
+        helmetMeta.setColor(Color.RED);
+        helmet.setItemMeta(helmetMeta);
+        playerOni.getEquipment().setHelmet(helmet);
+
+        ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+        LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) chestplate.getItemMeta();
+        chestplateMeta.setColor(Color.RED);
+        chestplate.setItemMeta(chestplateMeta);
+        playerOni.getEquipment().setChestplate(chestplate);
+
+        ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
+        LeatherArmorMeta leggingsMeta = (LeatherArmorMeta) leggings.getItemMeta();
+        leggingsMeta.setColor(Color.RED);
+        leggings.setItemMeta(leggingsMeta);
+        playerOni.getEquipment().setLeggings(leggings);
+
+        ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
+        LeatherArmorMeta bootsMeta = (LeatherArmorMeta) boots.getItemMeta();
+        bootsMeta.setColor(Color.RED);
+        boots.setItemMeta(bootsMeta);
+        playerOni.getEquipment().setBoots(boots);
+
 
 
     }
@@ -82,11 +110,10 @@ public class OniWorld implements Listener {
 
     @EventHandler
     public void PlayerInteractEvent(PlayerInteractEvent e) {
-        Player player = e.getPlayer();
-        if(!player.getWorld().getName().equals(this.worldName)) {
+        if (!e.getPlayer().getWorld().getName().equals(this.worldName)){
             return;
         }
-
+        Player player = e.getPlayer();
         Block block = e.getClickedBlock();
         World world = player.getWorld();
 
@@ -159,10 +186,12 @@ public class OniWorld implements Listener {
 
     @EventHandler
     public void onPlayerChangedWorld(PlayerChangedWorldEvent event) {
+        if (!event.getPlayer().getWorld().getName().equals(this.worldName)){
+            return;
+        }
         Player player = event.getPlayer();
         World world = player.getWorld();
         Location location = new Location(player.getWorld(),-489,12,-121);
-        if (!player.getWorld().getName().equals(this.worldName)) return;
         player.getInventory().clear();
         player.setGameMode(GameMode.SURVIVAL);
         player.getWorld().setPVP(false);
@@ -243,19 +272,44 @@ public class OniWorld implements Listener {
             World world = event.getEntity().getWorld();
             Player damager = (Player) event.getDamager();
             UUID uuid = player.getUniqueId();
+
+            ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
+            LeatherArmorMeta helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
+            helmetMeta.setColor(Color.RED);
+            helmet.setItemMeta(helmetMeta);
+
+            ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+            LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) chestplate.getItemMeta();
+            chestplateMeta.setColor(Color.RED);
+            chestplate.setItemMeta(chestplateMeta);
+
+            ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
+            LeatherArmorMeta leggingsMeta = (LeatherArmorMeta) leggings.getItemMeta();
+            leggingsMeta.setColor(Color.RED);
+            leggings.setItemMeta(leggingsMeta);
+
+            ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
+            LeatherArmorMeta bootsMeta = (LeatherArmorMeta) boots.getItemMeta();
+            bootsMeta.setColor(Color.RED);
+            boots.setItemMeta(bootsMeta);
+
             //ダメージを受けたエンティティがプレイヤーの場合
             if (event.getEntity() instanceof Player) {
                 if (oni.contains(damager.getUniqueId())) {
                     if (!oni.contains(player.getUniqueId())) {
                         oni.add(uuid);
-                        if (oni.size() == player.getWorld().getPlayers().size()) {
+                        player.getEquipment().setHelmet(helmet);
+                        player.getEquipment().setChestplate(chestplate);
+                        player.getEquipment().setLeggings(leggings);
+                        player.getEquipment().setBoots(boots);
+                        if (oni.size() == world.getPlayers().size()) {
                             for (Player p : world.getPlayers()) {
                                 p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
                                 new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
                                 oni.clear();
                             }
                         }
-                        for (Player p : player.getWorld().getPlayers()) {
+                        for (Player p : world.getPlayers()) {
                             p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
                         }
 
