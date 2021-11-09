@@ -125,19 +125,6 @@ public class PveWorld implements Listener {
             player.teleport(location);
 
 
-            ScoreboardManager manager = Bukkit.getScoreboardManager();
-            Scoreboard scoreboard = manager.getMainScoreboard();
-
-            Objective objective = scoreboard.getObjective(OBJECTIVE_NAME_SCORE);
-            if (objective == null){
-                objective = scoreboard.registerNewObjective(OBJECTIVE_NAME_SCORE,"dummy");
-                objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-                objective.setDisplayName("point");
-            }
-            for (Player p : world.getPlayers()){
-                p.setScoreboard(scoreboard);
-            }
-
         }
     }
 
@@ -194,6 +181,8 @@ public class PveWorld implements Listener {
             // あらかじめ利用する変数を用意しておく
             Sign sign;
             sign = (Sign) b.getState();
+
+
 
             ScoreboardManager manager = Bukkit.getScoreboardManager();
             Scoreboard scoreboard = manager.getMainScoreboard();
