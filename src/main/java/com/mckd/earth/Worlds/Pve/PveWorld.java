@@ -26,6 +26,7 @@ import java.util.*;
 public class PveWorld implements Listener {
 
     private Earth plugin;
+    private String worldname = "pve";
     private static final String OBJECTIVE_NAME = "showhealth";
     private static final String OBJECTIVE_NAME_SCORE = "score";
     private int waveCount = 1;
@@ -47,8 +48,17 @@ public class PveWorld implements Listener {
     }
 
 
+
+
+
+
+
+
     @EventHandler
     public void PlayerRegainHealthEvent(EntityRegainHealthEvent e){
+        if (!e.getEntity().getWorld().getName().equals(this.worldname)) {
+            return;
+        }
 
         if(!(e.getEntity() instanceof Player)) {
             return;
@@ -74,6 +84,10 @@ public class PveWorld implements Listener {
 
     @EventHandler
     public void PlayerDamageEvent(EntityDamageEvent e){
+        if (e.getEntity().getWorld().getName().equals(this.worldname)){
+            return;
+        }
+
         if(!(e.getEntity() instanceof Player)) {
             return;
         }
@@ -97,7 +111,8 @@ public class PveWorld implements Listener {
     @EventHandler
     public void enterWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
-        if (player.getWorld().getName().equals("pve")) {
+        World world = player.getWorld();
+        if (player.getWorld().getName().equals(this.worldname)) {
             player.setGameMode(GameMode.ADVENTURE);
             player.setFoodLevel(20);
             player.setHealth(20.0);
@@ -111,13 +126,23 @@ public class PveWorld implements Listener {
 
 
             ScoreboardManager manager = Bukkit.getScoreboardManager();
-            Scoreboard board = manager.getMainScoreboard();
+            Scoreboard scoreboard = manager.getMainScoreboard();
+
+            Objective objective = scoreboard.getObjective(OBJECTIVE_NAME_SCORE);
+            if (objective == null){
+                objective = scoreboard.registerNewObjective(OBJECTIVE_NAME_SCORE,"dummy");
+                objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+                objective.setDisplayName("point");
+            }
+            for (Player p : world.getPlayers()){
+                p.setScoreboard(scoreboard);
+            }
 
         }
     }
 
     private void start(Player player) {
-        if (player.getWorld().getName().equals("pve")) {
+        if (player.getWorld().getName().equals(this.worldname)) {
 
             player.sendMessage("Mobs Killer");
 
@@ -157,8 +182,9 @@ public class PveWorld implements Listener {
     @EventHandler
     public void signClick(PlayerInteractEvent e) {
         Player player = e.getPlayer();
+        World world = player.getWorld();
         // プレーヤーがいるワールドがpveじゃなかったら何も終わり
-        if (!player.getWorld().getName().equals("pve")) {
+        if (!player.getWorld().getName().equals(this.worldname)) {
             return;
         }
         Block b = e.getClickedBlock();
@@ -168,15 +194,20 @@ public class PveWorld implements Listener {
             // あらかじめ利用する変数を用意しておく
             Sign sign;
             sign = (Sign) b.getState();
-            ScoreboardManager sbm = Bukkit.getScoreboardManager();
-            Scoreboard sb = sbm.getMainScoreboard();
-            Objective obj = sb.getObjective(OBJECTIVE_NAME_SCORE);
-            if(obj == null) {
-                obj = sb.registerNewObjective(OBJECTIVE_NAME_SCORE,"point");
-                obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                obj.setDisplayName("point");
 
+            ScoreboardManager manager = Bukkit.getScoreboardManager();
+            Scoreboard scoreboard = manager.getMainScoreboard();
+
+            Objective objective = scoreboard.getObjective(OBJECTIVE_NAME_SCORE);
+            if (objective == null){
+                objective = scoreboard.registerNewObjective(OBJECTIVE_NAME_SCORE,"dummy");
+                objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+                objective.setDisplayName("point");
             }
+            for (Player p : world.getPlayers()){
+                p.setScoreboard(scoreboard);
+            }
+
             String line = sign.getLine(1);
             String line2 = sign.getLine(2);
             if (line.equals("GameStart")) {
@@ -187,64 +218,66 @@ public class PveWorld implements Listener {
                 player.getInventory().addItem(item);
 
             }
+
+
             if (line.equals("PointRanking")) {
                 this.showRanking(player);
             }
-            Score score = obj.getScore(player.getDisplayName());
+            Score score = objective.getScore(player.getDisplayName());
             int point = score.getScore();
             // 鉄の剣
-            if (line.equals("鉄の剣") && line2.equals("-100ポイント")) {
-                if (point >= 100) {
+            if (line.equals("鉄の剣") && line2.equals("-10ポイント")) {
+                if (point >= 10) {
                     ItemStack item = new ItemStack(Material.IRON_SWORD);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 100);
+                    score.setScore(point - 10);
                 } else {
-                    player.sendMessage("ポイントが100以上必要です!");
+                    player.sendMessage("ポイントが10以上必要です!");
                 }
             }
             // 鉄の頭
-            if (line.equals("鉄のヘルメット") && line2.equals("-200ポイント")) {
-                if (point >= 200) {
+            if (line.equals("鉄のヘルメット") && line2.equals("-10ポイント")) {
+                if (point >= 10) {
                     ItemStack item = new ItemStack(Material.IRON_HELMET);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 200);
+                    score.setScore(point - 10);
                 } else {
-                    player.sendMessage("ポイントが200以上必要です!");
+                    player.sendMessage("ポイントが10以上必要です!");
                 }
             }
             //鉄の足
-            if (line.equals("鉄のブーツ") && line2.equals("-200ポイント")) {
-                if (point >= 200) {
+            if (line.equals("鉄のブーツ") && line2.equals("-10ポイント")) {
+                if (point >= 10) {
                     ItemStack item = new ItemStack(Material.IRON_BOOTS);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 200);
+                    score.setScore(point - 10);
                 } else {
-                    player.sendMessage("ポイントが200以上必要です!");
+                    player.sendMessage("ポイントが10以上必要です!");
                 }
             }
             //弓
-            if (line.equals("弓") && line2.equals("-300ポイント")) {
-                if (point >= 300) {
+            if (line.equals("弓") && line2.equals("-25ポイント")) {
+                if (point >= 25) {
                     ItemStack item = new ItemStack(Material.BOW);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 300);
+                    score.setScore(point - 20);
                 } else {
-                    player.sendMessage("ポイントが300以上必要です!");
+                    player.sendMessage("ポイントが25以上必要です!");
                 }
             }
             //矢
-            if (line.equals("矢") && line2.equals("-100ポイント")) {
-                if (point >= 100) {
+            if (line.equals("矢") && line2.equals("-5ポイント")) {
+                if (point >= 5) {
                     ItemStack item = new ItemStack(Material.ARROW, 5);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 100);
+                    score.setScore(point - 5);
                 } else {
-                    player.sendMessage("ポイントが100以上必要です!");
+                    player.sendMessage("ポイントが5以上必要です!");
                 }
             }
             //治癒のポーション
-            if (line.equals("治癒のポーション") && line2.equals("-300ポイント")) {
-                if (point >= 300) {
+            if (line.equals("治癒のポーション") && line2.equals("-30ポイント")) {
+                if (point >= 30) {
                     ItemStack potion = new ItemStack(Material.POTION);
                     //ポーションの種類を準備する
                     PotionType potionType = PotionType.INSTANT_HEAL;
@@ -258,49 +291,49 @@ public class PveWorld implements Listener {
                     potion.setItemMeta(meta);
                     //プレーヤーに渡す
                     player.getInventory().addItem(potion);
-                    score.setScore(point - 300);
+                    score.setScore(point - 30);
                 } else {
-                    player.sendMessage("ポイントが300以上必要です!");
+                    player.sendMessage("ポイントが30以上必要です!");
                 }
             }
             //鉄のチェストプレート
-            if (line.equals("鉄のチェストプレート") && line2.equals("-400ポイント")) {
-                if (point >= 400) {
+            if (line.equals("鉄のチェストプレート") && line2.equals("-40ポイント")) {
+                if (point >= 40) {
                     ItemStack item = new ItemStack(Material.IRON_CHESTPLATE);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 400);
+                    score.setScore(point - 40);
                 } else {
-                    player.sendMessage("ポイントが400以上必要です!");
+                    player.sendMessage("ポイントが-40以上必要です!");
                 }
             }
             //鉄のレギンス
-            if (line.equals("鉄のレギンス") && line2.equals("-300ポイント")) {
-                if (point >= 300) {
+            if (line.equals("鉄のレギンス") && line2.equals("-35ポイント")) {
+                if (point >= 35) {
                     ItemStack item = new ItemStack(Material.IRON_LEGGINGS);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 300);
+                    score.setScore(point - 35);
                 } else {
-                    player.sendMessage("ポイントが300以上必要です!");
+                    player.sendMessage("ポイントが35以上必要です!");
                 }
             }
             //焼き鳥
-            if (line.equals("焼き鳥") && line2.equals("-200ポイント")) {
-                if (point >= 200) {
+            if (line.equals("焼き鳥") && line2.equals("-15ポイント")) {
+                if (point >= 15) {
                     ItemStack item = new ItemStack(Material.COOKED_CHICKEN, 2);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 200);
+                    score.setScore(point - 15);
                 } else {
-                    player.sendMessage("ポイントが200以上必要です!");
+                    player.sendMessage("ポイントが15以上必要です!");
                 }
             }
             //ラピスラズリ
-            if (line.equals("ラピスラズリ") && line2.equals("-100ポイント")) {
-                if (point >= 100) {
+            if (line.equals("ラピスラズリ") && line2.equals("-5ポイント")) {
+                if (point >= 5) {
                     ItemStack item = new ItemStack(Material.INK_SACK, 1, (short) 4);
                     player.getInventory().addItem(item);
-                    score.setScore(point - 100);
+                    score.setScore(point - 5);
                 } else {
-                    player.sendMessage("ポイントが100以上必要です!");
+                    player.sendMessage("ポイントが5以上必要です!");
                 }
             }
         }
@@ -308,7 +341,7 @@ public class PveWorld implements Listener {
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
-        if (e.getEntity().getWorld().getName().equals("pve")) {
+        if (e.getEntity().getWorld().getName().equals(this.worldname)) {
             if (e.getEntity() instanceof Player) {
                 Player player = e.getEntity();
                 player.sendMessage("You died!");
@@ -318,26 +351,94 @@ public class PveWorld implements Listener {
                 player.setGameMode(GameMode.SPECTATOR);
                 player.hidePlayer(this.plugin, player);
                 //player.performCommand("mvtp world");
-                new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin, 0, 20);
+                //new PveRespawnScheduler(this.plugin, player).runTaskTimer(this.plugin, 0, 20);
             }
         }
     }
 
+
+
     @EventHandler
-    public void onDeath(EntityDeathEvent e) {
-        if (e.getEntity() instanceof Zombie) { //    if zombie dies
-            e.getDrops().clear();
-        }
-        if (e.getEntity() instanceof Skeleton) { // if Skeleton dies
-            e.getDrops().clear();
+    public void EntityDeath(EntityDeathEvent e) {
+        Player player = e.getEntity().getKiller();
+        World world = e.getEntity().getWorld();
+
+        if (world.getName().equals(this.worldname)){
+            ScoreboardManager manager = Bukkit.getScoreboardManager();
+            Scoreboard scoreboard = manager.getMainScoreboard();
+            Objective objective = scoreboard.getObjective(OBJECTIVE_NAME_SCORE);
+            if (objective != null) {
+                Score score = objective.getScore(player.getDisplayName());
+                int point = score.getScore();
+
+                int count = 0;
+                for (Entity entity : world.getEntities()) {
+                    if (!entity.isDead()) {
+                        if (entity instanceof Monster) {
+                            count++;
+                        }
+                    }
+                }
+                if (e.getEntity() instanceof Monster) {
+                    if (e.getEntity().getType() == EntityType.ZOMBIE) {
+                        e.getDrops().clear();
+                        score.setScore(point + 10);
+                        for (Player p : world.getPlayers()){
+                            p.setScoreboard(scoreboard);
+                        }
+                    } else if (e.getEntity().getType() == EntityType.SKELETON){
+                        e.getDrops().clear();
+                        score.setScore(point + 15);
+                        for (Player p : world.getPlayers()) {
+                            p.setScoreboard(scoreboard);
+                        }
+                    }
+                }
+                if (count > 0){
+                    if (this.enemyCount != count){
+                        for (Player p : world.getPlayers()){
+                            p.sendMessage("モンスターは残り" + count + "体");
+                            this.enemyCount = count;
+                        }
+                    }
+                } else {
+                    for (Player p : world.getPlayers()){
+                        p.sendTitle("wave" + waveCount + "の全モンスターを倒しました","",0,40,0);
+                    }
+                    if (this.waveCount < 15){
+                        this.waveCount++;
+                        for (Player p : world.getPlayers()) {
+                            if (p.getGameMode() == GameMode.SPECTATOR){
+                                p.setGameMode(GameMode.ADVENTURE);
+                                ItemStack item = new ItemStack(Material.STONE_SWORD);
+                                p.getInventory().addItem(item);
+                            }
+                        }
+                        new PveScheduler(this.plugin, world, this.waveCount).runTaskTimer(this.plugin,0,20);
+                    } else {
+                        for (Player p : world.getPlayers()){
+                            p.sendTitle("ゲームクリア","",0,60,0);
+                            this.setPoint(player,point);
+                            p.performCommand("mvtp world");
+                        }
+                        this.waveCount = 1;
+                    }
+                }
+
+            }
+
+
         }
     }
 
 
+
+    /*
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
+        Player player = event.getEntity().getKiller();
         World world = event.getEntity().getWorld();
-        if (world.getName().equals("pve")) {
+        if (world.getName().equals(this.worldname)) {
             if (this.waveCount > 15) this.waveCount = 1;
             List<Entity> entities = world.getEntities();
             int count = 0;
@@ -361,28 +462,29 @@ public class PveWorld implements Listener {
                 } else {
                     this.sendMessageToPlayers(world, "ゲームクリア!");
                     this.waveCount = 1;
-                    for (Player player : world.getPlayers()) {
-                        player.performCommand("mvtp world");
-                        /*Score score = obj.getScore(player.getDisplayName());
+                    for (Player p : world.getPlayers()) {
+                        p.performCommand("mvtp world");
+                        Score score = obj.getScore(player.getDisplayName());
                         int point = score.getScore();
                         this.setPoint(player, point);
-                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");*/
+                        player.sendMessage(String.valueOf(point) + "ポイント持ってクリアしました!!");
                     }
                 }
             }
-            Player p = event.getEntity().getKiller();
             ScoreboardManager sbm = Bukkit.getScoreboardManager();
             Scoreboard sb = sbm.getMainScoreboard();
             Objective obj = ((Scoreboard) sb).getObjective(OBJECTIVE_NAME_SCORE);
             if (obj != null) {
-                Score score = obj.getScore(p.getDisplayName());
+                Score score = obj.getScore(player.getDisplayName());
                 int point = (int) score.getScore();
                 score.setScore(point + 100);
-                p.setScoreboard(sb);
+                player.setScoreboard(sb);
             }
 
         }
     }
+     */
+
 
 
 
@@ -393,7 +495,7 @@ public class PveWorld implements Listener {
     @EventHandler
     public void PlayerInteractEvent(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (!player.getWorld().getName().equals("pve") && this.inTower(player)) {
+        if (!player.getWorld().getName().equals(this.worldname) && this.inTower(player)) {
             return;
         }
 
@@ -407,8 +509,8 @@ public class PveWorld implements Listener {
                 Score score = obj.getScore(p.getDisplayName());
                 int point = score.getScore();
                 p.sendMessage("今" + String.valueOf(point) + "ポイント持っています");
-                if (point >= 500) {
-                    score.setScore(point - 500);
+                if (point >= 40) {
+                    score.setScore(point - 30);
                     /* 鉄のドアが右クリックされた時
                     BlockState state = block.getState();
                     Openable o = (Openable) state.getData();
@@ -521,7 +623,7 @@ public class PveWorld implements Listener {
                         location.getWorld().getBlockAt(location).setType(Material.AIR);
                     }*/
                 } else {
-                    p.sendMessage("後" + String.valueOf(500 - point) + "ポイント必要です！");
+                    p.sendMessage("後" + String.valueOf(40 - point) + "ポイント必要です！");
                 }
             }
         }

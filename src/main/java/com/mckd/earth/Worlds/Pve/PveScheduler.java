@@ -29,10 +29,10 @@ public class PveScheduler extends BukkitRunnable {
     }
 
     @Override
-    public  void run(){
+    public void run(){
         this.count--;
         this.sendMessageToPlayers(this.world, String.valueOf(this.count) );
-        if( this.count <1) {
+        if (this.count <1) {
             this.sendMessageToPlayers(this.world, "Mobs Killer START!");
             outside: for (Chunk chunk : this.world.getLoadedChunks() ) {
                 for (BlockState blockState : chunk.getTileEntities()) {
@@ -53,7 +53,7 @@ public class PveScheduler extends BukkitRunnable {
     // モンスターを発生させるプログラムを関数にまとめて読みやすくする
     private void spawnMonsters(Location sign_loc) {
         Location spawn_loc = new Location(sign_loc.getWorld(), sign_loc.getX() + 0, sign_loc.getY() + 3, sign_loc.getZ());
-        this.sendMessageToPlayers(this.world,"wave"+String.valueOf(this.wave) );
+        this.sendMessageToPlayers(this.world,"wave" + this.wave);
         if(this.wave==1) {
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
             sign_loc.getWorld().spawn(spawn_loc, Zombie.class);
