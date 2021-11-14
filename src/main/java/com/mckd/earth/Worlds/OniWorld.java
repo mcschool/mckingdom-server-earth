@@ -5,9 +5,6 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,28 +30,21 @@ import java.util.*;
 
 public class OniWorld implements Listener {
     private Earth plugin;
+    private boolean isPlaying = false;
     private List<UUID> oni = new ArrayList<UUID>();
-    private List<UUID> ko = new ArrayList<UUID>();
+    //private List<UUID> ko = new ArrayList<UUID>();
     String worldName = "oni";
     UUID firstoni;
-    BossBar bossBar;
-
 
     public OniWorld(Earth plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private BossBar getBar(){
-        int oniSize = oni.size();
-        int koSize = ko.size();
-        BossBar bar = Bukkit.createBossBar("鬼の人数" + ChatColor.RED + oniSize + "人" + " : " + "子の人数" + ChatColor.BLUE + koSize + "人",BarColor.PURPLE, BarStyle.SOLID);
-        return bar;
-    }
 
 
 
-    private Map<Integer,UUID> UniqueIdMap(Player player) {
+    private Map<Integer,UUID> uniqueIdMap(Player player) {
 
         Map<Integer, UUID> UniqueId = new HashMap<>();
 
@@ -65,7 +55,7 @@ public class OniWorld implements Listener {
     private void addUniqueId(Player player) {
         World world = player.getWorld();
 
-        Map<Integer, UUID> UniqueId = this.UniqueIdMap(player);
+        Map<Integer, UUID> UniqueId = this.uniqueIdMap(player);
 
         Integer i = 0;
         for (Player p : world.getPlayers()) {
@@ -141,24 +131,27 @@ public class OniWorld implements Listener {
             String line = sign.getLine(1);
 
             if (line.equals("Start")) {
-                oni.clear();
-                this.addUniqueId(player);
-                for (Player p : world.getPlayers()){
-                    bossBar = this.getBar();
-                    bossBar.addPlayer(p);
-                    if(p.getUniqueId() == this.firstoni){
-                        p.teleport(location);
-                        p.sendTitle(ChatColor.RED +"あなたは最初の鬼です","制限時間までに全員捕まえましょう",0,100,0 );
-                        p.addPotionEffect(PotionEffectType.SLOW.createEffect(15,10));
-                        p.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(15,10));
-                    } else {
-                        ko.add(p.getUniqueId());
-                        p.teleport(location2);
-                        p.sendTitle(ChatColor.BLUE + "あなたは子です","制限時間まで逃げ切りましょう",0,100,0);
-                    }
+                if (isPlaying == false) {
+                    oni.clear();
+                    this.addUniqueId(player);
+                    for (Player p : world.getPlayers()) {
+                        p.getInventory().clear();
+                        if (p.getUniqueId() == this.firstoni) {
+                            p.teleport(location);
+                            p.sendTitle(ChatColor.RED + "あなたは最初の鬼です", "制限時間までに全員捕まえましょう", 0, 100, 0);
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 10));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 10));
+                        } else {
+                            //ko.add(p.getUniqueId());
+                            p.teleport(location2);
+                            p.sendTitle(ChatColor.BLUE + "あなたは子です", "制限時間まで逃げ切りましょう", 0, 100, 0);
+                        }
 
+                    }
+                    player.getWorld().setPVP(true);
+                } else {
+                    player.sendMessage("ゲーム中です");
                 }
-                player.getWorld().setPVP(true);
             }
 
             if(line.equals("test")) {
@@ -200,8 +193,24 @@ public class OniWorld implements Listener {
             if (line.equals("openList")){
                 player.sendMessage("あなたのUUID " + player.getUniqueId());
                 player.sendMessage("鬼のリスト " + oni);
-                player.sendMessage("");
-                player.sendMessage("子のリスト " + ko);
+                //player.sendMessage("");
+                //player.sendMessage("子のリスト " + ko);
+            }
+            if (line.equals("uuids")){
+                for (Player p : world.getPlayers()){
+                    player.sendMessage(p.getName() + " = " +  p.getUniqueId());
+                }
+            }
+            if (line.equals("isPlaying = true")){
+                isPlaying = true;
+                player.sendMessage("isPlayingを" + isPlaying + "にしました");
+            }
+            if (line.equals("isPlaying = false")){
+                isPlaying = false;
+                player.sendMessage("isPlayingを" + isPlaying + "にしました");
+            }
+            if (line.equals("isPlaying = now")){
+                player.sendMessage("現在のisPlayingは" + isPlaying + "です");
             }
 
         }
@@ -216,7 +225,6 @@ public class OniWorld implements Listener {
             return;
         }
         Player player = event.getPlayer();
-        bossBar.removePlayer(player);
         World world = player.getWorld();
         Location location = new Location(player.getWorld(),-489,12,-121);
         player.getInventory().clear();
@@ -237,7 +245,9 @@ public class OniWorld implements Listener {
         }
         Player player = (Player) e.getWhoClicked();
         if (oni.contains(player.getUniqueId())){
-            e.setCancelled(true);
+            if (player.getGameMode() == GameMode.SURVIVAL){
+                e.setCancelled(true);
+            }
         }
     }
 
@@ -338,22 +348,20 @@ public class OniWorld implements Listener {
                 if (oni.contains(damager.getUniqueId())) {
                     if (!oni.contains(player.getUniqueId())) {
                         oni.add(uuid);
-                        ko.remove(uuid);
+                        //ko.remove(uuid);
 
                         player.getEquipment().setHelmet(helmet);
                         player.getEquipment().setChestplate(chestplate);
                         player.getEquipment().setLeggings(leggings);
                         player.getEquipment().setBoots(boots);
-                        bossBar = this.getBar();
                         for (Player p : world.getPlayers()) {
                             p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
-                            bossBar.addPlayer(p);
                         }
                         if (oni.size() == world.getPlayers().size()) {
                             for (Player p : world.getPlayers()) {
                                 p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
-                                bossBar.removePlayer(p);
                                 new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
+                                isPlaying = false;
                                 oni.clear();
                             }
                         }
