@@ -5,6 +5,9 @@ import com.mckd.earth.Earth;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +23,8 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -29,14 +34,22 @@ import java.util.*;
 public class OniWorld implements Listener {
     private Earth plugin;
     private List<UUID> oni = new ArrayList<UUID>();
+    private List<UUID> ko = new ArrayList<UUID>();
     String worldName = "oni";
     UUID firstoni;
-
+    BossBar bossBar;
 
 
     public OniWorld(Earth plugin) {
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    private BossBar getBar(){
+        int oniSize = oni.size();
+        int koSize = ko.size();
+        BossBar bar = Bukkit.createBossBar("鬼の人数" + ChatColor.RED + oniSize + "人" + " : " + "子の人数" + ChatColor.BLUE + koSize + "人",BarColor.PURPLE, BarStyle.SOLID);
+        return bar;
     }
 
 
@@ -57,21 +70,21 @@ public class OniWorld implements Listener {
         Integer i = 0;
         for (Player p : world.getPlayers()) {
             UUID uuid = p.getPlayer().getUniqueId();
-            player.sendMessage(String.valueOf(i));
-            player.sendMessage(String.valueOf(uuid));
+            //.sendMessage(String.valueOf(i));
+            //player.sendMessage(String.valueOf(uuid));
             UniqueId.put(i, uuid);
             i++;
         }
 
-        for(Map.Entry<Integer,UUID> entrySet : UniqueId.entrySet()){
+        /* for(Map.Entry<Integer,UUID> entrySet : UniqueId.entrySet()){
             player.sendMessage(entrySet.getKey() + " = " + entrySet.getValue());
-        }
+        } */
 
 
         int random = new Random().nextInt(UniqueId.size());
         UUID result = UniqueId.get(random);
 
-        player.sendMessage(String.valueOf(result));
+        //player.sendMessage(String.valueOf(result));
 
         this.firstoni = result;
         oni.add(result);
@@ -131,13 +144,19 @@ public class OniWorld implements Listener {
                 oni.clear();
                 this.addUniqueId(player);
                 for (Player p : world.getPlayers()){
-                    if(p.getUniqueId() == firstoni){
+                    bossBar = this.getBar();
+                    bossBar.addPlayer(p);
+                    if(p.getUniqueId() == this.firstoni){
                         p.teleport(location);
-                        p.sendTitle(ChatColor.RED +"","",0,100,0 );
+                        p.sendTitle(ChatColor.RED +"あなたは最初の鬼です","制限時間までに全員捕まえましょう",0,100,0 );
+                        p.addPotionEffect(PotionEffectType.SLOW.createEffect(15,10));
+                        p.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(15,10));
                     } else {
+                        ko.add(p.getUniqueId());
                         p.teleport(location2);
-                        p.sendTitle(ChatColor.BLUE + "","",0,100,0);
+                        p.sendTitle(ChatColor.BLUE + "あなたは子です","制限時間まで逃げ切りましょう",0,100,0);
                     }
+
                 }
                 player.getWorld().setPVP(true);
             }
@@ -178,6 +197,12 @@ public class OniWorld implements Listener {
                 }
 
             }
+            if (line.equals("openList")){
+                player.sendMessage("あなたのUUID " + player.getUniqueId());
+                player.sendMessage("鬼のリスト " + oni);
+                player.sendMessage("");
+                player.sendMessage("子のリスト " + ko);
+            }
 
         }
     }
@@ -191,6 +216,7 @@ public class OniWorld implements Listener {
             return;
         }
         Player player = event.getPlayer();
+        bossBar.removePlayer(player);
         World world = player.getWorld();
         Location location = new Location(player.getWorld(),-489,12,-121);
         player.getInventory().clear();
@@ -206,7 +232,13 @@ public class OniWorld implements Listener {
 
     @EventHandler
     public void InventoryClickEvent(InventoryClickEvent e){
-
+        if (!e.getWhoClicked().getWorld().getName().equals(this.worldName)){
+            return;
+        }
+        Player player = (Player) e.getWhoClicked();
+        if (oni.contains(player.getUniqueId())){
+            e.setCancelled(true);
+        }
     }
 
 
@@ -306,21 +338,27 @@ public class OniWorld implements Listener {
                 if (oni.contains(damager.getUniqueId())) {
                     if (!oni.contains(player.getUniqueId())) {
                         oni.add(uuid);
+                        ko.remove(uuid);
+
                         player.getEquipment().setHelmet(helmet);
                         player.getEquipment().setChestplate(chestplate);
                         player.getEquipment().setLeggings(leggings);
                         player.getEquipment().setBoots(boots);
+                        bossBar = this.getBar();
+                        for (Player p : world.getPlayers()) {
+                            p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
+                            bossBar.addPlayer(p);
+                        }
                         if (oni.size() == world.getPlayers().size()) {
                             for (Player p : world.getPlayers()) {
                                 p.sendMessage("すべてのプレイヤーが捕まったのでゲームが終了します。");
+                                bossBar.removePlayer(p);
                                 new OniCountDownScheduler(this.plugin, p, 5).runTaskTimer(this.plugin, 0, 20);
                                 oni.clear();
                             }
                         }
-                        for (Player p : world.getPlayers()) {
-                            p.sendTitle("鬼が増えました！", "「" + player.getName() + "」さんが鬼になりました", 40, 40, 40);
-                        }
-
+                    } else {
+                        event.setCancelled(true);
                     }
                 } else {
                     event.setCancelled(true);
