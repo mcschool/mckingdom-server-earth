@@ -132,15 +132,18 @@ public class OniWorld implements Listener {
 
             if (line.equals("Start")) {
                 if (isPlaying == false) {
+                    for (Player p : world.getPlayers()){
+                        p.getInventory().clear();
+                    }
                     oni.clear();
                     this.addUniqueId(player);
                     for (Player p : world.getPlayers()) {
-                        p.getInventory().clear();
                         if (p.getUniqueId() == this.firstoni) {
                             p.teleport(location);
                             p.sendTitle(ChatColor.RED + "あなたは最初の鬼です", "制限時間までに全員捕まえましょう", 0, 100, 0);
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 10));
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 10));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 100));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 100));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 200, 245));
                         } else {
                             //ko.add(p.getUniqueId());
                             p.teleport(location2);
